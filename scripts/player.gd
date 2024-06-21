@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var jump = $jump
 
 var SPEED = 130.0
 const JUMP_VELOCITY = -300.0
@@ -22,12 +23,12 @@ func _physics_process(delta):
 		
 	if not is_alive:
 		velocity.x = direction * 0
-		#animated_sprite.play("death")
 
 	if is_alive:
 		if jump_count < MAX_JUMP_COUNT and is_jumping:
 			velocity.y = JUMP_VELOCITY
 			jump_count += 1
+			jump.play()
 			
 		#Play animations
 		if is_on_floor() and not is_jumping:
@@ -38,6 +39,7 @@ func _physics_process(delta):
 				animated_sprite.play("run")
 		elif is_jumping:
 			animated_sprite.play("jump")
+			
 		
 		#Flip sprite depending on the direction left or right
 		if direction == -1:
