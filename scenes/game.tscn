@@ -550,9 +550,6 @@ autoplay = "move"
 [node name="slime" parent="Slimes" instance=ExtResource("6_3nqog")]
 position = Vector2(162, -1)
 
-[node name="slime2" parent="Slimes" instance=ExtResource("6_3nqog")]
-position = Vector2(123, -2)
-
 [node name="Labels" type="Node" parent="."]
 
 [node name="Label" type="Label" parent="Labels"]
