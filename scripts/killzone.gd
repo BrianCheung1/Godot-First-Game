@@ -7,6 +7,9 @@ func _on_body_entered(body):
 	Engine.time_scale = 1
 	body.is_alive = false
 	body.animated_sprite.play("death")
+	body.hurt.play()
+	body.set_collision_layer_value(2, false)
+	body.set_collision_layer_value(3, true)
 	timer.start()
 	
 

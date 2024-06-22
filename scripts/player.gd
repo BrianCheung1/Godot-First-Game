@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var jump = $jump
+@onready var hurt = $hurt
 
 var SPEED = 130.0
 const JUMP_VELOCITY = -300.0
