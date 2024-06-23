@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://pen1qei18gy7"]
+
+[ext_resource type="Texture2D" uid="uid://cigtppu0py6ck" path="res://assets/sprites/fruit.png" id="1_j2bv3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a7s4l"]
+radius = 8.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hct5s"]
+atlas = ExtResource("1_j2bv3")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5aq3f"]
+atlas = ExtResource("1_j2bv3")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fvq5n"]
+atlas = ExtResource("1_j2bv3")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hy34f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hct5s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5aq3f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fvq5n")
+}],
+"loop": true,
+"name": &"end",
+"speed": 10.0
+}]
+
+[node name="Endzone" type="Area2D"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_a7s4l")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hy34f")
+animation = &"end"
+autoplay = "end"
+frame_progress = 0.538935
+speed_scale = 0.5

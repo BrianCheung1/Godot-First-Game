@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3bvgw3dg0e2l"]
+
+[ext_resource type="FontFile" uid="uid://dc004b45phav2" path="res://assets/fonts/PixelOperator8.ttf" id="1_8wlel"]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 8.0
+offset_top = 16.0
+offset_right = 134.0
+offset_bottom = 32.0
+theme_override_fonts/font = ExtResource("1_8wlel")
+text = "0/27 coins"
+
+[node name="TimerLabel" type="Label" parent="."]
+offset_left = 8.0
+offset_top = 40.0
+offset_right = 76.0
+offset_bottom = 63.0
+theme_override_fonts/font = ExtResource("1_8wlel")
+text = "0"
