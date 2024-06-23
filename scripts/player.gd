@@ -21,6 +21,8 @@ func _physics_process(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("move_left", "move_right")
 	var is_jumping = Input.is_action_just_pressed("jump")
+	if Input.is_action_pressed("reload"):
+		get_tree().reload_current_scene()
 		
 	if not is_alive:
 		velocity.x = direction * 0
