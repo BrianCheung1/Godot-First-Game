@@ -6,7 +6,7 @@ var in_game = true
 @onready var score_label = $ScoreLabel
 @onready var hud = $HUD
 @onready var endzone = $Endzone
-@onready var leaderboard_ui = $CanvasLayer/LeaderboardUI
+@onready var leaderboard_ui = $"../UI/LeaderboardUI"
 
 
 func add_point():
