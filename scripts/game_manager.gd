@@ -6,6 +6,8 @@ var in_game = true
 @onready var score_label = $ScoreLabel
 @onready var hud = $HUD
 @onready var endzone = $Endzone
+@onready var leaderboard_ui = $CanvasLayer/LeaderboardUI
+
 
 func add_point():
 	score +=1
@@ -17,11 +19,14 @@ func end_game():
 		print("didnt win yet")
 	else:
 		in_game = false
+		leaderboard_ui.show()
+		get_tree().paused = true
 	return in_game
 
 func _process(delta):
 	if in_game:
 		updateTimer(delta)
+		PlayerVariables.player_time=time
 
 func updateTimer(delta):
 	time += delta

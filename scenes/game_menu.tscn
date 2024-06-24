@@ -1,0 +1,97 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3n43jnvhbth3"]
+
+[ext_resource type="Theme" uid="uid://mobqgno86x37" path="res://assets/themes/default_theme.tres" id="1_u14w0"]
+[ext_resource type="Script" path="res://scripts/game_menu.gd" id="2_p6h80"]
+
+[node name="GameMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_u14w0")
+script = ExtResource("2_p6h80")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0705882, 0.0705882, 0.0705882, 0.780392)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 256
+theme_override_constants/margin_right = 256
+
+[node name="ButtonsVBox" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/ButtonsVBox"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/h_separation = 16
+columns = 2
+
+[node name="Music" type="Label" parent="MarginContainer/ButtonsVBox/GridContainer"]
+layout_mode = 2
+text = "Music
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicSlider" type="HSlider" parent="MarginContainer/ButtonsVBox/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 0.1
+
+[node name="SFX" type="Label" parent="MarginContainer/ButtonsVBox/GridContainer"]
+layout_mode = 2
+text = "SFX
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFXSlider" type="HSlider" parent="MarginContainer/ButtonsVBox/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 0.1
+
+[node name="ReturnToGameButton" type="Button" parent="MarginContainer/ButtonsVBox"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../MainMenuButton")
+focus_neighbor_bottom = NodePath("../MainMenuButton")
+focus_next = NodePath("../MainMenuButton")
+focus_previous = NodePath("../MainMenuButton")
+text = "Continue game
+"
+
+[node name="MainMenuButton" type="Button" parent="MarginContainer/ButtonsVBox"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../ReturnToGameButton")
+focus_neighbor_bottom = NodePath("../ReturnToGameButton")
+focus_next = NodePath("../ReturnToGameButton")
+focus_previous = NodePath("../ReturnToGameButton")
+text = "Main Menu"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="value_changed" from="MarginContainer/ButtonsVBox/GridContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/ButtonsVBox/GridContainer/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="pressed" from="MarginContainer/ButtonsVBox/ReturnToGameButton" to="." method="_on_return_togame_button_pressed"]
+[connection signal="pressed" from="MarginContainer/ButtonsVBox/ReturnToGameButton" to="." method="_on_return_to_game_button_pressed"]
+[connection signal="pressed" from="MarginContainer/ButtonsVBox/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
