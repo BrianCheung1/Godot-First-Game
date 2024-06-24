@@ -6,8 +6,12 @@ var in_game = true
 @onready var score_label = $ScoreLabel
 @onready var hud = $HUD
 @onready var endzone = $Endzone
-@onready var leaderboard_ui = $"../UI/LeaderboardUI"
+@onready var ui = $"../UI"
 
+@export var leaderboardScene:PackedScene
+signal close_button
+
+var leaderboard
 
 func add_point():
 	score +=1
@@ -19,8 +23,21 @@ func end_game():
 		print("didnt win yet")
 	else:
 		in_game = false
-		leaderboard_ui.show()
-		get_tree().paused = true
+		if leaderboard:
+			leaderboard.queue_free()
+		leaderboard = leaderboardScene.instantiate()
+		leaderboard.leaderboard_id = "butter-knights-butter-knights-2wUo"
+		ui.add_child(leaderboard)
+		var button = Button.new()
+		leaderboard.add_child(button)
+		button.set_text("Close")
+		button.add_theme_font_override("font", load("res://assets/fonts/PixelOperator8.ttf"))
+		# Set anchor to bottom
+		button.anchor_left = 0.5
+		button.anchor_right = 0.5
+		button.anchor_top = 0.75
+		button.pressed.connect(_on_button_press)
+		
 	return in_game
 
 func _process(delta):
@@ -42,3 +59,6 @@ func format_time(time):
 		   str(minutes).pad_zeros(2) + ":" + \
 		   str(seconds).pad_zeros(2) + ":" + \
 		   str(milliseconds).pad_zeros(3)
+
+func _on_button_press():
+	leaderboard.queue_free()

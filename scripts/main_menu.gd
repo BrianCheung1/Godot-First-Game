@@ -29,9 +29,13 @@ func _on_visibility_changed():
 
 func _on_high_score_button_pressed():
 	leaderboard_ui.show()
+	buttons_v_box.hide()
+	player_name.hide()
 
 func _on_close_button_pressed():
 	leaderboard_ui.hide()
+	buttons_v_box.show()
+	player_name.show()
 
 func _on_change_name_button_pressed():
 	user_interface.show()
