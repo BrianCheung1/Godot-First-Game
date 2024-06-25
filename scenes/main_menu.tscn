@@ -114,15 +114,14 @@ text = "Exit"
 [node name="LeaderboardUI" parent="." instance=ExtResource("4_tckdt")]
 visible = false
 layout_mode = 1
-leaderboard_id = "butter-knights-butter-knights-2wUo"
+leaderboard_id = "butter-knights-level2-ry9g"
 
 [node name="CloseButton" type="Button" parent="LeaderboardUI"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
+offset_left = 501.0
+offset_top = 560.0
+offset_right = 651.0
+offset_bottom = 576.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 focus_neighbor_top = NodePath("../../MarginContainer/VBoxContainer/ButtonsVBox/EndGameButton")

@@ -4,7 +4,8 @@ extends Node2D
 var level1
 
 func start_game():
-	get_tree().change_scene_to_file("res://scenes/level_1.tscn")
+	#get_tree().change_scene_to_file("res://scenes/level_1.tscn")
+	get_tree().change_scene_to_file("res://scenes/level_2.tscn")
 	
 func _on_ui_start_game():
 	start_game()

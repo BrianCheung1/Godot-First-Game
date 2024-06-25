@@ -5,11 +5,11 @@ extends CharacterBody2D
 @onready var hurt = $hurt
 
 var SPEED = 130.0
-const JUMP_VELOCITY = -300.0
+var JUMP_VELOCITY = -300.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-const MAX_JUMP_COUNT = 1
+var MAX_JUMP_COUNT = 1
 var jump_count = 0
 var is_alive = true
 
@@ -56,3 +56,4 @@ func _physics_process(delta):
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+

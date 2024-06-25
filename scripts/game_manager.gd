@@ -3,30 +3,37 @@ extends Node
 var score = 0
 var time = 0
 var in_game = true
+var total_coins = 0
 @onready var score_label = $ScoreLabel
 @onready var hud = $HUD
 @onready var endzone = $Endzone
 @onready var ui = $"../UI"
 
 @export var leaderboardScene:PackedScene
+@export var leaderboardID: String
+
 signal close_button
 
 var leaderboard
 
+func _ready():
+	total_coins = get_tree().get_nodes_in_group("coin").size()
+	hud.get_node("ScoreLabel").text = str(score) + "/" + str(total_coins) + " coins"
+	
 func add_point():
 	score +=1
-	score_label.text = "You've collected " + str(score) + "/27 coins!"
-	hud.get_node("ScoreLabel").text = str(score) + "/27 coins"
+	score_label.text = "You've collected " + str(score) + "/" + str(total_coins) +" coins!"
+	hud.get_node("ScoreLabel").text = str(score) + "/" + str(total_coins) + " coins"
 	
 func end_game():
-	if score < 27:
+	if score < total_coins:
 		print("didnt win yet")
 	else:
 		in_game = false
 		if leaderboard:
 			leaderboard.queue_free()
 		leaderboard = leaderboardScene.instantiate()
-		leaderboard.leaderboard_id = "butter-knights-butter-knights-2wUo"
+		leaderboard.leaderboard_id = leaderboardID
 		ui.add_child(leaderboard)
 		var button = Button.new()
 		leaderboard.add_child(button)
