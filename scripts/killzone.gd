@@ -1,6 +1,7 @@
 extends Area2D
 
 @onready var timer = $Timer
+@onready var timer_time = timer.wait_time
 
 func _on_body_entered(body):
 	print("You Died")
@@ -14,3 +15,8 @@ func _on_body_entered(body):
 func _on_timer_timeout():
 	get_tree().reload_current_scene()
 	
+func _on_tree_exiting():
+	print("OG Time " + str(timer_time))
+	print("Time Now " + str(timer.time_left))
+	if timer.time_left < timer_time and timer.time_left > 0:
+		get_tree().reload_current_scene()

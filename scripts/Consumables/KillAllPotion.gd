@@ -11,7 +11,6 @@ func activate():
 	if !slimes_node:
 		print("No slimes to kill on this map")
 		return
-		
 	var slimes = slimes_node.get_children()
 	if not slimes.any(func(x): return x is Slime):
 		print("No more slimes to kill on this map")
