@@ -16,4 +16,12 @@ func _process(delta):
 		direction = 1
 		animated_sprite.flip_h = false
 	position.x += direction * SPEED * delta
+
+# Overrides the original die function
+func die():
+	# Custom death effect for the slime (Try commenting this line out and see what happens)
+	enemy_death_effect = preload("res://scenes/effect_scenes/explosion.tscn")
+
+	# Call the parent die function in Monster2D.gd
+	super.die()
 	
