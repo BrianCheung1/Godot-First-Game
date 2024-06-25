@@ -14,9 +14,8 @@ func _on_body_entered(body):
 	
 func _on_timer_timeout():
 	get_tree().reload_current_scene()
-	
+	PlayerVariables.player_deaths +=1
 func _on_tree_exiting():
-	print("OG Time " + str(timer_time))
-	print("Time Now " + str(timer.time_left))
 	if timer.time_left < timer_time and timer.time_left > 0:
 		get_tree().reload_current_scene()
+		PlayerVariables.player_deaths +=1

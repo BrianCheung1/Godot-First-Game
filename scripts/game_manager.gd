@@ -50,6 +50,8 @@ func _process(delta):
 	if in_game:
 		updateTimer(delta)
 		PlayerVariables.player_time=time
+		hud.get_node("DeathLabel").text = "Deaths: " + str(PlayerVariables.player_deaths)
+		hud.get_node("ResetLabel").text = "Resets: " + str(PlayerVariables.player_resets)
 
 func updateTimer(delta):
 	time += delta
