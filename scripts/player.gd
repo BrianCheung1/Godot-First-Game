@@ -5,8 +5,8 @@ class_name Player
 @onready var jump = $jump
 @onready var hurt = $hurt
 
-const MAX_JUMP_COUNT = 1
-const SPEED = 130.0
+var MAX_JUMP_COUNT = 1
+var SPEED = 130.0
 var JUMP_VELOCITY = -300.0
 var _items: Array[Item] = [null, null, null, null, null]
 
@@ -16,6 +16,9 @@ var jump_count = 0
 var is_alive = true
 var direction
 var is_jumping
+var isFacingRight: bool:
+	get:
+		return true if animated_sprite.flip_h else false
 var level: Node:
 	get: 
 		return get_parent()

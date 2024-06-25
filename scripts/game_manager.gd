@@ -44,7 +44,6 @@ func end_game():
 		button.anchor_right = 0.5
 		button.anchor_top = 0.75
 		button.pressed.connect(_on_button_press)
-		
 	return in_game
 
 func _process(delta):
