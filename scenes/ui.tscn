@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://jpp0tyw8uubs"]
+[gd_scene load_steps=7 format=3 uid="uid://jpp0tyw8uubs"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_ar8xy"]
 [ext_resource type="PackedScene" uid="uid://bukps2fe7uctp" path="res://scenes/main_menu.tscn" id="2_tlmht"]
 [ext_resource type="PackedScene" uid="uid://b3n43jnvhbth3" path="res://scenes/game_menu.tscn" id="3_8dy5v"]
+[ext_resource type="PackedScene" uid="uid://jhglmeyaolit" path="res://scenes/level_menu.tscn" id="4_vhc33"]
+[ext_resource type="PackedScene" uid="uid://qxm517yahky2" path="res://scenes/highscore_menu.tscn" id="5_7m6x0"]
+[ext_resource type="PackedScene" uid="uid://dgygkbtm0burn" path="res://addons/quiver_leaderboards/leaderboard_ui.tscn" id="6_ufvbq"]
 
 [node name="UI" type="CanvasLayer"]
 process_mode = 3
@@ -24,6 +27,16 @@ mouse_filter = 2
 visible = false
 layout_mode = 1
 
+[node name="LevelMenu" parent="Control" instance=ExtResource("4_vhc33")]
+visible = false
+layout_mode = 1
+
+[node name="HighscoreMenu" parent="Control" instance=ExtResource("5_7m6x0")]
+visible = false
+layout_mode = 1
+leaderboardScene = ExtResource("6_ufvbq")
+
+[connection signal="highscores" from="Control/MainMenu" to="." method="_on_main_menu_highscores"]
 [connection signal="start_game" from="Control/MainMenu" to="." method="_on_main_menu_start_game"]
 [connection signal="main_menu" from="Control/GameMenu" to="." method="_on_game_menu_main_menu"]
 [connection signal="return_to_game" from="Control/GameMenu" to="." method="_on_game_menu_return_to_game"]

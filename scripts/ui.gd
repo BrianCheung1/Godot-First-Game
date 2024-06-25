@@ -2,6 +2,8 @@ extends CanvasLayer
 
 @onready var main_menu = $"Control/MainMenu"
 @onready var game_menu = $Control/GameMenu
+@onready var level_menu = $Control/LevelMenu
+@onready var highscore_menu = $Control/HighscoreMenu
 
 signal start_game()
 signal game_menu_opened()
@@ -9,7 +11,8 @@ signal game_menu_closed()
 signal quit_to_menu()
 
 func _on_main_menu_start_game():
-	start_game.emit()
+	level_menu.show()
+	main_menu.hide()
 
 func _input(event):
 	if !main_menu.visible and event.is_action_pressed("ui_cancel"):
@@ -27,3 +30,7 @@ func _on_game_menu_main_menu():
 func _on_game_menu_return_to_game():
 	game_menu.hide()
 	game_menu_closed.emit()
+
+func _on_main_menu_highscores():
+	level_menu.hide()
+	highscore_menu.show()

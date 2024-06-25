@@ -2,6 +2,7 @@ extends Control
 
 
 signal start_game()
+signal highscores()
 @onready var buttons_v_box = $MarginContainer/VBoxContainer/ButtonsVBox
 @onready var leaderboard_ui = $LeaderboardUI
 @onready var user_interface = $UserInterface
@@ -13,7 +14,7 @@ func _ready():
 func _on_start_game_button_pressed():
 	start_game.emit()
 	hide()
-	
+
 func _on_end_game_button_pressed():
 	get_tree().quit()
 	
@@ -28,9 +29,7 @@ func _on_visibility_changed():
 		focus_button()
 
 func _on_high_score_button_pressed():
-	leaderboard_ui.show()
-	buttons_v_box.hide()
-	player_name.hide()
+	highscores.emit()
 
 func _on_close_button_pressed():
 	leaderboard_ui.hide()
