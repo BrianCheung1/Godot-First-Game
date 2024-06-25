@@ -13,12 +13,13 @@ func activate():
 		return
 		
 	var slimes = slimes_node.get_children()
-	if slimes.size() == 0:
+	if not slimes.any(func(x): return x is Slime):
 		print("No more slimes to kill on this map")
 		return
 		
-	for slime: Slime in slimes:
+	for slime in slimes:
 		if not (slime is Slime): continue
-		slime.queue_free()
+		slime = slime as Slime
+		slime.die()
 	_count -= 1
 	print("Used " + _name)
