@@ -22,9 +22,20 @@ offset_bottom = 63.0
 theme_override_fonts/font = ExtResource("1_8wlel")
 text = "0"
 
-[node name="PlayerNameLabel" type="Label" parent="."]
+[node name="DeathLabel" type="Label" parent="."]
 process_mode = 3
 offset_left = 8.0
 offset_top = 63.0
 offset_right = 48.0
 offset_bottom = 86.0
+theme_override_fonts/font = ExtResource("1_8wlel")
+text = "Deaths: 0"
+
+[node name="ResetLabel" type="Label" parent="."]
+process_mode = 3
+offset_left = 8.0
+offset_top = 88.0
+offset_right = 48.0
+offset_bottom = 111.0
+theme_override_fonts/font = ExtResource("1_8wlel")
+text = "Resets: 0"
