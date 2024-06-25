@@ -5,6 +5,11 @@ class_name Player
 @onready var jump = $jump
 @onready var hurt = $hurt
 
+@export var gravity_potion_count:int
+@export var blink_potion_count:int
+@export var suck_potion_count:int
+@export var kill_potion_count:int
+
 var MAX_JUMP_COUNT = 1
 var SPEED = 130.0
 var JUMP_VELOCITY = -300.0
@@ -25,10 +30,10 @@ var level: Node:
 		
 func _ready():
 	# Give the user some starting items for testing
-	add_item(GravityPotion.new(self, 2), 0)
-	add_item(BlinkPotion.new(self, 4), 1)
-	add_item(SuckCoinPotion.new(self, 4), 2)
-	add_item(KillAllPotion.new(self, 4), 3)
+	add_item(GravityPotion.new(self, gravity_potion_count), 0)
+	add_item(BlinkPotion.new(self, blink_potion_count), 1)
+	add_item(SuckCoinPotion.new(self, suck_potion_count), 2)
+	add_item(KillAllPotion.new(self, kill_potion_count), 3)
 	print_items()
 	
 func _physics_process(delta):
@@ -52,8 +57,7 @@ func _physics_process(delta):
 			jump.play()
 		if !is_jumping and velocity.y < 0:
 			while velocity.y < 0:
-				velocity.y +=  delta
-				#velocity.y = 0
+				velocity.y += delta
 		#Play animations
 		if is_on_floor() and not is_jumping:
 			jump_count = 0
