@@ -38,7 +38,7 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	direction = Input.get_axis("move_left", "move_right")
-	is_jumping = Input.is_action_just_pressed("jump")
+	is_jumping = Input.is_action_pressed("jump")
 	if Input.is_action_pressed("reload"):
 		get_tree().reload_current_scene()
 		
@@ -50,7 +50,10 @@ func _physics_process(delta):
 			velocity.y = JUMP_VELOCITY
 			jump_count += 1
 			jump.play()
-			
+		if !is_jumping and velocity.y < 0:
+			while velocity.y < 0:
+				velocity.y +=  delta
+				#velocity.y = 0
 		#Play animations
 		if is_on_floor() and not is_jumping:
 			jump_count = 0
