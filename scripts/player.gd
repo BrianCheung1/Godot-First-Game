@@ -16,11 +16,16 @@ var jump_count = 0
 var is_alive = true
 var direction
 var is_jumping
-
+var level: Node:
+	get: 
+		return get_parent()
+		
 func _ready():
 	# Give the user some starting items for testing
 	add_item(GravityPotion.new(self, 2), 0)
 	add_item(BlinkPotion.new(self, 4), 1)
+	add_item(SuckCoinPotion.new(self, 4), 2)
+	add_item(KillAllPotion.new(self, 4), 3)
 	print_items()
 	
 func _physics_process(delta):
@@ -98,7 +103,7 @@ func process_items():
 		activated = true
 	# Remove from inventory if used up
 	for i in _items.size():
-		if _items[i] != null and _items[i].count == 0:
+		if _items[i] != null and _items[i].IsEmpty:
 			_items[i] = null
 	if activated:
 		print_items()
