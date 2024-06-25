@@ -7,7 +7,7 @@ class_name Player
 
 const MAX_JUMP_COUNT = 1
 const SPEED = 130.0
-const JUMP_VELOCITY = -300.0
+var JUMP_VELOCITY = -300.0
 var _items: Array[Item] = [null, null, null, null, null]
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
