@@ -1,7 +1,7 @@
 extends Node2D
 class_name Monster2D
 
-const enemy_death_effect = preload("res://scenes/effect_scenes/explosion_4.tscn")
+const enemy_death_effect = preload("res://scenes/effect_scenes/smoke.tscn")
 
 func _init():
 	pass
