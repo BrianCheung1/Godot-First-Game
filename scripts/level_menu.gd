@@ -17,3 +17,10 @@ func _on_level_2_button_pressed():
 
 func _on_main_menu_button_pressed():
 	levels_to_menu.emit()
+
+func _on_level_3_button_pressed():
+	print("Level 3")
+	print("test3" + get_tree().current_scene.name)
+	get_tree().change_scene_to_file("res://scenes/level_3.tscn")
+	PlayerVariables.player_deaths = 0
+	PlayerVariables.player_resets = 0

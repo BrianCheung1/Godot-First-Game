@@ -49,15 +49,16 @@ func end_game():
 	return in_game
 
 func _process(delta):
-	if Input.is_action_just_pressed("move_left") or Input.is_action_just_pressed("move_right") or Input.is_action_just_pressed("jump"):
+	hud.get_node("DeathLabel").text = "Deaths: " + str(PlayerVariables.player_deaths)
+	hud.get_node("ResetLabel").text = "Resets: " + str(PlayerVariables.player_resets)
+	if Input.is_action_pressed("move_left") or Input.is_action_pressed("move_left") or Input.is_action_pressed("jump"):
 		timer_started = true
 	if in_game and timer_started:
 		updateTimer(delta)
-		hud.get_node("DeathLabel").text = "Deaths: " + str(PlayerVariables.player_deaths)
-		hud.get_node("ResetLabel").text = "Resets: " + str(PlayerVariables.player_resets)
 
 func updateTimer(delta):
 	time += delta
+	PlayerVariables.player_time=time
 	hud.get_node("TimerLabel").text = format_time(time)
 	PlayerVariables.player_time=time
 
