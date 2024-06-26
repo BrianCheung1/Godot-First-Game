@@ -2,7 +2,7 @@ extends Node
 
 var save_path = "user://player_variables.dat"
 var player_name:String = load_name()
-var player_time:int = 999999999999999999
+var player_time:float = 999999999999999999
 var player_deaths:int = 0
 var player_resets:int = 0
 

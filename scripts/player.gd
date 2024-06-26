@@ -21,7 +21,9 @@ var jump_count = 0
 var is_alive = true
 var direction
 var is_jumping
-var isFacingRight: bool:
+var is_sliding_to = 0
+var is_sliding = false
+var is_facing_right: bool:
 	get:
 		return true if animated_sprite.flip_h else false
 var level: Node:
@@ -76,10 +78,18 @@ func _physics_process(delta):
 		if direction == 1:
 			animated_sprite.flip_h = false
 				
-		if direction:
+		if direction and not is_sliding:
+			is_sliding_to = 0
 			velocity.x = direction * SPEED
+		elif is_sliding:
+			is_sliding_to = -130 if is_facing_right else 130
+			velocity.x = move_toward(velocity.x, is_sliding_to*2, SPEED)
 		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
+			if is_sliding_to > 0:
+				is_sliding_to -= 1
+			elif is_sliding_to < 0:
+				is_sliding_to += 1
+			velocity.x = move_toward(velocity.x, is_sliding_to, SPEED)
 	process_items()
 	move_and_slide()
 
@@ -118,3 +128,18 @@ func process_items():
 			_items[i] = null
 	if activated:
 		print_items()
+
+func _on_area_2d_body_entered(body):
+	if body is TileMap:
+		print("Enter tile")
+		is_sliding = true
+		
+func _on_area_2d_body_exited(body):
+	if body is TileMap:
+		print("Left tile")
+		is_sliding = false
+		
+
+func _on_area_2d_2_body_entered(body):
+	if body is TileMap:
+		print("1")
