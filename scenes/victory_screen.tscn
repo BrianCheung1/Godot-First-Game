@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqamoh2wkughe"]
+
+[ext_resource type="Script" path="res://scripts/Multiplayer/victory_screen.gd" id="1_2qgqo"]
+[ext_resource type="FontFile" uid="uid://bo1xqkmaq87nb" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_afe0t"]
+
+[node name="VictoryScreen" type="CanvasLayer"]
+script = ExtResource("1_2qgqo")
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_afe0t")
+theme_override_font_sizes/font_size = 64
+text = "Winner"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerName" type="Label" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_afe0t")
+theme_override_font_sizes/font_size = 64
+text = "
+"
+horizontal_alignment = 1
+vertical_alignment = 1

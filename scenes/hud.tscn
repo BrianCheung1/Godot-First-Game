@@ -1,41 +1,48 @@
 [gd_scene load_steps=3 format=3 uid="uid://d3bvgw3dg0e2l"]
 
-[ext_resource type="FontFile" uid="uid://dc004b45phav2" path="res://assets/fonts/PixelOperator8.ttf" id="1_8wlel"]
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_v0481"]
+[ext_resource type="FontFile" uid="uid://dc004b45phav2" path="res://assets/fonts/PixelOperator8.ttf" id="2_fd8hw"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_v0481")
 
+[node name="PlayerLabel" type="Label" parent="."]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 48.0
+offset_bottom = 31.0
+theme_override_fonts/font = ExtResource("2_fd8hw")
+
 [node name="ScoreLabel" type="Label" parent="."]
 offset_left = 8.0
-offset_top = 16.0
+offset_top = 32.0
 offset_right = 134.0
-offset_bottom = 32.0
-theme_override_fonts/font = ExtResource("1_8wlel")
+offset_bottom = 48.0
+theme_override_fonts/font = ExtResource("2_fd8hw")
 text = "0/27 coins"
 
 [node name="TimerLabel" type="Label" parent="."]
 offset_left = 8.0
-offset_top = 40.0
-offset_right = 76.0
-offset_bottom = 63.0
-theme_override_fonts/font = ExtResource("1_8wlel")
+offset_top = 56.0
+offset_right = 164.0
+offset_bottom = 79.0
+theme_override_fonts/font = ExtResource("2_fd8hw")
 text = "00:00:00:000"
 
 [node name="DeathLabel" type="Label" parent="."]
 process_mode = 3
 offset_left = 8.0
-offset_top = 63.0
-offset_right = 48.0
-offset_bottom = 86.0
-theme_override_fonts/font = ExtResource("1_8wlel")
+offset_top = 79.0
+offset_right = 122.0
+offset_bottom = 102.0
+theme_override_fonts/font = ExtResource("2_fd8hw")
 text = "Deaths: 0"
 
 [node name="ResetLabel" type="Label" parent="."]
 process_mode = 3
 offset_left = 8.0
-offset_top = 88.0
-offset_right = 48.0
-offset_bottom = 111.0
-theme_override_fonts/font = ExtResource("1_8wlel")
+offset_top = 104.0
+offset_right = 122.0
+offset_bottom = 127.0
+theme_override_fonts/font = ExtResource("2_fd8hw")
 text = "Resets: 0"

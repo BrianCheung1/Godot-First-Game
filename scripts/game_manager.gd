@@ -20,6 +20,7 @@ var leaderboard
 func _ready():
 	total_coins = get_tree().get_nodes_in_group("coin").size()
 	hud.get_node("ScoreLabel").text = str(score) + "/" + str(total_coins) + " coins"
+	hud.get_node("PlayerLabel").text = PlayerVariables.player_name
 	
 func add_point():
 	score +=1
@@ -27,26 +28,27 @@ func add_point():
 	hud.get_node("ScoreLabel").text = str(score) + "/" + str(total_coins) + " coins"
 	
 func end_game():
-	if score < total_coins:
-		print("didnt win yet")
-	else:
-		in_game = false
-		await Leaderboards.post_guest_score(leaderboardID, PlayerVariables.player_time, PlayerVariables.player_name)
-		if leaderboard:
-			leaderboard.queue_free()
-		leaderboard = leaderboardScene.instantiate()
-		leaderboard.leaderboard_id = leaderboardID
-		ui.add_child(leaderboard)
-		var button = Button.new()
-		leaderboard.add_child(button)
-		button.set_text("Close")
-		button.add_theme_font_override("font", load("res://assets/fonts/PixelOperator8.ttf"))
-		# Set anchor to bottom
-		button.anchor_left = 0.5
-		button.anchor_right = 0.5
-		button.anchor_top = 0.75
-		button.pressed.connect(_on_button_press)
-	return in_game
+	if not MultiplayerManager.multiplayer_mode_enabled:
+		if score < total_coins:
+			print("didnt win yet")
+		else:
+			in_game = false
+			await Leaderboards.post_guest_score(leaderboardID, PlayerVariables.player_time, PlayerVariables.player_name)
+			if leaderboard:
+				leaderboard.queue_free()
+			leaderboard = leaderboardScene.instantiate()
+			leaderboard.leaderboard_id = leaderboardID
+			ui.add_child(leaderboard)
+			var button = Button.new()
+			leaderboard.add_child(button)
+			button.set_text("Close")
+			button.add_theme_font_override("font", load("res://assets/fonts/PixelOperator8.ttf"))
+			# Set anchor to bottom
+			button.anchor_left = 0.5
+			button.anchor_right = 0.5
+			button.anchor_top = 0.75
+			button.pressed.connect(_on_button_press)
+		return in_game
 
 func _process(delta):
 	hud.get_node("DeathLabel").text = "Deaths: " + str(PlayerVariables.player_deaths)
@@ -75,3 +77,19 @@ func format_time(time):
 
 func _on_button_press():
 	leaderboard.queue_free()
+
+func become_host():
+	print("Beocome Host Pressed")
+	%MultiplayerHUD.hide()
+	MultiplayerManager.become_host()
+	hud.get_node("PlayerLabel").text = "Name/ID: " + PlayerVariables.player_name + "/" + str(multiplayer.get_unique_id())
+	
+func join_as_player_2():
+	print("Join as player 2")
+	%MultiplayerHUD.hide()
+	MultiplayerManager.join_as_player_2()
+	hud.get_node("PlayerLabel").text = "Name/ID: " + PlayerVariables.player_name + "/" + str(multiplayer.get_unique_id())
+
+func _on_multiplayer_hud_single_player():
+	print("Single Player Mode")
+	%MultiplayerHUD.hide()

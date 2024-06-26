@@ -139,7 +139,3 @@ func _on_area_2d_body_exited(body):
 		print("Left tile")
 		is_sliding = false
 		
-
-func _on_area_2d_2_body_entered(body):
-	if body is TileMap:
-		print("1")

@@ -4,7 +4,8 @@ extends Area2D
 @onready var animation_player = $AnimationPlayer
 
 func _on_body_entered(_body):
-	var in_game = await game_manager.end_game()
-	if not in_game:
-		animation_player.play("explosion")
-		
+	if not MultiplayerManager.multiplayer_mode_enabled:
+		var in_game = await game_manager.end_game()
+		if not in_game:
+			animation_player.play("explosion")
+	
