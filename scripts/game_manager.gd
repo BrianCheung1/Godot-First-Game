@@ -60,6 +60,7 @@ func updateTimer(delta):
 	time += delta
 	PlayerVariables.player_time=time
 	hud.get_node("TimerLabel").text = format_time(time)
+	PlayerVariables.player_time=time
 
 func format_time(time):
 	var hours = int(int(time) / 3600)
