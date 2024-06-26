@@ -3,6 +3,7 @@ extends Node
 var score = 0
 var time = 0
 var in_game = true
+var timer_started = false
 var total_coins = 0
 @onready var score_label = $ScoreLabel
 @onready var hud = $HUD
@@ -47,7 +48,9 @@ func end_game():
 	return in_game
 
 func _process(delta):
-	if in_game:
+	if Input.is_action_pressed("move_left") or Input.is_action_pressed("move_left") or Input.is_action_pressed("jump"):
+		timer_started = true
+	if in_game and timer_started:
 		updateTimer(delta)
 		PlayerVariables.player_time=time
 		hud.get_node("DeathLabel").text = "Deaths: " + str(PlayerVariables.player_deaths)
