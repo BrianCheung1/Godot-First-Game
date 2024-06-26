@@ -32,3 +32,6 @@ func _on_button_press():
 
 func _on_main_menu_button_pressed():
 	hide()
+
+func _on_level_3_button_pressed():
+	create_leaderboard("butter-knights-level-3-s9FD")
