@@ -40,5 +40,6 @@ leaderboardScene = ExtResource("6_ufvbq")
 [connection signal="start_game" from="Control/MainMenu" to="." method="_on_main_menu_start_game"]
 [connection signal="main_menu" from="Control/GameMenu" to="." method="_on_game_menu_main_menu"]
 [connection signal="return_to_game" from="Control/GameMenu" to="." method="_on_game_menu_return_to_game"]
+[connection signal="levels_to_menu" from="Control/LevelMenu" to="." method="_on_level_menu_levels_to_menu"]
 
 [editable path="Control/MainMenu"]

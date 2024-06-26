@@ -32,5 +32,8 @@ func _on_game_menu_return_to_game():
 	game_menu_closed.emit()
 
 func _on_main_menu_highscores():
-	level_menu.hide()
 	highscore_menu.show()
+
+func _on_level_menu_levels_to_menu():
+	main_menu.show()
+	level_menu.hide()
