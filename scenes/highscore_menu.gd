@@ -8,7 +8,6 @@ var leaderboard
 func _on_level_1_button_pressed():
 	create_leaderboard("butter-knights-butter-knights-2wUo")
 	
-
 func _on_level_2_button_pressed():
 	create_leaderboard("butter-knights-level2-ry9g")
 
