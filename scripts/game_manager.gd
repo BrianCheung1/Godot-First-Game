@@ -29,6 +29,22 @@ func add_point():
 func end_game():
 	if score < total_coins:
 		print("didnt win yet")
+		in_game = false
+		await Leaderboards.post_guest_score(leaderboardID, PlayerVariables.player_time, PlayerVariables.player_name)
+		if leaderboard:
+			leaderboard.queue_free()
+		leaderboard = leaderboardScene.instantiate()
+		leaderboard.leaderboard_id = leaderboardID
+		ui.add_child(leaderboard)
+		var button = Button.new()
+		leaderboard.add_child(button)
+		button.set_text("Close")
+		button.add_theme_font_override("font", load("res://assets/fonts/PixelOperator8.ttf"))
+		# Set anchor to bottom
+		button.anchor_left = 0.5
+		button.anchor_right = 0.5
+		button.anchor_top = 0.75
+		button.pressed.connect(_on_button_press)
 	else:
 		in_game = false
 		if leaderboard:
@@ -48,17 +64,17 @@ func end_game():
 	return in_game
 
 func _process(delta):
-	if Input.is_action_pressed("move_left") or Input.is_action_pressed("move_left") or Input.is_action_pressed("jump"):
+	if Input.is_action_just_pressed("move_left") or Input.is_action_just_pressed("move_right") or Input.is_action_just_pressed("jump"):
 		timer_started = true
 	if in_game and timer_started:
 		updateTimer(delta)
-		PlayerVariables.player_time=time
 		hud.get_node("DeathLabel").text = "Deaths: " + str(PlayerVariables.player_deaths)
 		hud.get_node("ResetLabel").text = "Resets: " + str(PlayerVariables.player_resets)
 
 func updateTimer(delta):
 	time += delta
 	hud.get_node("TimerLabel").text = format_time(time)
+	PlayerVariables.player_time=time
 
 func format_time(time):
 	var hours = int(int(time) / 3600)
