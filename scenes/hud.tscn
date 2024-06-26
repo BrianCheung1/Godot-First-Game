@@ -20,7 +20,7 @@ offset_top = 40.0
 offset_right = 76.0
 offset_bottom = 63.0
 theme_override_fonts/font = ExtResource("1_8wlel")
-text = "0"
+text = "00:00:00:000"
 
 [node name="DeathLabel" type="Label" parent="."]
 process_mode = 3
