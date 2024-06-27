@@ -6,32 +6,20 @@
 [node name="MultiplayerHUD" type="CanvasLayer"]
 script = ExtResource("1_7pwfa")
 
-[node name="Panel" type="Panel" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -16.0
-offset_right = 16.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_top = 136.0
+offset_right = 720.0
+offset_bottom = 334.0
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-alignment = 1
 
-[node name="Multiplayer" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="Multiplayer" type="Label" parent="MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_1s6ye")
@@ -41,24 +29,26 @@ text = "Multiplayer
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 size_flags_vertical = 3
 alignment = 1
 
-[node name="HostGame" type="Button" parent="Panel/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="HostGame" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Host Game
 "
 
-[node name="JoinAsPlayer2" type="Button" parent="Panel/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="JoinAsPlayer2" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "Join As Player 2"
+text = "Join Game"
 
-[node name="SinglePlayer" type="Button" parent="Panel/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="SinglePlayer" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Single Player"
 
-[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/VBoxContainer/HostGame" to="." method="_on_host_game_pressed"]
-[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/VBoxContainer/JoinAsPlayer2" to="." method="_on_join_as_player_2_pressed"]
-[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/VBoxContainer/SinglePlayer" to="." method="_on_single_player_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/HostGame" to="." method="_on_host_game_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/JoinAsPlayer2" to="." method="_on_join_as_player_2_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/SinglePlayer" to="." method="_on_single_player_pressed"]

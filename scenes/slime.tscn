@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://mn1rmqtsc0vc"]
+[gd_scene load_steps=12 format=3 uid="uid://mn1rmqtsc0vc"]
 
 [ext_resource type="Texture2D" uid="uid://cpmv313wbl58n" path="res://assets/sprites/slime_green.png" id="1_5y7dy"]
 [ext_resource type="Script" path="res://scripts/Monster/slime.gd" id="1_e8klr"]
 [ext_resource type="PackedScene" uid="uid://vb4lvdta2d5o" path="res://scenes/killzone.tscn" id="2_0cxfe"]
+[ext_resource type="Script" path="res://addons/netfox/state-synchronizer.gd" id="2_o0kyx"]
+[ext_resource type="Script" path="res://addons/netfox/tick-interpolator.gd" id="3_gdo2l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lxa4k"]
 atlas = ExtResource("1_5y7dy")
@@ -45,6 +47,15 @@ size = Vector2(10, 12)
 
 [node name="slime" type="Node2D"]
 script = ExtResource("1_e8klr")
+
+[node name="StateSynchronizer" type="Node" parent="." node_paths=PackedStringArray("root")]
+script = ExtResource("2_o0kyx")
+root = NodePath("..")
+properties = Array[String]([":position"])
+
+[node name="TickInterpolator" type="Node" parent="." node_paths=PackedStringArray("root")]
+script = ExtResource("3_gdo2l")
+root = NodePath("..")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)

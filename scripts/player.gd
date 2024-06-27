@@ -36,7 +36,7 @@ func _ready():
 	add_item(BlinkPotion.new(self, blink_potion_count), 1)
 	add_item(SuckCoinPotion.new(self, suck_potion_count), 2)
 	add_item(KillAllPotion.new(self, kill_potion_count), 3)
-	print_items()
+	#print_items()
 	
 func _physics_process(delta):
 	# Add the gravity.	
