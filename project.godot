@@ -21,6 +21,7 @@ Music="*res://scenes/music.tscn"
 Leaderboards="*res://addons/quiver_leaderboards/leaderboards.tscn"
 PlayerAccounts="*res://addons/quiver_player_accounts/player_accounts.tscn"
 PlayerVariables="*res://scripts/player_variables.gd"
+MultiplayerManager="*res://scripts/Multiplayer/multiplayer_manager.gd"
 
 [display]
 
