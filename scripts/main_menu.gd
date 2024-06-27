@@ -7,8 +7,11 @@ signal highscores()
 @onready var leaderboard_ui = $LeaderboardUI
 @onready var user_interface = $UserInterface
 @onready var player_name = $MarginContainer/VBoxContainer/PlayerName
+@onready var ip_label = $MarginContainer/VBoxContainer/IPLabel
 
 func _ready():
+	player_name.text = PlayerVariables.player_name
+	ip_label.text = PlayerVariables.player_ip
 	focus_button()
 	
 func _on_start_game_button_pressed():
@@ -38,6 +41,7 @@ func _on_close_button_pressed():
 
 func _on_change_name_button_pressed():
 	user_interface.show()
-
-func _physics_process(_delta):
+	
+func _on_user_interface_change_name():
 	player_name.text = PlayerVariables.player_name
+	ip_label.text = PlayerVariables.player_ip

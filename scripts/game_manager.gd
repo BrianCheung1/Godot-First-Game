@@ -83,15 +83,14 @@ func _on_button_press():
 	leaderboard.queue_free()
 
 func become_host():
-	print("Beocome Host Pressed")
+	print("Become Host Pressed")
 	%MultiplayerHUD.hide()
 	MultiplayerManager.become_host()
 	hud.get_node("PlayerLabel").text = "Name/ID: " + PlayerVariables.player_name + "/" + str(multiplayer.get_unique_id())
 	
 func join_as_player_2():
-	print("Join as player 2")
-	%MultiplayerHUD.hide()
 	MultiplayerManager.join_as_player_2()
+	%MultiplayerHUD.hide()
 	hud.get_node("PlayerLabel").text = "Name/ID: " + PlayerVariables.player_name + "/" + str(multiplayer.get_unique_id())
 
 func _on_multiplayer_hud_single_player():
