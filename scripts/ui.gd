@@ -26,6 +26,7 @@ func _on_game_menu_main_menu():
 	game_menu.hide()
 	quit_to_menu.emit()
 	main_menu.show()
+		
 
 func _on_game_menu_return_to_game():
 	game_menu.hide()

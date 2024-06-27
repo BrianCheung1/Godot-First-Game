@@ -30,4 +30,7 @@ func _on_return_to_game_button_pressed():
 
 func _on_main_menu_button_pressed():
 	main_menu.emit()
+	if MultiplayerManager.multiplayer_mode_enabled:
+		MultiplayerManager._del_player(multiplayer.get_unique_id())
+		MultiplayerManager.multiplayer_mode_enabled = false
 	get_tree().change_scene_to_file("res://scenes/game.tscn")
