@@ -10,7 +10,6 @@ var multiplayer_mode_enabled = false
 var respawn_point = Vector2(0,0)
 
 func become_host():
-	print("Starting Host")
 	_players_spawn_node = get_tree().get_current_scene().get_node("MultiplayerSpawn").get_node("Players")
 	multiplayer_mode_enabled = true
 	host_mode_enabled = true
@@ -21,7 +20,8 @@ func become_host():
 	multiplayer.peer_connected.connect(_add_player_to_game)
 	multiplayer.peer_disconnected.connect(_del_player)
 	_remove_single_player()
-	_add_player_to_game(1)
+	if not OS.has_feature("dedicated_server"):
+		_add_player_to_game(1)
 	
 func join_as_player_2():
 	print("Joining as player 2")
@@ -37,11 +37,16 @@ func _add_player_to_game(id: int):
 	var player_to_add = multiplayer_scene.instantiate()
 	player_to_add.player_id = id
 	player_to_add.name = str(id)
+	if not _players_spawn_node:
+		_players_spawn_node = get_tree().get_current_scene().get_node("MultiplayerSpawn").get_node("Players")
 	_players_spawn_node.add_child(player_to_add, true)
 	
 	
 func _del_player(id: int):
 	print("Player %s left the game" % id)
+	if not _players_spawn_node:
+		_players_spawn_node = get_tree().get_current_scene().get_node("MultiplayerSpawn").get_node("Players")
+	print(_players_spawn_node)
 	if not _players_spawn_node.has_node(str(id)):
 		return
 	_players_spawn_node.get_node(str(id)).queue_free()

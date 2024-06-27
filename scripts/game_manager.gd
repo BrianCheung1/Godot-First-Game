@@ -18,9 +18,13 @@ signal close_button
 var leaderboard
 
 func _ready():
+	if OS.has_feature("dedicated_server"):
+		print("starting dedicated server")
+		MultiplayerManager.become_host()
 	total_coins = get_tree().get_nodes_in_group("coin").size()
 	hud.get_node("ScoreLabel").text = str(score) + "/" + str(total_coins) + " coins"
 	hud.get_node("PlayerLabel").text = PlayerVariables.player_name
+	
 	
 func add_point():
 	score +=1

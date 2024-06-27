@@ -39,7 +39,7 @@ func _ready():
 		$Camera2D.enabled=false
 		
 		
-func _apply_animations(delta):
+func _apply_animations(_delta):
 			#Play animations
 		if is_alive:
 			if _is_on_floor and not do_jump:
