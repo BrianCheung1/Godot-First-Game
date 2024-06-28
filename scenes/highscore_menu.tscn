@@ -84,6 +84,6 @@ text = "Main Menu"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/Level1Button" to="." method="_on_level_1_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/Level2Button" to="." method="_on_level_2_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/Level3Button" to="." method="_on_level_3_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/Level3Button" to="." method="_on_level_2_button_2_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/Level3Button" to="." method="_on_level_3_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsVBox/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

@@ -34,7 +34,7 @@ func _process(delta):
 # Overrides the original die function
 func die():
 	# Custom death effect for the slime (Try commenting this line out and see what happens)
-	enemy_death_effect = preload("res://scenes/effect_scenes/explosion.tscn")
+	# enemy_death_effect = preload("res://scenes/effect_scenes/explosion.tscn")
 	# Call the parent die function in Monster2D.gd
 	super.die()
 	
