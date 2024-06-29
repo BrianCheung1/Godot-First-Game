@@ -22,6 +22,6 @@ func load_file():
 		player_ip = "127.0.0.1"
 		return false
 	var file = FileAccess.open(save_path, FileAccess.READ)
-	player_name = file.get_var()
-	player_ip = file.get_var()
+	player_name = str(file.get_var())
+	player_ip = str(file.get_var())
 	return true

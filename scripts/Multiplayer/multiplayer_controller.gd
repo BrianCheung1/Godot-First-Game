@@ -78,7 +78,6 @@ func _apply_movement_from_input(delta):
 			#jump.play()
 			#print("jumped")
 		if jump_count < MAX_JUMP_COUNT and input.input_jump > 0:
-			print("test")
 			velocity.y = JUMP_VELOCITY * input.input_jump
 			jump_count += 1
 			jump.play()
