@@ -12,6 +12,7 @@ class_name Player
 @export var enable_flash_jump:bool
 
 var flash_jump_effect = preload("res://scenes/effect_scenes/flash_jump.tscn")
+@export var inventory: Inventory
 
 var MAX_JUMP_COUNT = 1
 var SPEED = 130.0
@@ -39,11 +40,11 @@ var is_jumping: bool:
 		
 func _ready():
 	# Give the user some starting items for testing
-	add_item(GravityPotion.new(self, gravity_potion_count), 0)
-	add_item(BlinkPotion.new(self, blink_potion_count), 1)
-	add_item(SuckCoinPotion.new(self, suck_potion_count), 2)
-	add_item(KillAllPotion.new(self, kill_potion_count), 3)
-	#print_items()
+	inventory = Inventory.new([])
+	inventory.add_item(GravityPotion.new(self, gravity_potion_count))
+	inventory.add_item(BlinkPotion.new(self, blink_potion_count))
+	inventory.add_item(SuckCoinPotion.new(self, suck_potion_count))
+	inventory.add_item(KillAllPotion.new(self, kill_potion_count))
 	
 func _physics_process(delta):
 	if Input.is_action_just_pressed("reload"):
@@ -111,7 +112,7 @@ func _physics_process(delta):
 		is_sliding_to += -sign(is_sliding_to) 
 		velocity.x = move_toward(velocity.x, is_sliding_to, SPEED)
 		
-	process_items()
+	inventory.process_items()
 	move_and_slide()
 
 func print_items():
@@ -168,3 +169,5 @@ func _on_area_2d_body_exited(body):
 		print("Left tile")
 		is_sliding = false
 		
+func _on_camera_2d_ready():
+	pass # Replace with function body.
