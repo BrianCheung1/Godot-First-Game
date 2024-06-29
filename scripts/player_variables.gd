@@ -22,6 +22,17 @@ func load_name():
 	var file = FileAccess.open(save_path, FileAccess.READ)
 	return file.get_var()
 
+# func load_ip():
+# 	print(save_path)
+# 	if FileAccess.file_exists(save_path):
+# 		var file = FileAccess.open(save_path, FileAccess.READ)
+# 		player_name = file.get_var()
+# 		player_ip = file.get_var()
+# 	else:
+# 		print("file not found")
+# 		player_name = "127.0.0.1"
+# 	return player_ip
+
 func load_ip():
 	print(save_path)
 	if not FileAccess.file_exists(save_path):

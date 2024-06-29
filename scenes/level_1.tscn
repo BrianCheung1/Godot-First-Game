@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dglt5i5higp2m"]
+[gd_scene load_steps=31 format=3 uid="uid://dglt5i5higp2m"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_wiprl"]
 [ext_resource type="Script" path="res://scripts/level_1.gd" id="1_x5txr"]
@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://dgygkbtm0burn" path="res://addons/quiver_leaderboards/leaderboard_ui.tscn" id="13_cuo1i"]
 [ext_resource type="PackedScene" uid="uid://dubsqfb8lxi13" path="res://scenes/multiplayer_hud.tscn" id="14_8o2s6"]
 [ext_resource type="PackedScene" uid="uid://d1f5a8u5sawcy" path="res://scenes/finish_line.tscn" id="16_1gya6"]
+[ext_resource type="PackedScene" uid="uid://dnl8g54781qia" path="res://scenes/InventoryGUI.tscn" id="17_27qw2"]
+[ext_resource type="Script" path="res://scenes/inventory_control.gd" id="17_e0nfv"]
 [ext_resource type="PackedScene" uid="uid://dqamoh2wkughe" path="res://scenes/victory_screen.tscn" id="17_pxl4i"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mq7ub"]
@@ -601,6 +603,10 @@ layer_1/tile_data = PackedInt32Array(65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 6553
 
 [node name="Player" parent="." instance=ExtResource("6_pa67r")]
 position = Vector2(-65, -1057)
+gravity_potion_count = 3
+blink_potion_count = 4
+suck_potion_count = 4
+kill_potion_count = 4
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(1, -5)
@@ -841,6 +847,11 @@ _spawnable_scenes = PackedStringArray("res://scenes/multiplayer_player.tscn")
 spawn_path = NodePath("../Players")
 
 [node name="Players" type="Node2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("17_e0nfv")
+
+[node name="InventoryGui" parent="CanvasLayer" instance=ExtResource("17_27qw2")]
 
 [connection signal="close_button" from="GameManager" to="." method="_on_game_manager_close_button"]
 [connection signal="host_game" from="MultiplayerHUD" to="GameManager" method="become_host"]
