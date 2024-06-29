@@ -282,7 +282,6 @@ radius = 43.0
 z_index = 5
 collision_layer = 6
 script = ExtResource("1_wkd0y")
-gravity_potion_count = 2
 blink_potion_count = 2
 suck_potion_count = 2
 kill_potion_count = 101
@@ -345,6 +344,10 @@ one_shot = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [node name="InventoryGui" parent="." instance=ExtResource("2_ovruc")]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="InventoryGui" parent="CanvasLayer" instance=ExtResource("2_ovruc")]
+visible = false
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

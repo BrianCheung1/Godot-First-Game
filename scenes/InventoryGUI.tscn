@@ -1,10 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dnl8g54781qia"]
+[gd_scene load_steps=4 format=3 uid="uid://dnl8g54781qia"]
 
 [ext_resource type="Script" path="res://scripts/Consumables/Inventory.gd" id="1_8bvv5"]
 [ext_resource type="Texture2D" uid="uid://bmyfg2bdgp7lo" path="res://assets/sprites/InventoryRect.png" id="1_wd65h"]
 [ext_resource type="PackedScene" uid="uid://03x2hyxc7ehh" path="res://scenes/Slot.tscn" id="2_7h8xo"]
-[ext_resource type="Texture2D" uid="uid://be0mj4n6vp2ea" path="res://assets/sprites/5_item.png" id="4_rxgrd"]
-[ext_resource type="Script" path="res://scenes/Test.gd" id="5_vo1rj"]
 
 [node name="InventoryGui" type="Control"]
 custom_minimum_size = Vector2(20, 20)
@@ -23,10 +21,10 @@ anchor_left = -0.557
 anchor_top = -0.425
 anchor_right = -0.557
 anchor_bottom = -0.425
-offset_left = 285.894
-offset_top = 116.75
-offset_right = 833.894
-offset_bottom = 459.75
+offset_left = 294.894
+offset_top = 123.75
+offset_right = 842.894
+offset_bottom = 466.75
 texture = ExtResource("1_wd65h")
 patch_margin_left = 6
 patch_margin_top = 6
@@ -52,177 +50,373 @@ columns = 5
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/GridContainer/Slot"]
-layout_mode = 0
-offset_left = -368.0
-offset_top = -65.0
-offset_right = -293.0
-offset_bottom = 22.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -43.0
+offset_right = 41.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/GridContainer/Slot/VBoxContainer"]
-position = Vector2(417, 111.75)
-scale = Vector2(0.716981, 0.442196)
-texture = ExtResource("4_rxgrd")
-script = ExtResource("5_vo1rj")
+position = Vector2(38, 42)
+scale = Vector2(0.24, 0.229333)
+
+[node name="Label" type="Label" parent="NinePatchRect/GridContainer/Slot/VBoxContainer"]
+layout_mode = 2
 
 [node name="Slot2" parent="NinePatchRect/GridContainer" instance=ExtResource("2_7h8xo")]
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/GridContainer/Slot2"]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.2
-anchor_bottom = 0.2
-offset_left = 8.0
-offset_top = 4.0
-offset_right = 79.0
-offset_bottom = 71.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.0
+offset_top = -39.5
+offset_right = 43.0
+offset_bottom = 39.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/GridContainer/Slot2/VBoxContainer"]
 position = Vector2(41, 43)
 scale = Vector2(0.778302, 0.449422)
-texture = ExtResource("4_rxgrd")
+
+[node name="Label" type="Label" parent="NinePatchRect/GridContainer/Slot2/VBoxContainer"]
+layout_mode = 2
 
 [node name="Slot3" parent="NinePatchRect/GridContainer" instance=ExtResource("2_7h8xo")]
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/GridContainer/Slot3"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 7.0
-offset_right = 90.0
-offset_bottom = 88.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.5
+offset_right = 40.0
+offset_bottom = 40.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/GridContainer/Slot3/VBoxContainer"]
 position = Vector2(40.25, 40.125)
 scale = Vector2(0.731132, 0.449422)
-texture = ExtResource("4_rxgrd")
+
+[node name="Label" type="Label" parent="NinePatchRect/GridContainer/Slot3/VBoxContainer"]
+layout_mode = 2
 
 [node name="Slot4" parent="NinePatchRect/GridContainer" instance=ExtResource("2_7h8xo")]
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/GridContainer/Slot4"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 6.0
-offset_right = 91.0
-offset_bottom = 86.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.0
+offset_top = -42.0
+offset_right = 40.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/GridContainer/Slot4/VBoxContainer"]
 position = Vector2(41.25, 42.625)
 scale = Vector2(0.731132, 0.478324)
-texture = ExtResource("4_rxgrd")
+
+[node name="Label" type="Label" parent="NinePatchRect/GridContainer/Slot4/VBoxContainer"]
+layout_mode = 2
 
 [node name="Slot5" parent="NinePatchRect/GridContainer" instance=ExtResource("2_7h8xo")]
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/GridContainer/Slot5"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 7.0
-offset_right = 91.0
-offset_bottom = 86.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.0
+offset_top = -42.0
+offset_right = 41.0
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/GridContainer/Slot5/VBoxContainer"]
 position = Vector2(42, 41)
 scale = Vector2(0.745283, 0.447977)
-texture = ExtResource("4_rxgrd")
+
+[node name="Label" type="Label" parent="NinePatchRect/GridContainer/Slot5/VBoxContainer"]
+layout_mode = 2
 
 [node name="Slot6" parent="NinePatchRect/GridContainer" instance=ExtResource("2_7h8xo")]
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/GridContainer/Slot6"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 9.0
-offset_right = 92.0
-offset_bottom = 86.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.0
+offset_top = -40.0
+offset_right = 39.0
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/GridContainer/Slot6/VBoxContainer"]
+position = Vector2(41, 36)
+scale = Vector2(0.257667, 0.223667)
+
+[node name="Label" type="Label" parent="NinePatchRect/GridContainer/Slot6/VBoxContainer"]
+layout_mode = 2
 
 [node name="Slot7" parent="NinePatchRect/GridContainer" instance=ExtResource("2_7h8xo")]
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/GridContainer/Slot7"]
-layout_mode = 0
-offset_left = 7.0
-offset_top = 7.0
-offset_right = 90.0
-offset_bottom = 86.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.0
+offset_top = -42.0
+offset_right = 41.0
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/GridContainer/Slot7/VBoxContainer"]
+position = Vector2(44, 43)
+scale = Vector2(0.295333, 0.259333)
+
+[node name="Label" type="Label" parent="NinePatchRect/GridContainer/Slot7/VBoxContainer"]
+layout_mode = 2
 
 [node name="Slot8" parent="NinePatchRect/GridContainer" instance=ExtResource("2_7h8xo")]
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/GridContainer/Slot8"]
-layout_mode = 0
-offset_left = 7.0
-offset_top = 6.0
-offset_right = 89.0
-offset_bottom = 86.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.0
+offset_top = -43.0
+offset_right = 40.0
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/GridContainer/Slot8/VBoxContainer"]
+position = Vector2(41.9999, 41)
+scale = Vector2(0.230667, 0.22)
+
+[node name="Label" type="Label" parent="NinePatchRect/GridContainer/Slot8/VBoxContainer"]
+layout_mode = 2
 
 [node name="Slot9" parent="NinePatchRect/GridContainer" instance=ExtResource("2_7h8xo")]
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/GridContainer/Slot9"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 10.0
-offset_right = 91.0
-offset_bottom = 86.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -40.0
+offset_right = 41.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/GridContainer/Slot9/VBoxContainer"]
+position = Vector2(41, 36)
+scale = Vector2(0.26, 0.254667)
+
+[node name="Label" type="Label" parent="NinePatchRect/GridContainer/Slot9/VBoxContainer"]
+layout_mode = 2
 
 [node name="Slot10" parent="NinePatchRect/GridContainer" instance=ExtResource("2_7h8xo")]
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/GridContainer/Slot10"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 92.0
-offset_bottom = 85.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -40.0
+offset_right = 41.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/GridContainer/Slot10/VBoxContainer"]
+position = Vector2(37, 39)
+scale = Vector2(0.254, 0.243333)
+
+[node name="Label" type="Label" parent="NinePatchRect/GridContainer/Slot10/VBoxContainer"]
+layout_mode = 2
 
 [node name="Slot11" parent="NinePatchRect/GridContainer" instance=ExtResource("2_7h8xo")]
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/GridContainer/Slot11"]
-layout_mode = 0
-offset_left = 11.0
-offset_top = 11.0
-offset_right = 91.0
-offset_bottom = 84.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -39.0
+offset_right = 39.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/GridContainer/Slot11/VBoxContainer"]
+position = Vector2(40, 38)
+scale = Vector2(0.278667, 0.254667)
+
+[node name="Label" type="Label" parent="NinePatchRect/GridContainer/Slot11/VBoxContainer"]
+layout_mode = 2
 
 [node name="Slot12" parent="NinePatchRect/GridContainer" instance=ExtResource("2_7h8xo")]
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/GridContainer/Slot12"]
-layout_mode = 0
-offset_left = 7.0
-offset_top = 8.0
-offset_right = 91.0
-offset_bottom = 85.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.0
+offset_top = -40.0
+offset_right = 41.0
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/GridContainer/Slot12/VBoxContainer"]
+position = Vector2(41, 38)
+scale = Vector2(0.23, 0.236667)
+
+[node name="Label" type="Label" parent="NinePatchRect/GridContainer/Slot12/VBoxContainer"]
+layout_mode = 2
 
 [node name="Slot13" parent="NinePatchRect/GridContainer" instance=ExtResource("2_7h8xo")]
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/GridContainer/Slot13"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 7.0
-offset_right = 90.0
-offset_bottom = 85.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -42.0
+offset_right = 41.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/GridContainer/Slot13/VBoxContainer"]
+position = Vector2(40, 42)
+scale = Vector2(0.26, 0.230667)
+
+[node name="Label" type="Label" parent="NinePatchRect/GridContainer/Slot13/VBoxContainer"]
+layout_mode = 2
 
 [node name="Slot14" parent="NinePatchRect/GridContainer" instance=ExtResource("2_7h8xo")]
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/GridContainer/Slot14"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 7.0
-offset_right = 91.0
-offset_bottom = 84.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -41.0
+offset_right = 41.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/GridContainer/Slot14/VBoxContainer"]
+position = Vector2(42, 43)
+scale = Vector2(0.232667, 0.236667)
+
+[node name="Label" type="Label" parent="NinePatchRect/GridContainer/Slot14/VBoxContainer"]
+layout_mode = 2
 
 [node name="Slot15" parent="NinePatchRect/GridContainer" instance=ExtResource("2_7h8xo")]
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/GridContainer/Slot15"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 7.0
-offset_right = 93.0
-offset_bottom = 89.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.0
+offset_top = -40.0
+offset_right = 41.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/GridContainer/Slot15/VBoxContainer"]
+position = Vector2(38, 41)
+scale = Vector2(0.221, 0.219)
+
+[node name="Label" type="Label" parent="NinePatchRect/GridContainer/Slot15/VBoxContainer"]
+layout_mode = 2
