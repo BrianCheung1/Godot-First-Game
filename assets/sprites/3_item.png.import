@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://be0mj4n6vp2ea"
-path="res://.godot/imported/blinkPot.PNG-99183e4b7bd31b3f5f9615d976db87fd.ctex"
+uid="uid://b7mfsfxobvpws"
+path="res://.godot/imported/3_item.png-bbc0021b78fe968209cda1f0c695448c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/blinkPot.PNG"
-dest_files=["res://.godot/imported/blinkPot.PNG-99183e4b7bd31b3f5f9615d976db87fd.ctex"]
+source_file="res://assets/sprites/3_item.png"
+dest_files=["res://.godot/imported/3_item.png-bbc0021b78fe968209cda1f0c695448c.ctex"]
 
 [params]
 

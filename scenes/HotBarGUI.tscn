@@ -1,0 +1,157 @@
+[gd_scene load_steps=4 format=3 uid="uid://7p1o81lsj0do"]
+
+[ext_resource type="Texture2D" uid="uid://bmyfg2bdgp7lo" path="res://assets/sprites/InventoryRect.png" id="1_5rg2m"]
+[ext_resource type="Texture2D" uid="uid://q60oidrrlhw0" path="res://assets/sprites/1_item.png" id="2_ku6bw"]
+
+[sub_resource type="GDScript" id="GDScript_iecwm"]
+script/source = "extends Control
+
+class_name HotBar
+
+@onready var hotbarGUIContainer:Array[VBoxContainer] = [$NinePatchRect/GridContainer/HotBarSlot1/VBoxContainer, $NinePatchRect/GridContainer/HotBarSlot2/VBoxContainer,$NinePatchRect/GridContainer/HotBarSlot3/VBoxContainer,$NinePatchRect/GridContainer/HotBarSlot4/VBoxContainer,$NinePatchRect/GridContainer/HotBarSlot5/VBoxContainer]
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	print(\"HotBar Created\")
+	pass # Replace with function body.
+
+"
+
+[node name="HotBarGui" type="Control"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 40.0
+offset_top = 7.0
+offset_right = 322.0
+offset_bottom = 82.0
+script = SubResource("GDScript_iecwm")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -138.0
+offset_top = -32.5
+offset_right = 142.0
+offset_bottom = 33.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_5rg2m")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="GridContainer" type="GridContainer" parent="NinePatchRect"]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -109.5
+offset_top = -27.0
+offset_right = 110.5
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 5
+
+[node name="HotBarSlot1" type="Panel" parent="NinePatchRect/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/GridContainer/HotBarSlot1"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 0
+offset_right = 50.0
+offset_bottom = 50.0
+alignment = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/GridContainer/HotBarSlot1/VBoxContainer"]
+position = Vector2(24.5, 23)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_ku6bw")
+
+[node name="Label" type="Label" parent="NinePatchRect/GridContainer/HotBarSlot1/VBoxContainer"]
+layout_mode = 2
+
+[node name="HotBarSlot2" type="Panel" parent="NinePatchRect/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/GridContainer/HotBarSlot2"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+alignment = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/GridContainer/HotBarSlot2/VBoxContainer"]
+position = Vector2(24.5, 23)
+scale = Vector2(0.1, 0.1)
+
+[node name="Label" type="Label" parent="NinePatchRect/GridContainer/HotBarSlot2/VBoxContainer"]
+layout_mode = 2
+
+[node name="HotBarSlot3" type="Panel" parent="NinePatchRect/GridContainer"]
+self_modulate = Color(0.133333, 0.333333, 0.333333, 1)
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/GridContainer/HotBarSlot3"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+alignment = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/GridContainer/HotBarSlot3/VBoxContainer"]
+position = Vector2(24.5, 23)
+scale = Vector2(0.1, 0.1)
+
+[node name="Label" type="Label" parent="NinePatchRect/GridContainer/HotBarSlot3/VBoxContainer"]
+layout_mode = 2
+
+[node name="HotBarSlot4" type="Panel" parent="NinePatchRect/GridContainer"]
+self_modulate = Color(0.133333, 0.333333, 0.333333, 1)
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/GridContainer/HotBarSlot4"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+alignment = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/GridContainer/HotBarSlot4/VBoxContainer"]
+position = Vector2(24.5, 23)
+scale = Vector2(0.1, 0.1)
+
+[node name="Label" type="Label" parent="NinePatchRect/GridContainer/HotBarSlot4/VBoxContainer"]
+layout_mode = 2
+
+[node name="HotBarSlot5" type="Panel" parent="NinePatchRect/GridContainer"]
+self_modulate = Color(0.133333, 0.333333, 0.333333, 1)
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/GridContainer/HotBarSlot5"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+alignment = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/GridContainer/HotBarSlot5/VBoxContainer"]
+position = Vector2(24.5, 23)
+scale = Vector2(0.1, 0.1)
+
+[node name="Label" type="Label" parent="NinePatchRect/GridContainer/HotBarSlot5/VBoxContainer"]
+layout_mode = 2

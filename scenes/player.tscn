@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://blwkda7ax2um3" path="res://assets/sprites/knight.png" id="1_0al53"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_wkd0y"]
+[ext_resource type="PackedScene" uid="uid://dnl8g54781qia" path="res://scenes/InventoryGUI.tscn" id="2_ovruc"]
 [ext_resource type="AudioStream" uid="uid://ftsx4xc3fx8o" path="res://assets/sounds/jump.wav" id="3_tbkc3"]
 [ext_resource type="AudioStream" uid="uid://yfla5l8cutsg" path="res://assets/sounds/hurt.wav" id="4_x1vp1"]
 [ext_resource type="Script" path="res://scripts/Skills/aura.gd" id="5_5fad5"]
@@ -281,7 +282,6 @@ radius = 43.0
 z_index = 5
 collision_layer = 6
 script = ExtResource("1_wkd0y")
-gravity_potion_count = 2
 blink_potion_count = 2
 suck_potion_count = 2
 kill_potion_count = 101
@@ -343,6 +343,12 @@ texture = ExtResource("6_jkjfo")
 one_shot = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[node name="InventoryGui" parent="." instance=ExtResource("2_ovruc")]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="InventoryGui" parent="CanvasLayer" instance=ExtResource("2_ovruc")]
+visible = false
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]

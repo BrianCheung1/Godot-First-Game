@@ -5,6 +5,7 @@ class_name Player
 @onready var jump = $jump
 @onready var hurt = $hurt
 @onready var aura: Aura = $AuraArea2D
+@onready var inventory = $CanvasLayer/InventoryGui
 
 @export var gravity_potion_count:int
 @export var blink_potion_count:int
@@ -17,7 +18,6 @@ class_name Player
 
 
 var flash_jump_effect = preload("res://scenes/effect_scenes/flash_jump.tscn")
-@export var inventory: Inventory
 
 var MAX_JUMP_COUNT = 1
 var SPEED = 130.0
@@ -25,7 +25,6 @@ var JUMP_VELOCITY = -300.0
 var FLASH_JUMP_Y_VELOCITY_BOOST = -150
 var FLASH_JUMP_X_VELOCITY_BOOST = SPEED * 1.8
 var _items: Array[Item] = [null, null, null, null, null]
-
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var jump_count = 0
@@ -48,13 +47,20 @@ var is_jumping: bool:
 		
 func _ready():
 	# Give the user some starting items for testing
-	inventory = Inventory.new([])
-	inventory.add_item(GravityPotion.new(self, gravity_potion_count))
-	inventory.add_item(BlinkPotion.new(self, blink_potion_count))
-	inventory.add_item(SuckCoinPotion.new(self, suck_potion_count))
-	inventory.add_item(KillAllPotion.new(self, kill_potion_count))
+	inventory.add_item(GravityPotion.new(self, gravity_potion_count)) #mimic adding new item for testing
+	inventory.add_item(GravityPotion.new(self, gravity_potion_count)) #mimic adding new item for testing
+	inventory.add_item(BlinkPotion.new(self, blink_potion_count)) #mimic adding new item for testing
+	inventory.add_item(SuckCoinPotion.new(self, suck_potion_count)) #mimic adding new item for testing
+	inventory.add_item(KillAllPotion.new(self, kill_potion_count)) #mimic condense item for testing
+	inventory.swap_item_index(0,7) #mimic swap items for testing
 	aura.enable(enable_aura)
 	
+#handles all events related to inventory
+func _input(event):
+	if event.is_action_pressed("toggle_inventory"):
+		inventory.toggle_visibility()
+		return
+	inventory.process_items()
 	
 func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
@@ -142,7 +148,6 @@ func _physics_process(delta):
 			is_sliding_to += -sign(is_sliding_to) 
 			velocity.x = move_toward(velocity.x, is_sliding_to, SPEED)
 		
-	inventory.process_items()
 	move_and_slide()
 		
 func spawn_flash_jump_effect():
