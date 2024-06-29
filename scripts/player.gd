@@ -4,13 +4,16 @@ class_name Player
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var jump = $jump
 @onready var hurt = $hurt
+@onready var aura: Aura = $AuraArea2D
 
 @export var gravity_potion_count:int
 @export var blink_potion_count:int
 @export var suck_potion_count:int
 @export var kill_potion_count:int
 @export var enable_flash_jump:bool
+@export var enable_aura:bool
 @export var is_dev_mode:bool = false
+
 
 var flash_jump_effect = preload("res://scenes/effect_scenes/flash_jump.tscn")
 @export var inventory: Inventory
@@ -46,6 +49,8 @@ func _ready():
 	inventory.add_item(BlinkPotion.new(self, blink_potion_count))
 	inventory.add_item(SuckCoinPotion.new(self, suck_potion_count))
 	inventory.add_item(KillAllPotion.new(self, kill_potion_count))
+	aura.enable(enable_aura)
+	
 	
 func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.

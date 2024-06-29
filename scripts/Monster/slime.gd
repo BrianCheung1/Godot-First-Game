@@ -5,5 +5,3 @@ class_name Slime
 func die():
 	# Call the parent die function in Monster2D.gd
 	super.die()
-	
- 	

@@ -65,7 +65,6 @@ func hit(damage: int):
 	if hp <= 0:
 		die()
 		return
-	print("play")
 	on_damage_audio.play()
 	
 func die():
