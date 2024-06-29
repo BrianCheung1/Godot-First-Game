@@ -113,7 +113,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Animate",
-"speed": 20.0
+"speed": 30.0
 }]
 
 [node name="EnemyDeathEffect" type="AnimatedSprite2D"]

@@ -19,8 +19,6 @@ var _items: Array[Item] = [null, null, null, null, null]
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var jump_count = 0
 var is_alive = true
-var direction
-var is_jumping
 var is_sliding_to = 0
 var is_sliding = false
 var is_facing_right: bool:
@@ -39,57 +37,54 @@ func _ready():
 	#print_items()
 	
 func _physics_process(delta):
-	# Add the gravity.	
-	velocity.y += gravity * delta
-		
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	direction = Input.get_axis("move_left", "move_right")
-	is_jumping = Input.is_action_pressed("jump")
 	if Input.is_action_just_pressed("reload"):
 		get_tree().reload_current_scene()
 		PlayerVariables.player_resets +=1
-		
+	
+	# Return early if deadge
 	if not is_alive:
-		velocity.x = direction * 0
-
-	if is_alive:
-		if jump_count < MAX_JUMP_COUNT and is_jumping:
-			velocity.y = JUMP_VELOCITY
-			jump_count += 1
-			jump.play()
-		if !is_jumping and velocity.y < 0:
-			while velocity.y < 0:
-				velocity.y += delta
-		#Play animations
-		if is_on_floor() and not is_jumping:
-			jump_count = 0
-			if direction == 0:
-				animated_sprite.play("idle")
-			else:
-				animated_sprite.play("run")
-		elif is_jumping:
-			animated_sprite.play("jump")
-			
+		velocity.x = 0
+		return
 		
-		#Flip sprite depending on the direction left or right
-		if direction == -1:
-			animated_sprite.flip_h = true
-		if direction == 1:
-			animated_sprite.flip_h = false
-				
-		if direction and not is_sliding:
-			is_sliding_to = 0
-			velocity.x = direction * SPEED
-		elif is_sliding:
-			is_sliding_to = -130 if is_facing_right else 130
-			velocity.x = move_toward(velocity.x, is_sliding_to*2, SPEED)
-		else:
-			if is_sliding_to > 0:
-				is_sliding_to -= 1
-			elif is_sliding_to < 0:
-				is_sliding_to += 1
-			velocity.x = move_toward(velocity.x, is_sliding_to, SPEED)
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var direction_input: float = Input.get_axis("move_left", "move_right")
+	var has_jump_input: bool = Input.is_action_pressed("jump")
+		
+	# Handle animations
+	if is_on_floor() and not has_jump_input:
+		jump_count = 0
+		var floor_animation = "idle" if direction_input == 0 else "run"
+		animated_sprite.play(floor_animation)
+	elif has_jump_input:
+		animated_sprite.play("jump")
+	# Flip sprite depending on the direction_input, keep previous value if no input, otherwise check the input direction
+	animated_sprite.flip_h = animated_sprite.flip_h if direction_input == 0 else direction_input == -1
+	
+	# Handle Y
+	# Handle gravity
+	velocity.y += gravity * delta
+	
+	# Handle jumps
+	if jump_count < MAX_JUMP_COUNT and has_jump_input:
+		velocity.y = JUMP_VELOCITY
+		jump_count += 1
+		jump.play()
+	elif !has_jump_input:
+		# Start falling if the player releases the jump button
+		velocity.y = max(velocity.y, 0)
+			
+	# Handle X
+	if direction_input and not is_sliding:
+		is_sliding_to = 0
+		velocity.x = direction_input * SPEED
+	elif is_sliding:
+		is_sliding_to = -130 if is_facing_right else 130
+		velocity.x = move_toward(velocity.x, is_sliding_to*2, SPEED)
+	else:
+		is_sliding_to += 1 if is_sliding_to < 0 else -1
+		velocity.x = move_toward(velocity.x, is_sliding_to, SPEED)
+		
 	process_items()
 	move_and_slide()
 

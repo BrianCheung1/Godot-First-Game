@@ -215,6 +215,10 @@ size = Vector2(9, 5)
 z_index = 5
 collision_layer = 6
 script = ExtResource("1_wkd0y")
+gravity_potion_count = 2
+blink_potion_count = 2
+suck_potion_count = 2
+kill_potion_count = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
