@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://dubsqfb8lxi13" path="res://scenes/multiplayer_hud.tscn" id="14_8o2s6"]
 [ext_resource type="PackedScene" uid="uid://d1f5a8u5sawcy" path="res://scenes/finish_line.tscn" id="16_1gya6"]
 [ext_resource type="PackedScene" uid="uid://dnl8g54781qia" path="res://scenes/InventoryGUI.tscn" id="17_27qw2"]
-[ext_resource type="Script" path="res://scenes/CanvasLayer.gd" id="17_e0nfv"]
+[ext_resource type="Script" path="res://scenes/inventory_control.gd" id="17_e0nfv"]
 [ext_resource type="PackedScene" uid="uid://dqamoh2wkughe" path="res://scenes/victory_screen.tscn" id="17_pxl4i"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mq7ub"]
