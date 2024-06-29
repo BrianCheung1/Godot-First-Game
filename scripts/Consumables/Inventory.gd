@@ -17,31 +17,56 @@ const MAX_HOT_BAR_INDEX = 4
 func _ready():
 	inventory_gui.visible = true
 	hidden_store_GUI.visible = false
+	
+	while items.size() < MAX_SLOT:
+		items.append(null)
 
 func toggle_visibility():
 	hidden_store_GUI.visible = !hidden_store_GUI.visible
 
-func _condense_item(item: Item) -> bool:
+func _condense_item(item: Item):
+	var next_available_slot = MAX_SLOT
+	
 	for i in range(self.items.size()):
 		if self.items[i] != null and self.items[i].Name == item.Name:
 			self.items[i].update_quantity(item.Quantity)
-			update_sprite_label(str(self.items[i].Quantity),i)
-			return true
-	return false
+			update_sprite_label(self.items[i],i)
+			return -1
+			
+		if(self.items[i] == null && next_available_slot > i):
+			next_available_slot = i
+	return next_available_slot
 
-func update_sprite_label(quantity:String, index:int):
+func update_inventory_label(item: Item, index: int):
 	var label = self.inventory_gui_containers[index].get_child(1)
-	label.text = quantity
-	
-	#This section handles updating the sprite in the hotbar
-	if(index <= MAX_HOT_BAR_INDEX):
-		var hot_box_labal = self.hotbar_gui_containers[index].get_child(1)
-		hot_box_labal.text = quantity
+	if item:
+		label.text = str(item.Quantity)
+		return
 		
-	return
-	
+	label.text = ""
 
-func swap_index(first_item_index:int, second_item_index:int):
+func update_hotbar_label(item: Item, index: int):
+	var hot_box_label = self.hotbar_gui_containers[index].get_child(1)
+	if item:
+		hot_box_label.text = str(item.Quantity)
+		return
+		
+	hot_box_label.text = ""
+	
+func update_sprite_label(item: Item, index: int):
+	update_inventory_label(item, index)
+	
+	if index <= MAX_HOT_BAR_INDEX:
+		update_hotbar_label(item, index)
+	
+func swap_item_index(first_item_index:int, second_item_index:int):
+	var holder = self.items[first_item_index]
+	self.items[first_item_index] = self.items[second_item_index]
+	self.items[second_item_index] = holder
+	
+	attach_sprite(self.items[first_item_index], first_item_index)
+	attach_sprite(self.items[second_item_index], second_item_index)
+	
 	return
 
 func update_sprite(texture:Texture, index:int):
@@ -58,29 +83,31 @@ func update_sprite(texture:Texture, index:int):
 	return
 
 func attach_sprite(item:Item, index:int):
-	var texture = load(item.textureSource)
-	if texture:
+	if item:
+		var texture = load(item.textureSource)
 		update_sprite(texture,index)
-		update_sprite_label(str(item.Quantity), index)
+		update_sprite_label(item, index)
 		
 		return
 	
-	push_error("Error loading texture from item")
+	update_sprite(null,index)
+	update_sprite_label(null, index)
+		
 	return
 
 # Add item to inventory
 func add_item(item: Item):
-	var condensed = _condense_item(item)
-	if(condensed):
+	var next_available_index = _condense_item(item)
+	if(next_available_index == -1):
 		print_items()
 		return
 		
-	if self.items.size() >= MAX_SLOT:
+	if next_available_index >= MAX_SLOT:
 		push_error("Error add item: index >= %d" % MAX_SLOT)
 		return
 	
-	self.items.append(item)
-	attach_sprite(item, self.items.size()-1)
+	self.items[next_available_index] = item
+	attach_sprite(item, next_available_index)
 	print_items()
 
 func print_items():
@@ -92,10 +119,10 @@ func remove_used_item(i:int):
 	if(self.items[i].IsEmpty):
 		self.items[i] = null
 		update_sprite(null,i)
-		update_sprite_label("",i)
+		update_sprite_label(null,i)
 		return
 		
-	update_sprite_label(str(self.items[i].Quantity),i)
+	update_sprite_label(self.items[i],i)
 	
 func process_items():
 	# Input and activate
