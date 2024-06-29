@@ -114,42 +114,6 @@ func _physics_process(delta):
 		
 	inventory.process_items()
 	move_and_slide()
-
-func print_items():
-	print("Listing all items:")
-	for item in _items:
-		print("   " + str(item))
-	
-func add_item(item: Item, index: int):
-	if index >= _items.size():
-		push_error("Error add item: index >= _items.size()")
-		return
-	_items[index] = item
-	
-func process_items():
-	var activated = false
-	# Input and activate
-	if Input.is_action_just_pressed("item1") and _items[0] != null:
-		_items[0].activate()
-		activated = true
-	if Input.is_action_just_pressed("item2") and _items[1] != null:
-		_items[1].activate()
-		activated = true
-	if Input.is_action_just_pressed("item3") and _items[2] != null:
-		_items[2].activate()
-		activated = true
-	if Input.is_action_just_pressed("item4") and _items[3] != null:
-		_items[3].activate()
-		activated = true
-	if Input.is_action_just_pressed("item5") and _items[4] != null:
-		_items[4].activate()
-		activated = true
-	# Remove from inventory if used up
-	for i in _items.size():
-		if _items[i] != null and _items[i].IsEmpty:
-			_items[i] = null
-	if activated:
-		print_items()
 		
 func spawn_flash_jump_effect():
 	var node: AnimatedSprite2D = flash_jump_effect.instantiate()
