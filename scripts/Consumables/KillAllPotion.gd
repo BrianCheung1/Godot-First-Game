@@ -19,6 +19,6 @@ func activate():
 	for slime in slimes:
 		if not (slime is Slime): continue
 		slime = slime as Slime
-		slime.die()
+		slime.hit(25)
 	_count -= 1
 	print("Used " + _name)

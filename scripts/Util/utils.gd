@@ -8,3 +8,9 @@ static func get_animatedsprite2d_size(obj: AnimatedSprite2D, apply_scale=true):
 		return obj.sprite_frames.get_frame_texture(obj.animation, obj.frame).get_size() * obj.global_scale
 	return obj.sprite_frames.get_frame_texture(obj.animation, obj.frame).get_size()
 	
+static func try_get_rectangle_size(collision_shape: CollisionShape2D):
+	var shape = collision_shape.shape
+	if shape is RectangleShape2D:
+		var rect_shape = shape as RectangleShape2D
+		return rect_shape.size
+	return null

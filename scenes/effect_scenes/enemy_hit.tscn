@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjhtic1dmcaqq"]
+
+[ext_resource type="Script" path="res://scripts/Effects/DamageHit.gd" id="1_5yih0"]
+[ext_resource type="FontFile" uid="uid://dc004b45phav2" path="res://assets/fonts/PixelOperator8.ttf" id="1_7vnb8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1tsnu"]
+font = ExtResource("1_7vnb8")
+font_size = 8
+outline_size = 4
+outline_color = Color(0.666667, 0.184314, 0.2, 1)
+
+[node name="EnemyHit" type="Label"]
+label_settings = SubResource("LabelSettings_1tsnu")
+script = ExtResource("1_5yih0")
