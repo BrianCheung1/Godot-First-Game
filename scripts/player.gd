@@ -92,7 +92,7 @@ func _physics_process(delta):
 		# Start falling if the player releases the jump button
 		velocity.y = max(velocity.y, 0)
 	# Handle flash jumps
-	if enable_flash_jump and is_jumping and flash_jump_input and not is_flash_jump:
+	if enable_flash_jump and (is_jumping or not is_on_floor()) and flash_jump_input and not is_flash_jump:
 		print("Flash jump")
 		is_flash_jump = true
 		spawn_flash_jump_effect()
