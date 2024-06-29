@@ -27,6 +27,9 @@ func activate():
 func _to_string():
 	return ("Item [Name=%s Count=%d]" % [_name, _count])
 
+func updateQuantity(count:int):
+	self._count += count
+
 var Quantity: int:
 	get:
 		return _count

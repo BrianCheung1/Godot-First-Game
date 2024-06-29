@@ -4,7 +4,8 @@ class_name Player
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var jump = $jump
 @onready var hurt = $hurt
-@onready var inventory = $InventoryGui
+#@onready var inventory = $InventoryGui
+@onready var inventory = $CanvasLayer/InventoryGui
 
 @export var gravity_potion_count:int
 @export var blink_potion_count:int
@@ -36,19 +37,27 @@ var level: Node:
 var is_jumping: bool:
 	get: 
 		return jump_count > 0
-
+		
 func _ready():
 	# Give the user some starting items for testing
+	inventory.add_item(GravityPotion.new(self, gravity_potion_count))
 	inventory.add_item(GravityPotion.new(self, gravity_potion_count))
 	inventory.add_item(BlinkPotion.new(self, blink_potion_count))
 	inventory.add_item(SuckCoinPotion.new(self, suck_potion_count))
 	inventory.add_item(KillAllPotion.new(self, kill_potion_count))
 	
+#handles all events related to inventory
+func _input(event):
+	if event.is_action_pressed("toggle_inventory"):
+		inventory.toggle_visibility()
+		return
+	inventory.process_items()
+	
 func _physics_process(delta):
 	if Input.is_action_just_pressed("reload"):
 		get_tree().reload_current_scene()
 		PlayerVariables.player_resets +=1
-	
+	#
 	# Return early if deadge
 	if not is_alive:
 		velocity.x = 0
@@ -109,8 +118,6 @@ func _physics_process(delta):
 	else:
 		is_sliding_to += -sign(is_sliding_to) 
 		velocity.x = move_toward(velocity.x, is_sliding_to, SPEED)
-		
-	inventory.process_items()
 	move_and_slide()
 		
 func spawn_flash_jump_effect():

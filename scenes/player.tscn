@@ -216,7 +216,6 @@ size = Vector2(9, 5)
 z_index = 5
 collision_layer = 6
 script = ExtResource("1_wkd0y")
-gravity_potion_count = 2
 blink_potion_count = 2
 suck_potion_count = 2
 kill_potion_count = 2
@@ -254,7 +253,10 @@ shape = SubResource("RectangleShape2D_0v0gu")
 position = Vector2(-0.5, -1.5)
 shape = SubResource("RectangleShape2D_is6si")
 
-[node name="InventoryGui" parent="." instance=ExtResource("2_ovruc")]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="InventoryGui" parent="CanvasLayer" instance=ExtResource("2_ovruc")]
+visible = false
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

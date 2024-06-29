@@ -5,29 +5,47 @@ class_name Inventory
 @export var items:Array[Item] = []
 
 #@onready var scene = preload("res://scenes/InventoryGUI.tscn")
-@onready var inventorySlots:Array[Sprite2D] = [$NinePatchRect/GridContainer/Slot/VBoxContainer/Sprite2D, $NinePatchRect/GridContainer/Slot2/VBoxContainer/Sprite2D,  $NinePatchRect/GridContainer/Slot3/VBoxContainer/Sprite2D,  $NinePatchRect/GridContainer/Slot4/VBoxContainer/Sprite2D,  $NinePatchRect/GridContainer/Slot5/VBoxContainer/Sprite2D,
-											 $NinePatchRect/GridContainer/Slot6/VBoxContainer/Sprite2D, $NinePatchRect/GridContainer/Slot7/VBoxContainer/Sprite2D, $NinePatchRect/GridContainer/Slot8/VBoxContainer/Sprite2D, $NinePatchRect/GridContainer/Slot9/VBoxContainer/Sprite2D, $NinePatchRect/GridContainer/Slot10/VBoxContainer/Sprite2D,
-											 $NinePatchRect/GridContainer/Slot11/VBoxContainer/Sprite2D, $NinePatchRect/GridContainer/Slot12/VBoxContainer/Sprite2D, $NinePatchRect/GridContainer/Slot13/VBoxContainer/Sprite2D, $NinePatchRect/GridContainer/Slot14/VBoxContainer/Sprite2D, $NinePatchRect/GridContainer/Slot15/VBoxContainer/Sprite2D]
+@onready var inventorySlots:Array[VBoxContainer] = [$NinePatchRect/GridContainer/Slot/VBoxContainer, $NinePatchRect/GridContainer/Slot2/VBoxContainer,  $NinePatchRect/GridContainer/Slot3/VBoxContainer,  $NinePatchRect/GridContainer/Slot4/VBoxContainer,  $NinePatchRect/GridContainer/Slot5/VBoxContainer,
+											 $NinePatchRect/GridContainer/Slot6/VBoxContainer, $NinePatchRect/GridContainer/Slot7/VBoxContainer, $NinePatchRect/GridContainer/Slot8/VBoxContainer, $NinePatchRect/GridContainer/Slot9/VBoxContainer, $NinePatchRect/GridContainer/Slot10/VBoxContainer,
+											 $NinePatchRect/GridContainer/Slot11/VBoxContainer, $NinePatchRect/GridContainer/Slot12/VBoxContainer, $NinePatchRect/GridContainer/Slot13/VBoxContainer, $NinePatchRect/GridContainer/Slot14/VBoxContainer, $NinePatchRect/GridContainer/Slot15/VBoxContainer]
+
+@onready var inventory_gui = $"."
+
 const MAX_SLOT = 15
+
+func toggle_visibility():
+	inventory_gui.visible = !inventory_gui.visible
 
 func _condense_item(item: Item) -> bool:
 	for i in range(self.items.size()):
 		if self.items[i] != null and self.items[i].Name == item.Name:
-			self.items[i].Quantity += item.Quantity
+			self.items[i].updateQuantity(item.Quantity)
+			update_sprite_label(str(self.items[i].Quantity),i)
 			return true
 	return false
 
+func update_sprite_label(quantity:String, index:int):
+	var label = self.inventorySlots[index].get_child(1)
+	label.text = quantity
+	return
+	
+func update_sprite(texture:Texture, index:int):
+	var sprite = self.inventorySlots[index].get_child(0)
+	sprite.texture = texture
+	sprite.scale = Vector2(.15,.15)
+	return
+
 func attach_sprite(item:Item, index:int):
 	var texture = load(item.textureSource)
-	print(texture)
 	if texture:
-		print("inside texture %d %s", index, item.textureSource)
-		self.inventorySlots[index].texture = texture
+		update_sprite(texture, index)
+		update_sprite_label(str(item.Quantity), index)
+		
 		return
 	
 	push_error("Error loading texture from item")
 	return
-	
+
 # Add item to inventory
 func add_item(item: Item):
 	var condensed = _condense_item(item)
@@ -43,11 +61,6 @@ func add_item(item: Item):
 	attach_sprite(item, self.items.size()-1)
 	print_items()
 
-func _remove_used_items():
-	for i in range(self.items.size()):
-		if self.items[i] != null and self.items[i].IsEmpty:
-			self.items[i] = null
-
 func print_items():
 	for item in self.items:
 		print("   " + str(item))
@@ -56,6 +69,11 @@ func print_items():
 func remove_used_item(i:int):
 	if(self.items[i].IsEmpty):
 		self.items[i] = null
+		update_sprite(null,i)
+		update_sprite_label("",i)
+		return
+		
+	update_sprite_label(str(self.items[i].Quantity),i)
 	
 func process_items():
 	# Input and activate
