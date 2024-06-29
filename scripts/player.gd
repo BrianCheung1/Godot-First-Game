@@ -4,6 +4,7 @@ class_name Player
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var jump = $jump
 @onready var hurt = $hurt
+@onready var inventory = $InventoryGui
 
 @export var gravity_potion_count:int
 @export var blink_potion_count:int
@@ -12,7 +13,6 @@ class_name Player
 @export var enable_flash_jump:bool
 
 var flash_jump_effect = preload("res://scenes/effect_scenes/flash_jump.tscn")
-@export var inventory: Inventory
 
 var MAX_JUMP_COUNT = 1
 var SPEED = 130.0
@@ -20,7 +20,6 @@ var JUMP_VELOCITY = -300.0
 var FLASH_JUMP_Y_VELOCITY_BOOST = -150
 var FLASH_JUMP_X_VELOCITY_BOOST = SPEED * 1.8
 var _items: Array[Item] = [null, null, null, null, null]
-
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var jump_count = 0
@@ -37,10 +36,9 @@ var level: Node:
 var is_jumping: bool:
 	get: 
 		return jump_count > 0
-		
+
 func _ready():
 	# Give the user some starting items for testing
-	inventory = Inventory.new([])
 	inventory.add_item(GravityPotion.new(self, gravity_potion_count))
 	inventory.add_item(BlinkPotion.new(self, blink_potion_count))
 	inventory.add_item(SuckCoinPotion.new(self, suck_potion_count))

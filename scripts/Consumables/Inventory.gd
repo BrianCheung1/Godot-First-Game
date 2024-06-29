@@ -3,15 +3,12 @@ extends Node
 class_name Inventory
 
 @export var items:Array[Item] = []
-const MAX_SLOT = 15
 
-# Constructor for the Inventory class
-func _init(new_items: Array[Item] = []):
-	if(len(new_items) > MAX_SLOT):
-		push_error("Error: Initializing inventory with too many slots. Maximum allowed is %d." % MAX_SLOT)
-		return 
-		
-	self.items = new_items
+#@onready var scene = preload("res://scenes/InventoryGUI.tscn")
+@onready var inventorySlots:Array[Sprite2D] = [$NinePatchRect/GridContainer/Slot/VBoxContainer/Sprite2D, $NinePatchRect/GridContainer/Slot2/VBoxContainer/Sprite2D,  $NinePatchRect/GridContainer/Slot3/VBoxContainer/Sprite2D,  $NinePatchRect/GridContainer/Slot4/VBoxContainer/Sprite2D,  $NinePatchRect/GridContainer/Slot5/VBoxContainer/Sprite2D,
+											 $NinePatchRect/GridContainer/Slot6/VBoxContainer/Sprite2D, $NinePatchRect/GridContainer/Slot7/VBoxContainer/Sprite2D, $NinePatchRect/GridContainer/Slot8/VBoxContainer/Sprite2D, $NinePatchRect/GridContainer/Slot9/VBoxContainer/Sprite2D, $NinePatchRect/GridContainer/Slot10/VBoxContainer/Sprite2D,
+											 $NinePatchRect/GridContainer/Slot11/VBoxContainer/Sprite2D, $NinePatchRect/GridContainer/Slot12/VBoxContainer/Sprite2D, $NinePatchRect/GridContainer/Slot13/VBoxContainer/Sprite2D, $NinePatchRect/GridContainer/Slot14/VBoxContainer/Sprite2D, $NinePatchRect/GridContainer/Slot15/VBoxContainer/Sprite2D]
+const MAX_SLOT = 15
 
 func _condense_item(item: Item) -> bool:
 	for i in range(self.items.size()):
@@ -20,6 +17,17 @@ func _condense_item(item: Item) -> bool:
 			return true
 	return false
 
+func attach_sprite(item:Item, index:int):
+	var texture = load(item.textureSource)
+	print(texture)
+	if texture:
+		print("inside texture %d %s", index, item.textureSource)
+		self.inventorySlots[index].texture = texture
+		return
+	
+	push_error("Error loading texture from item")
+	return
+	
 # Add item to inventory
 func add_item(item: Item):
 	var condensed = _condense_item(item)
@@ -30,8 +38,9 @@ func add_item(item: Item):
 	if self.items.size() >= MAX_SLOT:
 		push_error("Error add item: index >= %d" % MAX_SLOT)
 		return
-		
+	
 	self.items.append(item)
+	attach_sprite(item, self.items.size()-1)
 	print_items()
 
 func _remove_used_items():
@@ -40,7 +49,6 @@ func _remove_used_items():
 			self.items[i] = null
 
 func print_items():
-	print("Listing all items:")
 	for item in self.items:
 		print("   " + str(item))
 

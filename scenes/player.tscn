@@ -1,7 +1,8 @@
-[gd_scene load_steps=33 format=3 uid="uid://m44vus15jmky"]
+[gd_scene load_steps=34 format=3 uid="uid://m44vus15jmky"]
 
 [ext_resource type="Texture2D" uid="uid://blwkda7ax2um3" path="res://assets/sprites/knight.png" id="1_0al53"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_wkd0y"]
+[ext_resource type="PackedScene" uid="uid://dnl8g54781qia" path="res://scenes/InventoryGUI.tscn" id="2_ovruc"]
 [ext_resource type="AudioStream" uid="uid://ftsx4xc3fx8o" path="res://assets/sounds/jump.wav" id="3_tbkc3"]
 [ext_resource type="AudioStream" uid="uid://yfla5l8cutsg" path="res://assets/sounds/hurt.wav" id="4_x1vp1"]
 
@@ -252,6 +253,8 @@ shape = SubResource("RectangleShape2D_0v0gu")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
 position = Vector2(-0.5, -1.5)
 shape = SubResource("RectangleShape2D_is6si")
+
+[node name="InventoryGui" parent="." instance=ExtResource("2_ovruc")]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
