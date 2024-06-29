@@ -47,13 +47,13 @@ var is_jumping: bool:
 		
 func _ready():
 	# Give the user some starting items for testing
-	inventory.add_item(GravityPotion.new(self, gravity_potion_count))
-	inventory.add_item(GravityPotion.new(self, gravity_potion_count))
-	inventory.add_item(BlinkPotion.new(self, blink_potion_count))
-	inventory.add_item(SuckCoinPotion.new(self, suck_potion_count))
-	inventory.add_item(KillAllPotion.new(self, kill_potion_count))
+	inventory.add_item(GravityPotion.new(self, gravity_potion_count)) #mimic adding new item for testing
+	inventory.add_item(GravityPotion.new(self, gravity_potion_count)) #mimic adding new item for testing
+	inventory.add_item(BlinkPotion.new(self, blink_potion_count)) #mimic adding new item for testing
+	inventory.add_item(SuckCoinPotion.new(self, suck_potion_count)) #mimic adding new item for testing
+	inventory.add_item(KillAllPotion.new(self, kill_potion_count)) #mimic condense item for testing
+	inventory.swap_item_index(0,7) #mimic swap items for testing
 	aura.enable(enable_aura)
-	
 	
 #handles all events related to inventory
 func _input(event):
