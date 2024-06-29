@@ -605,7 +605,6 @@ layer_1/tile_data = PackedInt32Array(65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 6553
 gravity_potion_count = 3
 blink_potion_count = 4
 suck_potion_count = 4
-dev_mode = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(1, -5)
@@ -764,6 +763,9 @@ position = Vector2(-168, -424)
 
 [node name="slime3" parent="Slimes" instance=ExtResource("10_bsdwl")]
 position = Vector2(112, -40)
+
+[node name="slime4" parent="Slimes" instance=ExtResource("10_bsdwl")]
+position = Vector2(158, -40)
 
 [node name="Labels" type="Node" parent="."]
 

@@ -10,7 +10,7 @@ class_name Player
 @export var suck_potion_count:int
 @export var kill_potion_count:int
 @export var enable_flash_jump:bool
-@export var dev_mode:bool
+@export var is_dev_mode:bool = false
 
 var flash_jump_effect = preload("res://scenes/effect_scenes/flash_jump.tscn")
 @export var inventory: Inventory
@@ -55,68 +55,67 @@ func _physics_process(delta):
 	var has_jump_input: bool = Input.is_action_pressed("jump")
 	var flash_jump_input: bool =  Input.is_action_just_pressed("flash_jump")
 			
-	if dev_mode:
+	if Input.is_action_just_pressed("reload"):
+		get_tree().reload_current_scene()
+		PlayerVariables.player_resets +=1
+	
+	# Return early if deadge
+	if not is_alive:
+		velocity.x = 0
+		return
+		
+	# Rules that must be true if you are touching the floor
+	if is_on_floor():
+		# Don't allow sliding after flash jump lands
+		if is_flash_jump:
+			velocity.x = 0
+		jump_count = 0
+		is_flash_jump = false
+		velocity.y = 0
+		
+	# Handle animations
+	if is_jumping:
+		animated_sprite.play("jump")
+	else:
+		var floor_animation = "idle" if direction_input == 0 else "run"
+		animated_sprite.play(floor_animation)
+	# (Can't change direction when flash jumping) Flip sprite depending on the direction_input, keep previous value if no input, otherwise check the input direction
+	if not is_flash_jump:
+		animated_sprite.flip_h = animated_sprite.flip_h if direction_input == 0 else direction_input == -1
+	# Handle Y
+	# Handle gravity
+	velocity.y += gravity * delta
+	# Handle jumps
+	if jump_count < MAX_JUMP_COUNT and has_jump_input:
+		velocity.y = JUMP_VELOCITY
+		jump_count += 1
+		jump.play()
+	elif !has_jump_input:
+		# Start falling if the player releases the jump button
+		velocity.y = max(velocity.y, 0)
+	# Handle flash jumps
+	if enable_flash_jump and (is_jumping or not is_on_floor()) and flash_jump_input and not is_flash_jump:
+		print("Flash jump")
+		is_flash_jump = true
+		spawn_flash_jump_effect()
+		velocity.y = FLASH_JUMP_Y_VELOCITY_BOOST
+
+	# Handle X
+	if is_flash_jump:
+		velocity.x = (-1 if is_facing_right else 1) * FLASH_JUMP_X_VELOCITY_BOOST
+	elif direction_input and not is_sliding:
+		is_sliding_to = 0
+		velocity.x = direction_input * SPEED
+	elif is_sliding:
+		is_sliding_to = -130 if is_facing_right else 130
+		velocity.x = move_toward(velocity.x, is_sliding_to*2, SPEED)
+	else:
+		is_sliding_to += -sign(is_sliding_to) 
+		velocity.x = move_toward(velocity.x, is_sliding_to, SPEED)
+		
+	if is_dev_mode:
 		velocity.x = direction_input * SPEED
 		velocity.y = direction_input_y * SPEED
-		
-	else:
-		if Input.is_action_just_pressed("reload"):
-			get_tree().reload_current_scene()
-			PlayerVariables.player_resets +=1
-		
-		# Return early if deadge
-		if not is_alive:
-			velocity.x = 0
-			return
-			
-		# Rules that must be true if you are touching the floor
-		if is_on_floor():
-			# Don't allow sliding after flash jump lands
-			if is_flash_jump:
-				velocity.x = 0
-			jump_count = 0
-			is_flash_jump = false
-			velocity.y = 0
-			
-		# Handle animations
-		if is_jumping:
-			animated_sprite.play("jump")
-		else:
-			var floor_animation = "idle" if direction_input == 0 else "run"
-			animated_sprite.play(floor_animation)
-		# (Can't change direction when flash jumping) Flip sprite depending on the direction_input, keep previous value if no input, otherwise check the input direction
-		if not is_flash_jump:
-			animated_sprite.flip_h = animated_sprite.flip_h if direction_input == 0 else direction_input == -1
-		# Handle Y
-		# Handle gravity
-		velocity.y += gravity * delta
-		# Handle jumps
-		if jump_count < MAX_JUMP_COUNT and has_jump_input:
-			velocity.y = JUMP_VELOCITY
-			jump_count += 1
-			jump.play()
-		elif !has_jump_input:
-			# Start falling if the player releases the jump button
-			velocity.y = max(velocity.y, 0)
-		# Handle flash jumps
-		if enable_flash_jump and (is_jumping or not is_on_floor()) and flash_jump_input and not is_flash_jump:
-			print("Flash jump")
-			is_flash_jump = true
-			spawn_flash_jump_effect()
-			velocity.y = FLASH_JUMP_Y_VELOCITY_BOOST
-
-		# Handle X
-		if is_flash_jump:
-			velocity.x = (-1 if is_facing_right else 1) * FLASH_JUMP_X_VELOCITY_BOOST
-		elif direction_input and not is_sliding:
-			is_sliding_to = 0
-			velocity.x = direction_input * SPEED
-		elif is_sliding:
-			is_sliding_to = -130 if is_facing_right else 130
-			velocity.x = move_toward(velocity.x, is_sliding_to*2, SPEED)
-		else:
-			is_sliding_to += -sign(is_sliding_to) 
-			velocity.x = move_toward(velocity.x, is_sliding_to, SPEED)
 		
 	inventory.process_items()
 	move_and_slide()
