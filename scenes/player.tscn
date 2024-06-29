@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://m44vus15jmky"]
+[gd_scene load_steps=44 format=3 uid="uid://m44vus15jmky"]
 
 [ext_resource type="Texture2D" uid="uid://blwkda7ax2um3" path="res://assets/sprites/knight.png" id="1_0al53"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_wkd0y"]
@@ -38,6 +38,38 @@ region = Rect2(96, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_nko8r"]
 atlas = ExtResource("1_0al53")
 region = Rect2(64, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w538l"]
+atlas = ExtResource("1_0al53")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oefy5"]
+atlas = ExtResource("1_0al53")
+region = Rect2(32, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0o4y"]
+atlas = ExtResource("1_0al53")
+region = Rect2(64, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kefha"]
+atlas = ExtResource("1_0al53")
+region = Rect2(96, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6jdq"]
+atlas = ExtResource("1_0al53")
+region = Rect2(128, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svhvn"]
+atlas = ExtResource("1_0al53")
+region = Rect2(160, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rs7ih"]
+atlas = ExtResource("1_0al53")
+region = Rect2(192, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aw6wd"]
+atlas = ExtResource("1_0al53")
+region = Rect2(224, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1se6w"]
 atlas = ExtResource("1_0al53")
@@ -152,6 +184,35 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_w538l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oefy5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0o4y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kefha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6jdq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_svhvn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rs7ih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aw6wd")
+}],
+"loop": false,
+"name": &"roll",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_1se6w")
 }, {
 "duration": 1.0,
@@ -226,11 +287,12 @@ suck_potion_count = 2
 kill_potion_count = 101
 enable_flash_jump = true
 enable_aura = true
+enable_roll = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_sikt6")
-animation = &"idle"
+animation = &"roll"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -277,6 +339,11 @@ position = Vector2(0, -6)
 scale = Vector2(0.16665, 0.16665)
 texture = ExtResource("6_jkjfo")
 
+[node name="RollCooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]
+[connection signal="timeout" from="RollCooldownTimer" to="." method="_on_roll_cooldown_timer_timeout"]
