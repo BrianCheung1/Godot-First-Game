@@ -219,6 +219,7 @@ gravity_potion_count = 2
 blink_potion_count = 2
 suck_potion_count = 2
 kill_potion_count = 2
+enable_flash_jump = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
