@@ -1,17 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://dnl8g54781qia"]
+[gd_scene load_steps=5 format=3 uid="uid://dnl8g54781qia"]
 
 [ext_resource type="Script" path="res://scripts/Consumables/Inventory.gd" id="1_8bvv5"]
 [ext_resource type="Texture2D" uid="uid://bmyfg2bdgp7lo" path="res://assets/sprites/InventoryRect.png" id="1_wd65h"]
 [ext_resource type="PackedScene" uid="uid://03x2hyxc7ehh" path="res://scenes/Slot.tscn" id="2_7h8xo"]
+[ext_resource type="PackedScene" uid="uid://7p1o81lsj0do" path="res://scenes/HotBarGUI.tscn" id="4_fpa2g"]
 
 [node name="InventoryGui" type="Control"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 3
-anchors_preset = 0
-offset_left = 324.0
-offset_top = 141.0
-offset_right = 866.0
-offset_bottom = 491.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -269.0
+offset_top = -227.0
+offset_right = 272.0
+offset_bottom = 124.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_8bvv5")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
@@ -21,10 +28,10 @@ anchor_left = -0.557
 anchor_top = -0.425
 anchor_right = -0.557
 anchor_bottom = -0.425
-offset_left = 294.894
-offset_top = 123.75
-offset_right = 842.894
-offset_bottom = 466.75
+offset_left = 298.337
+offset_top = 158.425
+offset_right = 846.337
+offset_bottom = 501.425
 texture = ExtResource("1_wd65h")
 patch_margin_left = 6
 patch_margin_top = 6
@@ -420,3 +427,9 @@ scale = Vector2(0.221, 0.219)
 
 [node name="Label" type="Label" parent="NinePatchRect/GridContainer/Slot15/VBoxContainer"]
 layout_mode = 2
+
+[node name="HotBarGui" parent="." instance=ExtResource("4_fpa2g")]
+offset_left = 555.0
+offset_top = -93.0
+offset_right = 837.0
+offset_bottom = -18.0
