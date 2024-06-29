@@ -843,7 +843,7 @@ script = ExtResource("1_xy1oi")
 unique_name_in_owner = true
 script = ExtResource("1_efgyb")
 leaderboardScene = ExtResource("2_t8cd5")
-leaderboardID = "butter-knights-level2-ry9g"
+leaderboardID = "butter-knights-level-3-s9FD"
 
 [node name="ScoreLabel" type="Label" parent="GameManager"]
 visible = false
