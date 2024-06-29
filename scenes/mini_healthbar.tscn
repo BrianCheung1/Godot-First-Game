@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3bkpyr2sp0o5"]
+
+[sub_resource type="Theme" id="Theme_arwul"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7rohu"]
+bg_color = Color(0.999999, 0.0405092, 0.0223546, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="MiniHealthbar" type="ProgressBar"]
+offset_left = -6.0
+offset_top = 2.0
+offset_right = 24.0
+offset_bottom = 7.0
+scale = Vector2(0.4, 0.4)
+theme = SubResource("Theme_arwul")
+theme_override_styles/fill = SubResource("StyleBoxFlat_7rohu")
+value = 50.0
+show_percentage = false

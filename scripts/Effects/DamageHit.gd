@@ -15,7 +15,7 @@ var width: float:
 		return size.x
 
 func _ready():
-	lifetime = 1
+	lifetime = 0.6
 	grow_small_after = lifetime - (lifetime * GROW_BIG_TO_SMALL_AFTER_PERCENT) # so if lifetime = 1s and GROW_BIG_TO_SMALL_AFTER_PERCENT = 0.3, this would be 0.7
 	
 	# Position the damage above the object's head
@@ -38,7 +38,7 @@ func _process(delta):
 	
 	# Grow big then grow small
 	if lifetime < grow_small_after:
-		scale = scale + Vector2(-1, -1) * delta
+		scale = scale + Vector2(-1.5, -1.5) * delta
 	else:
 		scale = scale + Vector2(2, 2) * delta
 		
@@ -46,6 +46,7 @@ func _process(delta):
 		queue_free()
 	
 
+#const MY_SCENE = preload("res://scenes/effect_scenes/enemy_hit.tscn")
 static func create_new_hit(collision_shape: CollisionShape2D, damage: int) -> Label:
 	var hit_scene = load("res://scenes/effect_scenes/enemy_hit.tscn")
 	var hit_label: Hit = hit_scene.instantiate()

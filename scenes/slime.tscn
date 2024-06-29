@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://mn1rmqtsc0vc"]
+[gd_scene load_steps=15 format=3 uid="uid://mn1rmqtsc0vc"]
 
 [ext_resource type="Texture2D" uid="uid://cpmv313wbl58n" path="res://assets/sprites/slime_green.png" id="1_5y7dy"]
 [ext_resource type="Script" path="res://scripts/Monster/slime.gd" id="1_e8klr"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://addons/netfox/state-synchronizer.gd" id="2_o0kyx"]
 [ext_resource type="Script" path="res://addons/netfox/tick-interpolator.gd" id="3_gdo2l"]
 [ext_resource type="AudioStream" uid="uid://csvaie0c53ech" path="res://assets/sounds/slime_death.wav" id="6_uy2po"]
+[ext_resource type="PackedScene" uid="uid://c3bkpyr2sp0o5" path="res://scenes/mini_healthbar.tscn" id="7_ud1vs"]
+[ext_resource type="PackedScene" uid="uid://b7epa3re458xd" path="res://scenes/damage_audio.tscn" id="8_iio6d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lxa4k"]
 atlas = ExtResource("1_5y7dy")
@@ -48,7 +50,7 @@ size = Vector2(10, 12)
 
 [node name="Slime" type="Node2D"]
 script = ExtResource("1_e8klr")
-hp = 100
+hp = 10000
 speed = 60
 
 [node name="StateSynchronizer" type="Node" parent="." node_paths=PackedStringArray("root")]
@@ -72,6 +74,7 @@ position = Vector2(0, -12)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
 position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_shmp5")
+debug_color = Color(0.204394, 0.624724, 0.412031, 0.42)
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
 position = Vector2(0, -6)
@@ -85,3 +88,7 @@ target_position = Vector2(-9, 0)
 stream = ExtResource("6_uy2po")
 volume_db = 24.0
 bus = &"SFX"
+
+[node name="MiniHealthbar" parent="." instance=ExtResource("7_ud1vs")]
+
+[node name="DamageAudio" parent="." instance=ExtResource("8_iio6d")]

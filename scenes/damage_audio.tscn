@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7epa3re458xd"]
+
+[ext_resource type="AudioStream" uid="uid://bawc3768b0b7u" path="res://assets/sounds/damage.mp3" id="1_83i1y"]
+
+[node name="DamageAudio" type="AudioStreamPlayer"]
+stream = ExtResource("1_83i1y")
+volume_db = -32.806
+autoplay = true
