@@ -1,30 +1,28 @@
 extends Node
 
 var save_path = "user://player_variables.dat"
-var player_name:String
+var player_name:String = "Guest"
 var player_time:float = 999999999999999999
 var player_deaths:int = 0
 var player_resets:int = 0
-var player_ip
+var player_ip = "127.0.0.1"
 
 func _ready():
-	player_name = load_name()
-	player_ip = load_ip()
+	load_file()
+	save_file()
 	
-func save_name():
+func save_file():
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
 	file.store_var(player_name)
 	file.store_var(player_ip)
 	
-func load_name():
+func load_file():
 	if not FileAccess.file_exists(save_path):
-		return "Guest"
+		player_name = "Guest"
+		player_ip = "127.0.0.1"
+		return false
 	var file = FileAccess.open(save_path, FileAccess.READ)
-	return file.get_var()
-
-func load_ip():
-	print(save_path)
-	if not FileAccess.file_exists(save_path):
-		return "127.0.0.1"
-	var file = FileAccess.open(save_path, FileAccess.READ)
-	return file.get_var()
+	player_name = file.get_var()
+	player_ip = file.get_var()
+	return true
+	
