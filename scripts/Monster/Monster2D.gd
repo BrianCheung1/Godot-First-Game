@@ -55,8 +55,8 @@ func cleanup():
 func hit(damage: int):
 	if dead: return
 	# Spawn the damage numbers
-	var damage_label = Hit.create_new_hit(collision_node, damage)
-	add_node(damage_label)
+	var damage_label = Hit.create_new_enemy_hit(collision_node, damage)
+	Util.add_node(self, damage_label)
 	
 	hp -= damage
 	mini_hpbar.value = max(0, hp)
@@ -76,17 +76,10 @@ func die():
 	animated_sprite.hide()
 	collision_node.disabled = true
 	# Death effect
-	var death_effect = spawn_and_add_node(enemy_death_effect)
+	var death_effect = Util.spawn_and_add_node(self, enemy_death_effect)
 	death_effect.global_position = self.global_position
 	
 func _to_string():
 	return "Monster [HP={HP}]".format({ "HP": hp })
 
-func add_node(node: Node):
-	get_parent().add_child(node)
-	
-func spawn_and_add_node(resource: Resource):
-	var node = resource.instantiate()
-	add_node(node)
-	return node
 	

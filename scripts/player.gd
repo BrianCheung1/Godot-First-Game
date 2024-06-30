@@ -2,12 +2,14 @@ extends CharacterBody2D
 class_name Player
 
 @onready var animated_sprite = $AnimatedSprite2D
-@onready var jump_audio = $jump
-@onready var hurt_audio = $hurt
+@onready var jump_audio = $JumpAudio
+@onready var hurt_audio = $HurtAudio
+@onready var damage_audio = $DamageAudio
 @onready var aura: Aura = $AuraArea2D
 @onready var inventory = $CanvasLayer/InventoryGui
 @onready var death_timer = $DeathTimer
 @onready var camera = $Camera2D
+@onready var hitbox: CollisionShape2D = $Area2D/CollisionShape2D
 
 @export var gravity_potion_count:int
 @export var blink_potion_count:int
@@ -26,6 +28,7 @@ const MAX_JUMP_COUNT = 1
 const SPEED = 130.0
 const FLASH_JUMP_Y_VELOCITY_BOOST = -150
 const FLASH_JUMP_X_VELOCITY_BOOST = SPEED * 1.8
+const INVINCIBILITY_TIME = 0.25
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -46,16 +49,17 @@ var is_rolling = false
 var is_rolling_cooldown = false
 var is_sliding_to = 0
 var is_sliding = false
+var invincibility_time_left = 0
 
 # Computed Getters
 var is_facing_right: bool:
 	get:
 		return true if animated_sprite.flip_h else false
 var level: Node:
-	get: 
+	get:
 		return get_parent()
 var is_jumping: bool:
-	get: 
+	get:
 		return jump_count > 0
 		
 func _ready():
@@ -84,11 +88,10 @@ func _physics_process(delta):
 	var has_jump_input: bool = Input.is_action_pressed("jump")
 	var has_roll_input: bool = Input.is_action_pressed("roll")
 	var flash_jump_input: bool =  Input.is_action_just_pressed("flash_jump")
-			
+	
 	if is_dev_mode:
 		velocity.x = direction_input * SPEED * 2
 		velocity.y = direction_input_y * SPEED * 2
-		
 	else:
 		if Input.is_action_just_pressed("reload"):
 			get_tree().reload_current_scene()
@@ -99,6 +102,10 @@ func _physics_process(delta):
 			velocity.x = 0
 			return
 			
+		# Handle iFrame
+		invincibility_time_left -= delta
+		animated_sprite.modulate = Color(3,3,3,3) if invincibility_time_left > 0 else Color(1,1,1,1)
+		
 		# Rules that must be true if you are touching the floor
 		if is_on_floor():
 			# Don't allow sliding after flash jump lands
@@ -133,6 +140,7 @@ func _physics_process(delta):
 			velocity.y = max(velocity.y, 0)
 		# Handle flash jumps
 		if enable_flash_jump and (is_jumping or not is_on_floor()) and flash_jump_input and not is_flash_jump:
+			hit(5)
 			if direction_input:
 				velocity.y = FLASH_JUMP_Y_VELOCITY_BOOST
 				is_flash_jump = true
@@ -142,6 +150,7 @@ func _physics_process(delta):
 			spawn_flash_jump_effect()
 		#Handle rolling
 		if enable_roll and is_on_floor() and has_roll_input and not is_rolling and not is_rolling_cooldown:
+			invincibility_time_left = 999999
 			is_rolling = true
 			is_rolling_cooldown = true
 			set_collision_layer_value(2, false)
@@ -158,7 +167,7 @@ func _physics_process(delta):
 			is_sliding_to = -130 if is_facing_right else 130
 			velocity.x = move_toward(velocity.x, is_sliding_to*2, SPEED)
 		else:
-			is_sliding_to += -sign(is_sliding_to) 
+			is_sliding_to += -sign(is_sliding_to)
 			velocity.x = move_toward(velocity.x, is_sliding_to, SPEED)
 		
 	move_and_slide()
@@ -167,25 +176,23 @@ func _process(delta):
 	pass
 
 func hit(damage: int):
-	pass
-	#if is_alive: return
-	## Spawn the damage numbers
-	#var damage_label = Hit.create_new_hit(collision_node, damage)
-	#add_node(damage_label)
-	#
-	#hp -= damage
-	#mini_hpbar.value = max(0, hp)
-	#mini_hpbar.show()
-	#print(str(self) + ": hit({damage})".format({ "damage": damage }))
-	#if hp <= 0:
-		#die()
-		#return
-	#on_damage_audio.play()
+	if not is_alive or invincibility_time_left > 0: return
+	invincibility_time_left = INVINCIBILITY_TIME
+	
+	var damage_label = Hit.create_new_player_hit(hitbox, damage)
+	Util.add_node(self, damage_label)
+	
+	hp -= damage
+	if hp <= 0:
+		die()
+		return
+	damage_audio.play()
 	
 func die():
 	is_alive = false
 	animated_sprite.play("death")
 	hurt_audio.play()
+	aura.enable(false)
 	set_collision_layer_value(2, false)
 	set_collision_layer_value(3, true)
 	$DeathTimer.start()
@@ -210,6 +217,7 @@ func _on_area_2d_body_exited(body):
 func _on_animated_sprite_2d_animation_finished():
 	if animated_sprite.animation == "roll":
 		is_rolling = false
+		invincibility_time_left = 0
 		set_collision_layer_value(2, true)
 		$RollCooldownTimer.start()
 		

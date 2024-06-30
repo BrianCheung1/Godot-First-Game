@@ -441,6 +441,7 @@ position = Vector2(0, -64)
 gravity_potion_count = 3
 blink_potion_count = 4
 suck_potion_count = 4
+is_dev_mode = false
 
 [node name="Camera2D2" type="Camera2D" parent="Player"]
 position = Vector2(1, -5)

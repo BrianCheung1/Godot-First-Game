@@ -19,3 +19,11 @@ static func get_root(node: Node):
 	while node.get_parent() != null:
 		node = node.get_parent()
 	return node
+
+static func add_node(current: Node, node: Node):
+	current.get_parent().add_child(node)
+	
+static func spawn_and_add_node(current: Node, resource: Resource):
+	var node = resource.instantiate()
+	add_node(current, node)
+	return node

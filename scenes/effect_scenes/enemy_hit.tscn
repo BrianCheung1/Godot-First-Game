@@ -7,7 +7,7 @@
 font = ExtResource("1_7vnb8")
 font_size = 8
 outline_size = 4
-outline_color = Color(0.666667, 0.184314, 0.2, 1)
+outline_color = Color(0.666667, 0.184314, 0.886275, 1)
 
 [node name="EnemyHit" type="Label"]
 label_settings = SubResource("LabelSettings_1tsnu")
