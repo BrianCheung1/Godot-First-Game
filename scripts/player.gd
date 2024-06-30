@@ -186,7 +186,7 @@ func _process(delta):
 	pass
 
 func hit(damage: int):
-	if not is_alive or invincibility_time_left > 0: return
+	if damage == 0 or not is_alive or invincibility_time_left > 0: return
 	invincibility_time_left = INVINCIBILITY_TIME
 	
 	var damage_label = Hit.create_new_player_hit(hitbox, damage)
