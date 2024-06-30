@@ -6,9 +6,11 @@ const HIT_DELAY = 0.1
 var enabled = true
 var collided_monsters: Dictionary
 var elapsed = 0
+var logger
 
 func _ready():
-	#print("Aura ready")
+	logger = Logger.new("[aura]")
+	logger.print("Aura ready")
 	collided_monsters = {}
 	area_entered.connect(_on_area_entered)
 	area_exited.connect(_on_area_exited)
@@ -23,10 +25,15 @@ func _process(delta):
 			
 func enable(is_enabled):
 	enabled = is_enabled
+	if enabled:
+		show()
+	else:
+		hide()
+	logger.print("Enabled=%s" % enabled)
 	
 func _on_area_entered(other: Area2D):
 	if not enabled: return
-	#print("Entered aura", other)
+	logger.print(["Entered aura", other])
 	var parent = other
 	while not parent is Monster2D and parent != null:
 		parent = parent.get_parent()
@@ -36,7 +43,7 @@ func _on_area_entered(other: Area2D):
 		
 func _on_area_exited(other: Area2D):
 	if not enabled: return
-	#print("Exited aura", other)
+	logger.print(["Exited aura", other])
 	var parent = other
 	while not parent is Monster2D and parent != null:
 		parent = parent.get_parent()

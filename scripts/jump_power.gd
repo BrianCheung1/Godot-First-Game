@@ -3,5 +3,5 @@ extends Area2D
 
 
 func _on_body_entered(body):
-	body.jump_velocity = -458
+	body.jump_velocity = -475
 	animation_player.play("pickup")
