@@ -48,10 +48,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_shmp5"]
 size = Vector2(10, 12)
 
-[node name="Slime" type="Node2D"]
+[node name="Slime" type="CharacterBody2D"]
 script = ExtResource("1_e8klr")
-hp = 10000
-speed = 60
 
 [node name="StateSynchronizer" type="Node" parent="." node_paths=PackedStringArray("root")]
 script = ExtResource("2_o0kyx")

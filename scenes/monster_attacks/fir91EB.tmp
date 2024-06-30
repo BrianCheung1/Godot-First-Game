@@ -1,0 +1,58 @@
+[gd_scene load_steps=11 format=3 uid="uid://dptphsgch0ove"]
+
+[ext_resource type="Script" path="res://scripts/Monster_Attacks/fireball.gd" id="1_41h5y"]
+[ext_resource type="Texture2D" uid="uid://d0mt5yti26n82" path="res://assets/sprites/wizard/FB500-1.png" id="5_dvvvb"]
+[ext_resource type="Texture2D" uid="uid://bjxe4pphqupw3" path="res://assets/sprites/wizard/FB500-2.png" id="6_3np73"]
+[ext_resource type="PackedScene" uid="uid://vb4lvdta2d5o" path="res://scenes/killzone.tscn" id="7_pso3b"]
+[ext_resource type="Texture2D" uid="uid://yx60bxk8xaxo" path="res://assets/sprites/wizard/FB500-3.png" id="7_wvjvp"]
+[ext_resource type="Texture2D" uid="uid://61p8i2sexwol" path="res://assets/sprites/wizard/FB500-4.png" id="8_iat8p"]
+[ext_resource type="Texture2D" uid="uid://cm7bnswf1i326" path="res://assets/sprites/wizard/FB500-5.png" id="9_v8ou4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_chblk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_dvvvb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_3np73")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wvjvp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_iat8p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_v8ou4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tv7mo"]
+radius = 11.0454
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_retjp"]
+
+[node name="Fireball" type="Area2D"]
+script = ExtResource("1_41h5y")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_chblk")
+frame_progress = 0.138209
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tv7mo")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+
+[node name="Killzone" parent="." instance=ExtResource("7_pso3b")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+shape = SubResource("CircleShape2D_retjp")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

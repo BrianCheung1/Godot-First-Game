@@ -18,7 +18,8 @@ func _on_main_menu_start_game():
 func _input(event):
 	if !main_menu.visible and event.is_action_pressed("ui_cancel"):
 		game_menu.visible = !game_menu.visible
-		multiplayer_hud.visible = !multiplayer_hud.visible
+		if multiplayer_hud:
+			multiplayer_hud.visible = !multiplayer_hud.visible
 		if game_menu.visible:
 			game_menu_opened.emit()
 		else:

@@ -70,6 +70,12 @@ theme_override_fonts/font = ExtResource("2_kwcnc")
 theme_override_font_sizes/font_size = 32
 text = "Level 3"
 
+[node name="Level4Button" type="MenuButton" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_kwcnc")
+theme_override_font_sizes/font_size = 32
+text = "Level 4"
+
 [node name="ButtonsVBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
@@ -85,4 +91,5 @@ text = "Main Menu"
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/Level1Button" to="." method="_on_level_1_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/Level2Button" to="." method="_on_level_2_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/Level3Button" to="." method="_on_level_3_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/Level4Button" to="." method="_on_level_4_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsVBox/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

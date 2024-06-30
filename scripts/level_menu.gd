@@ -21,3 +21,9 @@ func _on_level_3_button_pressed():
 	get_tree().change_scene_to_file("res://scenes/level_3.tscn")
 	PlayerVariables.player_deaths = 0
 	PlayerVariables.player_resets = 0
+
+func _on_level_4_button_pressed():
+	print("Level 4")
+	get_tree().change_scene_to_file("res://scenes/levels/level_4.tscn")
+	PlayerVariables.player_deaths = 0
+	PlayerVariables.player_resets = 0
