@@ -453,7 +453,7 @@ position_smoothing_enabled = true
 
 [node name="Wizard" parent="." instance=ExtResource("10_tke0m")]
 position = Vector2(55, -63)
-hp = 1000
+hp = 10
 speed = 0
 
 [node name="Wizard2" parent="." instance=ExtResource("10_tke0m")]

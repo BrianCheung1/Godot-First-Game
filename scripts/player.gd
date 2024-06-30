@@ -188,6 +188,7 @@ func die():
 	hurt_audio.play()
 	set_collision_layer_value(2, false)
 	set_collision_layer_value(3, true)
+	$DeathTimer.start()
 	
 func spawn_flash_jump_effect():
 	var node: AnimatedSprite2D = flash_jump_effect.instantiate()
