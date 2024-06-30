@@ -40,10 +40,12 @@ func _input(event: InputEvent) -> void:
 				is_dragging = true
 				var inventory = find_inventory()
 				inventory.set_index_dragging(self.index)
+				self.z_index = 100
 		else:
 			if is_dragging:
 				is_dragging = false
 				get_tree().create_tween().tween_property(self, "position", original_position, delay)
+				self.z_index = 0
 			elif get_rect().has_point(to_local(event.position)):
 				find_inventory().swap_item_index(self.index)
 

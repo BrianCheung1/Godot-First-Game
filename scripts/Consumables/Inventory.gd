@@ -25,6 +25,9 @@ func _ready():
 	
 	while items.size() < MAX_SLOT:
 		items.append(null)
+		
+	for i in MAX_SLOT:
+		attach_sprite(null,i)
 
 func toggle_visibility():
 	hidden_store_GUI.visible = !hidden_store_GUI.visible
@@ -81,6 +84,8 @@ func swap_item_index(second_item_index:int):
 	return
 
 func update_sprite(texture:Texture, index:int):
+	if texture == null:
+		texture = load("res://assets/sprites/circle.png")
 	#This section handles updating the sprite in the inventory
 	var sprite = self.inventory_gui_containers[index].get_child(0)
 	sprite.texture = texture
