@@ -11,6 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://bi5kn52ei0x04" path="res://assets/sprites/weapons/sword slash.png" id="9_85jws"]
 [ext_resource type="Animation" uid="uid://b72c5ayvwtalr" path="res://sword_slash_left.res" id="10_7dqi5"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l0tvi"]
+size = Vector2(8.82813, 14.2266)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_qxap2"]
 atlas = ExtResource("1_0al53")
 region = Rect2(64, 192, 32, 32)
@@ -312,12 +315,6 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0vjhx"]
-radius = 5.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0v0gu"]
-size = Vector2(9, 5)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_g0db8"]
 radius = 43.0
 
@@ -356,7 +353,7 @@ tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [true]
 }
 tracks/3/type = "value"
@@ -396,56 +393,56 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 2),
 "transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
+"update": 0,
 "values": [true, false, true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AttackAnimation:frame")
+tracks/1/path = NodePath("AttackHitBox/SwordCollisionBox:shape:size")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0, 1, 2, 3, 4]
+"values": [Vector2(2, 12), Vector2(12, 17), Vector2(12, 2)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AttackHitBox/SwordCollisionBox:position")
+tracks/2/path = NodePath("AttackHitBox/SwordCollisionBox:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 1, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-3, -13), Vector2(-14, -10), Vector2(-17, -8), Vector2(-17, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("AttackHitBox/SwordCollisionBox:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.0, -0.785398, 0.0]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AttackHitBox/SwordCollisionBox:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-3, -13), Vector2(-14, -10), Vector2(-17, -8), Vector2(-17, 0)]
+}
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("AttackHitBox/SwordCollisionBox:shape:size")
+tracks/4/path = NodePath("AttackAnimation:frame")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 1, 2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(2, 12), Vector2(12, 17), Vector2(12, 2)]
+"values": [0, 1, 2, 3, 4]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -494,16 +491,22 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v27jh"]
 size = Vector2(12, 2)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5si4w"]
+size = Vector2(10, 2)
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 5
-collision_layer = 6
+collision_layer = 2
 script = ExtResource("1_wkd0y")
 blink_potion_count = 2
 suck_potion_count = 2
 kill_potion_count = 101
 enable_flash_jump = true
-enable_aura = true
 enable_roll = true
+
+[node name="PlayerCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_l0tvi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
@@ -519,10 +522,6 @@ sprite_frames = SubResource("SpriteFrames_6ar7i")
 animation = &"sword slash"
 flip_h = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -5)
-shape = SubResource("CircleShape2D_0vjhx")
-
 [node name="JumpAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_tbkc3")
 bus = &"SFX"
@@ -534,29 +533,23 @@ bus = &"SFX"
 [node name="DamageAudio" parent="." instance=ExtResource("5_wn44e")]
 volume_db = -20.0
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-0.5, -1.5)
-shape = SubResource("RectangleShape2D_0v0gu")
-
 [node name="AuraArea2D" type="Area2D" parent="."]
 show_behind_parent = true
 z_index = -505
 z_as_relative = false
+collision_layer = 0
+collision_mask = 4
 script = ExtResource("5_5fad5")
 
 [node name="AuraCollision2D" type="CollisionShape2D" parent="AuraArea2D"]
-position = Vector2(0, -6)
+position = Vector2(0, -9)
 shape = SubResource("CircleShape2D_g0db8")
 debug_color = Color(0.939231, 0.211865, 0.331352, 0.42)
 
 [node name="AuraSprite2D" type="Sprite2D" parent="AuraArea2D"]
 modulate = Color(1, 1, 0.203922, 0.392157)
 show_behind_parent = true
-position = Vector2(0, -6)
+position = Vector2(0, -9)
 scale = Vector2(0.16665, 0.16665)
 texture = ExtResource("6_jkjfo")
 
@@ -566,7 +559,6 @@ one_shot = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="InventoryGui" parent="CanvasLayer" instance=ExtResource("2_ovruc")]
-visible = false
 
 [node name="DeathTimer" type="Timer" parent="."]
 
@@ -585,18 +577,26 @@ autoplay = "RESET"
 speed_scale = 10.0
 
 [node name="AttackHitBox" type="Area2D" parent="."]
+collision_mask = 4
 
 [node name="SwordCollisionBox" type="CollisionShape2D" parent="AttackHitBox"]
 position = Vector2(16, 0)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_v27jh")
 disabled = true
 
+[node name="FeetCollisionArea2D" type="Area2D" parent="."]
+position = Vector2(1, 0)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FeetCollisionArea2D"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_5si4w")
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="AttackAnimation" to="." method="_on_attack_animation_animation_finished"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="RollCooldownTimer" to="." method="_on_roll_cooldown_timer_timeout"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="AttackHitBox" to="." method="_on_attack_hit_box_body_entered"]
+[connection signal="body_entered" from="FeetCollisionArea2D" to="." method="_on_hitbox_area_2d_body_entered"]
+[connection signal="body_exited" from="FeetCollisionArea2D" to="." method="_on_hitbox_area_2d_body_exited"]

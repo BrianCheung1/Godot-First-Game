@@ -18,7 +18,7 @@ func _ready():
 	#grow_until = lifetime * 0.9
 	
 	# Position the damage above the object's head
-	var target_head;
+	var target_head
 	if target_collision.shape is RectangleShape2D:
 		var rect_size = Util.try_get_rectangle_size(target_collision)
 		target_head = Vector2(
@@ -26,7 +26,7 @@ func _ready():
 			target_collision.global_position.y - rect_size.y
 		)
 	else:
-		print("Collision shape not supported: create_new_enemy_hit")
+		print("Collision shape not supported: create hit")
 	global_position = target_head
 		
 
@@ -51,7 +51,7 @@ static func create_new_player_hit(collision_shape: CollisionShape2D, damage: int
 	return hit_label
 	
 static func create_new_enemy_hit(collision_shape: CollisionShape2D, damage: int) -> Label:
-	var hit_scene = load("res://scenes/effect_scenes/enemy_hit.tscn")
+	var hit_scene = load("res://scenes/effect_scenes/player_hit.tscn")
 	var hit_label: Hit = hit_scene.instantiate()
 	hit_label.text = str(damage)
 	hit_label.label_settings.outline_color = Color(0.667, 0.184, 0.2) # Red

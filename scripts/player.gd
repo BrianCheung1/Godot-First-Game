@@ -11,7 +11,7 @@ class_name Player
 @onready var inventory = $CanvasLayer/InventoryGui
 @onready var death_timer = $DeathTimer
 @onready var camera = $Camera2D
-@onready var hitbox: CollisionShape2D = $Area2D/CollisionShape2D
+@onready var hitbox: CollisionShape2D = $PlayerCollision
 
 @export var gravity_potion_count:int
 @export var blink_potion_count:int
@@ -30,11 +30,12 @@ const MAX_JUMP_COUNT = 1
 const SPEED = 130.0
 const FLASH_JUMP_Y_VELOCITY_BOOST = -150
 const FLASH_JUMP_X_VELOCITY_BOOST = SPEED * 1.8
-const INVINCIBILITY_TIME = 0.25
+const INVINCIBILITY_TIME = 1
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var rng = RandomNumberGenerator.new()
+var logger = Logger.new("[player]")
 
 # Signals
 signal ON_DEATH
@@ -68,7 +69,6 @@ var is_jumping: bool:
 		
 func _ready():
 	hp = MAX_HP
-	
 	# Give the user some starting items for testing
 	inventory.add_item(GravityPotion.new(self, gravity_potion_count)) #mimic adding new item for testing
 	inventory.add_item(GravityPotion.new(self, gravity_potion_count)) #mimic adding new item for testing
@@ -213,16 +213,6 @@ func spawn_flash_jump_effect():
 	node.global_position = self.global_position
 	node.global_position.x += 20 if is_facing_right else -20
 	node.flip_h = is_facing_right
-		
-func _on_area_2d_body_entered(body):
-	if body is TileMap:
-		print("Enter tile")
-		is_sliding = true
-		
-func _on_area_2d_body_exited(body):
-	if body is TileMap:
-		print("Left tile")
-		is_sliding = false
 
 func _on_animated_sprite_2d_animation_finished():
 	if animated_sprite.animation == "roll":
@@ -230,7 +220,6 @@ func _on_animated_sprite_2d_animation_finished():
 		invincibility_time_left = 0
 		set_collision_layer_value(2, true)
 		$RollCooldownTimer.start()
-
 		
 func _on_roll_cooldown_timer_timeout():
 	is_rolling_cooldown = false
@@ -246,5 +235,16 @@ func _on_animation_player_animation_finished(anim_name):
 
 
 func _on_attack_hit_box_body_entered(body):
-	if body.is_in_group("wizard") or body.is_in_group("slime"):
+	if body is Monster2D:
 		body.hit(attack_damage)
+
+
+func _on_hitbox_area_2d_body_entered(body):
+	if body is IceTileMap:
+		logger.print("Entered ice tile")
+		is_sliding = true
+
+func _on_hitbox_area_2d_body_exited(body):
+	if body is IceTileMap:
+		logger.print("Left ice tile")
+		is_sliding = false

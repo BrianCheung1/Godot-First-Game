@@ -1,61 +1,12 @@
 [gd_scene load_steps=23 format=3 uid="uid://ck2ddqlvmipjn"]
 
+[ext_resource type="Script" path="res://scripts/Monster/wizard.gd" id="1_f67a6"]
 [ext_resource type="Texture2D" uid="uid://cdykqcalv2eq8" path="res://assets/sprites/wizard/Attack2.png" id="1_r8rd3"]
 [ext_resource type="Texture2D" uid="uid://cmvkervqxssc7" path="res://assets/sprites/wizard/Idle.png" id="3_5epis"]
 [ext_resource type="PackedScene" uid="uid://c3bkpyr2sp0o5" path="res://scenes/mini_healthbar.tscn" id="5_pv8aj"]
-[ext_resource type="PackedScene" uid="uid://vb4lvdta2d5o" path="res://scenes/killzone.tscn" id="6_io8si"]
+[ext_resource type="PackedScene" uid="uid://c0rba683rq8u2" path="res://scenes/damage_zone.tscn" id="6_h3xio"]
 [ext_resource type="PackedScene" uid="uid://b7epa3re458xd" path="res://scenes/damage_audio.tscn" id="7_vvtwr"]
 [ext_resource type="AudioStream" uid="uid://csvaie0c53ech" path="res://assets/sounds/slime_death.wav" id="8_f5mr8"]
-
-[sub_resource type="GDScript" id="GDScript_0qb4d"]
-script/source = "extends Monster2D
-
-@onready var player = get_tree().get_first_node_in_group(\"player\")
-@onready var attack_speed_timer = $AttackSpeedTimer
-
-var is_attacking = false
-var fireball = preload(\"res://scenes/monster_attacks/fireball.tscn\")
-
-func _physics_process(delta):
-	if is_attacking:
-		animated_sprite.play(\"attack\")
-	else:
-		animated_sprite.play(\"idle\")
-	velocity.y += gravity * delta
-	var direction = global_position.direction_to(player.global_position)
-	
-	if direction.x > 0.1:
-		animated_sprite.flip_h = false
-	else:
-		animated_sprite.flip_h = true
-	move_and_slide()
-
-func _on_area_2d_body_entered(body):
-	print(\"Entered\")
-	is_attacking = true
-	#var fireball_attack = fireball.instantiate()
-	#add_child(fireball_attack)
-	#attack_speed_timer.start()
-
-#func _on_area_2d_body_exited(body):
-	#print(\"Exited\")
-	#print(body.name)
-	#is_attacking = false
-	#attack_speed_timer.stop()
-#
-#func _on_timer_timeout():
-	#var fireball_attack = fireball.instantiate()
-	#add_child(fireball_attack)
-	#attack_speed_timer.wait_time = randf_range(3, 5)
-	#attack_speed_timer.start()
-	#is_attacking = false
-	
-func _on_animated_sprite_2d_animation_finished():
-	print(animated_sprite.animation)
-	if animated_sprite.animation == \"attack\":
-		var fireball_attack = fireball.instantiate()
-		add_child(fireball_attack)
-"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_toxer"]
 atlas = ExtResource("1_r8rd3")
@@ -147,18 +98,19 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_01tlt"]
-radius = 7.0
-height = 22.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ln2nv"]
+size = Vector2(14.5, 18)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dcavm"]
 radius = 121.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0js7r"]
-size = Vector2(13, 22.8333)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1hgsp"]
+size = Vector2(14, 16)
 
 [node name="Wizard" type="CharacterBody2D" groups=["wizard"]]
-script = SubResource("GDScript_0qb4d")
+collision_layer = 4
+script = ExtResource("1_f67a6")
+speed = 0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.3, 0.3)
@@ -168,18 +120,18 @@ autoplay = "idle"
 frame_progress = 0.754549
 flip_h = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 3)
-shape = SubResource("CapsuleShape2D_01tlt")
+shape = SubResource("RectangleShape2D_ln2nv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="AttackRangeArea2D" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-1, 1)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRangeArea2D"]
+position = Vector2(-1, 2)
 shape = SubResource("CircleShape2D_dcavm")
 
 [node name="AttackSpeedTimer" type="Timer" parent="."]
@@ -190,21 +142,23 @@ stream = ExtResource("8_f5mr8")
 volume_db = 24.0
 bus = &"SFX"
 
-[node name="Killzone" parent="." instance=ExtResource("6_io8si")]
-position = Vector2(0, -12)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
-position = Vector2(-1, 15)
-shape = SubResource("RectangleShape2D_0js7r")
-debug_color = Color(0.204394, 0.624724, 0.412031, 0.42)
-
 [node name="DamageAudio" parent="." instance=ExtResource("7_vvtwr")]
 
 [node name="MiniHealthbar" parent="." instance=ExtResource("5_pv8aj")]
 offset_top = 15.0
 offset_bottom = 20.0
 
+[node name="DamageZone" parent="." instance=ExtResource("6_h3xio")]
+collision_layer = 4
+collision_mask = 2
+damage = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
+position = Vector2(-1, 3)
+shape = SubResource("RectangleShape2D_1hgsp")
+debug_color = Color(0.204394, 0.624724, 0.412031, 0.42)
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="AttackRangeArea2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="AttackRangeArea2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="AttackSpeedTimer" to="." method="_on_timer_timeout"]

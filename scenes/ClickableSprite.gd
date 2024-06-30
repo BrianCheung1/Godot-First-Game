@@ -1,5 +1,6 @@
 extends Sprite2D
 
+var logger
 var determine_index = {}
 var index = -1
 var delay = 0.1
@@ -8,6 +9,7 @@ var is_dragging = false
 var drag_tween = null  # Tween for dragging animation
 
 func _ready():
+	logger = Logger.new("[clickable sprite]")
 	# Initialize determine_index map
 	for i in range(1, 16):
 		var slot_name = "Slot" + str(i)
@@ -19,7 +21,7 @@ func _ready():
 	
 	# Store original position
 	original_position = position
-	print("Original Position:", original_position)
+	logger.print(["Original Position:", original_position])
 
 func _physics_process(delta):
 	if is_dragging:

@@ -2,12 +2,15 @@
 
 [ext_resource type="Texture2D" uid="uid://cpmv313wbl58n" path="res://assets/sprites/slime_green.png" id="1_5y7dy"]
 [ext_resource type="Script" path="res://scripts/Monster/slime.gd" id="1_e8klr"]
-[ext_resource type="PackedScene" uid="uid://vb4lvdta2d5o" path="res://scenes/killzone.tscn" id="2_0cxfe"]
 [ext_resource type="Script" path="res://addons/netfox/state-synchronizer.gd" id="2_o0kyx"]
 [ext_resource type="Script" path="res://addons/netfox/tick-interpolator.gd" id="3_gdo2l"]
 [ext_resource type="AudioStream" uid="uid://csvaie0c53ech" path="res://assets/sounds/slime_death.wav" id="6_uy2po"]
 [ext_resource type="PackedScene" uid="uid://c3bkpyr2sp0o5" path="res://scenes/mini_healthbar.tscn" id="7_ud1vs"]
 [ext_resource type="PackedScene" uid="uid://b7epa3re458xd" path="res://scenes/damage_audio.tscn" id="8_iio6d"]
+[ext_resource type="PackedScene" uid="uid://c0rba683rq8u2" path="res://scenes/damage_zone.tscn" id="9_crnnb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ip3qp"]
+size = Vector2(8, 11)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lxa4k"]
 atlas = ExtResource("1_5y7dy")
@@ -46,14 +49,16 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_shmp5"]
-size = Vector2(10, 12)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ip3qp"]
-size = Vector2(8, 11)
+size = Vector2(20, 16)
 
 [node name="Slime" type="CharacterBody2D" groups=["slime"]]
+collision_layer = 4
 script = ExtResource("1_e8klr")
 hp = 150
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_ip3qp")
 
 [node name="StateSynchronizer" type="Node" parent="." node_paths=PackedStringArray("root")]
 script = ExtResource("2_o0kyx")
@@ -69,14 +74,6 @@ position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_0cisc")
 autoplay = "default"
 frame_progress = 0.82061
-
-[node name="Killzone" parent="." instance=ExtResource("2_0cxfe")]
-position = Vector2(0, -12)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
-position = Vector2(0, 5)
-shape = SubResource("RectangleShape2D_shmp5")
-debug_color = Color(0.204394, 0.624724, 0.412031, 0.42)
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
 position = Vector2(0, -6)
@@ -95,6 +92,12 @@ bus = &"SFX"
 
 [node name="MiniHealthbar" parent="." instance=ExtResource("7_ud1vs")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -6.5)
-shape = SubResource("RectangleShape2D_ip3qp")
+[node name="DamageZone" parent="." instance=ExtResource("9_crnnb")]
+collision_layer = 4
+collision_mask = 2
+damage = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_shmp5")
+debug_color = Color(0.204394, 0.624724, 0.412031, 0.42)

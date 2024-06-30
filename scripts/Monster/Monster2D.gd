@@ -4,7 +4,7 @@ class_name Monster2D
 var enemy_death_effect = preload("res://scenes/effect_scenes/smoke.tscn")
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-@onready var collision_node = $Killzone/CollisionShape2D
+@onready var damage_collision: CollisionShape2D = $DamageZone/CollisionShape2D
 @onready var ray_cast_right = $RayCastRight
 @onready var ray_cast_left = $RayCastLeft
 @onready var animated_sprite = $AnimatedSprite2D
@@ -59,7 +59,7 @@ func cleanup():
 func hit(damage: int):
 	if dead: return
 	# Spawn the damage numbers
-	var damage_label = Hit.create_new_enemy_hit(collision_node, damage)
+	var damage_label = Hit.create_new_enemy_hit(damage_collision, damage)
 	Util.add_node(self, damage_label)
 	
 	hp -= damage
@@ -78,7 +78,7 @@ func die():
 	on_death_audio.play()
 	mini_hpbar.hide()
 	animated_sprite.hide()
-	collision_node.disabled = true
+	damage_collision.disabled = true
 	# Death effect
 	var death_effect = Util.spawn_and_add_node(self, enemy_death_effect)
 	death_effect.global_position = self.global_position
