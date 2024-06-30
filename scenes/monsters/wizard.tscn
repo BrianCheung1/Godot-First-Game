@@ -157,7 +157,7 @@ radius = 121.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0js7r"]
 size = Vector2(13, 22.8333)
 
-[node name="Wizard" type="CharacterBody2D"]
+[node name="Wizard" type="CharacterBody2D" groups=["wizard"]]
 script = SubResource("GDScript_0qb4d")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

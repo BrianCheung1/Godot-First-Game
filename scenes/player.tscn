@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://m44vus15jmky"]
+[gd_scene load_steps=57 format=3 uid="uid://m44vus15jmky"]
 
 [ext_resource type="Texture2D" uid="uid://blwkda7ax2um3" path="res://assets/sprites/knight.png" id="1_0al53"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_wkd0y"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b7epa3re458xd" path="res://scenes/damage_audio.tscn" id="5_wn44e"]
 [ext_resource type="Texture2D" uid="uid://dca1nhlrr6a75" path="res://assets/sprites/circle.png" id="6_jkjfo"]
 [ext_resource type="Texture2D" uid="uid://bi5kn52ei0x04" path="res://assets/sprites/weapons/sword slash.png" id="9_85jws"]
+[ext_resource type="Animation" uid="uid://b72c5ayvwtalr" path="res://sword_slash_left.res" id="10_7dqi5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qxap2"]
 atlas = ExtResource("1_0al53")
@@ -320,6 +321,179 @@ size = Vector2(9, 5)
 [sub_resource type="CircleShape2D" id="CircleShape2D_g0db8"]
 radius = 43.0
 
+[sub_resource type="Animation" id="Animation_vtiba"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AttackAnimation:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, -6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AttackAnimation:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackHitBox/SwordCollisionBox:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AttackAnimation:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AttackAnimation:flip_h")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_0fqtu"]
+resource_name = "sword_slash_left"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AttackHitBox/SwordCollisionBox:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AttackAnimation:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackHitBox/SwordCollisionBox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-3, -13), Vector2(-14, -10), Vector2(-17, -8), Vector2(-17, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AttackHitBox/SwordCollisionBox:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.785398, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AttackHitBox/SwordCollisionBox:shape:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2, 12), Vector2(12, 17), Vector2(12, 2)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AttackAnimation:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-11, -5)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AttackAnimation:flip_h")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AttackAnimation:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2jt3e"]
+_data = {
+"RESET": SubResource("Animation_vtiba"),
+"sword_slash_left": SubResource("Animation_0fqtu"),
+"sword_slash_right": ExtResource("10_7dqi5")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v27jh"]
+size = Vector2(12, 2)
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 5
 collision_layer = 6
@@ -336,15 +510,14 @@ position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_sikt6")
 animation = &"roll"
 autoplay = "idle"
+flip_h = true
 
 [node name="AttackAnimation" type="AnimatedSprite2D" parent="."]
-visible = false
-position = Vector2(10, -5)
+position = Vector2(-8, -6)
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_6ar7i")
 animation = &"sword slash"
-frame = 1
-frame_progress = 0.653392
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -5)
@@ -404,9 +577,26 @@ limit_bottom = 80
 limit_smoothed = true
 position_smoothing_enabled = true
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2jt3e")
+}
+autoplay = "RESET"
+speed_scale = 10.0
+
+[node name="AttackHitBox" type="Area2D" parent="."]
+
+[node name="SwordCollisionBox" type="CollisionShape2D" parent="AttackHitBox"]
+position = Vector2(16, 0)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_v27jh")
+disabled = true
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="AttackAnimation" to="." method="_on_attack_animation_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="RollCooldownTimer" to="." method="_on_roll_cooldown_timer_timeout"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="AttackHitBox" to="." method="_on_attack_hit_box_body_entered"]

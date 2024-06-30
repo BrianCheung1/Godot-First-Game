@@ -605,6 +605,7 @@ layer_1/tile_data = PackedInt32Array(65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 6553
 gravity_potion_count = 3
 blink_potion_count = 4
 suck_potion_count = 4
+enable_aura = false
 
 [node name="Killzone" parent="." instance=ExtResource("7_y7oks")]
 position = Vector2(32, 65)
