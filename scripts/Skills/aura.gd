@@ -18,7 +18,7 @@ func _process(delta):
 	elapsed += delta
 	if elapsed > HIT_DELAY:
 		elapsed = 0
-		for monster in collided_monsters.values():
+		for monster: Monster2D in collided_monsters.values():
 			monster.hit(DAMAGE)
 			
 func enable(is_enabled):

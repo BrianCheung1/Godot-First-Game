@@ -26,7 +26,7 @@ func _ready():
 			target_collision.global_position.y - rect_size.y
 		)
 	else:
-		print("Collision shape not supported: create_new_hit")
+		print("Collision shape not supported: create_new_enemy_hit")
 	global_position = target_head
 		
 
@@ -42,11 +42,19 @@ func _process(delta):
 		queue_free()
 	
 
-#const MY_SCENE = preload("res://scenes/effect_scenes/enemy_hit.tscn")
-static func create_new_hit(collision_shape: CollisionShape2D, damage: int) -> Label:
+static func create_new_player_hit(collision_shape: CollisionShape2D, damage: int) -> Label:
 	var hit_scene = load("res://scenes/effect_scenes/enemy_hit.tscn")
 	var hit_label: Hit = hit_scene.instantiate()
 	hit_label.text = str(damage)
+	hit_label.label_settings.outline_color = Color(0.667, 0.184, 0.886) # Purple
+	hit_label.target_collision = collision_shape
+	return hit_label
+	
+static func create_new_enemy_hit(collision_shape: CollisionShape2D, damage: int) -> Label:
+	var hit_scene = load("res://scenes/effect_scenes/enemy_hit.tscn")
+	var hit_label: Hit = hit_scene.instantiate()
+	hit_label.text = str(damage)
+	hit_label.label_settings.outline_color = Color(0.667, 0.184, 0.2) # Red
 	hit_label.target_collision = collision_shape
 	return hit_label
 	
