@@ -11,6 +11,8 @@ class_name Inventory
 @onready var inventory_gui = $"."
 @onready var hidden_store_GUI = $NinePatchRect
 
+var null_sprite_texture = load("res://assets/sprites/circle.png")
+
 const MAX_SLOT = 15
 const MAX_HOT_BAR_INDEX = 4
 var index_dragging = -1
@@ -83,20 +85,22 @@ func swap_item_index(second_item_index:int):
 	
 	return
 
-func update_sprite(texture:Texture, index:int):
-	if texture == null:
-		texture = load("res://assets/sprites/circle.png")
-	#This section handles updating the sprite in the inventory
-	var sprite = self.inventory_gui_containers[index].get_child(0)
-	sprite.texture = texture
-	sprite.scale = Vector2(.15,.15)
+func update_sprite_hotbar(texture: Texture, index: int):
+	if index > MAX_HOT_BAR_INDEX:
+		return
 	
-	#This section handles updating the sprite in the hotbar
-	if(index <= MAX_HOT_BAR_INDEX):
-		var hot_box_sprite = self.hotbar_gui_containers[index].get_child(0)
-		hot_box_sprite.texture = texture
-		hot_box_sprite.scale = Vector2(.1,.1)
-	return
+	var hot_box_sprite = self.hotbar_gui_containers[index].get_child(0)
+	hot_box_sprite.texture = texture if texture != null else null_sprite_texture
+	hot_box_sprite.visible = texture != null
+	hot_box_sprite.scale = Vector2(0.1, 0.1)
+
+func update_sprite(texture: Texture, index: int):
+	update_sprite_hotbar(texture, index)
+	
+	var sprite = self.inventory_gui_containers[index].get_child(0)
+	sprite.texture = texture if texture != null else null_sprite_texture
+	sprite.visible = texture != null
+	sprite.scale = Vector2(0.15, 0.15)
 
 func attach_sprite(item:Item, index:int):
 	if item:
