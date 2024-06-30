@@ -278,7 +278,7 @@ size = Vector2(9, 5)
 [sub_resource type="CircleShape2D" id="CircleShape2D_g0db8"]
 radius = 43.0
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
+[node name="Player" type="CharacterBody2D"]
 z_index = 5
 collision_layer = 6
 script = ExtResource("1_wkd0y")
@@ -342,8 +342,6 @@ texture = ExtResource("6_jkjfo")
 [node name="RollCooldownTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="InventoryGui" parent="." instance=ExtResource("2_ovruc")]
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="InventoryGui" parent="CanvasLayer" instance=ExtResource("2_ovruc")]
@@ -363,4 +361,3 @@ position_smoothing_enabled = true
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]
 [connection signal="timeout" from="RollCooldownTimer" to="." method="_on_roll_cooldown_timer_timeout"]
-[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

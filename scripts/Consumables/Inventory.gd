@@ -4,7 +4,7 @@ class_name Inventory
 
 @export var items:Array[Item] = []
 
-@onready var inventory_gui_containers:Array[VBoxContainer] = [$NinePatchRect/GridContainer/Slot/VBoxContainer, $NinePatchRect/GridContainer/Slot2/VBoxContainer,  $NinePatchRect/GridContainer/Slot3/VBoxContainer,  $NinePatchRect/GridContainer/Slot4/VBoxContainer,  $NinePatchRect/GridContainer/Slot5/VBoxContainer,
+@onready var inventory_gui_containers:Array[VBoxContainer] = [$NinePatchRect/GridContainer/Slot1/VBoxContainer, $NinePatchRect/GridContainer/Slot2/VBoxContainer,  $NinePatchRect/GridContainer/Slot3/VBoxContainer,  $NinePatchRect/GridContainer/Slot4/VBoxContainer,  $NinePatchRect/GridContainer/Slot5/VBoxContainer,
 													 $NinePatchRect/GridContainer/Slot6/VBoxContainer, $NinePatchRect/GridContainer/Slot7/VBoxContainer, $NinePatchRect/GridContainer/Slot8/VBoxContainer, $NinePatchRect/GridContainer/Slot9/VBoxContainer, $NinePatchRect/GridContainer/Slot10/VBoxContainer,
 													 $NinePatchRect/GridContainer/Slot11/VBoxContainer, $NinePatchRect/GridContainer/Slot12/VBoxContainer, $NinePatchRect/GridContainer/Slot13/VBoxContainer, $NinePatchRect/GridContainer/Slot14/VBoxContainer, $NinePatchRect/GridContainer/Slot15/VBoxContainer]
 @onready var hotbar_gui_containers:Array[VBoxContainer] = [$HotBarGui/NinePatchRect/GridContainer/HotBarSlot1/VBoxContainer, $HotBarGui/NinePatchRect/GridContainer/HotBarSlot2/VBoxContainer,$HotBarGui/NinePatchRect/GridContainer/HotBarSlot3/VBoxContainer,$HotBarGui/NinePatchRect/GridContainer/HotBarSlot4/VBoxContainer,$HotBarGui/NinePatchRect/GridContainer/HotBarSlot5/VBoxContainer]
@@ -13,6 +13,11 @@ class_name Inventory
 
 const MAX_SLOT = 15
 const MAX_HOT_BAR_INDEX = 4
+var index_dragging = -1
+
+func set_index_dragging(index:int):
+	print("Dragging index is ", index)
+	self.index_dragging = index
 
 func _ready():
 	inventory_gui.visible = true
@@ -59,13 +64,19 @@ func update_sprite_label(item: Item, index: int):
 	if index <= MAX_HOT_BAR_INDEX:
 		update_hotbar_label(item, index)
 	
-func swap_item_index(first_item_index:int, second_item_index:int):
-	var holder = self.items[first_item_index]
-	self.items[first_item_index] = self.items[second_item_index]
+func swap_item_index(second_item_index:int):
+	print("Swapping with index ", second_item_index)
+	if(self.index_dragging == -1):
+		return
+		
+	var holder = self.items[self.index_dragging]
+	self.items[self.index_dragging] = self.items[second_item_index]
 	self.items[second_item_index] = holder
 	
-	attach_sprite(self.items[first_item_index], first_item_index)
+	attach_sprite(self.items[self.index_dragging], self.index_dragging)
 	attach_sprite(self.items[second_item_index], second_item_index)
+	
+	self.index_dragging = -1
 	
 	return
 
