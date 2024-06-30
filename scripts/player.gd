@@ -63,7 +63,7 @@ func _ready():
 	inventory.add_item(BlinkPotion.new(self, blink_potion_count)) #mimic adding new item for testing
 	inventory.add_item(SuckCoinPotion.new(self, suck_potion_count)) #mimic adding new item for testing
 	inventory.add_item(KillAllPotion.new(self, kill_potion_count)) #mimic condense item for testing
-	inventory.swap_item_index(0,7) #mimic swap items for testing
+	#inventory.swap_item_index(0,7) #mimic swap items for testing
 	aura.enable(enable_aura)
 	
 func _input(event):

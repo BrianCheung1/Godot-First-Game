@@ -127,7 +127,6 @@ alignment = 2
 [node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/GridContainer/Slot3/VBoxContainer"]
 position = Vector2(40.25, 40.125)
 scale = Vector2(0.731132, 0.449422)
-script = ExtResource("4_t1ppt")
 
 [node name="Label" type="Label" parent="NinePatchRect/GridContainer/Slot3/VBoxContainer"]
 layout_mode = 2
@@ -153,7 +152,6 @@ alignment = 2
 [node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/GridContainer/Slot4/VBoxContainer"]
 position = Vector2(41.25, 42.625)
 scale = Vector2(0.731132, 0.478324)
-script = ExtResource("4_t1ppt")
 
 [node name="Label" type="Label" parent="NinePatchRect/GridContainer/Slot4/VBoxContainer"]
 layout_mode = 2
@@ -179,7 +177,6 @@ alignment = 2
 [node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/GridContainer/Slot5/VBoxContainer"]
 position = Vector2(42, 41)
 scale = Vector2(0.745283, 0.447977)
-script = ExtResource("4_t1ppt")
 
 [node name="Label" type="Label" parent="NinePatchRect/GridContainer/Slot5/VBoxContainer"]
 layout_mode = 2
@@ -205,7 +202,6 @@ alignment = 2
 [node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/GridContainer/Slot6/VBoxContainer"]
 position = Vector2(41, 36)
 scale = Vector2(0.257667, 0.223667)
-script = ExtResource("4_t1ppt")
 
 [node name="Label" type="Label" parent="NinePatchRect/GridContainer/Slot6/VBoxContainer"]
 layout_mode = 2
@@ -231,7 +227,6 @@ alignment = 2
 [node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/GridContainer/Slot7/VBoxContainer"]
 position = Vector2(44, 43)
 scale = Vector2(0.295333, 0.259333)
-script = ExtResource("4_t1ppt")
 
 [node name="Label" type="Label" parent="NinePatchRect/GridContainer/Slot7/VBoxContainer"]
 layout_mode = 2
@@ -257,7 +252,6 @@ alignment = 2
 [node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/GridContainer/Slot8/VBoxContainer"]
 position = Vector2(41.9999, 41)
 scale = Vector2(0.230667, 0.22)
-script = ExtResource("4_t1ppt")
 
 [node name="Label" type="Label" parent="NinePatchRect/GridContainer/Slot8/VBoxContainer"]
 layout_mode = 2
@@ -283,7 +277,6 @@ alignment = 2
 [node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/GridContainer/Slot9/VBoxContainer"]
 position = Vector2(41, 36)
 scale = Vector2(0.26, 0.254667)
-script = ExtResource("4_t1ppt")
 
 [node name="Label" type="Label" parent="NinePatchRect/GridContainer/Slot9/VBoxContainer"]
 layout_mode = 2
@@ -309,7 +302,6 @@ alignment = 2
 [node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/GridContainer/Slot10/VBoxContainer"]
 position = Vector2(37, 39)
 scale = Vector2(0.254, 0.243333)
-script = ExtResource("4_t1ppt")
 
 [node name="Label" type="Label" parent="NinePatchRect/GridContainer/Slot10/VBoxContainer"]
 layout_mode = 2
@@ -335,7 +327,6 @@ alignment = 2
 [node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/GridContainer/Slot11/VBoxContainer"]
 position = Vector2(40, 38)
 scale = Vector2(0.278667, 0.254667)
-script = ExtResource("4_t1ppt")
 
 [node name="Label" type="Label" parent="NinePatchRect/GridContainer/Slot11/VBoxContainer"]
 layout_mode = 2
@@ -361,7 +352,6 @@ alignment = 2
 [node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/GridContainer/Slot12/VBoxContainer"]
 position = Vector2(41, 38)
 scale = Vector2(0.23, 0.236667)
-script = ExtResource("4_t1ppt")
 
 [node name="Label" type="Label" parent="NinePatchRect/GridContainer/Slot12/VBoxContainer"]
 layout_mode = 2
@@ -387,7 +377,6 @@ alignment = 2
 [node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/GridContainer/Slot13/VBoxContainer"]
 position = Vector2(40, 42)
 scale = Vector2(0.26, 0.230667)
-script = ExtResource("4_t1ppt")
 
 [node name="Label" type="Label" parent="NinePatchRect/GridContainer/Slot13/VBoxContainer"]
 layout_mode = 2
@@ -413,7 +402,6 @@ alignment = 2
 [node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/GridContainer/Slot14/VBoxContainer"]
 position = Vector2(42, 43)
 scale = Vector2(0.232667, 0.236667)
-script = ExtResource("4_t1ppt")
 
 [node name="Label" type="Label" parent="NinePatchRect/GridContainer/Slot14/VBoxContainer"]
 layout_mode = 2
@@ -439,7 +427,6 @@ alignment = 2
 [node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/GridContainer/Slot15/VBoxContainer"]
 position = Vector2(38, 41)
 scale = Vector2(0.221, 0.219)
-script = ExtResource("4_t1ppt")
 
 [node name="Label" type="Label" parent="NinePatchRect/GridContainer/Slot15/VBoxContainer"]
 layout_mode = 2
