@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://m44vus15jmky"]
+[gd_scene load_steps=52 format=3 uid="uid://m44vus15jmky"]
 
 [ext_resource type="Texture2D" uid="uid://blwkda7ax2um3" path="res://assets/sprites/knight.png" id="1_0al53"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_wkd0y"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/Skills/aura.gd" id="5_5fad5"]
 [ext_resource type="PackedScene" uid="uid://b7epa3re458xd" path="res://scenes/damage_audio.tscn" id="5_wn44e"]
 [ext_resource type="Texture2D" uid="uid://dca1nhlrr6a75" path="res://assets/sprites/circle.png" id="6_jkjfo"]
+[ext_resource type="Texture2D" uid="uid://bi5kn52ei0x04" path="res://assets/sprites/weapons/sword slash.png" id="9_85jws"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qxap2"]
 atlas = ExtResource("1_0al53")
@@ -267,6 +268,49 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppyva"]
+atlas = ExtResource("9_85jws")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ykujm"]
+atlas = ExtResource("9_85jws")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3r5wg"]
+atlas = ExtResource("9_85jws")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7mib"]
+atlas = ExtResource("9_85jws")
+region = Rect2(0, 384, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efv4i"]
+atlas = ExtResource("9_85jws")
+region = Rect2(0, 512, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6ar7i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppyva")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ykujm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3r5wg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7mib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efv4i")
+}],
+"loop": false,
+"name": &"sword slash",
+"speed": 10.0
+}]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_0vjhx"]
 radius = 5.0
 
@@ -292,6 +336,15 @@ position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_sikt6")
 animation = &"roll"
 autoplay = "idle"
+
+[node name="AttackAnimation" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(10, -5)
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_6ar7i")
+animation = &"sword slash"
+frame = 1
+frame_progress = 0.653392
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -5)
@@ -352,6 +405,7 @@ limit_smoothed = true
 position_smoothing_enabled = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_finished" from="AttackAnimation" to="." method="_on_attack_animation_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="RollCooldownTimer" to="." method="_on_roll_cooldown_timer_timeout"]
