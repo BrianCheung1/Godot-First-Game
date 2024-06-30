@@ -441,6 +441,7 @@ position = Vector2(0, -64)
 gravity_potion_count = 3
 blink_potion_count = 4
 suck_potion_count = 4
+is_dev_mode = true
 
 [node name="Camera2D2" type="Camera2D" parent="Player"]
 position = Vector2(1, -5)
@@ -452,7 +453,7 @@ position_smoothing_enabled = true
 [node name="UI" parent="." instance=ExtResource("8_o64i7")]
 
 [node name="Wizard" parent="." instance=ExtResource("10_tke0m")]
-position = Vector2(199, -64)
+position = Vector2(104, -65)
 
 [node name="Wizard2" parent="." instance=ExtResource("10_tke0m")]
-position = Vector2(-167, -63)
+position = Vector2(-91, -63)

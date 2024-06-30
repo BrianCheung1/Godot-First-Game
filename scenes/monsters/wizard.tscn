@@ -134,9 +134,6 @@ collision_mask = 2
 position = Vector2(-1, 2)
 shape = SubResource("CircleShape2D_dcavm")
 
-[node name="AttackSpeedTimer" type="Timer" parent="."]
-one_shot = true
-
 [node name="OnDeathAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_f5mr8")
 volume_db = 24.0
@@ -161,4 +158,3 @@ debug_color = Color(0.204394, 0.624724, 0.412031, 0.42)
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="AttackRangeArea2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="AttackRangeArea2D" to="." method="_on_area_2d_body_exited"]
-[connection signal="timeout" from="AttackSpeedTimer" to="." method="_on_timer_timeout"]
