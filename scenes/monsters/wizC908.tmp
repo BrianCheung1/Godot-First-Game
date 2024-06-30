@@ -1,0 +1,209 @@
+[gd_scene load_steps=23 format=3 uid="uid://ck2ddqlvmipjn"]
+
+[ext_resource type="Texture2D" uid="uid://cdykqcalv2eq8" path="res://assets/sprites/wizard/Attack2.png" id="1_r8rd3"]
+[ext_resource type="Texture2D" uid="uid://cmvkervqxssc7" path="res://assets/sprites/wizard/Idle.png" id="3_5epis"]
+[ext_resource type="PackedScene" uid="uid://c3bkpyr2sp0o5" path="res://scenes/mini_healthbar.tscn" id="5_pv8aj"]
+[ext_resource type="PackedScene" uid="uid://vb4lvdta2d5o" path="res://scenes/killzone.tscn" id="6_io8si"]
+[ext_resource type="PackedScene" uid="uid://b7epa3re458xd" path="res://scenes/damage_audio.tscn" id="7_vvtwr"]
+[ext_resource type="AudioStream" uid="uid://csvaie0c53ech" path="res://assets/sounds/slime_death.wav" id="8_f5mr8"]
+
+[sub_resource type="GDScript" id="GDScript_0qb4d"]
+script/source = "extends Monster2D
+
+@onready var player = get_tree().get_first_node_in_group(\"player\")
+
+var is_attacking = false
+var fireball = preload(\"res://scenes/monster_attacks/fireball.tscn\")
+
+@onready var attack_speed_timer := Timer.new()
+
+func _ready():
+	add_child(attack_speed_timer)
+	attack_speed_timer.wait_time = randf_range(10,30)
+	
+func _physics_process(delta):
+	if is_attacking:
+		animated_sprite.play(\"attack\")
+	else:
+		animated_sprite.play(\"idle\")
+	velocity.y += gravity * delta
+	var direction = global_position.direction_to(player.global_position)
+	
+	if direction.x > 0.1:
+		animated_sprite.flip_h = false
+	else:
+		animated_sprite.flip_h = true
+	move_and_slide()
+
+func _on_area_2d_body_entered(body):
+	print(\"Entered\")
+	is_attacking = true
+	var fireball_attack = fireball.instantiate()
+	add_child(fireball_attack)
+	attack_speed_timer.start()
+
+func _on_area_2d_body_exited(body):
+	print(\"Exited\")
+	print(body.name)
+	is_attacking = false
+	attack_speed_timer.stop()
+
+func _on_timer_timeout():
+	var fireball_attack = fireball.instantiate()
+	add_child(fireball_attack)
+	attack_speed_timer.wait_time = randf_range(1, 3)
+	attack_speed_timer.start()
+	is_attacking = false
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_toxer"]
+atlas = ExtResource("1_r8rd3")
+region = Rect2(0, 0, 231, 190)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afndj"]
+atlas = ExtResource("1_r8rd3")
+region = Rect2(231, 0, 231, 190)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ow8rh"]
+atlas = ExtResource("1_r8rd3")
+region = Rect2(462, 0, 231, 190)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jp8d4"]
+atlas = ExtResource("1_r8rd3")
+region = Rect2(693, 0, 231, 190)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_niemg"]
+atlas = ExtResource("1_r8rd3")
+region = Rect2(924, 0, 231, 190)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2jgo"]
+atlas = ExtResource("3_5epis")
+region = Rect2(0, 0, 231, 190)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fwy76"]
+atlas = ExtResource("3_5epis")
+region = Rect2(231, 0, 231, 190)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oavpc"]
+atlas = ExtResource("3_5epis")
+region = Rect2(462, 0, 231, 190)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qktxe"]
+atlas = ExtResource("3_5epis")
+region = Rect2(693, 0, 231, 190)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5mvnc"]
+atlas = ExtResource("3_5epis")
+region = Rect2(924, 0, 231, 190)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmy1h"]
+atlas = ExtResource("3_5epis")
+region = Rect2(1155, 0, 231, 190)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_16yua"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_toxer")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_afndj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ow8rh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jp8d4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_niemg")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2jgo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fwy76")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oavpc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qktxe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5mvnc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fmy1h")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_01tlt"]
+radius = 7.0
+height = 22.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dcavm"]
+radius = 121.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0js7r"]
+size = Vector2(13, 22.8333)
+
+[node name="Wizard" type="CharacterBody2D" groups=["wizard"]]
+script = SubResource("GDScript_0qb4d")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_16yua")
+animation = &"attack"
+autoplay = "idle"
+frame_progress = 0.754549
+speed_scale = 0.2
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 3)
+shape = SubResource("CapsuleShape2D_01tlt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, 1)
+shape = SubResource("CircleShape2D_dcavm")
+
+[node name="AttackSpeedTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="OnDeathAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_f5mr8")
+volume_db = 24.0
+bus = &"SFX"
+
+[node name="Killzone" parent="." instance=ExtResource("6_io8si")]
+position = Vector2(0, -12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(-1, 15)
+shape = SubResource("RectangleShape2D_0js7r")
+debug_color = Color(0.204394, 0.624724, 0.412031, 0.42)
+
+[node name="DamageAudio" parent="." instance=ExtResource("7_vvtwr")]
+
+[node name="MiniHealthbar" parent="." instance=ExtResource("5_pv8aj")]
+offset_top = 15.0
+offset_bottom = 20.0
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="AttackSpeedTimer" to="." method="_on_timer_timeout"]
