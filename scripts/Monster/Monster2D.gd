@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Monster2D
 
 var enemy_death_effect = preload("res://scenes/effect_scenes/smoke.tscn")
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var collision_node = $Killzone/CollisionShape2D
 @onready var ray_cast_right = $RayCastRight
@@ -49,6 +50,9 @@ func _process(delta):
 		animated_sprite.flip_h = false
 	position.x += direction * speed * delta
 	
+func _physics_process(delta):
+	velocity.y += gravity * delta
+	move_and_slide()
 func cleanup():
 	queue_free()
 	

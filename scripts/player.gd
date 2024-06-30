@@ -3,6 +3,7 @@ class_name Player
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var attack_animation = $AttackAnimation
+@onready var animation_player = $AnimationPlayer
 @onready var jump_audio = $JumpAudio
 @onready var hurt_audio = $HurtAudio
 @onready var damage_audio = $DamageAudio
@@ -52,6 +53,7 @@ var is_sliding_to = 0
 var is_sliding = false
 var invincibility_time_left = 0
 var is_attacking = false
+var attack_damage = 50
 
 # Computed Getters
 var is_facing_right: bool:
@@ -121,7 +123,8 @@ func _physics_process(delta):
 			
 		# Handle animations
 		if is_attacking:
-			attack_animation.play("sword slash")
+			var attack_animation = "sword_slash_left" if is_facing_right else "sword_slash_right"
+			animation_player.play(attack_animation)
 		if is_jumping:
 			animated_sprite.play("jump")
 		elif is_rolling:
@@ -132,8 +135,6 @@ func _physics_process(delta):
 		# (Can't change direction when flash jumping) Flip sprite depending on the direction_input, keep previous value if no input, otherwise check the input direction
 		if not is_flash_jump and not is_rolling:
 			animated_sprite.flip_h = animated_sprite.flip_h if direction_input == 0 else direction_input == -1
-			attack_animation.flip_h = attack_animation.flip_h if direction_input == 0 else direction_input == -1
-			attack_animation.position.x = -10 if is_facing_right else 10
 		# Handle Y
 		# Handle gravity
 		velocity.y += gravity * delta
@@ -164,8 +165,6 @@ func _physics_process(delta):
 		#Handle attacking
 		if has_attack_input and not is_attacking:
 			is_attacking = true
-			attack_animation.visible = true
-			
 		# Handle X
 		if is_flash_jump:
 			velocity.x = (-1 if is_facing_right else 1) * FLASH_JUMP_X_VELOCITY_BOOST
@@ -231,15 +230,21 @@ func _on_animated_sprite_2d_animation_finished():
 		invincibility_time_left = 0
 		set_collision_layer_value(2, true)
 		$RollCooldownTimer.start()
+
 		
-func _on_attack_animation_animation_finished():
-	if attack_animation.animation == "sword slash":
-		attack_animation.visible = false
-		is_attacking = false
-	
 func _on_roll_cooldown_timer_timeout():
 	is_rolling_cooldown = false
 	
 func _on_death_timer_timeout():
 	get_tree().reload_current_scene()
 
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "sword_slash_right" or anim_name == "sword_slash_left":
+		is_attacking = false
+		animation_player.play("RESET")
+
+
+func _on_attack_hit_box_body_entered(body):
+	if body.is_in_group("wizard") or body.is_in_group("slime"):
+		body.hit(attack_damage)
