@@ -32,15 +32,16 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tv7mo"]
-radius = 11.0454
+radius = 4.47214
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_retjp"]
+radius = 4.24264
 
 [node name="Fireball" type="Area2D"]
 script = ExtResource("1_41h5y")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.03, 0.03)
 sprite_frames = SubResource("SpriteFrames_chblk")
 frame_progress = 0.319735
 
@@ -48,10 +49,14 @@ frame_progress = 0.319735
 shape = SubResource("CircleShape2D_tv7mo")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(-0.4375, 0.0625)
+scale = Vector2(0.24375, 0.29375)
 
 [node name="Killzone" parent="." instance=ExtResource("7_pso3b")]
+position = Vector2(-5, 3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(5, -3)
 shape = SubResource("CircleShape2D_retjp")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -2,8 +2,8 @@ extends CharacterBody2D
 class_name Player
 
 @onready var animated_sprite = $AnimatedSprite2D
-@onready var jump = $jump
-@onready var hurt = $hurt
+@onready var jump_audio = $jump
+@onready var hurt_audio = $hurt
 @onready var aura: Aura = $AuraArea2D
 @onready var inventory = $CanvasLayer/InventoryGui
 @onready var death_timer = $DeathTimer
@@ -24,7 +24,6 @@ var flash_jump_effect = preload("res://scenes/effect_scenes/flash_jump.tscn")
 const MAX_HP = 100
 const MAX_JUMP_COUNT = 1
 const SPEED = 130.0
-const JUMP_VELOCITY = -300.0
 const FLASH_JUMP_Y_VELOCITY_BOOST = -150
 const FLASH_JUMP_X_VELOCITY_BOOST = SPEED * 1.8
 
@@ -32,8 +31,13 @@ const FLASH_JUMP_X_VELOCITY_BOOST = SPEED * 1.8
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var rng = RandomNumberGenerator.new()
 
+# Signals
+signal ON_DEATH
+signal ON_HIT
+
 # States
 var hp
+var jump_velocity = -300.0
 var jump_count = 0
 var is_alive = true
 var is_flash_jump = false
@@ -121,9 +125,9 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 		# Handle jumps
 		if jump_count < MAX_JUMP_COUNT and has_jump_input:
-			velocity.y = JUMP_VELOCITY
+			velocity.y = jump_velocity
 			jump_count += 1
-			jump.play()
+			jump_audio.play()
 		elif !has_jump_input:
 			# Start falling if the player releases the jump button
 			velocity.y = max(velocity.y, 0)
@@ -162,6 +166,29 @@ func _physics_process(delta):
 func _process(delta):
 	pass
 
+func hit(damage: int):
+	pass
+	#if is_alive: return
+	## Spawn the damage numbers
+	#var damage_label = Hit.create_new_hit(collision_node, damage)
+	#add_node(damage_label)
+	#
+	#hp -= damage
+	#mini_hpbar.value = max(0, hp)
+	#mini_hpbar.show()
+	#print(str(self) + ": hit({damage})".format({ "damage": damage }))
+	#if hp <= 0:
+		#die()
+		#return
+	#on_damage_audio.play()
+	
+func die():
+	is_alive = false
+	animated_sprite.play("death")
+	hurt_audio.play()
+	set_collision_layer_value(2, false)
+	set_collision_layer_value(3, true)
+	
 func spawn_flash_jump_effect():
 	var node: AnimatedSprite2D = flash_jump_effect.instantiate()
 	get_parent().add_child(node)

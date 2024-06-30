@@ -442,7 +442,7 @@ gravity_potion_count = 3
 blink_potion_count = 4
 suck_potion_count = 4
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D2" type="Camera2D" parent="Player"]
 position = Vector2(1, -5)
 zoom = Vector2(3, 3)
 limit_bottom = 80
