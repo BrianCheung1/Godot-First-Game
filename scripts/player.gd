@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var attack_animation = $AttackAnimation
 @onready var jump_audio = $JumpAudio
 @onready var hurt_audio = $HurtAudio
 @onready var damage_audio = $DamageAudio
@@ -50,6 +51,7 @@ var is_rolling_cooldown = false
 var is_sliding_to = 0
 var is_sliding = false
 var invincibility_time_left = 0
+var is_attacking = false
 
 # Computed Getters
 var is_facing_right: bool:
@@ -87,7 +89,8 @@ func _physics_process(delta):
 	var direction_input_y: float = Input.get_axis("move_up", "move_down")
 	var has_jump_input: bool = Input.is_action_pressed("jump")
 	var has_roll_input: bool = Input.is_action_pressed("roll")
-	var flash_jump_input: bool =  Input.is_action_just_pressed("flash_jump")
+	var has_attack_input: bool = Input.is_action_pressed("attack")
+	var flash_jump_input: float = Input.is_action_just_pressed("flash_jump")
 	
 	if is_dev_mode:
 		velocity.x = direction_input * SPEED * 2
@@ -117,6 +120,8 @@ func _physics_process(delta):
 			velocity.y = 0
 			
 		# Handle animations
+		if is_attacking:
+			attack_animation.play("sword slash")
 		if is_jumping:
 			animated_sprite.play("jump")
 		elif is_rolling:
@@ -127,6 +132,8 @@ func _physics_process(delta):
 		# (Can't change direction when flash jumping) Flip sprite depending on the direction_input, keep previous value if no input, otherwise check the input direction
 		if not is_flash_jump and not is_rolling:
 			animated_sprite.flip_h = animated_sprite.flip_h if direction_input == 0 else direction_input == -1
+			attack_animation.flip_h = attack_animation.flip_h if direction_input == 0 else direction_input == -1
+			attack_animation.position.x = -10 if is_facing_right else 10
 		# Handle Y
 		# Handle gravity
 		velocity.y += gravity * delta
@@ -154,6 +161,10 @@ func _physics_process(delta):
 			is_rolling = true
 			is_rolling_cooldown = true
 			set_collision_layer_value(2, false)
+		#Handle attacking
+		if has_attack_input and not is_attacking:
+			is_attacking = true
+			attack_animation.visible = true
 			
 		# Handle X
 		if is_flash_jump:
@@ -221,8 +232,14 @@ func _on_animated_sprite_2d_animation_finished():
 		set_collision_layer_value(2, true)
 		$RollCooldownTimer.start()
 		
+func _on_attack_animation_animation_finished():
+	if attack_animation.animation == "sword slash":
+		attack_animation.visible = false
+		is_attacking = false
+	
 func _on_roll_cooldown_timer_timeout():
 	is_rolling_cooldown = false
 	
 func _on_death_timer_timeout():
 	get_tree().reload_current_scene()
+
