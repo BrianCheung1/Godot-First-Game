@@ -1,4 +1,4 @@
-extends Node2D
+extends CharacterBody2D
 class_name Monster2D
 
 var enemy_death_effect = preload("res://scenes/effect_scenes/smoke.tscn")
@@ -10,8 +10,8 @@ var enemy_death_effect = preload("res://scenes/effect_scenes/smoke.tscn")
 @onready var on_death_audio = $OnDeathAudio
 @onready var on_damage_audio = $DamageAudio
 @onready var mini_hpbar: ProgressBar = $MiniHealthbar
-@export var hp: int
-@export var speed: int
+@export var hp: int = 100
+@export var speed: int = 60
 
 var dead = false
 var direction = 1
@@ -32,19 +32,19 @@ func _ready():
 	mini_hpbar.hide()
 
 func _tick(delta, tick):
-	if ray_cast_right.is_colliding():
+	if ray_cast_right != null and ray_cast_right.is_colliding():
 		direction = -1
 		animated_sprite.flip_h = true
-	if ray_cast_left.is_colliding():
+	if ray_cast_right != null and ray_cast_left.is_colliding():
 		direction = 1
 		animated_sprite.flip_h = false
 	position.x += direction * speed * delta
 
 func _process(delta):
-	if ray_cast_right.is_colliding():
+	if ray_cast_right != null and ray_cast_right.is_colliding():
 		direction = -1
 		animated_sprite.flip_h = true
-	if ray_cast_left.is_colliding():
+	if ray_cast_right != null and ray_cast_left.is_colliding():
 		direction = 1
 		animated_sprite.flip_h = false
 	position.x += direction * speed * delta

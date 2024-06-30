@@ -6,6 +6,7 @@ class_name Player
 @onready var hurt = $hurt
 @onready var aura: Aura = $AuraArea2D
 @onready var inventory = $CanvasLayer/InventoryGui
+@onready var death_timer = $DeathTimer
 
 @export var gravity_potion_count:int
 @export var blink_potion_count:int
@@ -35,6 +36,7 @@ var is_rolling = false
 var is_rolling_cooldown = false
 var is_sliding_to = 0
 var is_sliding = false
+
 var is_facing_right: bool:
 	get:
 		return true if animated_sprite.flip_h else false
@@ -166,9 +168,6 @@ func _on_area_2d_body_exited(body):
 	if body is TileMap:
 		print("Left tile")
 		is_sliding = false
-		
-func _on_camera_2d_ready():
-	pass # Replace with function body.
 
 func _on_animated_sprite_2d_animation_finished():
 	if animated_sprite.animation == "roll":
@@ -179,3 +178,5 @@ func _on_animated_sprite_2d_animation_finished():
 func _on_roll_cooldown_timer_timeout():
 	is_rolling_cooldown = false
 	
+func _on_death_timer_timeout():
+	get_tree().reload_current_scene()
