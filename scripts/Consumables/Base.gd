@@ -40,4 +40,4 @@ var Name: String:
 
 var IsEmpty: bool:
 	get:
-		return _count == 0
+		return _count <= 0
