@@ -12,12 +12,9 @@ func _on_body_entered(body):
 	if MultiplayerManager.multiplayer_mode_enabled:
 		_multiplayer_dead(body)
 		return
-		
-	body.is_alive = false
-	body.animated_sprite.play("death")
-	body.hurt.play()
-	body.set_collision_layer_value(2, false)
-	body.set_collision_layer_value(3, true)
+	
+	var player: Player = body
+	player.die()
 	timer.start()
 	
 func _multiplayer_dead(body):
@@ -25,9 +22,10 @@ func _multiplayer_dead(body):
 		body.is_dead()
 		
 func _on_timer_timeout():
-	if not MultiplayerManager.multiplayer_mode_enabled:
-		get_tree().reload_current_scene()
-		PlayerVariables.player_deaths +=1
+	if MultiplayerManager.multiplayer_mode_enabled:
+		return
+	get_tree().reload_current_scene()
+	PlayerVariables.player_deaths +=1
 		
 #func _on_tree_exiting():
 	#if timer.time_left < timer_time and timer.time_left > 0:

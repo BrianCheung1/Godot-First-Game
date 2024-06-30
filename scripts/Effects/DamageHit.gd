@@ -23,12 +23,11 @@ func _ready():
 		var rect_size = Util.try_get_rectangle_size(target_collision)
 		target_head = Vector2(
 			target_collision.global_position.x - rect_size.x / 2,
-			target_collision.global_position.y - rect_size.y - 3
+			target_collision.global_position.y - rect_size.y
 		)
 	else:
 		print("Collision shape not supported: create_new_hit")
 	global_position = target_head
-	print(global_position)
 		
 
 func _process(delta):

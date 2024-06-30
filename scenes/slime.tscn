@@ -88,6 +88,6 @@ stream = ExtResource("6_uy2po")
 volume_db = 24.0
 bus = &"SFX"
 
-[node name="MiniHealthbar" parent="." instance=ExtResource("7_ud1vs")]
-
 [node name="DamageAudio" parent="." instance=ExtResource("8_iio6d")]
+
+[node name="MiniHealthbar" parent="." instance=ExtResource("7_ud1vs")]
