@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0rba683rq8u2"]
+
+[ext_resource type="Script" path="res://scripts/Monster/Scripts/damage_zone.gd" id="1_x0dsw"]
+
+[node name="DamageZone" type="Area2D"]
+script = ExtResource("1_x0dsw")
