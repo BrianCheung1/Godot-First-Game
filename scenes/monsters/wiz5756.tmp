@@ -166,6 +166,7 @@ sprite_frames = SubResource("SpriteFrames_16yua")
 animation = &"attack"
 autoplay = "idle"
 frame_progress = 0.754549
+speed_scale = 0.2
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
