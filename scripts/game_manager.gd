@@ -9,6 +9,7 @@ var total_coins = 0
 @onready var hud = $HUD
 @onready var endzone = $Endzone
 @onready var ui = $"../UI"
+@onready var player = $"../Player"
 
 @export var leaderboardScene:PackedScene
 @export var leaderboardID: String
@@ -23,7 +24,6 @@ func _ready():
 		MultiplayerManager.become_host()
 	total_coins = get_tree().get_nodes_in_group("coin").size()
 	hud.get_node("ScoreLabel").text = str(score) + "/" + str(total_coins) + " coins"
-	hud.get_node("PlayerLabel").text = PlayerVariables.player_name
 	
 	
 func add_point():
@@ -57,6 +57,7 @@ func end_game():
 func _process(delta):
 	hud.get_node("DeathLabel").text = "Deaths: " + str(PlayerVariables.player_deaths)
 	hud.get_node("ResetLabel").text = "Resets: " + str(PlayerVariables.player_resets)
+	hud.get_node("PlayerLabel").text = PlayerVariables.player_name + " [HP {hp}/{max_hp}]".format({ "hp": player.hp, "max_hp": player.MAX_HP })
 	if Input.is_action_pressed("move_left") or Input.is_action_pressed("move_left") or Input.is_action_pressed("jump"):
 		timer_started = true
 	if in_game and timer_started:

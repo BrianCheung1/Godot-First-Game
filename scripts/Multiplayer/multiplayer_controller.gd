@@ -126,7 +126,7 @@ func _process(delta):
 
 func is_dead():
 	print("player is dead")
-	is_alive=false
+	is_alive = false
 	animated_sprite.play("death")
 	hurt.play()
 	set_collision_layer_value(2, false)

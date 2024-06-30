@@ -5,17 +5,21 @@ extends Area2D
 
 
 func _on_body_entered(body):
-	if not MultiplayerManager.multiplayer_mode_enabled:
-		body.is_alive = false
-		body.animated_sprite.play("death")
-		body.hurt.play()
-		body.set_collision_layer_value(2, false)
-		body.set_collision_layer_value(3, true)
-		body.death_timer.start()
-		#timer.start()
-	else:
-		_multiplayer_dead(body)
+	if not body is Player:
+		print("Kill zone but body is not a player")
+		return
 		
+	if MultiplayerManager.multiplayer_mode_enabled:
+		_multiplayer_dead(body)
+		return
+		
+	body.is_alive = false
+	body.animated_sprite.play("death")
+	body.hurt.play()
+	body.set_collision_layer_value(2, false)
+	body.set_collision_layer_value(3, true)
+	timer.start()
+	
 func _multiplayer_dead(body):
 	if multiplayer.is_server():
 		body.is_dead()

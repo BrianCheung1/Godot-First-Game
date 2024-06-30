@@ -2,7 +2,7 @@ extends Area2D
 class_name Aura
 
 const DAMAGE = 5
-const HIT_DELAY = 0.05
+const HIT_DELAY = 0.1
 var enabled = true
 var collided_monsters: Dictionary
 var elapsed = 0
