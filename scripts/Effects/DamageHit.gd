@@ -1,12 +1,11 @@
 extends Label
 class_name Hit
 
-const FLOAT_PIXEL_AMOUNT = 5
-const GROW_BIG_TO_SMALL_AFTER_PERCENT = 0.1
+const FLOAT_PIXEL_AMOUNT = 15
 
 var target_collision: CollisionShape2D
 var lifetime
-var grow_small_after
+var grow_until
 var height: float:
 	get:
 		return size.y
@@ -16,7 +15,7 @@ var width: float:
 
 func _ready():
 	lifetime = 0.6
-	grow_small_after = lifetime - (lifetime * GROW_BIG_TO_SMALL_AFTER_PERCENT) # so if lifetime = 1s and GROW_BIG_TO_SMALL_AFTER_PERCENT = 0.3, this would be 0.7
+	#grow_until = lifetime * 0.9
 	
 	# Position the damage above the object's head
 	var target_head;
@@ -37,10 +36,8 @@ func _process(delta):
 	global_position.y = global_position.y - (FLOAT_PIXEL_AMOUNT * delta)
 	
 	# Grow big then grow small
-	if lifetime < grow_small_after:
-		scale = scale + Vector2(-1.5, -1.5) * delta
-	else:
-		scale = scale + Vector2(2, 2) * delta
+	#if lifetime > grow_until:
+		#scale = scale + Vector2(2, 2) * delta
 		
 	if lifetime < 0:
 		queue_free()

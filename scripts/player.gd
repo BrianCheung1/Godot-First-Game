@@ -7,6 +7,7 @@ class_name Player
 @onready var aura: Aura = $AuraArea2D
 @onready var inventory = $CanvasLayer/InventoryGui
 @onready var death_timer = $DeathTimer
+@onready var camera = $Camera2D
 
 @export var gravity_potion_count:int
 @export var blink_potion_count:int
@@ -17,17 +18,22 @@ class_name Player
 @export var enable_roll:bool
 @export var is_dev_mode:bool = false
 
-
 var flash_jump_effect = preload("res://scenes/effect_scenes/flash_jump.tscn")
 
-var MAX_JUMP_COUNT = 1
-var SPEED = 130.0
-var JUMP_VELOCITY = -300.0
-var FLASH_JUMP_Y_VELOCITY_BOOST = -150
-var FLASH_JUMP_X_VELOCITY_BOOST = SPEED * 1.8
-var _items: Array[Item] = [null, null, null, null, null]
+# Constants
+const MAX_HP = 100
+const MAX_JUMP_COUNT = 1
+const SPEED = 130.0
+const JUMP_VELOCITY = -300.0
+const FLASH_JUMP_Y_VELOCITY_BOOST = -150
+const FLASH_JUMP_X_VELOCITY_BOOST = SPEED * 1.8
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var rng = RandomNumberGenerator.new()
+
+# States
+var hp
 var jump_count = 0
 var is_alive = true
 var is_flash_jump = false
@@ -37,6 +43,7 @@ var is_rolling_cooldown = false
 var is_sliding_to = 0
 var is_sliding = false
 
+# Computed Getters
 var is_facing_right: bool:
 	get:
 		return true if animated_sprite.flip_h else false
@@ -48,6 +55,8 @@ var is_jumping: bool:
 		return jump_count > 0
 		
 func _ready():
+	hp = MAX_HP
+	
 	# Give the user some starting items for testing
 	inventory.add_item(GravityPotion.new(self, gravity_potion_count)) #mimic adding new item for testing
 	inventory.add_item(GravityPotion.new(self, gravity_potion_count)) #mimic adding new item for testing
@@ -57,7 +66,6 @@ func _ready():
 	inventory.swap_item_index(0,7) #mimic swap items for testing
 	aura.enable(enable_aura)
 	
-#handles all events related to inventory
 func _input(event):
 	if event.is_action_pressed("toggle_inventory"):
 		inventory.toggle_visibility()
@@ -127,7 +135,6 @@ func _physics_process(delta):
 			else:
 				velocity.y = FLASH_JUMP_Y_VELOCITY_BOOST * 2
 				is_flash_jump_up = true
-			print("Flash jump")
 			spawn_flash_jump_effect()
 		#Handle rolling
 		if enable_roll and is_on_floor() and has_roll_input and not is_rolling and not is_rolling_cooldown:
@@ -151,7 +158,10 @@ func _physics_process(delta):
 			velocity.x = move_toward(velocity.x, is_sliding_to, SPEED)
 		
 	move_and_slide()
-		
+
+func _process(delta):
+	pass
+
 func spawn_flash_jump_effect():
 	var node: AnimatedSprite2D = flash_jump_effect.instantiate()
 	get_parent().add_child(node)

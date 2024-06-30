@@ -14,3 +14,8 @@ static func try_get_rectangle_size(collision_shape: CollisionShape2D):
 		var rect_shape = shape as RectangleShape2D
 		return rect_shape.size
 	return null
+
+static func get_root(node: Node):
+	while node.get_parent() != null:
+		node = node.get_parent()
+	return node

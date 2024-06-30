@@ -50,6 +50,7 @@ size = Vector2(10, 12)
 
 [node name="Slime" type="CharacterBody2D"]
 script = ExtResource("1_e8klr")
+hp = 150
 
 [node name="StateSynchronizer" type="Node" parent="." node_paths=PackedStringArray("root")]
 script = ExtResource("2_o0kyx")
