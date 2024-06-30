@@ -117,6 +117,9 @@ func attach_sprite(item:Item, index:int):
 
 # Add item to inventory
 func add_item(item: Item):
+	if(item.IsEmpty):
+		return
+		
 	var next_available_index = _condense_item(item)
 	if(next_available_index == -1):
 		print_items()
