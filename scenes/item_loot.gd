@@ -13,6 +13,7 @@ var determineItem = {
 	"Suck Coin Potion" : SuckCoinPotion,
 	"Aura Item": AuraItem,
 	"Invincibility Buff": InvincibilityBuff,
+	"Health Potion":HealthPotion,
 }
 
 const target_size = Vector2(10,10)
