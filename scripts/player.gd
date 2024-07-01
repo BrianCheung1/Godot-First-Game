@@ -237,11 +237,11 @@ func _on_attack_hit_box_body_entered(body):
 
 
 func _on_hitbox_area_2d_body_entered(body):
-	if body is IceTileMap:
+	if body is IceTileMap or body is IcePlatform:
 		logger.print("Entered ice tile")
 		is_sliding = true
 
 func _on_hitbox_area_2d_body_exited(body):
-	if body is IceTileMap:
+	if body is IceTileMap or body is IcePlatform:
 		logger.print("Left ice tile")
 		is_sliding = false

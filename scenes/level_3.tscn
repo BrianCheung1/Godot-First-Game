@@ -887,6 +887,9 @@ layer_1/tile_data = PackedInt32Array(-524277, 0, 0, -524276, 0, 0, -327685, 3932
 
 [node name="Player" parent="." instance=ExtResource("6_0b2xc")]
 position = Vector2(-72, -114)
+blink_potion_count = 0
+suck_potion_count = 0
+kill_potion_count = 0
 
 [node name="Killzone" parent="." instance=ExtResource("7_teh8t")]
 position = Vector2(1, -24)

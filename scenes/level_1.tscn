@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://m44vus15jmky" path="res://scenes/player.tscn" id="6_pa67r"]
 [ext_resource type="PackedScene" uid="uid://vb4lvdta2d5o" path="res://scenes/killzone.tscn" id="7_y7oks"]
 [ext_resource type="PackedScene" uid="uid://c12jdn8pbqxvy" path="res://scenes/coin.tscn" id="8_s3etl"]
-[ext_resource type="PackedScene" uid="uid://c8a4cgk7bnnc4" path="res://scenes/platform.tscn" id="9_ud7mo"]
+[ext_resource type="PackedScene" uid="uid://c8a4cgk7bnnc4" path="res://scenes/Platforms/platform.tscn" id="9_ud7mo"]
 [ext_resource type="PackedScene" uid="uid://mn1rmqtsc0vc" path="res://scenes/slime.tscn" id="10_bsdwl"]
 [ext_resource type="PackedScene" uid="uid://jpp0tyw8uubs" path="res://scenes/ui.tscn" id="11_iruki"]
 [ext_resource type="PackedScene" uid="uid://dgygkbtm0burn" path="res://addons/quiver_leaderboards/leaderboard_ui.tscn" id="13_cuo1i"]
@@ -604,9 +604,7 @@ layer_1/tile_data = PackedInt32Array(65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 6553
 
 [node name="Player" parent="." instance=ExtResource("6_pa67r")]
 position = Vector2(-8, 0)
-gravity_potion_count = 3
-blink_potion_count = 4
-suck_potion_count = 4
+kill_potion_count = 0
 
 [node name="Killzone" parent="." instance=ExtResource("7_y7oks")]
 position = Vector2(32, 65)
