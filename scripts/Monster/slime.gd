@@ -1,7 +1,9 @@
 extends Monster2D
 class_name Slime
 
-var drop_change = 25
+var drop_chance_percent = 100
+
+var possible_items = Item.new(null,null,null).possible_items()
 
 # Overrides the original die function
 func die():
@@ -11,11 +13,10 @@ func die():
 	super.die()
 
 func generate_random_item():
-	if(drop_change <= rng.randi_range(0,100)):
+	if rng.randf_range(0, 100) >= drop_chance_percent:
 		return null
 	
-	var possible_items = Item.itemSpriteSource.keys()
-	return possible_items[rng.randi_range(0, possible_items.size()-1)]
+	return possible_items[rng.randi_range(0, possible_items.size() - 1)]
 
 func _ready():
 	super._ready() 

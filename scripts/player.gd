@@ -31,6 +31,7 @@ const SPEED = 130.0
 const FLASH_JUMP_Y_VELOCITY_BOOST = -150
 const FLASH_JUMP_X_VELOCITY_BOOST = SPEED * 1.8
 const INVINCIBILITY_TIME = 1
+const JUMP_VELOCITY_BASE = -300.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -71,6 +72,7 @@ func add_test_items():
 	inventory.add_item(InvincibilityBuff.new(self, 10))
 	inventory.add_item(AuraItem.new(self, 10))
 	inventory.add_item(HealthPotion.new(self,10))
+	inventory.add_item(JumpPotion.new(self,10))
 		
 func _ready():
 	hp = MAX_HP

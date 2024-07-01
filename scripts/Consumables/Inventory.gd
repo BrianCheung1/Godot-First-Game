@@ -14,6 +14,7 @@ class_name Inventory
 const target_size_inventory = Vector2(50,50)
 const target_size_hotbar = Vector2(35,35)
 
+var logger = Logger.new("[Inventory]")
 
 var null_sprite_texture = load("res://assets/sprites/circle.png")
 
@@ -22,7 +23,7 @@ const MAX_HOT_BAR_INDEX = 4
 var index_dragging = -1
 
 func set_index_dragging(index:int):
-	print("Dragging index is ", index)
+	logger.print(["Dragging index is: ", str(index)])
 	self.index_dragging = index
 
 func _ready():
@@ -51,6 +52,12 @@ func _condense_item(item: Item):
 			next_available_slot = i
 	return next_available_slot
 
+func find_next_inventory_item():
+	for i in range (MAX_HOT_BAR_INDEX+1, MAX_SLOT):
+		if(self.items[i] != null):
+			return i
+	return null
+
 func update_inventory_label(item: Item, index: int):
 	var label = self.inventory_gui_containers[index].get_child(1)
 	if item:
@@ -73,8 +80,19 @@ func update_sprite_label(item: Item, index: int):
 	if index <= MAX_HOT_BAR_INDEX:
 		update_hotbar_label(item, index)
 	
-func swap_item_index(second_item_index:int):
-	print("Swapping with index ", second_item_index)
+func swap_item_index(first_item_index:int,second_item_index:int):
+	logger.print(["Swapping index: ", str(first_item_index) ,str(second_item_index)])
+	var holder = self.items[first_item_index]
+	self.items[first_item_index] = self.items[second_item_index]
+	self.items[second_item_index] = holder
+	
+	attach_sprite(self.items[first_item_index], first_item_index)
+	attach_sprite(self.items[second_item_index], second_item_index)
+	
+	return
+	
+func swap_item_dragging(second_item_index:int):
+	logger.print(["Swapping index: ", str(self.index_dragging) ,str(second_item_index)])
 	if(self.index_dragging == -1):
 		return
 		
@@ -117,7 +135,7 @@ func update_sprite(texture: Texture, index: int):
 
 func attach_sprite(item:Item, index:int):
 	if item:
-		var texture:Texture = load(item.textureSource)
+		var texture:Texture = load(item.sprite_source)
 		update_sprite(texture,index)
 		update_sprite_label(item, index)
 		
@@ -147,11 +165,16 @@ func add_item(item: Item):
 # Sets the item in i index to null if the item is empty
 func remove_used_item(i:int):
 	if(self.items[i].IsEmpty):
+		logger.print(["Removed index", str(i)])
 		self.items[i] = null
 		update_sprite(null,i)
 		update_sprite_label(null,i)
+		if i <=  MAX_HOT_BAR_INDEX:
+			var next_index = find_next_inventory_item()
+			if(next_index != null):
+				swap_item_index(i, next_index)
 		return
-		
+	
 	update_sprite_label(self.items[i],i)
 	
 func process_items():
