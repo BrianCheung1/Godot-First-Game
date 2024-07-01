@@ -14,10 +14,6 @@ class_name Player
 @onready var hitbox: CollisionShape2D = $PlayerCollision
 @onready var stats_gui = $CanvasLayer/StatsGui
 
-@export var gravity_potion_count:int
-@export var blink_potion_count:int
-@export var suck_potion_count:int
-@export var kill_potion_count:int
 @export var enable_flash_jump:bool
 @export var enable_aura:bool
 @export var enable_roll:bool

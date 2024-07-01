@@ -12,6 +12,7 @@ func _ready():
 	global_position.y = player.global_position.y - 45
 	animated_sprite.frame = 0
 	attack_speed_timer.start()
+	AttackIndicator.create_from_collisionshape2d(self, attack_speed_timer.wait_time, collision_shape_2d, "fade").go()
 	
 func _on_animated_sprite_2d_animation_finished():
 	queue_free()

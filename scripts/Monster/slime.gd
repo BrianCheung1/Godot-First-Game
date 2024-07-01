@@ -10,6 +10,7 @@ func die():
 	var item = generate_random_item()
 	if(item):
 		super.generate_item_node(item)
+		
 	super.die()
 
 func generate_random_item():

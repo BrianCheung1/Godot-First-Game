@@ -546,9 +546,10 @@ size = Vector2(10, 2)
 z_index = 5
 collision_layer = 2
 script = ExtResource("1_wkd0y")
-blink_potion_count = 2
-suck_potion_count = 2
-kill_potion_count = 101
+enable_flash_jump = true
+enable_roll = true
+enable_attack = true
+is_dev_mode = true
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)

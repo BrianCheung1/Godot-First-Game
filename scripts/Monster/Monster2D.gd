@@ -6,8 +6,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var rng = RandomNumberGenerator.new()
 
 @onready var item_resource = load("res://scenes/item_loot.tscn")
-@onready var damage_collision: CollisionShape2D = $DamageZone/CollisionShape2D
 @onready var ray_cast_right = $RayCastRight
+@onready var damage_collision: CollisionShape2D = $DamageZone/CollisionShape2D
 @onready var ray_cast_left = $RayCastLeft
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var on_death_audio: AudioStreamPlayer2D = $OnDeathAudio
@@ -33,6 +33,10 @@ func _ready():
 	mini_hpbar.max_value = hp
 	mini_hpbar.value = hp
 	mini_hpbar.hide()
+	
+	# TODO: testing remove this
+	var attack_indicator = AttackIndicator.create_from_collisionshape2d(self, 999, damage_collision)
+	attack_indicator.go()
 
 func _tick(delta, tick):
 	if ray_cast_right != null and ray_cast_right.is_colliding():
