@@ -96,17 +96,21 @@ func update_sprite_hotbar(texture: Texture, index: int):
 	var hot_box_sprite = self.hotbar_gui_containers[index].get_child(0)
 	hot_box_sprite.texture = texture if texture != null else null_sprite_texture
 	hot_box_sprite.visible = texture != null
+	
 	if(texture):
 		var scale_factor = target_size_hotbar/texture.get_size()
 		hot_box_sprite.scale = scale_factor
+	else:
+		hot_box_sprite.scale = target_size_hotbar / null_sprite_texture.get_size()
 
 func update_sprite(texture: Texture, index: int):
 	update_sprite_hotbar(texture, index)
 	
 	var sprite = self.inventory_gui_containers[index].get_child(0)
 	if(texture):
-		var scale_factor = target_size_inventory/texture.get_size()
-		sprite.scale = scale_factor
+		sprite.scale = target_size_inventory/texture.get_size()
+	else: #scale null texture
+		sprite.scale = target_size_inventory / null_sprite_texture.get_size()
 	
 	sprite.texture = texture if texture != null else null_sprite_texture
 	sprite.visible = texture != null
