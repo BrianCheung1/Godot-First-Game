@@ -28,7 +28,6 @@ func _on_area_2d_body_entered(body):
 	#attack_speed_timer.start()
 
 func _on_area_2d_body_exited(body):
-	print(body.name)
 	is_attacking = false
 	#attack_speed_timer.stop()
 #

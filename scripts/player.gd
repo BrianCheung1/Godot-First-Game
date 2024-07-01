@@ -20,6 +20,7 @@ class_name Player
 @export var enable_flash_jump:bool
 @export var enable_aura:bool
 @export var enable_roll:bool
+@export var enable_attack:bool
 @export var is_dev_mode:bool = false
 
 var flash_jump_effect = preload("res://scenes/effect_scenes/flash_jump.tscn")
@@ -120,7 +121,7 @@ func _physics_process(delta):
 			velocity.y = 0
 			
 		# Handle animations
-		if is_attacking:
+		if is_attacking and enable_attack:
 			var attack_animation = "sword_slash_left" if is_facing_right else "sword_slash_right"
 			animation_player.play(attack_animation)
 		if is_jumping:
@@ -145,7 +146,7 @@ func _physics_process(delta):
 			# Start falling if the player releases the jump button
 			velocity.y = max(velocity.y, 0)
 		# Handle flash jumps
-		if enable_flash_jump and (is_jumping or not is_on_floor()) and flash_jump_input and not is_flash_jump:
+		if enable_flash_jump and (is_jumping or not is_on_floor()) and flash_jump_input and not is_flash_jump and not is_flash_jump_up:
 			if direction_input:
 				velocity.y = FLASH_JUMP_Y_VELOCITY_BOOST
 				is_flash_jump = true
