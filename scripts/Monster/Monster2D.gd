@@ -8,7 +8,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var ray_cast_right = $RayCastRight
 @onready var ray_cast_left = $RayCastLeft
 @onready var animated_sprite = $AnimatedSprite2D
-@onready var on_death_audio = $OnDeathAudio
+@onready var on_death_audio: AudioStreamPlayer2D = $OnDeathAudio
 @onready var on_damage_audio = $DamageAudio
 @onready var mini_hpbar: ProgressBar = $MiniHealthbar
 @export var hp: int = 100
@@ -25,7 +25,7 @@ func _ready():
 	if MultiplayerManager.multiplayer_mode_enabled:
 		set_process(false)
 		NetworkTime.on_tick.connect(_tick)
-	on_death_audio.connect("finished", func(): cleanup())
+	on_death_audio.finished.connect(cleanup)
 	# Set up hp bar
 	mini_hpbar.min_value = 0
 	mini_hpbar.max_value = hp
@@ -53,6 +53,7 @@ func _process(delta):
 func _physics_process(delta):
 	velocity.y += gravity * delta
 	move_and_slide()
+	
 func cleanup():
 	queue_free()
 	
@@ -75,14 +76,21 @@ func die():
 	if dead: return
 	print(str(self) + ": die()")
 	dead = true
-	on_death_audio.play()
 	mini_hpbar.hide()
 	animated_sprite.hide()
 	damage_collision.disabled = true
+	
 	# Death effect
 	var death_effect = Util.spawn_and_add_node(self, enemy_death_effect)
-	death_effect.global_position = self.global_position
+	var monster_size = Util.try_get_rectangle_size(damage_collision)
+	death_effect.global_position = Vector2(global_position.x, global_position.y + monster_size.y)
 	
+	# On death audio (should free up resources after the audio is finished playing)
+	if on_death_audio.has_stream_playback():
+		on_death_audio.play()
+	else:
+		cleanup()
+
 func _to_string():
 	return "Monster [HP={HP}]".format({ "HP": hp })
 

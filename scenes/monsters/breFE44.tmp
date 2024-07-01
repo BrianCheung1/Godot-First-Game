@@ -1,0 +1,85 @@
+[gd_scene load_steps=13 format=3 uid="uid://bc3hsi3jdap3k"]
+
+[ext_resource type="Script" path="res://scripts/Monster/breakable_tile.gd" id="1_dign5"]
+[ext_resource type="Texture2D" uid="uid://cpmv313wbl58n" path="res://assets/sprites/slime_green.png" id="4_gjqxp"]
+[ext_resource type="PackedScene" uid="uid://b7epa3re458xd" path="res://scenes/damage_audio.tscn" id="6_fbu0d"]
+[ext_resource type="PackedScene" uid="uid://c3bkpyr2sp0o5" path="res://scenes/mini_healthbar.tscn" id="7_yhayb"]
+[ext_resource type="PackedScene" uid="uid://c0rba683rq8u2" path="res://scenes/damage_zone.tscn" id="8_5asv6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ip3qp"]
+size = Vector2(8, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxa4k"]
+atlas = ExtResource("4_gjqxp")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fg114"]
+atlas = ExtResource("4_gjqxp")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iheet"]
+atlas = ExtResource("4_gjqxp")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3vtk"]
+atlas = ExtResource("4_gjqxp")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0cisc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lxa4k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fg114")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iheet")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3vtk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_shmp5"]
+size = Vector2(20, 16)
+
+[node name="BreakableTile" type="CharacterBody2D" groups=["slime"]]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_dign5")
+hp = 500
+speed = 0
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_ip3qp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_0cisc")
+autoplay = "default"
+frame_progress = 0.82061
+
+[node name="OnDeathAudio" type="AudioStreamPlayer2D" parent="."]
+volume_db = 24.0
+bus = &"SFX"
+
+[node name="DamageAudio" parent="." instance=ExtResource("6_fbu0d")]
+stream = null
+
+[node name="MiniHealthbar" parent="." instance=ExtResource("7_yhayb")]
+metadata/_edit_use_anchors_ = true
+
+[node name="DamageZone" parent="." instance=ExtResource("8_5asv6")]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_shmp5")
+debug_color = Color(0.204394, 0.624724, 0.412031, 0.42)

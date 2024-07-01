@@ -22,7 +22,7 @@ func _ready():
 	if target_collision.shape is RectangleShape2D:
 		var rect_size = Util.try_get_rectangle_size(target_collision)
 		target_head = Vector2(
-			target_collision.global_position.x - rect_size.x / 2,
+			target_collision.global_position.x - width / 2,
 			target_collision.global_position.y - rect_size.y
 		)
 	else:
