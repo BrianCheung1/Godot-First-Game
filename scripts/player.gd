@@ -66,16 +66,14 @@ var level: Node:
 var is_jumping: bool:
 	get:
 		return jump_count > 0
+
+func add_test_items():
+	inventory.add_item(InvincibilityBuff.new(self, 10))
+	inventory.add_item(AuraItem.new(self, 10))
 		
 func _ready():
 	hp = MAX_HP
-	# Give the user some starting items for testing
-	inventory.add_item(GravityPotion.new(self, gravity_potion_count)) #mimic adding new item for testing
-	inventory.add_item(GravityPotion.new(self, gravity_potion_count)) #mimic adding new item for testing
-	inventory.add_item(BlinkPotion.new(self, blink_potion_count)) #mimic adding new item for testing
-	inventory.add_item(SuckCoinPotion.new(self, suck_potion_count)) #mimic adding new item for testing
-	inventory.add_item(KillAllPotion.new(self, kill_potion_count)) #mimic condense item for testing
-	#inventory.swap_item_index(0,7) #mimic swap items for testing
+	add_test_items()
 	aura.enable(enable_aura)
 	
 func _input(event):
@@ -108,7 +106,7 @@ func _physics_process(delta):
 			return
 			
 		# Handle iFrame
-		invincibility_time_left -= delta
+		invincibility_time_left = max(invincibility_time_left- delta, 0)
 		animated_sprite.modulate = Color(3,3,3,3) if invincibility_time_left > 0 else Color(1,1,1,1)
 		
 		# Rules that must be true if you are touching the floor
@@ -148,7 +146,6 @@ func _physics_process(delta):
 			velocity.y = max(velocity.y, 0)
 		# Handle flash jumps
 		if enable_flash_jump and (is_jumping or not is_on_floor()) and flash_jump_input and not is_flash_jump:
-			hit(5)
 			if direction_input:
 				velocity.y = FLASH_JUMP_Y_VELOCITY_BOOST
 				is_flash_jump = true
@@ -158,7 +155,7 @@ func _physics_process(delta):
 			spawn_flash_jump_effect()
 		#Handle rolling
 		if enable_roll and is_on_floor() and has_roll_input and not is_rolling and not is_rolling_cooldown:
-			invincibility_time_left = 999999
+			invincibility_time_left += .5 if invincibility_time_left==0 else 0
 			is_rolling = true
 			is_rolling_cooldown = true
 			set_collision_layer_value(2, false)
@@ -217,7 +214,6 @@ func spawn_flash_jump_effect():
 func _on_animated_sprite_2d_animation_finished():
 	if animated_sprite.animation == "roll":
 		is_rolling = false
-		invincibility_time_left = 0
 		set_collision_layer_value(2, true)
 		$RollCooldownTimer.start()
 		

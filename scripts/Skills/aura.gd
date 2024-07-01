@@ -29,7 +29,7 @@ func enable(is_enabled):
 		show()
 	else:
 		hide()
-	logger.print("Enabled=%s" % enabled)
+	#logger.print("Enabled=%s" % enabled)
 	
 func _on_area_entered(other: Area2D):
 	if not enabled: return

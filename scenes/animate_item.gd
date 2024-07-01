@@ -27,4 +27,3 @@ func _process(delta):
 			direction = -1
 		elif current_offset <= -max_offset:
 			direction = 1
-

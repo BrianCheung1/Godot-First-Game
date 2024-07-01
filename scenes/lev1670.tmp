@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dglt5i5higp2m"]
+[gd_scene load_steps=30 format=3 uid="uid://dglt5i5higp2m"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_wiprl"]
 [ext_resource type="Script" path="res://scripts/level_1.gd" id="1_x5txr"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c12jdn8pbqxvy" path="res://scenes/coin.tscn" id="8_s3etl"]
 [ext_resource type="PackedScene" uid="uid://c8a4cgk7bnnc4" path="res://scenes/platform.tscn" id="9_ud7mo"]
 [ext_resource type="PackedScene" uid="uid://mn1rmqtsc0vc" path="res://scenes/slime.tscn" id="10_bsdwl"]
+[ext_resource type="PackedScene" uid="uid://exbcaya41q03" path="res://scenes/item_loot.tscn" id="11_i8n46"]
 [ext_resource type="PackedScene" uid="uid://jpp0tyw8uubs" path="res://scenes/ui.tscn" id="11_iruki"]
 [ext_resource type="PackedScene" uid="uid://dgygkbtm0burn" path="res://addons/quiver_leaderboards/leaderboard_ui.tscn" id="13_cuo1i"]
 [ext_resource type="PackedScene" uid="uid://dubsqfb8lxi13" path="res://scenes/multiplayer_hud.tscn" id="14_8o2s6"]
@@ -696,6 +697,8 @@ position = Vector2(152, -1040)
 [node name="Coin27" parent="Coins" instance=ExtResource("8_s3etl")]
 position = Vector2(-104, -736)
 
+[node name="ItemLoot" parent="Coins" instance=ExtResource("11_i8n46")]
+
 [node name="Platforms" type="Node" parent="."]
 
 [node name="Platform3" parent="Platforms" instance=ExtResource("9_ud7mo")]
@@ -848,7 +851,12 @@ spawn_path = NodePath("../Players")
 
 [node name="Players" type="Node2D" parent="."]
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 60.0
+autostart = true
+
 [connection signal="close_button" from="GameManager" to="." method="_on_game_manager_close_button"]
 [connection signal="host_game" from="MultiplayerHUD" to="GameManager" method="become_host"]
 [connection signal="join_as_player_2" from="MultiplayerHUD" to="GameManager" method="join_as_player_2"]
 [connection signal="single_player" from="MultiplayerHUD" to="GameManager" method="_on_multiplayer_hud_single_player"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

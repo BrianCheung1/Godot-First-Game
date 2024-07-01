@@ -6,9 +6,5 @@ extends Node2D
 const BlinkPotion = preload("res://scripts/Consumables/BlinkPotion.gd")
 
 func _ready():
+	
 	main_menu.hide()
-
-func _on_timer_timeout():
-	var potion = BlinkPotion.new(player, 1)
-	player.inventory.add_item(potion)
-	pass # Replace with function body.
