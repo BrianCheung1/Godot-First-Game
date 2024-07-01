@@ -11,6 +11,10 @@ class_name Inventory
 @onready var inventory_gui = $"."
 @onready var hidden_store_GUI = $NinePatchRect
 
+const target_size_inventory = Vector2(50,50)
+const target_size_hotbar = Vector2(35,35)
+
+
 var null_sprite_texture = load("res://assets/sprites/circle.png")
 
 const MAX_SLOT = 15
@@ -92,19 +96,24 @@ func update_sprite_hotbar(texture: Texture, index: int):
 	var hot_box_sprite = self.hotbar_gui_containers[index].get_child(0)
 	hot_box_sprite.texture = texture if texture != null else null_sprite_texture
 	hot_box_sprite.visible = texture != null
-	hot_box_sprite.scale = Vector2(0.1, 0.1)
+	if(texture):
+		var scale_factor = target_size_hotbar/texture.get_size()
+		hot_box_sprite.scale = scale_factor
 
 func update_sprite(texture: Texture, index: int):
 	update_sprite_hotbar(texture, index)
 	
 	var sprite = self.inventory_gui_containers[index].get_child(0)
+	if(texture):
+		var scale_factor = target_size_inventory/texture.get_size()
+		sprite.scale = scale_factor
+	
 	sprite.texture = texture if texture != null else null_sprite_texture
 	sprite.visible = texture != null
-	sprite.scale = Vector2(0.15, 0.15)
 
 func attach_sprite(item:Item, index:int):
 	if item:
-		var texture = load(item.textureSource)
+		var texture:Texture = load(item.textureSource)
 		update_sprite(texture,index)
 		update_sprite_label(item, index)
 		
@@ -122,7 +131,6 @@ func add_item(item: Item):
 		
 	var next_available_index = _condense_item(item)
 	if(next_available_index == -1):
-		print_items()
 		return
 		
 	if next_available_index >= MAX_SLOT:
@@ -131,11 +139,6 @@ func add_item(item: Item):
 	
 	self.items[next_available_index] = item
 	attach_sprite(item, next_available_index)
-	print_items()
-
-func print_items():
-	for item in self.items:
-		print("   " + str(item))
 
 # Sets the item in i index to null if the item is empty
 func remove_used_item(i:int):
@@ -155,4 +158,3 @@ func process_items():
 			if self.items[i] != null:
 				self.items[i].activate()
 				remove_used_item(i)
-				print_items()

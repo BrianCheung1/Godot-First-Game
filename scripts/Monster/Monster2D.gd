@@ -3,7 +3,9 @@ class_name Monster2D
 
 var enemy_death_effect = preload("res://scenes/effect_scenes/smoke.tscn")
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var rng = RandomNumberGenerator.new()
 
+@onready var item_resource = load("res://scenes/item_loot.tscn")
 @onready var damage_collision: CollisionShape2D = $DamageZone/CollisionShape2D
 @onready var ray_cast_right = $RayCastRight
 @onready var ray_cast_left = $RayCastLeft
@@ -71,6 +73,14 @@ func hit(damage: int):
 		die()
 		return
 	on_damage_audio.play()
+	
+
+func generate_item_node(item_name:String):
+	# Call the parent die function in Monster2D.gd
+	var item_loot:ItemLoot = item_resource.instantiate()
+	item_loot.item_name = item_name
+	item_loot.global_position = global_position - Vector2(0, 10)
+	Util.add_node(self, item_loot)
 	
 func die():
 	if dead: return

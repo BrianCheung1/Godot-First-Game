@@ -11,6 +11,8 @@ const itemSpriteSource = {
 	"Gravity Potion" : "res://assets/sprites/2_item.png",
 	"Kill All Potion" : "res://assets/sprites/3_item.png",
 	"Suck Coin Potion" : "res://assets/sprites/4_item.png",
+	"Aura Item" : "res://assets/sprites/5_item.png",
+	"Invincibility Buff": "res://assets/sprites/6_item.png"
 }
 
 func _init(player: Player, name, count):
