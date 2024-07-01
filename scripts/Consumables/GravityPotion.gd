@@ -1,9 +1,12 @@
 extends Item
-class_name GravityPotion
+class_name GravityPotion 
+
+const ITEM_NAME = "GravityPotion"
+const sprite_source = "res://assets/sprites/2_item.png"
 
 func _init(player: Player, count):
-	super(player, "Gravity Potion", count)
+	super(player, ITEM_NAME, count)
 	
 func activate():
 	_count -= 1
-	print("Used " + _name)
+	self.logger.print(["Item Activated : ", ITEM_NAME])

@@ -49,5 +49,5 @@ func _input(event: InputEvent) -> void:
 				get_tree().create_tween().tween_property(self, "position", original_position, delay)
 				self.z_index = 0
 			elif get_rect().has_point(to_local(event.position)):
-				find_inventory().swap_item_index(self.index)
+				find_inventory().swap_item_dragging(self.index)
 

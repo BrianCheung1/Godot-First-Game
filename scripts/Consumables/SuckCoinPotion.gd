@@ -1,8 +1,11 @@
 extends Item
 class_name SuckCoinPotion
 
+const ITEM_NAME = "SuckCoinPotion"
+const sprite_source = "res://assets/sprites/4_item.png"
+
 func _init(player: Player, count):
-	super(player, "Suck Coin Potion", count)
+	super(player, ITEM_NAME, count)
 	
 # Should make it so that it only sucks things on your screen
 func activate():
