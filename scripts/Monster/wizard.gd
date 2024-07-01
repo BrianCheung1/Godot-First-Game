@@ -6,6 +6,7 @@ extends Monster2D
 var is_attacking = false
 var is_attacking_cooldown = randf_range(0, 2)
 var fireball = preload("res://scenes/monster_attacks/fireball.tscn")
+var lightning = preload("res://scenes/monster_attacks/lightning.tscn")
 var logger
 
 func _ready():
@@ -32,10 +33,16 @@ func _on_area_2d_body_entered(body):
 
 func _on_area_2d_body_exited(body):
 	logger.print([body.name, "Left ", self.name, " Attack Range"])
+	
 	is_attacking = false
 #
 func _on_animated_sprite_2d_animation_finished():
 	if animated_sprite.animation == "attack":
 		var fireball_attack = fireball.instantiate()
-		add_child(fireball_attack)
+		var lightning_attack = lightning.instantiate()
+		var attack_choice = randf()
+		if randf() <= 0.5:
+			add_child(fireball_attack)
+		else:
+			add_child(lightning_attack)
 		is_attacking_cooldown = randf_range(0, 2)

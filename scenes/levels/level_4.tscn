@@ -875,7 +875,6 @@ script = ExtResource("9_xiieh")
 
 [node name="Player" parent="." instance=ExtResource("7_dm7l7")]
 position = Vector2(0, -64)
-gravity_potion_count = 0
 blink_potion_count = 0
 suck_potion_count = 0
 kill_potion_count = 0
