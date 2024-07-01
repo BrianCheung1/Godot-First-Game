@@ -56,8 +56,6 @@ func go():
 	elif type == "fade":
 		create_fade_to_0()
 	
-	logger.print("Attack indicator created")
-	
 func _process(delta):
 	lifetime -= delta
 	if lifetime < 0:
