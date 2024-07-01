@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cybewihjfuvew" path="res://scenes/spike.tscn" id="11_qxn3a"]
 [ext_resource type="PackedScene" uid="uid://c12jdn8pbqxvy" path="res://scenes/coin.tscn" id="12_mijim"]
 [ext_resource type="PackedScene" uid="uid://bmifpw60wh73o" path="res://scenes/jump_power.tscn" id="13_26vo8"]
-[ext_resource type="PackedScene" uid="uid://mn1rmqtsc0vc" path="res://scenes/monsters/slime.tscn" id="14_thlij"]
+[ext_resource type="PackedScene" uid="uid://mn1rmqtsc0vc" path="res://scenes/slime.tscn" id="14_thlij"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_83wod"]
 texture = ExtResource("7_gyk8c")
@@ -887,6 +887,9 @@ layer_1/tile_data = PackedInt32Array(-524277, 0, 0, -524276, 0, 0, -327685, 3932
 
 [node name="Player" parent="." instance=ExtResource("6_0b2xc")]
 position = Vector2(-72, -114)
+blink_potion_count = 0
+suck_potion_count = 0
+kill_potion_count = 0
 
 [node name="Killzone" parent="." instance=ExtResource("7_teh8t")]
 position = Vector2(1, -24)

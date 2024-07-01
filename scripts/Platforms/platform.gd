@@ -1,5 +1,6 @@
 extends AnimatableBody2D
 
+
 @export var animation_player_optional: AnimationPlayer
 
 func _on_player_connected(id):
