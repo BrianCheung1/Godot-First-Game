@@ -22,4 +22,4 @@ func _on_attack_speed_timer_timeout():
 
 func _on_damage_zone_body_entered(body):
 	if body is Player:
-		body.hit(5)
+		body.hit(25)

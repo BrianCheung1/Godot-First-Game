@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://ck2ddqlvmipjn" path="res://scenes/monsters/wizard.tscn" id="10_tke0m"]
 [ext_resource type="PackedScene" uid="uid://vb4lvdta2d5o" path="res://scenes/killzone.tscn" id="11_m8iak"]
 [ext_resource type="PackedScene" uid="uid://c12jdn8pbqxvy" path="res://scenes/coin.tscn" id="12_w3vsn"]
-[ext_resource type="PackedScene" uid="uid://mn1rmqtsc0vc" path="res://scenes/slime.tscn" id="13_j6ien"]
+[ext_resource type="PackedScene" uid="uid://mn1rmqtsc0vc" path="res://scenes/monsters/slime.tscn" id="13_j6ien"]
 [ext_resource type="PackedScene" uid="uid://cgvqs2ec8qsi2" path="res://scenes/Platforms/ice_platform.tscn" id="14_r2hf2"]
 [ext_resource type="PackedScene" uid="uid://bmifpw60wh73o" path="res://scenes/jump_power.tscn" id="16_wkemw"]
 [ext_resource type="PackedScene" uid="uid://cybewihjfuvew" path="res://scenes/spike.tscn" id="18_ci0f1"]
@@ -838,7 +838,7 @@ script = ExtResource("1_p0e4a")
 unique_name_in_owner = true
 script = ExtResource("1_ngp8d")
 leaderboardScene = ExtResource("2_k5885")
-leaderboardID = "butter-knights-butter-knights-2wUo"
+leaderboardID = "butter-knights-level4-h40m"
 
 [node name="ScoreLabel" type="Label" parent="GameManager"]
 visible = false
