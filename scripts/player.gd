@@ -12,6 +12,7 @@ class_name Player
 @onready var death_timer = $DeathTimer
 @onready var camera = $Camera2D
 @onready var hitbox: CollisionShape2D = $PlayerCollision
+@onready var stats_gui = $CanvasLayer/StatsGui
 
 @export var gravity_potion_count:int
 @export var blink_potion_count:int
@@ -85,6 +86,11 @@ func _input(event):
 		inventory.toggle_visibility()
 		return
 	inventory.process_items()
+	if Input.is_action_just_pressed("stats"):
+		logger.print("Stats Button Pressed")
+		stats_gui.visible = !stats_gui.visible
+		
+		
 	
 func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
@@ -107,6 +113,8 @@ func _physics_process(delta):
 		# Return early if deadge
 		if not is_alive:
 			velocity.x = 0
+			velocity.y += gravity * delta
+			move_and_slide()
 			return
 			
 		# Handle iFrame

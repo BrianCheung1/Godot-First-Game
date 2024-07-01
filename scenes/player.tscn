@@ -546,15 +546,9 @@ size = Vector2(10, 2)
 z_index = 5
 collision_layer = 2
 script = ExtResource("1_wkd0y")
-gravity_potion_count = null
 blink_potion_count = 2
 suck_potion_count = 2
 kill_potion_count = 101
-enable_flash_jump = null
-enable_aura = null
-enable_roll = null
-enable_attack = null
-is_dev_mode = null
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)
@@ -611,6 +605,15 @@ one_shot = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="InventoryGui" parent="CanvasLayer" instance=ExtResource("2_ovruc")]
+visible = false
+
+[node name="StatsGui" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="DeathTimer" type="Timer" parent="."]
 
