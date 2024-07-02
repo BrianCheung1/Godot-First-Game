@@ -2,9 +2,9 @@ extends Level
 
 @onready var main_menu = $UI/Control/MainMenu
 
-const WORLD_ATTACK_PLAYER_COOLDOWN = 3
-const WORLD_ATTACK_COUNT = 5
-const INTERVAL = 0.75
+const WORLD_ATTACK_PLAYER_COOLDOWN = 2
+const WORLD_ATTACK_COUNT = 7
+const INTERVAL = 0.5
 
 var rng = RandomNumberGenerator.new()
 var world_attack_player_cooldown_left = WORLD_ATTACK_PLAYER_COOLDOWN
@@ -15,14 +15,10 @@ var camera: Camera2D
 
 func _ready():
 	main_menu.hide()
-	#AttackIndicator.create_from_positions(self, 999, Vector2(0, 0), Vector2(2000, 0), 25, AttackIndicator.Orientation.Horizontal).go()
-	#AttackIndicator.create_from_positions(self, 999, Vector2(-1000, -1000), Vector2(0, 0), 25, AttackIndicator.Orientation.Vertical).go()
-	#AttackIndicator.create_from_positions(self, 999, Vector2(-1000, -1000), Vector2(0, 0), 25, AttackIndicator.Orientation.Horizontal).go()
-	var test = Util.traverse_up_until_level(self)
-	if test != null:
-		var level: Level = test
-		player = level.get_children().filter(func(x): return x is Player)[0]
-		camera = player.get_children().filter(func(x): return x is Camera2D)[0]
+	player = self.get_children().filter(func(x): return x is Player)[0]
+	camera = player.camera
+	for thunder: RogueKnightThunder in get_children().filter(func(x): return x is RogueKnightThunder):
+		thunder.go()
 
 func _process(delta):
 	world_attack_player_cooldown_left -= delta
@@ -30,10 +26,11 @@ func _process(delta):
 		world_attacking = true
 		for i in range(WORLD_ATTACK_COUNT):
 			await get_tree().create_timer(INTERVAL).timeout
-			generate_attack()
+			RogueKnightThunder.create(self, player).go()
 		world_attacking = false
 		world_attack_player_cooldown_left = WORLD_ATTACK_PLAYER_COOLDOWN
 		
+# Example of black mage chain generating attack from above the camera...
 func generate_attack():
 	var pos = camera.get_screen_center_position()
 	print("pos", pos)
