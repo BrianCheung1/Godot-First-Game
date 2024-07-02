@@ -68,12 +68,10 @@ var is_jumping: bool:
 		return jump_count > 0
 
 func add_test_items():
-	inventory.add_item(InvincibilityBuff.new(self, 10))
-	inventory.add_item(AuraItem.new(self, 10))
-	inventory.add_item(HealthPotion.new(self,10))
-	inventory.add_item(JumpPotion.new(self,10))
-	#inventory.add_item(AvengerItem.new(self,1))
-	#inventory.add_item(ExplosionItem.new(self,1))
+	inventory.add_item(InvincibilityBuff.new(self, 1))
+	inventory.add_item(AuraItem.new(self, 1))
+	inventory.add_item(HealthPotion.new(self,1))
+	inventory.add_item(JumpPotion.new(self,1))
 		
 func _ready():
 	hp = MAX_HP

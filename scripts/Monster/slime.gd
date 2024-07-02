@@ -1,9 +1,9 @@
 extends Monster2D
 class_name Slime
 
-var drop_chance_percent = 100
+var drop_chance_percent = 20
 
-var possible_items = Item.new(null,null,null).possible_items()
+var possible_items = ["BlinkPotion", "KillAllPotion", "AuraItem", "InvincibilityBuff", "HealthPotion", "JumpPotion"]
 
 # Overrides the original die function
 func die():

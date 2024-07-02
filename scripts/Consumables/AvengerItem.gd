@@ -4,7 +4,6 @@ class_name AvengerItem
 const ITEM_NAME = "AvengerItem"
 const sprite_source = "res://assets/sprites/star.png"
 
-
 func _init(player: Player, count):
 	super(player, ITEM_NAME, count)
 	

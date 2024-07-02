@@ -38,7 +38,7 @@ func find_collision_shape(node: Node) -> CollisionShape2D:
 	return null
 
 func spawn_attack():
-	logger.print("Creating new Explosion")
+	#logger.print("Creating new Explosion")
 	var current_position = get_character_body_size(body)
 	var attack_size = Vector2(100,15)
 	var skill_range = Vector2(0,0)
@@ -65,13 +65,13 @@ func _process(delta):
 		return
 		
 	if(attack_duration <= 0) && !activated:
-		logger.print("Explosion Activated")
+		#logger.print("Explosion Activated")
 		spawn_attack()
 		activated = true
 	
 
 func activate():
-	logger.print(["Explosion Activated"])
+	#logger.print(["Explosion Activated"])
 	attack_duration = ATTACK_WARNING
 	activated = false
 
