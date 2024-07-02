@@ -12,7 +12,8 @@ class_name Player
 @onready var death_timer = $DeathTimer
 @onready var camera = $Camera2D
 @onready var hitbox: CollisionShape2D = $PlayerCollision
-@onready var stats_gui = $CanvasLayer/StatsGui
+@onready var stats_gui = $CanvasLayer/StatsGUI
+
 
 @export var gravity_potion_count:int
 @export var blink_potion_count:int
@@ -87,12 +88,11 @@ func _input(event):
 		return
 	inventory.process_items()
 	if Input.is_action_just_pressed("stats"):
-		logger.print("Stats Button Pressed")
 		stats_gui.visible = !stats_gui.visible
 		
-		
-	
 func _physics_process(delta):
+	#Update stats every frame
+	stats_gui.update_stats()
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction_input: float = Input.get_axis("move_left", "move_right")
@@ -188,7 +188,6 @@ func _physics_process(delta):
 		else:
 			is_sliding_to += -sign(is_sliding_to)
 			velocity.x = move_toward(velocity.x, is_sliding_to, SPEED)
-		
 	move_and_slide()
 
 func _process(delta):
@@ -256,3 +255,4 @@ func _on_hitbox_area_2d_body_exited(body):
 	if body is IceTileMap or body is IcePlatform:
 		logger.print("Left ice tile")
 		is_sliding = false
+

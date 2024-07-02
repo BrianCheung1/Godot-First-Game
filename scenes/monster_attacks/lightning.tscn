@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://ij3146j8qja6"]
 
 [ext_resource type="Script" path="res://scripts/Monster_Attacks/lightning.gd" id="1_u3403"]
-[ext_resource type="Texture2D" path="res://assets/sprites/wizard/Lightning_1_512-sheet.png" id="2_5gudd"]
+[ext_resource type="Texture2D" uid="uid://dlre0f3sopm4l" path="res://assets/sprites/wizard/Lightning_1_512-sheet.png" id="2_5gudd"]
 [ext_resource type="PackedScene" uid="uid://c0rba683rq8u2" path="res://scenes/damage_zone.tscn" id="3_pn6br"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5qmmj"]
