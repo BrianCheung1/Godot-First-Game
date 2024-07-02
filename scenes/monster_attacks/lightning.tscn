@@ -98,7 +98,6 @@ position = Vector2(0, 22)
 shape = SubResource("RectangleShape2D_0w3pv")
 
 [node name="AttackSpeedTimer" type="Timer" parent="."]
-wait_time = 2.0
 
 [node name="DamageZone" parent="." instance=ExtResource("3_pn6br")]
 position = Vector2(0, 32)

@@ -34,9 +34,8 @@ func _ready():
 	mini_hpbar.value = hp
 	mini_hpbar.hide()
 	
-	# TODO: testing remove this
-	var attack_indicator = AttackIndicator.create_from_collisionshape2d(self, 999, damage_collision)
-	attack_indicator.go()
+	#AttackIndicator.create_from_collisionshape2d(self, 999, damage_collision).go()
+	
 
 func _tick(delta, tick):
 	if ray_cast_right != null and ray_cast_right.is_colliding():

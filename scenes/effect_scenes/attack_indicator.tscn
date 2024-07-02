@@ -4,6 +4,6 @@
 
 [node name="AttackIndicator" type="Polygon2D"]
 position = Vector2(0, 1)
-color = Color(0.748079, 0.30895, 0.290657, 1)
+color = Color(0.656143, 0.384763, 0.352765, 1)
 polygon = PackedVector2Array(0, 0, 100, 0, 100, 100, 0, 100)
 script = ExtResource("1_lbk1n")

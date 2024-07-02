@@ -549,7 +549,6 @@ script = ExtResource("1_wkd0y")
 enable_flash_jump = true
 enable_roll = true
 enable_attack = true
-is_dev_mode = true
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)
@@ -619,7 +618,7 @@ grow_vertical = 2
 [node name="DeathTimer" type="Timer" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(1, -5)
+position = Vector2(-1, 0)
 zoom = Vector2(3, 3)
 limit_bottom = 80
 limit_smoothed = true
