@@ -13,7 +13,7 @@
 [ext_resource type="Script" path="res://scenes/AttackDrop.gd" id="10_ivkpo"]
 [ext_resource type="Texture2D" uid="uid://dca1nhlrr6a75" path="res://assets/sprites/circle.png" id="10_jyomu"]
 [ext_resource type="Script" path="res://scripts/boss.gd" id="11_fxsj3"]
-[ext_resource type="PackedScene" uid="uid://bnjomdcxx0mkj" path="res://scenes/monsters/boss.tscn" id="12_y3a4m"]
+[ext_resource type="PackedScene" uid="uid://v1nrih11n8r3" path="res://scenes/monsters/boss.tscn" id="12_y3a4m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mvodq"]
 texture = ExtResource("9_6p2vd")

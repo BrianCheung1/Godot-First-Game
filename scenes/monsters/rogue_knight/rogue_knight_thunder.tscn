@@ -1,0 +1,114 @@
+[gd_scene load_steps=15 format=3 uid="uid://ghe046v7efhp"]
+
+[ext_resource type="Texture2D" uid="uid://b2dt3iq0lydxl" path="res://assets/sprites/rogue knight/effects.png" id="1_m6set"]
+[ext_resource type="Script" path="res://scripts/Monster/rogue_knight/rogue_knight_thunder.gd" id="1_vpw7v"]
+[ext_resource type="PackedScene" uid="uid://c0rba683rq8u2" path="res://scenes/damage_zone.tscn" id="3_2tt8q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvhrn"]
+atlas = ExtResource("1_m6set")
+region = Rect2(0, 1600, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2neym"]
+atlas = ExtResource("1_m6set")
+region = Rect2(64, 1600, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3o66p"]
+atlas = ExtResource("1_m6set")
+region = Rect2(128, 1600, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dnra"]
+atlas = ExtResource("1_m6set")
+region = Rect2(192, 1600, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odohc"]
+atlas = ExtResource("1_m6set")
+region = Rect2(256, 1600, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypjry"]
+atlas = ExtResource("1_m6set")
+region = Rect2(320, 1600, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6kvy"]
+atlas = ExtResource("1_m6set")
+region = Rect2(384, 1600, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wunqi"]
+atlas = ExtResource("1_m6set")
+region = Rect2(448, 1600, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7uix"]
+atlas = ExtResource("1_m6set")
+region = Rect2(512, 1600, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gbmhk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mvhrn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2neym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3o66p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0dnra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odohc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ypjry")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6kvy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wunqi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l7uix")
+}],
+"loop": false,
+"name": &"Animate",
+"speed": 45.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ttr5p"]
+size = Vector2(19, 256)
+
+[node name="RogueKnightThunder" type="Node2D"]
+script = ExtResource("1_vpw7v")
+show_indicator_duration = 0.5
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 33)
+sprite_frames = SubResource("SpriteFrames_gbmhk")
+animation = &"Animate"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 96)
+sprite_frames = SubResource("SpriteFrames_gbmhk")
+animation = &"Animate"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 160)
+sprite_frames = SubResource("SpriteFrames_gbmhk")
+animation = &"Animate"
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, 223)
+sprite_frames = SubResource("SpriteFrames_gbmhk")
+animation = &"Animate"
+
+[node name="DamageZone" parent="." instance=ExtResource("3_2tt8q")]
+position = Vector2(0, 32)
+collision_layer = 4
+collision_mask = 2
+damage = 25
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
+position = Vector2(1, 96)
+shape = SubResource("RectangleShape2D_ttr5p")
+disabled = true

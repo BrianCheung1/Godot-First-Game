@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://i881r367o4dl"]
+[gd_scene load_steps=25 format=3 uid="uid://i881r367o4dl"]
 
 [ext_resource type="Script" path="res://scripts/levels/level_dev.gd" id="1_w2ams"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="2_ubw2n"]
@@ -19,7 +19,6 @@
 [ext_resource type="PackedScene" uid="uid://bmifpw60wh73o" path="res://scenes/jump_power.tscn" id="17_ygpbd"]
 [ext_resource type="PackedScene" uid="uid://vb4lvdta2d5o" path="res://scenes/killzone.tscn" id="18_0domw"]
 [ext_resource type="PackedScene" uid="uid://cybewihjfuvew" path="res://scenes/spike.tscn" id="19_a22my"]
-[ext_resource type="PackedScene" uid="uid://ghe046v7efhp" path="res://scenes/monsters/rogue_knight/rogue_knight_thunder.tscn" id="20_clgga"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dto6i"]
 texture = ExtResource("7_522gj")
@@ -1085,58 +1084,3 @@ position = Vector2(56, -392)
 
 [node name="Spike4" parent="Spikes" instance=ExtResource("19_a22my")]
 position = Vector2(-56, -392)
-
-[node name="RogueKnightThunder" parent="." node_paths=PackedStringArray("player") instance=ExtResource("20_clgga")]
-position = Vector2(54, -230)
-rotation = 0.527089
-player = NodePath("../Player")
-
-[node name="RogueKnightThunder2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("20_clgga")]
-position = Vector2(153, -222)
-rotation = 0.527089
-player = NodePath("../Player")
-
-[node name="RogueKnightThunder7" parent="." node_paths=PackedStringArray("player") instance=ExtResource("20_clgga")]
-position = Vector2(49, 136)
-rotation = 2.63545
-player = NodePath("../Player")
-
-[node name="RogueKnightThunder6" parent="." node_paths=PackedStringArray("player") instance=ExtResource("20_clgga")]
-position = Vector2(146, -39)
-rotation = 2.10836
-player = NodePath("../Player")
-
-[node name="RogueKnightThunder5" parent="." node_paths=PackedStringArray("player") instance=ExtResource("20_clgga")]
-position = Vector2(178, -114)
-rotation = 1.58127
-player = NodePath("../Player")
-
-[node name="RogueKnightThunder4" parent="." node_paths=PackedStringArray("player") instance=ExtResource("20_clgga")]
-position = Vector2(33, -181)
-rotation = 1.05418
-player = NodePath("../Player")
-
-[node name="RogueKnightThunder8" parent="." node_paths=PackedStringArray("player") instance=ExtResource("20_clgga")]
-position = Vector2(26, -63)
-rotation = -0.879646
-player = NodePath("../Player")
-
-[node name="RogueKnightThunder3" parent="." node_paths=PackedStringArray("player") instance=ExtResource("20_clgga")]
-position = Vector2(-178, -211)
-rotation = -0.439823
-player = NodePath("../Player")
-
-[node name="RogueKnightThunder9" parent="." node_paths=PackedStringArray("player") instance=ExtResource("20_clgga")]
-position = Vector2(-243, -276)
-rotation = -0.879646
-player = NodePath("../Player")
-
-[node name="RogueKnightThunder10" parent="." node_paths=PackedStringArray("player") instance=ExtResource("20_clgga")]
-position = Vector2(-14, -43)
-rotation = -0.879646
-player = NodePath("../Player")
-
-[node name="RogueKnightThunder11" parent="." node_paths=PackedStringArray("player") instance=ExtResource("20_clgga")]
-position = Vector2(-175, -42)
-rotation = -0.879646
-player = NodePath("../Player")
