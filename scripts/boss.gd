@@ -1,14 +1,15 @@
 extends Monster2D
 class_name SlimeBoss
 
-var drop_chance_percent = 50
+var drop_chance_percent = 100
 var logger = Logger.new("[Slime Boss]")
-var possible_items = Item.new(null,null,null).possible_items()
+var possible_items = ["ExplosionItem", "AvengerItem"]
 
-const BOSS_HP = 10000
+const BOSS_HP = 3000
 
 var bossSkills = {
-	"Avenger": {"CoolDown":10, "SinceActive":0, "Skill":Avenger.new(self)}
+	"Explosion": {"CoolDown":3, "SinceActive":0, "Skill":Explosion.new(self)},
+	"Avenger": {"CoolDown":7, "SinceActive":0, "Skill":Avenger.new(self)},
 }
 
 
@@ -31,16 +32,12 @@ func _ready():
 	logger.print(["HP: ", self.hp])
 	for i in bossSkills.keys():
 		self.add_child(bossSkills[i]["Skill"])
-	
 
 func _process(delta):
 	super._process(delta)
 	for i in bossSkills.keys():
 		if(bossSkills[i]["SinceActive"] > 0):
 			bossSkills[i]["SinceActive"] -= delta
-			return 
-		
-		
+			continue 
 		bossSkills[i]["SinceActive"] = bossSkills[i]["CoolDown"]
 		bossSkills[i]["Skill"].activate()
-	

@@ -13,7 +13,7 @@ func activate():
 	
 	var avenger = has_avenger(_player)
 	
-	if _player && has_avenger(_player):
+	if _player && avenger != null:
 		avenger.activate()
 	else:
 		avenger = Avenger.new(_player)
