@@ -1,12 +1,11 @@
 extends Control
 class_name Stats
 
-@onready var player_name = $VBoxContainer/PlayerName
-@onready var player_health = $PlayerHealth
-@onready var player_speed = $PlayerSpeed
-@onready var player_jump = $PlayerJump
-@onready var player_potions = $PlayerPotions
-@onready var player_invinciblity = $PlayerInvinciblity
+@onready var player_name = $LeftContainer/PlayerContainer/PlayerNameContainer/PlayerName
+@onready var player_health = $RightContainer/StatsContainer/HealthContainer/HealthTextContainer/PlayerHealth
+@onready var player_speed = $RightContainer/StatsContainer/SpeedContainer/SpeedTextContainer/PlayerSpeed
+@onready var player_jump = $RightContainer/StatsContainer/JumpContainer/JumpTextContainer/PlayerJump
+@onready var player_invinciblity = $RightContainer/StatsContainer/InvincibilityContainer/InvincibilitTextContainer/PlayerInvinciblity
 @onready var player = $"../.."
 
 

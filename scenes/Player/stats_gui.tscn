@@ -125,27 +125,27 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2q012"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ciev"]
 atlas = ExtResource("1_euffj")
 region = Rect2(0, 544, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s4ovt"]
+[sub_resource type="LabelSettings" id="LabelSettings_xsye6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4w8x"]
 atlas = ExtResource("1_euffj")
 region = Rect2(216, 580, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ca0ky"]
-atlas = ExtResource("1_euffj")
-region = Rect2(216, 544, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qq27p"]
-atlas = ExtResource("1_euffj")
-region = Rect2(180, 544, 32, 32)
-
-[sub_resource type="LabelSettings" id="LabelSettings_xsye6"]
-
 [sub_resource type="LabelSettings" id="LabelSettings_66kp6"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_s66vh"]
+atlas = ExtResource("1_euffj")
+region = Rect2(40, 544, 28, 32)
+
 [sub_resource type="LabelSettings" id="LabelSettings_5ak52"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4i1pp"]
+atlas = ExtResource("1_euffj")
+region = Rect2(180, 544, 32, 32)
 
 [node name="StatsGUI" type="Control"]
 layout_mode = 3
@@ -158,39 +158,71 @@ script = ExtResource("1_fnm54")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 128.0
+offset_left = 64.0
 offset_top = 64.0
-offset_right = -128.0
-offset_bottom = -72.0
+offset_right = -64.0
+offset_bottom = -64.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 0.682353, 0.439216, 0.745098)
+color = Color(0.535361, 0.687861, 0.8754, 0.745098)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="TitleContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -344.0
-offset_top = 52.0
-offset_right = -28.0
-offset_bottom = 92.0
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = 64.0
+offset_top = 88.0
+offset_right = -64.0
+offset_bottom = 152.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="TitleContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_t6tu8")
+theme_override_font_sizes/font_size = 64
+text = "STATS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LeftContainer" type="BoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = 160.0
+offset_right = -576.0
+offset_bottom = -96.0
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 1
 
-[node name="PlayerSprite" type="AnimatedSprite2D" parent="VBoxContainer"]
-position = Vector2(160, -136)
-scale = Vector2(8, 8)
+[node name="PlayerContainer" type="VBoxContainer" parent="LeftContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="PlayerSpriteContainer" type="HBoxContainer" parent="LeftContainer/PlayerContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="LeftContainer/PlayerContainer/PlayerSpriteContainer"]
+position = Vector2(62, 72)
+scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_257cx")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="PlayerName" type="Label" parent="VBoxContainer"]
+[node name="PlayerNameContainer" type="HBoxContainer" parent="LeftContainer/PlayerContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="PlayerName" type="Label" parent="LeftContainer/PlayerContainer/PlayerNameContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_t6tu8")
 theme_override_font_sizes/font_size = 32
@@ -199,28 +231,36 @@ text = "PlayerName
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Health" type="Sprite2D" parent="."]
-position = Vector2(648, 200)
-texture = SubResource("AtlasTexture_2q012")
+[node name="RightContainer" type="BoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 576.0
+offset_top = 160.0
+offset_right = -64.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
 
-[node name="Speed" type="Sprite2D" parent="."]
-position = Vector2(648, 264)
-texture = SubResource("AtlasTexture_s4ovt")
+[node name="StatsContainer" type="VBoxContainer" parent="RightContainer"]
+layout_mode = 2
 
-[node name="Jump" type="Sprite2D" parent="."]
-position = Vector2(648, 328)
-texture = SubResource("AtlasTexture_ca0ky")
+[node name="HealthContainer" type="VBoxContainer" parent="RightContainer/StatsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
 
-[node name="Invincibility" type="Sprite2D" parent="."]
-position = Vector2(648, 392)
-texture = SubResource("AtlasTexture_qq27p")
+[node name="HealthTextContainer" type="HBoxContainer" parent="RightContainer/StatsContainer/HealthContainer"]
+layout_mode = 2
 
-[node name="PlayerHealth" type="Label" parent="."]
-layout_mode = 0
-offset_left = 680.0
-offset_top = 176.0
-offset_right = 996.0
-offset_bottom = 221.0
+[node name="HealthTexture" type="TextureRect" parent="RightContainer/StatsContainer/HealthContainer/HealthTextContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_8ciev")
+
+[node name="PlayerHealth" type="Label" parent="RightContainer/StatsContainer/HealthContainer/HealthTextContainer"]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("3_t6tu8")
 theme_override_font_sizes/font_size = 32
 text = "Health"
@@ -228,12 +268,20 @@ label_settings = SubResource("LabelSettings_xsye6")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PlayerSpeed" type="Label" parent="."]
-layout_mode = 0
-offset_left = 680.0
-offset_top = 240.0
-offset_right = 996.0
-offset_bottom = 285.0
+[node name="SpeedContainer" type="VBoxContainer" parent="RightContainer/StatsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="SpeedTextContainer" type="HBoxContainer" parent="RightContainer/StatsContainer/SpeedContainer"]
+layout_mode = 2
+
+[node name="SpeedTexture" type="TextureRect" parent="RightContainer/StatsContainer/SpeedContainer/SpeedTextContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_c4w8x")
+
+[node name="PlayerSpeed" type="Label" parent="RightContainer/StatsContainer/SpeedContainer/SpeedTextContainer"]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("3_t6tu8")
 theme_override_font_sizes/font_size = 32
 text = "Speed"
@@ -241,12 +289,20 @@ label_settings = SubResource("LabelSettings_66kp6")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PlayerJump" type="Label" parent="."]
-layout_mode = 0
-offset_left = 680.0
-offset_top = 304.0
-offset_right = 996.0
-offset_bottom = 349.0
+[node name="JumpContainer" type="VBoxContainer" parent="RightContainer/StatsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="JumpTextContainer" type="HBoxContainer" parent="RightContainer/StatsContainer/JumpContainer"]
+layout_mode = 2
+
+[node name="JumpTexture" type="TextureRect" parent="RightContainer/StatsContainer/JumpContainer/JumpTextContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_s66vh")
+
+[node name="PlayerJump" type="Label" parent="RightContainer/StatsContainer/JumpContainer/JumpTextContainer"]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("3_t6tu8")
 theme_override_font_sizes/font_size = 32
 text = "Jump"
@@ -254,12 +310,20 @@ label_settings = SubResource("LabelSettings_5ak52")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PlayerInvinciblity" type="Label" parent="."]
-layout_mode = 0
-offset_left = 680.0
-offset_top = 368.0
-offset_right = 996.0
-offset_bottom = 413.0
+[node name="InvincibilityContainer" type="VBoxContainer" parent="RightContainer/StatsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="InvincibilitTextContainer" type="HBoxContainer" parent="RightContainer/StatsContainer/InvincibilityContainer"]
+layout_mode = 2
+
+[node name="InvincibilityTexture" type="TextureRect" parent="RightContainer/StatsContainer/InvincibilityContainer/InvincibilitTextContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_4i1pp")
+
+[node name="PlayerInvinciblity" type="Label" parent="RightContainer/StatsContainer/InvincibilityContainer/InvincibilitTextContainer"]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("3_t6tu8")
 theme_override_font_sizes/font_size = 32
 text = "Invincibility"
