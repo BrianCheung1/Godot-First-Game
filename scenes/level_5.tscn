@@ -1341,10 +1341,6 @@ position = Vector2(-168, -1072)
 
 [node name="Player" parent="." instance=ExtResource("7_2tgvn")]
 position = Vector2(2317, -3)
-kill_potion_count = 0
-enable_flash_jump = true
-enable_roll = true
-enable_attack = true
 
 [node name="UI" parent="." instance=ExtResource("8_eiep3")]
 visible = false
