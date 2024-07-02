@@ -14,6 +14,7 @@ func _on_level_2_button_pressed():
 	PlayerVariables.player_resets = 0
 
 func _on_main_menu_button_pressed():
+	get_tree().change_scene_to_file("res://scenes/levels/level_dev.tscn")
 	levels_to_menu.emit()
 
 func _on_level_3_button_pressed():

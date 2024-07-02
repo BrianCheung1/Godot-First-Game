@@ -15,10 +15,6 @@ class_name Player
 @onready var stats_gui = $CanvasLayer/StatsGUI
 
 
-@export var gravity_potion_count:int
-@export var blink_potion_count:int
-@export var suck_potion_count:int
-@export var kill_potion_count:int
 @export var enable_flash_jump:bool
 @export var enable_aura:bool
 @export var enable_roll:bool

@@ -547,9 +547,9 @@ size = Vector2(10, 2)
 z_index = 5
 collision_layer = 2
 script = ExtResource("1_wkd0y")
-blink_potion_count = 2
-suck_potion_count = 2
-kill_potion_count = 101
+enable_flash_jump = true
+enable_roll = true
+enable_attack = true
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)
@@ -613,7 +613,7 @@ visible = false
 [node name="DeathTimer" type="Timer" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(1, -5)
+position = Vector2(-1, 0)
 zoom = Vector2(3, 3)
 limit_bottom = 80
 limit_smoothed = true
