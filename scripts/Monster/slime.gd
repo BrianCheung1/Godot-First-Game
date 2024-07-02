@@ -3,7 +3,7 @@ class_name Slime
 
 var drop_chance_percent = 20
 
-var possible_items = ["BlinkPotion", "KillAllPotion", "AuraItem", "InvincibilityBuff", "HealthPotion", "JumpPotion"]
+var possible_items = ["BlinkPotion", "AuraItem", "InvincibilityBuff", "HealthPotion", "JumpPotion"]
 
 # Overrides the original die function
 func die():

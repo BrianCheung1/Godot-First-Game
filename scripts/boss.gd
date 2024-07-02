@@ -5,11 +5,11 @@ var drop_chance_percent = 100
 var logger = Logger.new("[Slime Boss]")
 var possible_items = ["ExplosionItem", "AvengerItem"]
 
-const BOSS_HP = 3000
+const BOSS_HP = 5000
 
 var bossSkills = {
-	"Explosion": {"CoolDown":3, "SinceActive":0, "Skill":Explosion.new(self)},
-	"Avenger": {"CoolDown":7, "SinceActive":0, "Skill":Avenger.new(self)},
+	"Explosion": {"CoolDown":3, "SinceActive":0, "Skill":Explosion.new(self, 5)},
+	"Avenger": {"CoolDown":7, "SinceActive":0, "Skill":Avenger.new(self, 50)},
 }
 
 

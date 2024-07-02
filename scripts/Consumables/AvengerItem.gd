@@ -15,7 +15,7 @@ func activate():
 	if _player && avenger != null:
 		avenger.activate()
 	else:
-		avenger = Avenger.new(_player)
+		avenger = Avenger.new(_player, 50)
 		_player.add_child(avenger)
 	
 func has_avenger(player: Node):

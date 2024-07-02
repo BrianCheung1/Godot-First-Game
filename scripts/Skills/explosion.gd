@@ -12,7 +12,7 @@ var attack_size = 10
 var ATTACK_WARNING = 1.5
 var attack_duration = ATTACK_WARNING
 var activated = false
-var damage = 5
+var damage 
 
 var collision_shape = CollisionShape2D.new()
 
@@ -75,7 +75,8 @@ func activate():
 	attack_duration = ATTACK_WARNING
 	activated = false
 
-func _init(skill_owner):
+func _init(skill_owner, damage):
+	self.damage = damage
 	body = skill_owner
 	if(body is Player):
 		ATTACK_WARNING = 0
