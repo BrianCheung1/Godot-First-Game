@@ -14,11 +14,10 @@ var fall_speed = 100.0
 
 var logger = Logger.new("[Falling Attack]")
 
-var attack_size = 10
-
 var damage = 10
 
-@onready var target_size = Vector2(attack_size,attack_size)
+var attack_size = 10
+
 
 func spawn_attack():
 	reset_position()
@@ -49,7 +48,7 @@ func _ready():
 	area.collision_mask = 2
 	
 	sword_sprite.texture = load("res://assets/sprites/star.png")
-	sword_sprite.scale = target_size/sword_sprite.texture.get_size()
+	sword_sprite.scale = Vector2(attack_size,attack_size)/sword_sprite.texture.get_size()
 	area.body_entered.connect(_on_body_entered)
 	
 	spawn_attack()

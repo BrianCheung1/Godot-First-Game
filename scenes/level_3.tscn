@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cybewihjfuvew" path="res://scenes/spike.tscn" id="11_qxn3a"]
 [ext_resource type="PackedScene" uid="uid://c12jdn8pbqxvy" path="res://scenes/coin.tscn" id="12_mijim"]
 [ext_resource type="PackedScene" uid="uid://bmifpw60wh73o" path="res://scenes/jump_power.tscn" id="13_26vo8"]
-[ext_resource type="PackedScene" uid="uid://mn1rmqtsc0vc" path="res://scenes/monsters/slime.tscn" id="14_thlij"]
+[ext_resource type="PackedScene" uid="uid://mn1rmqtsc0vc" path="res://scenes/slime.tscn" id="14_thlij"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_83wod"]
 texture = ExtResource("7_gyk8c")
