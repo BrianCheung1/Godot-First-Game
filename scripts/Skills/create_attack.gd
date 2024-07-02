@@ -16,8 +16,9 @@ var skill_range:Vector2
 var duration:float
 var speed_multiplier:float
 var skillOwner
+var is_facing_right
 
-func _init(sprite_texture:Texture, attack_size:Vector2, damage:int, skill_range:Vector2, attack_position:Vector2, duration:float, speed_multiplier:float, body):
+func _init(sprite_texture:Texture, attack_size:Vector2, damage:int, skill_range:Vector2, attack_position:Vector2, duration:float, speed_multiplier:float, body, is_facing_right:bool):
 	self.damage = damage
 	self.skill_range = skill_range
 	self.target_size = attack_size
@@ -25,7 +26,9 @@ func _init(sprite_texture:Texture, attack_size:Vector2, damage:int, skill_range:
 	self.attack_position = attack_position
 	self.speed_multiplier = speed_multiplier
 	self.skillOwner = body
-	global_position = attack_position
+	self.is_facing_right = is_facing_right
+	
+	global_position = attack_position - Vector2(0, attack_position.y)
 	attack_sprite.texture = sprite_texture
 	attack_sprite.scale = self.target_size/attack_sprite.texture.get_size()
 	create_collision_area()
@@ -57,16 +60,20 @@ func _process(delta):
 	
 	logger.print("Removed")
 	queue_free()
-	
+
 func move_attack(delta):
-	# Move the panel down slowly
 	attack_sprite.position.y += self.skill_range.y * delta * self.speed_multiplier
 	collision_shape.position.y += self.skill_range.y * delta * self.speed_multiplier
 	color_rect.position.y += self.skill_range.y* delta * self.speed_multiplier
-	
-	attack_sprite.position.x +=  self.skill_range.x * delta * self.speed_multiplier
-	collision_shape.position.x +=  self.skill_range.x * delta * self.speed_multiplier
-	color_rect.position.x +=  self.skill_range.x * delta* self.speed_multiplier
+	if(self.is_facing_right):
+		attack_sprite.position.x -=  abs(self.skill_range.x * delta * self.speed_multiplier)
+		collision_shape.position.x -= abs(self.skill_range.x * delta * self.speed_multiplier)
+		color_rect.position.x -=  abs(self.skill_range.x * delta* self.speed_multiplier)
+		
+		return 
+	attack_sprite.position.x +=  abs(self.skill_range.x * delta * self.speed_multiplier)
+	collision_shape.position.x += abs(self.skill_range.x * delta * self.speed_multiplier)
+	color_rect.position.x +=  abs(self.skill_range.x * delta* self.speed_multiplier)
 
 func _on_body_entered(body):
 	if(body is Player and self.skillOwner is Monster2D):

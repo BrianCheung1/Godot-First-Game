@@ -8,7 +8,7 @@ var possible_items = Item.new(null,null,null).possible_items()
 const BOSS_HP = 10000
 
 var bossSkills = {
-	"Avenger": {"CoolDown":10, "SinceActive":0, "Skill":Avenger.new(self)}
+	"Avenger": {"CoolDown":5, "SinceActive":0, "Skill":Avenger.new(self)}
 }
 
 

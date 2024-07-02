@@ -9,9 +9,14 @@ var body
 @onready var attackTexture:Texture = preload("res://assets/sprites/star.png")
 
 var attack_size = 10
-var attack_duration = 1
+var ATTACK_DURATION = 1
+var attack_duration = ATTACK_DURATION
 var activated = false
 var damage = 10
+
+var collision_shape = CollisionShape2D.new()
+
+var attackIndicator 
 
 func get_character_body_size(character_body: CharacterBody2D) -> Vector2:
 	var collision_shape = find_collision_shape(character_body)
@@ -36,12 +41,17 @@ func spawn_attack():
 	logger.print("Creating new Avenger")
 	var current_position = get_character_body_size(body)
 	var attack_size = Vector2(current_position.x, current_position.x)
-	var skill_range = Vector2(-25,0)
-	var attack_duration = 5
-	var speed_multiplier = 2
+	var skill_range = Vector2(25,0)
+	var attack_duration = 2
+	var speed_multiplier = 5
+	var position = body.global_position
+	var is_facing_right = false
+	if(body is Player):
+		is_facing_right = body.is_facing_right
+	else:
+		is_facing_right= (body.direction== -1)
 	
-	var attack = CreateAttack.new(attackTexture,attack_size, damage, skill_range, body.global_position, attack_duration, speed_multiplier, body)
-	#body.add_child(attack)
+	var attack = CreateAttack.new(attackTexture,attack_size, damage, skill_range, position, attack_duration, speed_multiplier, body, is_facing_right)
 	get_tree().root.add_child(attack)
 
 func _ready():
@@ -63,7 +73,10 @@ func _process(delta):
 
 func activate():
 	logger.print(["Avenger Activated"])
+	attack_duration = ATTACK_DURATION
 	activated = false
 
 func _init(skill_owner):
 	body = skill_owner
+	if(body is Player):
+		ATTACK_DURATION = 0
