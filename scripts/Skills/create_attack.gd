@@ -35,8 +35,8 @@ func _init(sprite_texture:Texture, attack_size:Vector2, damage:int, skill_range:
 
 
 func create_collision_area():
-	self.collision_layer = 2
-	self.collision_mask = 2
+	self.collision_layer =  3 | 1 | 4
+	self.collision_mask = 3 | 1 | 4
 	shape.extents = Vector2(self.target_size.x/2, self.target_size.y/2)
 	#color_rect.color = Color(1, 0, 0)  # Red color
 	#color_rect.size = Vector2(self.target_size.x, self.target_size.y)
@@ -57,7 +57,7 @@ func _process(delta):
 		move_attack(delta)
 		return
 	
-	logger.print("Removed")
+	#logger.print("Removed")
 	queue_free()
 
 func move_attack(delta):
@@ -75,6 +75,8 @@ func move_attack(delta):
 	#color_rect.position.x +=  abs(self.skill_range.x * delta* self.speed_multiplier)
 
 func _on_body_entered(body):
+	if(!self.skillOwner):
+		return
 	if(body is Player and self.skillOwner is Monster2D):
 		body.hit(damage)
 		queue_free()
