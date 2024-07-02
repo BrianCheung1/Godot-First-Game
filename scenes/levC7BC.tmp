@@ -1361,7 +1361,7 @@ layer_2/tile_data = PackedInt32Array(-458596, 524289, 0, -393060, 524289, 0, -39
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="Boss" parent="." groups=["slime"] instance=ExtResource("12_y3a4m")]
-position = Vector2(2985, -3)
+position = Vector2(2987, -1)
 collision_layer = 7
 script = ExtResource("11_fxsj3")
 
