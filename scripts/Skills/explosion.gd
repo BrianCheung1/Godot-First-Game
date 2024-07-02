@@ -1,18 +1,18 @@
 extends Area2D
 
-class_name Avenger
+class_name Explosion
 
-var logger = Logger.new("[Avenger]")
+var logger = Logger.new("[Explosion]")
 
 var body
 
-@onready var attackTexture:Texture = preload("res://assets/sprites/star.png")
+@onready var attackTexture:Texture = preload("res://assets/sprites/explosion-1.png")
 
 var attack_size = 10
-var ATTACK_WARNING = 1
+var ATTACK_WARNING = 1.5
 var attack_duration = ATTACK_WARNING
 var activated = false
-var damage = 50
+var damage = 5
 
 var collision_shape = CollisionShape2D.new()
 
@@ -36,13 +36,13 @@ func find_collision_shape(node: Node) -> CollisionShape2D:
 		if child is CollisionShape2D:
 			return child
 	return null
-	
+
 func spawn_attack():
-	logger.print("Creating new Avenger")
+	logger.print("Creating new Explosion")
 	var current_position = get_character_body_size(body)
-	var attack_size = Vector2(current_position.x, current_position.x)
-	var skill_range = Vector2(25,0)
-	var attack_duration = 2
+	var attack_size = Vector2(100,15)
+	var skill_range = Vector2(0,0)
+	var attack_duration = .25
 	var speed_multiplier = 5
 	var position = body.global_position
 	var is_facing_right = false
@@ -59,20 +59,19 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#logger.print(delta)
 	if(attack_duration > 0) && !activated:
 		attack_duration-=delta
 		AttackIndicator.create_from_collisionshape2d(body,ATTACK_WARNING,find_collision_shape(body), AttackIndicator.Type.Fade).go()
 		return
 		
 	if(attack_duration <= 0) && !activated:
-		logger.print("Activated")
+		logger.print("Explosion Activated")
 		spawn_attack()
 		activated = true
 	
 
 func activate():
-	logger.print(["Avenger Activated"])
+	logger.print(["Explosion Activated"])
 	attack_duration = ATTACK_WARNING
 	activated = false
 

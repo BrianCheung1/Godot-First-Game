@@ -1,7 +1,7 @@
 extends Panel
 
 @onready var collision_shape = CollisionShape2D.new()
-@onready var color_rect = ColorRect.new()
+#@onready var color_rect = ColorRect.new()
 @onready var sword_sprite = Sprite2D.new()
 
 @onready var shape = RectangleShape2D.new()
@@ -21,22 +21,22 @@ var attack_size = 10
 
 func spawn_attack():
 	reset_position()
-	add_child(color_rect)
+	#add_child(color_rect)
 	#add_child(collision_shape)
 	add_child(sword_sprite)
 
 func reset_position():
-	shape.extents = Vector2(attack_size/2, attack_size/2)
+	shape.extents = Vector2(int(attack_size/2), int(attack_size/2))
 	# Create a ColorRect node to visualize the collision shape
-	color_rect.color = Color(1, 0, 0)  # Red color
-	color_rect.size = Vector2(attack_size, attack_size)
+	#color_rect.color = Color(1, 0, 0)  # Red color
+	#color_rect.size = Vector2(attack_size, attack_size)
 	
 	collision_shape.shape = shape
 	# Position the ColorRect under the panel to match the collision shape
-	color_rect.position = Vector2(0, size.y)
-	collision_shape.position = Vector2(attack_size/2,size.y + attack_size/2)
+	#color_rect.position = Vector2(0, size.y)
+	collision_shape.position = Vector2(int(attack_size/2),size.y + int(attack_size/2))
 	
-	sword_sprite.position = Vector2(attack_size/2,size.y + attack_size/2)
+	sword_sprite.position = Vector2(int(attack_size/2),size.y + int(attack_size/2))
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -57,7 +57,7 @@ func move_attack(distance):
 	# Move the panel down slowly
 	sword_sprite.position.y += distance
 	collision_shape.position.y += distance  # Adjust the speed as needed
-	color_rect.position.y += distance
+	#color_rect.position.y += distance
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
