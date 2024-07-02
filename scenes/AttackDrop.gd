@@ -16,12 +16,14 @@ var logger = Logger.new("[Falling Attack]")
 
 var attack_size = 10
 
+var damage = 10
+
 @onready var target_size = Vector2(attack_size,attack_size)
 
 func spawn_attack():
 	reset_position()
 	add_child(color_rect)
-	add_child(collision_shape)
+	#add_child(collision_shape)
 	add_child(sword_sprite)
 
 func reset_position():
@@ -39,8 +41,16 @@ func reset_position():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var area = Area2D.new()
+	area.add_child(collision_shape)
+	add_child(area)
+	
+	area.collision_layer = 2
+	area.collision_mask = 2
+	
 	sword_sprite.texture = load("res://assets/sprites/star.png")
 	sword_sprite.scale = target_size/sword_sprite.texture.get_size()
+	area.body_entered.connect(_on_body_entered)
 	
 	spawn_attack()
 	
@@ -57,10 +67,14 @@ func _process(delta):
 		current_duration -= delta
 		return
 	
-	logger.print("Reset Attack Position")
+	#logger.print("Reset Attack Position")
 	current_duration = ATTACK_DURATION
 	reset_position()
 	
 
 func _on_body_entered(body):
-	logger.print("Entered Body")
+	if(body is Player):
+		body.hit(damage)
+		logger.print("Entered Body")
+	else:
+		reset_position()
