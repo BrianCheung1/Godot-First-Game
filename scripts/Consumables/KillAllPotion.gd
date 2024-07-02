@@ -3,6 +3,7 @@ class_name KillAllPotion
 
 const ITEM_NAME = "KillAllPotion"
 const sprite_source = "res://assets/sprites/3_item.png"
+const Slime = preload("res://scripts/Monster/slime.gd")
 
 func _init(player: Player, count):
 	super(player, ITEM_NAME, count)
@@ -15,6 +16,7 @@ func activate():
 		self.logger.print(["Failed : ", "No slimes to kill on this map"])
 		return
 	var slimes = slimes_node.get_children()
+	
 	if not slimes.any(func(x): return x is Slime):
 		self.logger.print(["Failed : ", "No slimes to kill on this map"])
 		return
