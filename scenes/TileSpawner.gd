@@ -2,9 +2,11 @@ extends TileMap
 
 @export var monster_scene = preload("res://scenes/monsters/slime.tscn")
 @export var number_of_monsters : int = 5 
-@export var spawner_layer : int = 3     
+@export var spawner_layer : int = 3
+var logger = Logger.new("[Spawner]")     
 var SPAWN_TIME = 10
 var spawn_time = 0
+const MAX_SPAWN = 20
 
 func _ready():
 	for i in self.get_layers_count():
@@ -40,5 +42,10 @@ func _process(delta):
 		spawn_time-= delta
 		return
 	
-	spawn_time = SPAWN_TIME
-	spawn_ememy()
+	var total_slime = get_children().size()
+	if(total_slime < MAX_SPAWN):
+		spawn_time = SPAWN_TIME
+		spawn_ememy()
+		logger.print(["Total Slime:", str(total_slime)])
+	else:
+		logger.print(["Max Spawn", str(total_slime)])
