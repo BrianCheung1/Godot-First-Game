@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Monster2D
 
-var enemy_death_effect = preload("res://scenes/effect_scenes/smoke.tscn")
+var enemy_death_effect = null
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var rng = RandomNumberGenerator.new()
 
@@ -114,16 +114,18 @@ func die():
 	animated_sprite.hide()
 	damage_collision.disabled = true
 	
-	# Death effect
-	var death_effect = Util.spawn_and_add_node(self, enemy_death_effect)
-	var monster_size = Util.try_get_rectangle_size(damage_collision)
-	death_effect.global_position = Vector2(global_position.x, global_position.y + monster_size.y)
-	
+	spawn_death_effect()
 	# On death audio (should free up resources after the audio is finished playing)
 	if on_death_audio.has_stream_playback():
 		on_death_audio.play()
 	else:
 		cleanup()
 
+func spawn_death_effect():
+	if enemy_death_effect:
+		var death_effect = Util.spawn_and_add_node(self, enemy_death_effect)
+		var monster_size = Util.try_get_rectangle_size(damage_collision)
+		death_effect.global_position = Vector2(global_position.x, global_position.y + monster_size.y)
+	
 func _to_string():
 	return "Monster [HP={HP}]".format({ "HP": hp })
