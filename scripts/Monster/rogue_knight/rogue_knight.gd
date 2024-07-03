@@ -26,6 +26,7 @@ func _process(delta):
 func on_changed():
 	var cur = animation_names[index]
 	if cur == "MultiCast":
+		await get_tree().create_timer(1).timeout
 		summon_thunder()
 	
 func on_finished():
