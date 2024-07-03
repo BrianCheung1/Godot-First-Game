@@ -16,7 +16,7 @@ func activate():
 	if _player && explosion != null:
 		explosion.activate()
 	else:
-		explosion = Explosion.new(_player, 35)
+		explosion = Explosion.new(_player, 100)
 		_player.add_child(explosion)
 	
 func has_explosion(player: Node):
