@@ -1,15 +1,16 @@
 extends Monster2D
 class_name Slime
 
-var drop_chance_percent = 100
+var drop_chance_percent = 20
 
-var possible_items = Item.new(null,null,null).possible_items()
+var possible_items = ["BlinkPotion", "AuraItem", "InvincibilityBuff", "HealthPotion", "JumpPotion"]
 
 # Overrides the original die function
 func die():
 	var item = generate_random_item()
 	if(item):
 		super.generate_item_node(item)
+		
 	super.die()
 
 func generate_random_item():
@@ -21,4 +22,5 @@ func generate_random_item():
 func _ready():
 	super._ready() 
 	
+
 

@@ -10,6 +10,7 @@ var lightning = preload("res://scenes/monster_attacks/lightning.tscn")
 var logger
 
 func _ready():
+	super._ready()
 	logger = Logger.new("[Wizard Scene]")
 
 func _physics_process(delta):
@@ -37,12 +38,10 @@ func _on_area_2d_body_exited(body):
 	is_attacking = false
 #
 func _on_animated_sprite_2d_animation_finished():
-	if animated_sprite.animation == "attack":
-		var fireball_attack = fireball.instantiate()
-		var lightning_attack = lightning.instantiate()
+	if animated_sprite.animation == "attack" and can_attack:
 		var attack_choice = randf()
 		if randf() <= 0.5:
-			add_child(fireball_attack)
+			add_child(fireball.instantiate())
 		else:
-			add_child(lightning_attack)
+			add_child(lightning.instantiate())
 		is_attacking_cooldown = randf_range(0, 2)

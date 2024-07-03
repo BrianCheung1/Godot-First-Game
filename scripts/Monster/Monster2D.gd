@@ -6,8 +6,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var rng = RandomNumberGenerator.new()
 
 @onready var item_resource = load("res://scenes/item_loot.tscn")
-@onready var damage_collision: CollisionShape2D = $DamageZone/CollisionShape2D
 @onready var ray_cast_right = $RayCastRight
+@onready var damage_collision: CollisionShape2D = $DamageZone/CollisionShape2D
 @onready var ray_cast_left = $RayCastLeft
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var on_death_audio: AudioStreamPlayer2D = $OnDeathAudio
@@ -16,6 +16,8 @@ var rng = RandomNumberGenerator.new()
 @export var hp: int = 100
 @export var speed: int = 60
 
+
+@export var is_facing_right = false
 var dead = false
 var direction = 1
 var enemy_hit_sound_node: AudioStreamPlayer
@@ -39,9 +41,11 @@ func _tick(delta, tick):
 	if ray_cast_right != null and ray_cast_right.is_colliding():
 		direction = -1
 		animated_sprite.flip_h = true
+		self.is_facing_right = false
 	if ray_cast_right != null and ray_cast_left.is_colliding():
 		direction = 1
 		animated_sprite.flip_h = false
+		self.is_facing_right = true
 	position.x += direction * speed * delta
 
 func _process(delta):
@@ -104,5 +108,3 @@ func die():
 
 func _to_string():
 	return "Monster [HP={HP}]".format({ "HP": hp })
-
-	

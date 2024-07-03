@@ -15,10 +15,6 @@ class_name Player
 @onready var stats_gui = $CanvasLayer/StatsGUI
 
 
-@export var gravity_potion_count:int
-@export var blink_potion_count:int
-@export var suck_potion_count:int
-@export var kill_potion_count:int
 @export var enable_flash_jump:bool
 @export var enable_aura:bool
 @export var enable_roll:bool
@@ -72,10 +68,11 @@ var is_jumping: bool:
 		return jump_count > 0
 
 func add_test_items():
-	inventory.add_item(InvincibilityBuff.new(self, 10))
-	inventory.add_item(AuraItem.new(self, 10))
-	inventory.add_item(HealthPotion.new(self,10))
-	inventory.add_item(JumpPotion.new(self,10))
+	inventory.add_item(InvincibilityBuff.new(self, 1))
+	inventory.add_item(AuraItem.new(self, 1))
+	inventory.add_item(HealthPotion.new(self,1))
+	inventory.add_item(JumpPotion.new(self,1))
+	#inventory.add_item(AvengerItem.new(self,1))
 		
 func _ready():
 	hp = MAX_HP

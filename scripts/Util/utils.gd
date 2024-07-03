@@ -27,3 +27,8 @@ static func spawn_and_add_node(current: Node, resource: Resource):
 	var node = resource.instantiate()
 	add_node(current, node)
 	return node
+
+static func traverse_up_until_level(current: Node):
+	while not current is Level and current != null:
+		current = current.get_parent()
+	return current

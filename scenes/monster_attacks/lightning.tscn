@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ij3146j8qja6"]
+[gd_scene load_steps=16 format=3 uid="uid://446xkt2wim1t"]
 
 [ext_resource type="Script" path="res://scripts/Monster_Attacks/lightning.gd" id="1_u3403"]
 [ext_resource type="Texture2D" uid="uid://dlre0f3sopm4l" path="res://assets/sprites/wizard/Lightning_1_512-sheet.png" id="2_5gudd"]
@@ -89,11 +89,12 @@ position = Vector2(-1, 15)
 scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_chblk")
 animation = &"lightning"
-frame = 5
+frame = 8
+frame_progress = 1.0
 speed_scale = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 23)
+position = Vector2(0, 22)
 shape = SubResource("RectangleShape2D_0w3pv")
 
 [node name="AttackSpeedTimer" type="Timer" parent="."]
@@ -104,6 +105,7 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
+position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_yd1gi")
 disabled = true
 

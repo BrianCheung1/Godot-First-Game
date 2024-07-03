@@ -26,8 +26,8 @@ func _ready():
 func _physics_process(delta):
 	if is_dragging:
 		var tween = get_tree().create_tween()
-		var offset = get_global_mouse_position() - global_position
-		tween.tween_property(self, "position", position + offset, delay)
+		var offset_pos = get_global_mouse_position() - global_position
+		tween.tween_property(self, "position", position + offset_pos, delay)
 
 func find_inventory():
 	var node = self

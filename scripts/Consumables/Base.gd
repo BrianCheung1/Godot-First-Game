@@ -16,6 +16,8 @@ var determineItem = {
 	"InvincibilityBuff": InvincibilityBuff,
 	"HealthPotion":HealthPotion,
 	"JumpPotion":JumpPotion,
+	"AvengerItem":AvengerItem,
+	"ExplosionItem" : ExplosionItem
 }
 
 func determine_item(item_name:String):

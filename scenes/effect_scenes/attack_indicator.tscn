@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bovty5hr6tiit"]
+
+[ext_resource type="Script" path="res://scripts/Effects/AttackIndicator.gd" id="1_lbk1n"]
+
+[node name="AttackIndicator" type="Polygon2D"]
+position = Vector2(0, 1)
+color = Color(0.656143, 0.384763, 0.352765, 1)
+polygon = PackedVector2Array(0, 0, 100, 0, 100, 100, 0, 100)
+script = ExtResource("1_lbk1n")
