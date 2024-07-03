@@ -1341,7 +1341,7 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(-168, -1072)
 
 [node name="Player" parent="." instance=ExtResource("7_2tgvn")]
-position = Vector2(-210, -9)
+position = Vector2(2338, -14)
 
 [node name="UI" parent="." instance=ExtResource("8_eiep3")]
 visible = false
