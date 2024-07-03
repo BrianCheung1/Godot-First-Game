@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bmyfg2bdgp7lo" path="res://assets/sprites/InventoryRect.png" id="1_wd65h"]
 [ext_resource type="PackedScene" uid="uid://03x2hyxc7ehh" path="res://scenes/Slot.tscn" id="2_7h8xo"]
 [ext_resource type="PackedScene" uid="uid://7p1o81lsj0do" path="res://scenes/HotBarGUI.tscn" id="4_fpa2g"]
-[ext_resource type="Script" path="res://scenes/ClickableSprite.gd" id="4_t1ppt"]
+[ext_resource type="Script" path="res://scripts/ClickableSprite.gd" id="4_t1ppt"]
 
 [node name="InventoryGui" type="Control"]
 custom_minimum_size = Vector2(20, 20)
