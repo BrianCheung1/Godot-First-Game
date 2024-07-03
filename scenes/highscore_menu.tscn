@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://qxm517yahky2"]
 
-[ext_resource type="Script" path="res://scenes/highscore_menu.gd" id="1_c0rax"]
+[ext_resource type="Script" path="res://scripts/highscore_menu.gd" id="1_c0rax"]
 [ext_resource type="FontFile" uid="uid://bo1xqkmaq87nb" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_0xvmm"]
 [ext_resource type="FontFile" uid="uid://dc004b45phav2" path="res://assets/fonts/PixelOperator8.ttf" id="3_mbxi6"]
 
