@@ -61,3 +61,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
 shape = SubResource("RectangleShape2D_shmp5")
 debug_color = Color(0.204394, 0.624724, 0.412031, 0.42)
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+
+[node name="RayCastRight" type="RayCast2D" parent="."]

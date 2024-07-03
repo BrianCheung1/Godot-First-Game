@@ -1,7 +1,7 @@
 extends Monster2D
 
 @onready var player = get_tree().get_first_node_in_group("player")
-@onready var attack_speed_timer = $AttackSpeedTimer
+@export var can_attack: bool
 
 var is_attacking = false
 var is_attacking_cooldown = randf_range(0, 2)
