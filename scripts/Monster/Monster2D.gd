@@ -18,6 +18,8 @@ var rng = RandomNumberGenerator.new()
 
 
 @export var is_facing_right = false
+
+var is_flashing = false
 var dead = false
 var direction = 1
 var enemy_hit_sound_node: AudioStreamPlayer
@@ -36,6 +38,9 @@ func _ready():
 	mini_hpbar.value = hp
 	mini_hpbar.hide()
 	#AttackIndicator.create_from_collisionshape2d(self, 999, damage_collision).go()
+	# Hide shader flash
+	if animated_sprite.material:
+		animated_sprite.material.set_shader_parameter("flash_modifier", 0);
 	
 func _tick(delta, tick):
 	if ray_cast_right != null and ray_cast_right.is_colliding():
@@ -56,6 +61,19 @@ func _process(delta):
 		direction = 1
 		animated_sprite.flip_h = false
 	position.x += direction * speed * delta
+
+func flash():
+	if is_flashing:
+		return
+	var material: ShaderMaterial = animated_sprite.material
+	if material == null:
+		print("monster has no flash shader")
+		return
+	var is_flashing = true
+	material.set_shader_parameter("flash_modifier", 0.8);
+	await get_tree().create_timer(0.15).timeout
+	material.set_shader_parameter("flash_modifier", 0);
+	is_flashing = false
 	
 func _physics_process(delta):
 	velocity.y += gravity * delta
@@ -70,6 +88,7 @@ func hit(damage: int):
 	var damage_label = Hit.create_new_enemy_hit(damage_collision, damage)
 	Util.add_node(self, damage_label)
 	
+	flash()
 	hp -= damage
 	mini_hpbar.value = max(0, hp)
 	mini_hpbar.show()

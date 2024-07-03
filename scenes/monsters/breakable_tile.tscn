@@ -1,13 +1,20 @@
-[gd_scene load_steps=10 format=3 uid="uid://bc3hsi3jdap3k"]
+[gd_scene load_steps=12 format=3 uid="uid://bc3hsi3jdap3k"]
 
 [ext_resource type="Script" path="res://scripts/Monster/breakable_tile.gd" id="1_dign5"]
 [ext_resource type="Texture2D" uid="uid://buimwc43xp75s" path="res://scenes/world_tileset.png" id="2_6qx6q"]
+[ext_resource type="Shader" path="res://shaders/flash.gdshader" id="2_psikh"]
 [ext_resource type="PackedScene" uid="uid://b7epa3re458xd" path="res://scenes/damage_audio.tscn" id="6_fbu0d"]
 [ext_resource type="PackedScene" uid="uid://c3bkpyr2sp0o5" path="res://scenes/mini_healthbar.tscn" id="7_yhayb"]
 [ext_resource type="PackedScene" uid="uid://c0rba683rq8u2" path="res://scenes/damage_zone.tscn" id="8_5asv6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ip3qp"]
 size = Vector2(16, 15.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a4c25"]
+resource_local_to_scene = true
+shader = ExtResource("2_psikh")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 1.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q8cf7"]
 atlas = ExtResource("2_6qx6q")
@@ -38,6 +45,7 @@ speed = 0
 shape = SubResource("RectangleShape2D_ip3qp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_a4c25")
 sprite_frames = SubResource("SpriteFrames_0cisc")
 autoplay = "default"
 frame_progress = 0.82061
