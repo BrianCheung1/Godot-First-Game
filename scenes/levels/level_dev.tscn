@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://i881r367o4dl"]
+[gd_scene load_steps=27 format=3 uid="uid://i881r367o4dl"]
 
 [ext_resource type="Script" path="res://scripts/levels/level_dev.gd" id="1_w2ams"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="2_ubw2n"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://vb4lvdta2d5o" path="res://scenes/killzone.tscn" id="18_0domw"]
 [ext_resource type="PackedScene" uid="uid://cybewihjfuvew" path="res://scenes/spike.tscn" id="19_a22my"]
 [ext_resource type="PackedScene" uid="uid://ghe046v7efhp" path="res://scenes/monsters/rogue_knight/rogue_knight_thunder.tscn" id="20_clgga"]
+[ext_resource type="PackedScene" uid="uid://g0cxgv0kwa05" path="res://scenes/monsters/rogue_knight/rogue_knight.tscn" id="21_06nxo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dto6i"]
 texture = ExtResource("7_522gj")
@@ -1140,3 +1141,6 @@ player = NodePath("../Player")
 position = Vector2(-175, -42)
 rotation = -0.879646
 player = NodePath("../Player")
+
+[node name="RogueKnight" parent="." instance=ExtResource("21_06nxo")]
+position = Vector2(20, -65)

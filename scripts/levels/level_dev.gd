@@ -21,14 +21,15 @@ func _ready():
 		thunder.go()
 
 func _process(delta):
-	world_attack_player_cooldown_left -= delta
-	if world_attack_player_cooldown_left < 0 and not world_attacking:
-		world_attacking = true
-		for i in range(WORLD_ATTACK_COUNT):
-			await get_tree().create_timer(INTERVAL).timeout
-			RogueKnightThunder.create(self, player).go()
-		world_attacking = false
-		world_attack_player_cooldown_left = WORLD_ATTACK_PLAYER_COOLDOWN
+	pass
+	#world_attack_player_cooldown_left -= delta
+	#if world_attack_player_cooldown_left < 0 and not world_attacking:
+		#world_attacking = true
+		#for i in range(WORLD_ATTACK_COUNT):
+			#await get_tree().create_timer(INTERVAL).timeout
+			#RogueKnightThunder.create(self, player).go()
+		#world_attacking = false
+		#world_attack_player_cooldown_left = WORLD_ATTACK_PLAYER_COOLDOWN
 		
 # Example of black mage chain generating attack from above the camera...
 func generate_attack():
