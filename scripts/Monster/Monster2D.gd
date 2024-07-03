@@ -35,10 +35,8 @@ func _ready():
 	mini_hpbar.max_value = hp
 	mini_hpbar.value = hp
 	mini_hpbar.hide()
-	
 	#AttackIndicator.create_from_collisionshape2d(self, 999, damage_collision).go()
 	
-
 func _tick(delta, tick):
 	if ray_cast_right != null and ray_cast_right.is_colliding():
 		direction = -1

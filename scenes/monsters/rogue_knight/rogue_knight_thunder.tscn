@@ -76,7 +76,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ttr5p"]
-size = Vector2(19, 256)
+size = Vector2(12.75, 256)
 
 [node name="RogueKnightThunder" type="Node2D"]
 script = ExtResource("1_vpw7v")
@@ -109,6 +109,6 @@ collision_mask = 2
 damage = 25
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
-position = Vector2(1, 96)
+position = Vector2(1.375, 95)
 shape = SubResource("RectangleShape2D_ttr5p")
 disabled = true
