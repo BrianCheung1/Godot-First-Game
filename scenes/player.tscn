@@ -551,6 +551,7 @@ script = ExtResource("1_wkd0y")
 enable_flash_jump = true
 enable_roll = true
 enable_attack = true
+invincibility_time_left = 999999
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)

@@ -1,7 +1,10 @@
-[gd_scene load_steps=61 format=3 uid="uid://g0cxgv0kwa05"]
+[gd_scene load_steps=65 format=3 uid="uid://g0cxgv0kwa05"]
 
 [ext_resource type="Texture2D" uid="uid://fk1v2534qiow" path="res://assets/sprites/rogue knight/knight.png" id="1_a4q3b"]
 [ext_resource type="Script" path="res://scripts/Monster/rogue_knight/rogue_knight.gd" id="1_xdlt3"]
+[ext_resource type="PackedScene" uid="uid://b7epa3re458xd" path="res://scenes/damage_audio.tscn" id="3_ibq1a"]
+[ext_resource type="PackedScene" uid="uid://c3bkpyr2sp0o5" path="res://scenes/mini_healthbar.tscn" id="4_fj6b2"]
+[ext_resource type="PackedScene" uid="uid://c0rba683rq8u2" path="res://scenes/damage_zone.tscn" id="5_4ot4v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n6n5s"]
 atlas = ExtResource("1_a4q3b")
@@ -236,22 +239,22 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0yyrk")
 }, {
-"duration": 1.0,
+"duration": 1.5,
 "texture": SubResource("AtlasTexture_pqnd3")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_tncuo")
 }, {
-"duration": 1.0,
+"duration": 1.5,
 "texture": SubResource("AtlasTexture_11y4h")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yg03t")
 }, {
-"duration": 1.0,
+"duration": 1.2,
 "texture": SubResource("AtlasTexture_jygq5")
 }, {
-"duration": 1.0,
+"duration": 1.75,
 "texture": SubResource("AtlasTexture_7b33h")
 }, {
 "duration": 1.0,
@@ -263,10 +266,10 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5ayfj")
 }, {
-"duration": 1.0,
+"duration": 1.3,
 "texture": SubResource("AtlasTexture_chkso")
 }, {
-"duration": 1.0,
+"duration": 2.2,
 "texture": SubResource("AtlasTexture_lmcjc")
 }],
 "loop": false,
@@ -459,13 +462,47 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qvo0y"]
 size = Vector2(11.5, 25)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cr737"]
+size = Vector2(12, 25)
+
 [node name="RogueKnight" type="CharacterBody2D"]
+collision_layer = 4
 script = ExtResource("1_xdlt3")
+dash_velocity = 200
+speed = 90
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pgp1v")
-animation = &"AttackFull"
+animation = &"Teleport"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_qvo0y")
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(0, -6)
+target_position = Vector2(9, 0)
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(0, -6)
+target_position = Vector2(-9, 0)
+
+[node name="OnDeathAudio" type="AudioStreamPlayer2D" parent="."]
+volume_db = 24.0
+bus = &"SFX"
+
+[node name="DamageAudio" parent="." instance=ExtResource("3_ibq1a")]
+
+[node name="MiniHealthbar" parent="." instance=ExtResource("4_fj6b2")]
+offset_top = 19.0
+offset_bottom = 24.0
+
+[node name="DamageZone" parent="." instance=ExtResource("5_4ot4v")]
+collision_layer = 4
+collision_mask = 2
+damage = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_cr737")
+debug_color = Color(0.204394, 0.624724, 0.412031, 0.42)

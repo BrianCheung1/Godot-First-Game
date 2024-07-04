@@ -1,0 +1,76 @@
+[gd_scene load_steps=12 format=3 uid="uid://dmnu23xo2mm6b"]
+
+[ext_resource type="Script" path="res://scripts/Monster/rogue_knight/rogue_knight_tele.gd" id="1_0w2fr"]
+[ext_resource type="Texture2D" uid="uid://b2dt3iq0lydxl" path="res://assets/sprites/rogue knight/effects.png" id="2_vhvt6"]
+[ext_resource type="PackedScene" uid="uid://c0rba683rq8u2" path="res://scenes/damage_zone.tscn" id="3_28o4g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1kx3"]
+atlas = ExtResource("2_vhvt6")
+region = Rect2(0, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iypee"]
+atlas = ExtResource("2_vhvt6")
+region = Rect2(64, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxir8"]
+atlas = ExtResource("2_vhvt6")
+region = Rect2(128, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gplv1"]
+atlas = ExtResource("2_vhvt6")
+region = Rect2(192, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_atnxg"]
+atlas = ExtResource("2_vhvt6")
+region = Rect2(256, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5wmh"]
+atlas = ExtResource("2_vhvt6")
+region = Rect2(320, 448, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j26t7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1kx3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iypee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxir8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gplv1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_atnxg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5wmh")
+}],
+"loop": false,
+"name": &"Teleport",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6h2th"]
+size = Vector2(19.5, 18)
+
+[node name="RogueKnightTele" type="Node2D"]
+script = ExtResource("1_0w2fr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_j26t7")
+animation = &"Teleport"
+frame = 5
+frame_progress = 1.0
+
+[node name="DamageZone" parent="." instance=ExtResource("3_28o4g")]
+collision_layer = 4
+collision_mask = 2
+damage = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
+shape = SubResource("RectangleShape2D_6h2th")
+disabled = true

@@ -1,14 +1,14 @@
 extends IndicatorAttackBase
-class_name RogueKnightThunder
+class_name RogueKnightCast
 
 @export var player: Player
 
-var logger = Logger.new("[rogue knight thunder]")
+var logger = Logger.new("[rogue knight single cast]")
 var is_static_position = true
 var rng = RandomNumberGenerator.new()
 
 func _ready():
-	animated_sprites = [$AnimatedSprite2D, $AnimatedSprite2D2, $AnimatedSprite2D3, $AnimatedSprite2D4]
+	animated_sprites = [$AnimatedSprite2D]
 	hitbox = $DamageZone/CollisionShape2D
 	super._ready()
 
@@ -21,14 +21,14 @@ func do_positioning():
 	var view_rect: Vector2 = get_viewport().get_visible_rect().size / camera.zoom
 	var hitbox_rect: Vector2 = Util.try_get_rectangle_size(hitbox)
 	global_position.x = target_pos.x
-	global_position.y = target_pos.y - hitbox_rect.y + rng.randi_range(0, 25)
+	global_position.y = target_pos.y + 10
 
 func _process(delta):
 	pass
 	
-static func create(parent: RogueKnight, player: Player) -> RogueKnightThunder:
-	var res = load("res://scenes/monsters/rogue_knight/rogue_knight_thunder.tscn")
-	var node: RogueKnightThunder = res.instantiate()
+static func create(parent: RogueKnight, player: Player) -> RogueKnightCast:
+	var res = load("res://scenes/monsters/rogue_knight/rogue_knight_single_cast.tscn")
+	var node: RogueKnightCast = res.instantiate()
 	
 	# Try to find Level node
 	var find_level = Util.traverse_up_until_level(parent)

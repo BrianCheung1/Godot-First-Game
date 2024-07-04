@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=3 uid="uid://quvrap3rt3cr"]
+
+[ext_resource type="Script" path="res://scripts/Monster/rogue_knight/rogue_knight_dash_trail.gd" id="1_22uun"]
+[ext_resource type="Texture2D" uid="uid://b2dt3iq0lydxl" path="res://assets/sprites/rogue knight/effects.png" id="1_dyl3c"]
+[ext_resource type="PackedScene" uid="uid://c0rba683rq8u2" path="res://scenes/damage_zone.tscn" id="2_3atwe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nccq3"]
+atlas = ExtResource("1_dyl3c")
+region = Rect2(0, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vlger"]
+atlas = ExtResource("1_dyl3c")
+region = Rect2(64, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmtps"]
+atlas = ExtResource("1_dyl3c")
+region = Rect2(128, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7ttf"]
+atlas = ExtResource("1_dyl3c")
+region = Rect2(192, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dich5"]
+atlas = ExtResource("1_dyl3c")
+region = Rect2(256, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4a7pu"]
+atlas = ExtResource("1_dyl3c")
+region = Rect2(320, 256, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x1uwg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nccq3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vlger")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmtps")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7ttf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dich5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4a7pu")
+}],
+"loop": false,
+"name": &"Trail",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r1ku3"]
+size = Vector2(53, 21.375)
+
+[node name="RogueKnightDashTrail" type="Node2D"]
+script = ExtResource("1_22uun")
+show_indicator_duration = 1.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_x1uwg")
+animation = &"Trail"
+frame = 5
+frame_progress = 1.0
+
+[node name="DamageZone" parent="." instance=ExtResource("2_3atwe")]
+position = Vector2(0, 32)
+collision_layer = 4
+collision_mask = 2
+damage = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
+position = Vector2(2.5, -32.3125)
+shape = SubResource("RectangleShape2D_r1ku3")
+disabled = true
