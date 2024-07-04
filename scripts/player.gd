@@ -13,6 +13,7 @@ class_name Player
 @onready var camera = $Camera2D
 @onready var hitbox: CollisionShape2D = $PlayerCollision
 @onready var stats_gui = $CanvasLayer/StatsGUI
+@onready var shop_canvas_layer = $"../ShopCanvasLayer"
 
 
 @export var enable_flash_jump:bool
@@ -86,6 +87,8 @@ func _input(event):
 	inventory.process_items()
 	if Input.is_action_just_pressed("stats"):
 		stats_gui.visible = !stats_gui.visible
+	if Input.is_action_just_pressed("shop"):
+		shop_canvas_layer.visible = !shop_canvas_layer.visible
 		
 func _physics_process(delta):
 	#Update stats every frame
