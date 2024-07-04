@@ -17,12 +17,11 @@ var rng = RandomNumberGenerator.new()
 @export var speed: int = 60
 
 
-@export var is_facing_right = false
-
 var is_flashing = false
 var dead = false
 var direction = 1
 var enemy_hit_sound_node: AudioStreamPlayer
+var is_facing_right = false
 		
 func _init():
 	pass
@@ -46,11 +45,9 @@ func _tick(delta, tick):
 	if ray_cast_right != null and ray_cast_right.is_colliding():
 		direction = -1
 		animated_sprite.flip_h = true
-		self.is_facing_right = false
 	if ray_cast_right != null and ray_cast_left.is_colliding():
 		direction = 1
 		animated_sprite.flip_h = false
-		self.is_facing_right = true
 	position.x += direction * speed * delta
 
 func _process(delta):
@@ -62,6 +59,13 @@ func _process(delta):
 		animated_sprite.flip_h = false
 	position.x += direction * speed * delta
 
+func _physics_process(delta):
+	if velocity.x != 0:
+		is_facing_right = true if velocity.x > 0 else false
+	animated_sprite.flip_h = false if is_facing_right else true
+	velocity.y += gravity * delta
+	move_and_slide()
+	
 func flash():
 	if is_flashing:
 		return
@@ -75,9 +79,6 @@ func flash():
 	material.set_shader_parameter("flash_modifier", 0);
 	is_flashing = false
 	
-func _physics_process(delta):
-	velocity.y += gravity * delta
-	move_and_slide()
 	
 func cleanup():
 	queue_free()

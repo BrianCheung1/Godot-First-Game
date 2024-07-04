@@ -52,7 +52,7 @@ var is_rolling = false
 var is_rolling_cooldown = false
 var is_sliding_to = 0
 var is_sliding = false
-var invincibility_time_left = 0
+@export var invincibility_time_left = 0
 var is_attacking = false
 var attack_damage = 50
 
