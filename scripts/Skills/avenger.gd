@@ -82,6 +82,7 @@ func _init(skill_owner, damage):
 	super(skill_owner, damage, base_attack_size, attackTexture, distance, logger_name, attack_warning)
 
 func spawn_attack():
+	print(DISTANCE)
 	var body_pos = body.global_position
 	var attack_stats = AttackStats.new(damage, DISTANCE, body_pos, 2, 5, Util.direction(body), ATTACK_SIZE)
 	var attack_sprite = Sprite.create_sprite(attackTexture, ATTACK_SIZE, body_pos)
