@@ -17,7 +17,7 @@ func enter():
 	rogue_knight = character
 	animated_sprite.play("Idle")
 	await animated_sprite.animation_finished
-	duration = 0.5
+	duration = 0.3
 	
 func exit():
 	rogue_knight.velocity.x = 0

@@ -15,11 +15,13 @@ func enter():
 	logger.print("Entered")
 	rogue_knight = character
 	animated_sprite.play("MultiCast")
+	animated_sprite.speed_scale = 3
 	summon_thunder()
 	await animated_sprite.animation_finished
 	on_transition.emit(self, "Idle")
 	
 func exit():
+	animated_sprite.speed_scale = 1
 	animated_sprite.stop()
 	
 func update(delta):

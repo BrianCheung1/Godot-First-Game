@@ -60,12 +60,12 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_34y52")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": SubResource("AtlasTexture_wmkcd")
 }],
 "loop": false,
 "name": &"Pillar",
-"speed": 10.0
+"speed": 20.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7115s"]
@@ -73,14 +73,12 @@ size = Vector2(23.75, 55)
 
 [node name="RogueKnightMeleePillar" type="Node2D"]
 script = ExtResource("1_6ce2u")
-show_indicator_duration = 1.0
+show_indicator_duration = 0.25
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -33)
 sprite_frames = SubResource("SpriteFrames_l4yl8")
 animation = &"Pillar"
-frame = 7
-frame_progress = 1.0
 
 [node name="DamageZone" parent="." instance=ExtResource("3_0qfad")]
 collision_layer = 4

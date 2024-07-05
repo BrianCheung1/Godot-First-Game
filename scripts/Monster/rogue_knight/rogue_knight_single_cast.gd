@@ -1,11 +1,11 @@
 extends IndicatorAttackBase
 class_name RogueKnightCast
 
-@export var player: Player
 
 var logger = Logger.new("[rogue knight single cast]")
 var is_static_position = true
 var rng = RandomNumberGenerator.new()
+var target_pos: Vector2
 
 func _ready():
 	animated_sprites = [$AnimatedSprite2D]
@@ -16,9 +16,6 @@ func _ready():
 func do_positioning():
 	if is_static_position: return
 	
-	var camera: Camera2D = player.camera
-	var target_pos: Vector2 = camera.get_screen_center_position()
-	var view_rect: Vector2 = get_viewport().get_visible_rect().size / camera.zoom
 	var hitbox_rect: Vector2 = Util.try_get_rectangle_size(hitbox)
 	global_position.x = target_pos.x
 	global_position.y = target_pos.y + 10
@@ -26,7 +23,7 @@ func do_positioning():
 func _process(delta):
 	pass
 	
-static func create(parent: RogueKnight, player: Player) -> RogueKnightCast:
+static func create(parent: RogueKnight, target_pos: Vector2) -> RogueKnightCast:
 	var res = load("res://scenes/monsters/rogue_knight/rogue_knight_single_cast.tscn")
 	var node: RogueKnightCast = res.instantiate()
 	
@@ -36,8 +33,8 @@ static func create(parent: RogueKnight, player: Player) -> RogueKnightCast:
 	var level: Level = find_level
 	
 	# Spawn it on the level
-	node.player = player
 	node.is_static_position = false
+	node.target_pos = target_pos
 	level.add_child(node)
 	
 	return node

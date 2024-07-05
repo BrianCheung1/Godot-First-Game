@@ -1,18 +1,18 @@
 extends State
-class_name RogueKnightStateCast
+class_name RogueKnightStateSimpleAttack
 
 @onready var animated_sprite: AnimatedSprite2D = $"../../AnimatedSprite2D"
 var rogue_knight: RogueKnight
 var rng = RandomNumberGenerator.new()
 
 func _ready():
-	logger.append_prefix("[cast]")
+	logger.append_prefix("[simple attack]")
 	
 func enter():
 	logger.print("Entered")
 	rogue_knight = character
-	animated_sprite.play("Cast")
-	RogueKnightCast.create(rogue_knight, rogue_knight.player).go()
+	animated_sprite.play("AttackSimple")
+	RogueKnightSimpleSlash.create(rogue_knight).go()
 	await animated_sprite.animation_finished
 	on_transition.emit(self, "Idle")
 	

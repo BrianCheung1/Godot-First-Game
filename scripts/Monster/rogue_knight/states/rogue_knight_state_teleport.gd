@@ -12,11 +12,13 @@ func enter():
 	logger.print("Entered")
 	rogue_knight = character
 	animated_sprite.play("Teleport")
+	animated_sprite.speed_scale = 2.5
 	teleport(Vector2(-78, -103))
 	await animated_sprite.animation_finished
 	on_transition.emit(self, "Idle")
 	
 func exit():
+	animated_sprite.speed_scale = 1
 	animated_sprite.stop()
 	
 func update(delta):
