@@ -2,19 +2,19 @@ extends Node
 
 var gold = 1000
 var shop_items = {
-	"Blink":{
-		"Name": "Blink Potion",
+	"BlinkPotion":{
+		"Name": "BlinkPotion",
 		"Desc": "Blinks player 50 pixels",
 		"Cost": 10,
 		"Quantity": 10,
 		"Image" :load("res://assets/sprites/2_item.png"),
 	},
-	"Health":{
-		"Name": "Health",
-		"Desc": "Heals Player",
-		"Cost": 10,
+	"AuraItem":{
+		"Name": "AuraItem",
+		"Desc": "Gives player an aura for an extra 10 seconds",
+		"Cost": 20,
 		"Quantity": 30,
-		"Image" :load("res://assets/sprites/1_item.png"),
+		"Image" :load("res://assets/sprites/5_item.png"),
 	},
 }
 

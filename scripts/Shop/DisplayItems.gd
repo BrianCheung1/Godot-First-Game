@@ -4,6 +4,7 @@ class_name  DisplayItems
 var logger:Logger
 var item:TextureRect
 var item_name:Label
+var item_cost:Label
 var item_description:Label
 var item_quantity:Label
 var buy_button:Button
@@ -53,6 +54,12 @@ func add_item(key):
 	item.custom_minimum_size = Vector2(32, 32)
 	item.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
 	
+	item_cost = Label.new()
+	item_cost.add_theme_font_override("font", load("res://assets/fonts/PixelOperator8.ttf"))
+	item_cost.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	item_cost.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	item_cost.text = "$" + str(self.items[key]["Cost"])
+	
 	item_name = Label.new()
 	item_name.add_theme_font_override("font", load("res://assets/fonts/PixelOperator8.ttf"))
 	item_name.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
@@ -83,6 +90,7 @@ func add_item(key):
 	
 	tree.add_child(hbox)
 	hbox.add_child(item)
+	hbox.add_child(item_cost)
 	hbox.add_child(vbox)
 	vbox.add_child(item_name)
 	vbox.add_child(item_description)

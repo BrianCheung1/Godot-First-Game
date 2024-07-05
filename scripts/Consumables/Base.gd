@@ -6,7 +6,7 @@ var _name: String
 var _count: int
 var _level: Node
 var logger = Logger.new("[Item]")
-var _desc: String
+var _desc: String 
 var _cost: int
 var _image
 
@@ -27,7 +27,7 @@ var determineItem = {
 func determine_item(item_name:String):
 	return determineItem[item_name]
 
-func _init(player: Player, name, count, desc = "N/A", cost = 0, image=load("res://assets/sprites/1_item.png")):
+func _init(player: Player, name, count, desc="N/A", cost = 0, image=load("res://assets/sprites/1_item.png")):
 	if(player):
 		self._player = player
 		self._level = player.level
@@ -64,7 +64,7 @@ var Desc: String:
 
 var Cost:int:
 	get:
-		return _count
+		return _cost
 		
 var Texture_Image:
 	get:

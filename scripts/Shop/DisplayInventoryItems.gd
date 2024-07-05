@@ -7,12 +7,13 @@ var inventory
 @onready var inventory_tree = $"."
 @onready var shop = $"../../../LeftSide/ShopScroll/Shop"
 @onready var game_manager = %GameManager
+var player
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	logger = Logger.new("[Display Invetory Items Script]")
-	var player = get_tree().get_first_node_in_group("player")
+	player = get_tree().get_first_node_in_group("player")
 	for item in player.inventory.items:
 		if item != null:
 			print(item.Name)
@@ -37,6 +38,8 @@ func bought_item(key):
 		inventory_items[key]["Quantity"] = 0
 		inventory.add_item(key)
 	inventory_items[key]["Quantity"] +=1
+	var to_add_item = Item.new(player, key, 1).determine_item(key).new(player,1)
+	player.inventory.add_item(to_add_item)
 	if key in inventory.node_dict:
 		var item_quantity_label = inventory.node_dict[key][3]
 		item_quantity_label.text = "x" + str(inventory_items[key]["Quantity"])
