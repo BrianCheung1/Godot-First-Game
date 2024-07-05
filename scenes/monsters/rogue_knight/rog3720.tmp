@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://g0cxgv0kwa05"]
+[gd_scene load_steps=71 format=3 uid="uid://g0cxgv0kwa05"]
 
 [ext_resource type="Texture2D" uid="uid://fk1v2534qiow" path="res://assets/sprites/rogue knight/knight.png" id="1_a4q3b"]
 [ext_resource type="Script" path="res://scripts/Monster/rogue_knight/rogue_knight.gd" id="1_xdlt3"]
@@ -11,9 +11,6 @@
 [ext_resource type="Script" path="res://scripts/Monster/rogue_knight/states/rogue_knight_state_teleport.gd" id="8_ojc0x"]
 [ext_resource type="Script" path="res://scripts/Monster/rogue_knight/states/rogue_knight_state_full_attack.gd" id="10_xn6wr"]
 [ext_resource type="Script" path="res://scripts/Monster/rogue_knight/states/rogue_knight_state_thunder.gd" id="11_r0mnv"]
-[ext_resource type="Script" path="res://scripts/Monster/rogue_knight/states/rogue_knight_state_dash.gd" id="12_73ktc"]
-[ext_resource type="Script" path="res://scripts/Monster/rogue_knight/states/rogue_knight_state_idle.gd" id="13_ndq41"]
-[ext_resource type="Script" path="res://scripts/Monster/rogue_knight/states/rogue_knight_state_cast.gd" id="13_yhhpn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n6n5s"]
 atlas = ExtResource("1_a4q3b")
@@ -373,7 +370,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5w0fw")
 }],
-"loop": true,
+"loop": false,
 "name": &"Idle",
 "speed": 5.0
 }, {
@@ -477,13 +474,12 @@ size = Vector2(12, 25)
 [node name="RogueKnight" type="CharacterBody2D"]
 collision_layer = 4
 script = ExtResource("1_xdlt3")
-hp = 10000
+dash_velocity = 200
 speed = 90
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pgp1v")
-animation = &"Idle"
-frame_progress = 0.72823
+animation = &"Run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
@@ -539,19 +535,6 @@ character = NodePath("../..")
 
 [node name="Thunder" type="Node" parent="StateMachine" node_paths=PackedStringArray("character")]
 script = ExtResource("11_r0mnv")
-thunder_attack_count = 10
-thunder_interval = 0.1
-character = NodePath("../..")
-
-[node name="Dash" type="Node" parent="StateMachine" node_paths=PackedStringArray("character")]
-script = ExtResource("12_73ktc")
-dash_velocity = 200.0
-character = NodePath("../..")
-
-[node name="Cast" type="Node" parent="StateMachine" node_paths=PackedStringArray("character")]
-script = ExtResource("13_yhhpn")
-character = NodePath("../..")
-
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("character")]
-script = ExtResource("13_ndq41")
+thunder_attack_count = 7
+thunder_interval = 0.25
 character = NodePath("../..")

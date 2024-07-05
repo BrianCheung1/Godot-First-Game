@@ -20,6 +20,7 @@ var logger = Logger.new("[attack indicator]")
 var parent: Node2D
 var lifetime: float
 var type: Type
+var to_rotate: float
 
 # For indicator on top of collision 2d
 var hitbox: CollisionShape2D
@@ -53,15 +54,15 @@ func go():
 		
 		# Position and vector calculation?
 		position = hitbox.position
-		position.x -= width / 2
-		position.y -= height / 2
 		polygon = PackedVector2Array([
-			Vector2(0, 0),
-			Vector2(width, 0),
-			Vector2(width, height),
-			Vector2(0, height)
+			Vector2(-width/2, height/2),
+			Vector2(-width/2, -height/2),
+			Vector2(width/2, -height/2),
+			Vector2(width/2, height/2)
 		])
+		rotation = hitbox.rotation
 		hitbox.get_parent().add_child(self)
+		
 	else:
 		global_position = parent.global_position
 		if orientation == Orientation.Vertical:
@@ -110,6 +111,11 @@ func create_appear_tween():
 	tween.finished.connect(create_fade_tween)
 	tween.tween_property(self, "modulate", Color(1,1,1,0.7), TWEEN_DURATION)
 	tween.play()
+	
+#static func create_from_collisionshape2d_with_rotation(parent: Node2D, lifetime: float, hitbox: CollisionShape2D, rotate_by: float = 0, type: Type = Type.FadeAppearRepeat) -> AttackIndicator:
+	#var node = create_from_collisionshape2d(parent, lifetime, hitbox, type)
+	#node.to_rotate = rotate_by
+	#return node
 	
 static func create_from_collisionshape2d(parent: Node2D, lifetime: float, hitbox: CollisionShape2D, type: Type = Type.FadeAppearRepeat) -> AttackIndicator:
 	var node = AttackIndicator.new()

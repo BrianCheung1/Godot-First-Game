@@ -7,7 +7,7 @@ var player: Player
 
 func _ready():
 	logger = Logger.new("[damage zone]")
-	logger.print("Damage zone ready")
+	#logger.print("Damage zone ready")
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 	
@@ -27,6 +27,6 @@ func _on_body_exited(body):
 		#logger.print("Damage zone exited but body is not a player")
 		return
 	player = null
-	logger.print("Player exited damage zone")
+	#logger.print("Player exited damage zone")
 	
 	

@@ -8,7 +8,7 @@ var is_static_position = true
 var rng = RandomNumberGenerator.new()
 
 func _ready():
-	animated_sprites = [$AnimatedSprite2D, $AnimatedSprite2D2, $AnimatedSprite2D3, $AnimatedSprite2D4]
+	animated_sprites = [$AnimatedSprite2D, $AnimatedSprite2D2, $AnimatedSprite2D3, $AnimatedSprite2D4, $AnimatedSprite2D5, $AnimatedSprite2D6, $AnimatedSprite2D7]
 	hitbox = $DamageZone/CollisionShape2D
 	super._ready()
 
@@ -17,11 +17,13 @@ func do_positioning():
 	if is_static_position: return
 	
 	var camera: Camera2D = player.camera
-	var target_pos: Vector2 = camera.get_screen_center_position()
+	var target_pos: Vector2 = Vector2(player.global_position)
 	var view_rect: Vector2 = get_viewport().get_visible_rect().size / camera.zoom
 	var hitbox_rect: Vector2 = Util.try_get_rectangle_size(hitbox)
-	global_position.x = target_pos.x
-	global_position.y = target_pos.y - hitbox_rect.y + rng.randi_range(0, 25)
+	#target_pos.x += rng.randf_range(-100, 100)
+	global_position.x = target_pos.x + rng.randf_range(-view_rect.x, view_rect.x)
+	global_position.y = target_pos.y - hitbox_rect.y/2 + rng.randi_range(0, 25)
+	look_at(target_pos)
 
 func _process(delta):
 	pass
