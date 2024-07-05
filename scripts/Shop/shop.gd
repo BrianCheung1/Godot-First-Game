@@ -16,5 +16,5 @@ func _on_button_pressed():
 	animation_player.play("MoveDown")
 
 
-func _on_buy_button_pressed():
-	print(ShopItems.items[0])
+#func _on_buy_button_pressed():
+	#print(ShopItems.items[0])

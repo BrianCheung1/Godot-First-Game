@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1lpeamcfi2ud"]
+[gd_scene load_steps=5 format=3 uid="uid://d1lpeamcfi2ud"]
 
 [ext_resource type="FontFile" uid="uid://bo1xqkmaq87nb" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_cawra"]
+[ext_resource type="FontFile" uid="uid://dc004b45phav2" path="res://assets/fonts/PixelOperator8.ttf" id="1_oybky"]
 [ext_resource type="Script" path="res://scripts/Shop/DisplayShopItems.gd" id="2_lydn0"]
 [ext_resource type="Script" path="res://scripts/Shop/DisplayInventoryItems.gd" id="3_3dwyx"]
 
@@ -85,6 +86,15 @@ text = "Inventory
 "
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Coins" type="Label" parent="RightSide"]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 63.0
+offset_right = 143.0
+offset_bottom = 86.0
+theme_override_fonts/font = ExtResource("1_oybky")
+text = "Coins: "
 
 [node name="InventoryScroll" type="ScrollContainer" parent="RightSide"]
 layout_mode = 1

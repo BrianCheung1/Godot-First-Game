@@ -52,6 +52,7 @@ func end_game():
 			button.anchor_right = 0.5
 			button.anchor_top = 0.75
 			button.pressed.connect(_on_button_press)
+			PlayerVariables.player_coins += 10
 		return in_game
 
 func _process(delta):

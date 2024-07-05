@@ -8,6 +8,8 @@ var inventory
 @onready var shop = $"../../../LeftSide/ShopScroll/Shop"
 @onready var game_manager = %GameManager
 var player
+@onready var coins = $"../../Coins"
+
 
 
 # Called when the node enters the scene tree for the first time.
@@ -16,7 +18,6 @@ func _ready():
 	player = get_tree().get_first_node_in_group("player")
 	for item in player.inventory.items:
 		if item != null:
-			print(item.Name)
 			inventory_items[item.Name] = {
 				"Name": item.Name,
 				"Desc": item.Desc,
@@ -27,6 +28,7 @@ func _ready():
 	inventory = DisplayItems.new(inventory_items, inventory_tree)
 	inventory.set_items()
 	inventory.ON_SELL.connect(on_sell)
+	coins.text = "Coins: $" + str(PlayerVariables.player_coins)
 	
 	
 func on_sell(key):
@@ -39,6 +41,10 @@ func bought_item(key):
 		inventory.add_item(key)
 	inventory_items[key]["Quantity"] +=1
 	var to_add_item = Item.new(player, key, 1).determine_item(key).new(player,1)
+	PlayerVariables.player_coins -= AllItems.shop_items[key]["Cost"]
+	if PlayerVariables.player_coins <= 0:
+		PlayerVariables.player_coins = 0
+	coins.text = "Coins: $" + str(PlayerVariables.player_coins)
 	player.inventory.add_item(to_add_item)
 	if key in inventory.node_dict:
 		var item_quantity_label = inventory.node_dict[key][3]

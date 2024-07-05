@@ -1,6 +1,5 @@
 extends Node
 
-var gold = 1000
 var shop_items = {
 	"BlinkPotion":{
 		"Name": "BlinkPotion",

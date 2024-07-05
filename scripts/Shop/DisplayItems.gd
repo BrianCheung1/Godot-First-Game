@@ -30,13 +30,15 @@ func set_items():
 func _on_buy_button_pressed(key):
 	var node = node_dict[key]
 	if self.items[key]["Quantity"] > 0:
-		self.items[key]["Quantity"] -=1
-		var item_quantity_label = node_dict[key][3]
-		item_quantity_label.text = "x" +  str(self.items[key]["Quantity"])
 		if self.tree.name == "Shop":
+			if PlayerVariables.player_coins < self.items[key]["Cost"]:
+				return
 			ON_BUY.emit(key)
 		else:
 			ON_SELL.emit(key)
+		self.items[key]["Quantity"] -=1
+		var item_quantity_label = node_dict[key][3]
+		item_quantity_label.text = "x" +  str(self.items[key]["Quantity"])
 		if self.items[key]["Quantity"] == 0:
 			node[5].queue_free()
 			node_dict.erase(key)
