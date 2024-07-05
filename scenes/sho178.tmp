@@ -1,13 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1lpeamcfi2ud"]
+[gd_scene load_steps=4 format=3 uid="uid://dp8e8r84by0ao"]
 
 [ext_resource type="FontFile" uid="uid://bo1xqkmaq87nb" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_cawra"]
-[ext_resource type="FontFile" uid="uid://dc004b45phav2" path="res://assets/fonts/PixelOperator8.ttf" id="1_oybky"]
 [ext_resource type="Script" path="res://scripts/Shop/DisplayShopItems.gd" id="2_lydn0"]
 [ext_resource type="Script" path="res://scripts/Shop/DisplayInventoryItems.gd" id="3_3dwyx"]
 
 [node name="ShopCanvasLayer" type="CanvasLayer"]
 
-[node name="ShopPanel" type="Panel" parent="."]
+[node name="ShopPanel2" type="Panel" parent="."]
 anchors_preset = -1
 anchor_left = 0.222
 anchor_top = 0.198
@@ -19,7 +18,7 @@ offset_right = -0.256042
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LeftSide" type="Control" parent="."]
+[node name="LeftSide2" type="Control" parent="."]
 layout_mode = 3
 anchor_left = 0.222
 anchor_top = 0.198
@@ -31,7 +30,7 @@ offset_bottom = 2.30396
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="LeftSide"]
+[node name="Label" type="Label" parent="LeftSide2"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -44,7 +43,7 @@ text = "Shop
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ShopScroll" type="ScrollContainer" parent="LeftSide"]
+[node name="ShopScroll" type="ScrollContainer" parent="LeftSide2"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.203
@@ -57,14 +56,13 @@ offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Shop" type="VBoxContainer" parent="LeftSide/ShopScroll"]
+[node name="ShopItems" type="VBoxContainer" parent="LeftSide2/ShopScroll"]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("2_lydn0")
 
-[node name="RightSide" type="Control" parent="."]
+[node name="RightSide2" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 576.0
@@ -74,7 +72,7 @@ offset_bottom = -126.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="RightSide"]
+[node name="Label" type="Label" parent="RightSide2"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -87,16 +85,7 @@ text = "Inventory
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Coins" type="Label" parent="RightSide"]
-layout_mode = 0
-offset_left = 59.0
-offset_top = 63.0
-offset_right = 143.0
-offset_bottom = 86.0
-theme_override_fonts/font = ExtResource("1_oybky")
-text = "Coins: "
-
-[node name="InventoryScroll" type="ScrollContainer" parent="RightSide"]
+[node name="InventoryScroll" type="ScrollContainer" parent="RightSide2"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -108,7 +97,7 @@ offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Inventory" type="VBoxContainer" parent="RightSide/InventoryScroll"]
+[node name="InventoryItems" type="VBoxContainer" parent="RightSide2/InventoryScroll"]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("3_3dwyx")

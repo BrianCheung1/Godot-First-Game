@@ -6,9 +6,13 @@ const ITEM_NAME = "JumpPotion"
 const sprite_source = "res://assets/sprites/8_item.png"
 var duration = 0
 const JUMP_MODIFIER = 100
+var desc = "Gives player higher jump power for an extra 10 seconds"
+var cost = 20
+
 
 func _init(player: Player, count):
-	super(player, ITEM_NAME, count)
+	super(player, ITEM_NAME, count, desc, cost, load(sprite_source))
+
 	
 func activate():		
 	self.logger.print(["Item Activated : ", ITEM_NAME])

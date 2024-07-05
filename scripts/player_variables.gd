@@ -6,6 +6,7 @@ var player_time:float = 999999999999999999
 var player_deaths:int = 0
 var player_resets:int = 0
 var player_ip = "127.0.0.1"
+var player_coins:int = 0
 
 func _ready():
 	load_file()

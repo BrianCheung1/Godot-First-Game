@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cshj8261pu4bg"]
+[gd_scene load_steps=15 format=3 uid="uid://cshj8261pu4bg"]
 
 [ext_resource type="Script" path="res://scripts/levels/level_devboss.gd" id="1_mu3pr"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_sbxax"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://jpp0tyw8uubs" path="res://scenes/ui.tscn" id="7_fc6yx"]
 [ext_resource type="PackedScene" uid="uid://vb4lvdta2d5o" path="res://scenes/killzone.tscn" id="8_0iy7f"]
 [ext_resource type="PackedScene" uid="uid://g0cxgv0kwa05" path="res://scenes/monsters/rogue_knight/rogue_knight.tscn" id="9_64ql3"]
+[ext_resource type="PackedScene" uid="uid://d1lpeamcfi2ud" path="res://scenes/shop.tscn" id="11_elwo5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dto6i"]
 texture = ExtResource("5_ke8d4")
@@ -455,3 +456,6 @@ shape = SubResource("WorldBoundaryShape2D_ixkgr")
 
 [node name="RogueKnight" parent="." instance=ExtResource("9_64ql3")]
 position = Vector2(20, -65)
+
+[node name="ShopCanvasLayer" parent="." instance=ExtResource("11_elwo5")]
+visible = false
