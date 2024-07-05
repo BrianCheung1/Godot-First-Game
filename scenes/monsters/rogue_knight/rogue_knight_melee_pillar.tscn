@@ -1,0 +1,93 @@
+[gd_scene load_steps=14 format=3 uid="uid://ddkbxk2td81u4"]
+
+[ext_resource type="Script" path="res://scripts/Monster/rogue_knight/rogue_knight_pillar.gd" id="1_6ce2u"]
+[ext_resource type="Texture2D" uid="uid://b2dt3iq0lydxl" path="res://assets/sprites/rogue knight/effects.png" id="2_orc50"]
+[ext_resource type="PackedScene" uid="uid://c0rba683rq8u2" path="res://scenes/damage_zone.tscn" id="3_0qfad"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lbpxe"]
+atlas = ExtResource("2_orc50")
+region = Rect2(0, 1216, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqrvc"]
+atlas = ExtResource("2_orc50")
+region = Rect2(64, 1216, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ih181"]
+atlas = ExtResource("2_orc50")
+region = Rect2(128, 1216, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixfi3"]
+atlas = ExtResource("2_orc50")
+region = Rect2(192, 1216, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76lvd"]
+atlas = ExtResource("2_orc50")
+region = Rect2(256, 1216, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ocr6"]
+atlas = ExtResource("2_orc50")
+region = Rect2(320, 1216, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34y52"]
+atlas = ExtResource("2_orc50")
+region = Rect2(384, 1216, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wmkcd"]
+atlas = ExtResource("2_orc50")
+region = Rect2(448, 1216, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l4yl8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lbpxe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqrvc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ih181")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ixfi3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76lvd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ocr6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34y52")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wmkcd")
+}],
+"loop": false,
+"name": &"Pillar",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7115s"]
+size = Vector2(23.75, 55)
+
+[node name="RogueKnightMeleePillar" type="Node2D"]
+script = ExtResource("1_6ce2u")
+show_indicator_duration = 1.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -33)
+sprite_frames = SubResource("SpriteFrames_l4yl8")
+animation = &"Pillar"
+frame = 7
+frame_progress = 1.0
+
+[node name="DamageZone" parent="." instance=ExtResource("3_0qfad")]
+collision_layer = 4
+collision_mask = 2
+damage = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
+position = Vector2(0, -28)
+shape = SubResource("RectangleShape2D_7115s")
+disabled = true

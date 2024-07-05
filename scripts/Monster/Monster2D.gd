@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Monster2D
 
-var enemy_death_effect = preload("res://scenes/effect_scenes/smoke.tscn")
+var enemy_death_effect = null
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var rng = RandomNumberGenerator.new()
 
@@ -17,10 +17,11 @@ var rng = RandomNumberGenerator.new()
 @export var speed: int = 60
 
 
-@export var is_facing_right = false
+var is_flashing = false
 var dead = false
 var direction = 1
 var enemy_hit_sound_node: AudioStreamPlayer
+var is_facing_right = false
 		
 func _init():
 	pass
@@ -36,16 +37,17 @@ func _ready():
 	mini_hpbar.value = hp
 	mini_hpbar.hide()
 	#AttackIndicator.create_from_collisionshape2d(self, 999, damage_collision).go()
+	# Hide shader flash
+	if animated_sprite.material:
+		animated_sprite.material.set_shader_parameter("flash_modifier", 0);
 	
 func _tick(delta, tick):
 	if ray_cast_right != null and ray_cast_right.is_colliding():
 		direction = -1
 		animated_sprite.flip_h = true
-		self.is_facing_right = false
 	if ray_cast_right != null and ray_cast_left.is_colliding():
 		direction = 1
 		animated_sprite.flip_h = false
-		self.is_facing_right = true
 	position.x += direction * speed * delta
 
 func _process(delta):
@@ -56,10 +58,27 @@ func _process(delta):
 		direction = 1
 		animated_sprite.flip_h = false
 	position.x += direction * speed * delta
-	
+
 func _physics_process(delta):
+	if velocity.x != 0:
+		is_facing_right = true if velocity.x > 0 else false
+	animated_sprite.flip_h = false if is_facing_right else true
 	velocity.y += gravity * delta
 	move_and_slide()
+	
+func flash():
+	if is_flashing:
+		return
+	var material: ShaderMaterial = animated_sprite.material
+	if material == null:
+		print("monster has no flash shader")
+		return
+	var is_flashing = true
+	material.set_shader_parameter("flash_modifier", 0.8);
+	await get_tree().create_timer(0.15).timeout
+	material.set_shader_parameter("flash_modifier", 0);
+	is_flashing = false
+	
 	
 func cleanup():
 	queue_free()
@@ -70,6 +89,7 @@ func hit(damage: int):
 	var damage_label = Hit.create_new_enemy_hit(damage_collision, damage)
 	Util.add_node(self, damage_label)
 	
+	flash()
 	hp -= damage
 	mini_hpbar.value = max(0, hp)
 	mini_hpbar.show()
@@ -95,16 +115,18 @@ func die():
 	animated_sprite.hide()
 	damage_collision.disabled = true
 	
-	# Death effect
-	var death_effect = Util.spawn_and_add_node(self, enemy_death_effect)
-	var monster_size = Util.try_get_rectangle_size(damage_collision)
-	death_effect.global_position = Vector2(global_position.x, global_position.y + monster_size.y)
-	
+	spawn_death_effect()
 	# On death audio (should free up resources after the audio is finished playing)
 	if on_death_audio.has_stream_playback():
 		on_death_audio.play()
 	else:
 		cleanup()
 
+func spawn_death_effect():
+	if not enemy_death_effect: return
+	var death_effect = Util.spawn_and_add_node(self, enemy_death_effect)
+	var monster_size = Util.try_get_rectangle_size(damage_collision)
+	death_effect.global_position = Vector2(global_position.x, global_position.y + monster_size.y)
+	
 func _to_string():
 	return "Monster [HP={HP}]".format({ "HP": hp })

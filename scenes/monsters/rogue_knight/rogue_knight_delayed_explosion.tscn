@@ -1,0 +1,77 @@
+[gd_scene load_steps=12 format=3 uid="uid://mslbxvt32dhl"]
+
+[ext_resource type="Script" path="res://scripts/Monster/rogue_knight/rogue_knight_delayed_explosion.gd" id="1_avtfj"]
+[ext_resource type="Texture2D" uid="uid://b2dt3iq0lydxl" path="res://assets/sprites/rogue knight/effects.png" id="2_eooue"]
+[ext_resource type="PackedScene" uid="uid://c0rba683rq8u2" path="res://scenes/damage_zone.tscn" id="3_gbf8f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x24mq"]
+atlas = ExtResource("2_eooue")
+region = Rect2(0, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vw2o"]
+atlas = ExtResource("2_eooue")
+region = Rect2(64, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7pfd"]
+atlas = ExtResource("2_eooue")
+region = Rect2(128, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_arf5a"]
+atlas = ExtResource("2_eooue")
+region = Rect2(192, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2j3n2"]
+atlas = ExtResource("2_eooue")
+region = Rect2(256, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgtlx"]
+atlas = ExtResource("2_eooue")
+region = Rect2(320, 320, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_krobj"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_x24mq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1vw2o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7pfd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_arf5a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2j3n2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgtlx")
+}],
+"loop": false,
+"name": &"Explosion",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ykweq"]
+size = Vector2(23.75, 23)
+
+[node name="RogueKnightDelayedExplosion" type="Node2D"]
+script = ExtResource("1_avtfj")
+show_indicator_duration = 0.5
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_krobj")
+animation = &"Explosion"
+frame = 5
+frame_progress = 1.0
+
+[node name="DamageZone" parent="." instance=ExtResource("3_gbf8f")]
+collision_layer = 4
+collision_mask = 2
+damage = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
+shape = SubResource("RectangleShape2D_ykweq")
+disabled = true

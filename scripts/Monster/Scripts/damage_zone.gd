@@ -17,14 +17,14 @@ func _process(delta):
 	
 func _on_body_entered(body):
 	if not body is Player:
-		logger.print("Damage zone entered but body is not a player")
+		#logger.print("Damage zone entered but body is not a player")
 		return
 	player = body
-	logger.print("Player entered damage zone")
+	#logger.print("Player entered damage zone")
 	
 func _on_body_exited(body):
 	if not body is Player:
-		logger.print("Damage zone exited but body is not a player")
+		#logger.print("Damage zone exited but body is not a player")
 		return
 	player = null
 	logger.print("Player exited damage zone")

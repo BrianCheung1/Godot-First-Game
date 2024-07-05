@@ -24,6 +24,8 @@ func get_spawn_positions() -> Array:
 	var used_rect = get_used_rect()
 	
 	for x in range(used_rect.size.x):
+		if(number_of_monsters + spawn_positions.size() == MAX_SPAWN):
+			return spawn_positions
 		for y in range(used_rect.size.y):
 			var cell_pos = Vector2(used_rect.position.x + x, used_rect.position.y + y)
 			if not get_cell_tile_data(spawner_layer, cell_pos) == null:
@@ -47,5 +49,3 @@ func _process(delta):
 		spawn_time = SPAWN_TIME
 		spawn_ememy()
 		logger.print(["Total Slime:", str(total_slime)])
-	else:
-		logger.print(["Max Spawn", str(total_slime)])
