@@ -25,8 +25,13 @@ func sold(key):
 		shop_items[key]["Quantity"] = 0
 		shop.add_item(key)
 	shop_items[key]["Quantity"] +=1
-	var to_sell_item = Item.new(player, key, 1).determine_item(key).new(player,1)
-	player.inventory.remove_used_item(0)
+	var to_sell_item_index = 0
+	for item in player.inventory.items:
+		if item.Name == key:
+			break
+		to_sell_item_index+=1
+	player.inventory.items[to_sell_item_index].update_quantity(-1)
+	player.inventory.remove_used_item(to_sell_item_index)
 	if key in shop.node_dict:
 		var label = shop.node_dict[key][3]
 		label.text = "x" + str(shop_items[key]["Quantity"])
