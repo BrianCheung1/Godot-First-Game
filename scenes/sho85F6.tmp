@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dp8e8r84by0ao"]
+[gd_scene load_steps=4 format=3 uid="uid://d1lpeamcfi2ud"]
 
 [ext_resource type="FontFile" uid="uid://bo1xqkmaq87nb" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_cawra"]
 [ext_resource type="Script" path="res://scripts/Shop/DisplayShopItems.gd" id="2_lydn0"]

@@ -4,7 +4,7 @@ var logger
 var shop_items:Dictionary = AllItems.shop_items
 var shop
 @onready var shop_tree = $"."
-@onready var inventory = $"../../../RightSide2/InventoryScroll/Inventory"
+@onready var inventory = $"../../../RightSide/InventoryScroll/Inventory"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,12 +18,12 @@ func on_buy(key):
 	
 func sold(key):
 	if key not in shop_items:
-		shop_items[key] = AllItems.player_items[key].duplicate()
+		shop_items[key] = inventory.inventory_items[key].duplicate()
 		shop_items[key]["Quantity"] = 0
 		shop.add_item(key)
 	shop_items[key]["Quantity"] +=1
 	if key in shop.node_dict:
-		var label = shop.node_dict[key]
+		var label = shop.node_dict[key][3]
 		label.text = "x" + str(shop_items[key]["Quantity"])
 	
 	

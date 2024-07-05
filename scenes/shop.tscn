@@ -1,65 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1lpeamcfi2ud"]
+[gd_scene load_steps=4 format=3 uid="uid://d1lpeamcfi2ud"]
 
-[ext_resource type="FontFile" uid="uid://bo1xqkmaq87nb" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_n245c"]
-[ext_resource type="Script" path="res://scripts/Shop/DisplayShopItems.gd" id="2_b40kx"]
-[ext_resource type="Script" path="res://scripts/Shop/DisplayInventoryItems.gd" id="4_0baly"]
+[ext_resource type="FontFile" uid="uid://bo1xqkmaq87nb" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_cawra"]
+[ext_resource type="Script" path="res://scripts/Shop/DisplayShopItems.gd" id="2_lydn0"]
+[ext_resource type="Script" path="res://scripts/Shop/DisplayInventoryItems.gd" id="3_3dwyx"]
 
-[sub_resource type="Animation" id="Animation_xn28f"]
-resource_name = "MoveDown"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ShopCanvasLayer:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, -600), Vector2(0, 0)]
-}
+[node name="ShopCanvasLayer" type="CanvasLayer"]
 
-[sub_resource type="Animation" id="Animation_7wlve"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ShopCanvasLayer:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -600)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_x8ev7"]
-_data = {
-"MoveDown": SubResource("Animation_xn28f"),
-"RESET": SubResource("Animation_7wlve")
-}
-
-[sub_resource type="Theme" id="Theme_wliq3"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gp8w5"]
-
-[node name="Shop" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1024.0
-offset_bottom = -584.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 0
-
-[node name="ShopCanvasLayer" type="CanvasLayer" parent="."]
-offset = Vector2(0, -600)
-transform = Transform2D(1, 0, 0, 1, 0, -600)
-
-[node name="ShopPanel" type="Panel" parent="ShopCanvasLayer"]
+[node name="ShopPanel" type="Panel" parent="."]
 anchors_preset = -1
 anchor_left = 0.222
 anchor_top = 0.198
@@ -71,7 +18,7 @@ offset_right = -0.256042
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LeftSide" type="Control" parent="ShopCanvasLayer"]
+[node name="LeftSide" type="Control" parent="."]
 layout_mode = 3
 anchor_left = 0.222
 anchor_top = 0.198
@@ -83,20 +30,20 @@ offset_bottom = 2.30396
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="ShopCanvasLayer/LeftSide"]
+[node name="Label" type="Label" parent="LeftSide"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 88.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("1_n245c")
+theme_override_fonts/font = ExtResource("1_cawra")
 theme_override_font_sizes/font_size = 24
 text = "Shop
 "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ShopScroll" type="ScrollContainer" parent="ShopCanvasLayer/LeftSide"]
+[node name="ShopScroll" type="ScrollContainer" parent="LeftSide"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.203
@@ -109,12 +56,12 @@ offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ShopItems" type="VBoxContainer" parent="ShopCanvasLayer/LeftSide/ShopScroll"]
+[node name="Shop" type="VBoxContainer" parent="LeftSide/ShopScroll"]
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("2_b40kx")
+script = ExtResource("2_lydn0")
 
-[node name="RightSide" type="Control" parent="ShopCanvasLayer"]
+[node name="RightSide" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -126,20 +73,20 @@ offset_bottom = -126.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="ShopCanvasLayer/RightSide"]
+[node name="Label" type="Label" parent="RightSide"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 88.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("1_n245c")
+theme_override_fonts/font = ExtResource("1_cawra")
 theme_override_font_sizes/font_size = 24
 text = "Inventory
 "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InventoryScroll" type="ScrollContainer" parent="ShopCanvasLayer/RightSide"]
+[node name="InventoryScroll" type="ScrollContainer" parent="RightSide"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -151,26 +98,7 @@ offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="InventoryItems" type="VBoxContainer" parent="ShopCanvasLayer/RightSide/InventoryScroll"]
+[node name="Inventory" type="VBoxContainer" parent="RightSide/InventoryScroll"]
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("4_0baly")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_x8ev7")
-}
-
-[node name="OpenShopButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = SubResource("Theme_wliq3")
-theme_override_fonts/font = ExtResource("1_n245c")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_gp8w5")
-text = "SHOP"
-
-[connection signal="pressed" from="OpenShopButton" to="." method="_on_button_pressed"]
+script = ExtResource("3_3dwyx")
