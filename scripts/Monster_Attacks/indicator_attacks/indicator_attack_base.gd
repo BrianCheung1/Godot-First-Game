@@ -13,9 +13,9 @@ func _ready():
 		x.hide()
 	animated_sprites[0].animation_finished.connect(on_animation_finished)
 	hitbox.disabled = true
-	do_positioning()
 
 func go():
+	do_positioning()
 	delay_timer = get_tree().create_timer(show_indicator_duration)
 	delay_timer.timeout.connect(on_timeout)
 	AttackIndicator.create_from_collisionshape2d(self, delay_timer.time_left - 0.05, hitbox, AttackIndicator.Type.Fade).go()

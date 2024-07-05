@@ -76,29 +76,51 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ttr5p"]
-size = Vector2(12.75, 256)
+size = Vector2(12.75, 448)
 
 [node name="RogueKnightThunder" type="Node2D"]
 script = ExtResource("1_vpw7v")
-show_indicator_duration = 0.5
+show_indicator_duration = 1.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, 33)
+position = Vector2(33, 0)
+rotation = 1.5708
 sprite_frames = SubResource("SpriteFrames_gbmhk")
 animation = &"Animate"
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, 96)
+position = Vector2(97, -1)
+rotation = 1.5708
 sprite_frames = SubResource("SpriteFrames_gbmhk")
 animation = &"Animate"
 
 [node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, 160)
+position = Vector2(161, -2)
+rotation = 1.5708
 sprite_frames = SubResource("SpriteFrames_gbmhk")
 animation = &"Animate"
 
 [node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="."]
-position = Vector2(-1, 223)
+position = Vector2(225, -3)
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_gbmhk")
+animation = &"Animate"
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="."]
+position = Vector2(289, -3)
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_gbmhk")
+animation = &"Animate"
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="."]
+position = Vector2(353, -3)
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_gbmhk")
+animation = &"Animate"
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="."]
+position = Vector2(417, -3)
+rotation = 1.5708
 sprite_frames = SubResource("SpriteFrames_gbmhk")
 animation = &"Animate"
 
@@ -109,6 +131,7 @@ collision_mask = 2
 damage = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
-position = Vector2(1.375, 95)
+position = Vector2(225, -33)
+rotation = 1.5708
 shape = SubResource("RectangleShape2D_ttr5p")
 disabled = true
