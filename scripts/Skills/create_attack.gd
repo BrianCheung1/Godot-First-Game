@@ -27,7 +27,10 @@ func attach_collision_area():
 
 	self.body_entered.connect(_on_body_entered)
 	self.add_child(collision_shape)
-	self.add_child(sprite)
+	if(sprite != null):
+		print(sprite.position)
+		sprite.position = global_position
+		self.add_child(sprite)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

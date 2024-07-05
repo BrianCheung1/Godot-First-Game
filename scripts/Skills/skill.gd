@@ -12,12 +12,12 @@ var ATTACK_WARNING:float
 var attack_duration:float
 var ATTACK_SIZE:Vector2
 var DISTANCE:Vector2 
-var attack_texture:Texture
+var attack_animation
 
-func _init(skill_owner, damage, base_attack_size:Vector2, texture:Texture, distance:Vector2, logger_name:String, attack_warning:float):
+func _init(skill_owner, damage, base_attack_size:Vector2, attack_animation, distance:Vector2, logger_name:String, attack_warning:float):
 	self.body = skill_owner
 	self.damage = damage
-	self.attack_texture = texture
+	self.attack_animation = attack_animation
 	self.current_position = Util.get_character_body_size(skill_owner)
 	self.ATTACK_SIZE = base_attack_size * Vector2(min(current_position.x, current_position.y), min(current_position.x, current_position.y))
 	self.DISTANCE = distance

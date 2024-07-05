@@ -71,7 +71,8 @@ extends Skill
 
 class_name Avenger
 
-@onready var attackTexture:Texture = preload("res://assets/sprites/star.png")
+#@onready var attackTexture:Texture = preload("res://assets/sprites/star.png")
+const ANIMATED_STAR = preload("res://scenes/effect_scenes/animated_star.tscn")
 
 func _init(skill_owner, damage):
 	var base_attack_size = Vector2(1, 1)
@@ -79,12 +80,14 @@ func _init(skill_owner, damage):
 	var logger_name = "[Avenger]"
 	var attack_warning = 1.5
 
-	super(skill_owner, damage, base_attack_size, attackTexture, distance, logger_name, attack_warning)
+	super(skill_owner, damage, base_attack_size, ANIMATED_STAR, distance, logger_name, attack_warning)
 
 func spawn_attack():
 	print(DISTANCE)
 	var body_pos = body.global_position
 	var attack_stats = AttackStats.new(damage, DISTANCE, body_pos, 2, 5, Util.direction(body), ATTACK_SIZE)
-	var attack_sprite = Sprite.create_sprite(attackTexture, ATTACK_SIZE, body_pos)
-	var attack = CreateAttack.new(attack_sprite, attack_stats, body)
+	#var attack_sprite = Sprite.create_sprite(ANIMATED_STAR, ATTACK_SIZE, body_pos)
+	var scene_instance = ANIMATED_STAR.instantiate()
+	scene_instance.position = body_pos
+	var attack = CreateAttack.new(scene_instance, attack_stats, body)
 	get_tree().root.add_child(attack)

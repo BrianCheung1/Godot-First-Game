@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://bovty5hr6tiit"]
+[gd_scene load_steps=2 format=3 uid="uid://ce7vlsfwpq00"]
 
 [ext_resource type="Script" path="res://scripts/Effects/AttackIndicator.gd" id="1_lbk1n"]
 
