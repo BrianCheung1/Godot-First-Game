@@ -8,9 +8,9 @@ var possible_items = ["ExplosionItem", "AvengerItem"]
 const BOSS_HP = 5000
 
 var bossSkills = {
-	"Explosion": {"CoolDown":3, "SinceActive":0, "Skill":Explosion.new(self, 5)},
-	"Avenger": {"CoolDown":7, "SinceActive":0, "Skill":Avenger.new(self, 50)},
-	"Arrow": {"CoolDown":15, "SinceActive":10, "Skill":Wave.new(self, 10)},
+	#"Explosion": {"CoolDown":3, "SinceActive":0, "Skill":Explosion.new(self, 5)},
+	#"Avenger": {"CoolDown":7, "SinceActive":0, "Skill":Avenger.new(self, 50)},
+	#"Balls": {"CoolDown":5, "SinceActive":0, "Skill":Balls.new(self, 10)}
 }
 
 

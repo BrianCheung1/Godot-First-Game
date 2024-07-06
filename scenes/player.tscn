@@ -557,7 +557,8 @@ position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_l0tvi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -12)
+position = Vector2(0, -11.5)
+scale = Vector2(1, 0.96875)
 sprite_frames = SubResource("SpriteFrames_sikt6")
 animation = &"idle"
 autoplay = "idle"
@@ -643,6 +644,10 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FeetCollisionArea2D"]
 position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_5si4w")
+
+[node name="RaycastDown" type="RayCast2D" parent="."]
+position = Vector2(1, -13)
+target_position = Vector2(-1, 13)
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="AttackAnimation" to="." method="_on_attack_animation_animation_finished"]

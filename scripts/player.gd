@@ -14,6 +14,7 @@ class_name Player
 @onready var hitbox: CollisionShape2D = $PlayerCollision
 @onready var stats_gui = $CanvasLayer/StatsGUI
 @onready var shop_canvas_layer = $"../ShopCanvasLayer"
+@onready var ray_cast_down = $RaycastDown
 
 
 @export var enable_flash_jump:bool

@@ -61,7 +61,11 @@ func go():
 			Vector2(width/2, height/2)
 		])
 		rotation = hitbox.rotation
-		hitbox.get_parent().add_child(self)
+		
+		var hit_box_parent = hitbox.get_parent()
+		if(hit_box_parent == null):
+			return
+		hit_box_parent.add_child(self)
 		
 	else:
 		global_position = parent.global_position

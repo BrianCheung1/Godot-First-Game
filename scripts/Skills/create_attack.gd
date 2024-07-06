@@ -9,6 +9,8 @@ var skillOwner
 var sprite
 var collision_shape
 var attack_stats:AttackStats
+var hit_body
+var playing = false
 
 func _init(sprite,attack_stats:AttackStats, body):
 	self.attack_stats = attack_stats
@@ -27,17 +29,21 @@ func attach_collision_area():
 
 	self.body_entered.connect(_on_body_entered)
 	self.add_child(collision_shape)
-	self.add_child(sprite)
+	if(sprite != null):
+		if(sprite is AnimatedSprite2D):
+			sprite.play("default")
+		self.add_child(sprite)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(attack_stats.ATTACK_DURATION >0):
 		attack_stats.ATTACK_DURATION -= delta
-		move_attack(delta)
+		if(!self.playing):
+			move_attack(delta)
 		return
-	
-	#logger.print("Removed")
-	queue_free()
+
+	if(!self.playing):
+		queue_free()
 
 func move_attack(delta):
 	#color_rect.position.y += self.skill_range.y* delta * self.speed_multiplier
@@ -61,16 +67,40 @@ func _on_body_entered(body):
 	if(!self.skillOwner):
 		return
 	if(body is Player and self.skillOwner is Monster2D):
-		body.hit(attack_stats.DAMAGE)
+		if(sprite is AnimatedSprite2D):
+			body.hit(attack_stats.DAMAGE)
+			handle_on_hit(body)
+			return
+		
 		queue_free()
 		logger.print("Attacked Body Player")
+		return
 		
 	if(self.skillOwner is Player and body is Monster2D):
+		if(sprite is AnimatedSprite2D):
+			body.hit(attack_stats.DAMAGE)
+			handle_on_hit(body)
+			return
 		body.hit(attack_stats.DAMAGE)
 		queue_free()
 		logger.print("Attacked Body Monster")
+		
+		return
 	
 	if(self.skillOwner is Player and body is SlimeBoss):
+		logger.print("Attacked Body Monster")
+		if(sprite is AnimatedSprite2D):
+			body.hit(attack_stats.DAMAGE)
+			handle_on_hit(body)
+			return
 		body.hit(attack_stats.DAMAGE)
 		queue_free()
-		logger.print("Attacked Body Monster")
+		return
+	
+func handle_on_hit(body):
+	self.playing = sprite.is_playing()
+	sprite.play("on_hit")
+	sprite.animation_finished.connect(_on_animation_finished)
+	
+func _on_animation_finished():
+	queue_free()
