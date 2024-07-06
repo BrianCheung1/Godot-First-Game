@@ -10,6 +10,7 @@ var delay_timer: SceneTreeTimer
 
 func _ready():
 	for x in animated_sprites:
+		x.frame = 0
 		x.hide()
 	animated_sprites[0].animation_finished.connect(on_animation_finished)
 	hitbox.disabled = true

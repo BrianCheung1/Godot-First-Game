@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://brklto4eu7xoh"]
+[gd_scene load_steps=13 format=3 uid="uid://brklto4eu7xoh"]
 
 [ext_resource type="Script" path="res://scripts/Monster/rogue_knight/rogue_knight_single_cast.gd" id="1_w5h7k"]
 [ext_resource type="Texture2D" uid="uid://b2dt3iq0lydxl" path="res://assets/sprites/rogue knight/effects.png" id="2_vj10u"]
@@ -32,10 +32,6 @@ region = Rect2(320, 1088, 64, 64)
 atlas = ExtResource("2_vj10u")
 region = Rect2(384, 1088, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mw8vy"]
-atlas = ExtResource("2_vj10u")
-region = Rect2(448, 1088, 64, 64)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_0a4rs"]
 animations = [{
 "frames": [{
@@ -59,9 +55,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_et3co")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mw8vy")
 }],
 "loop": false,
 "name": &"Animation",

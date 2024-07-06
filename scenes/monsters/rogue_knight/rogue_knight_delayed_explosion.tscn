@@ -59,13 +59,11 @@ size = Vector2(23.75, 23)
 
 [node name="RogueKnightDelayedExplosion" type="Node2D"]
 script = ExtResource("1_avtfj")
-show_indicator_duration = 0.5
+show_indicator_duration = 0.25
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_krobj")
 animation = &"Explosion"
-frame = 5
-frame_progress = 1.0
 
 [node name="DamageZone" parent="." instance=ExtResource("3_gbf8f")]
 collision_layer = 4

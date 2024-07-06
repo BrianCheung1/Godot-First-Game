@@ -29,7 +29,7 @@ func attack_full():
 	var locs
 	# First Slash
 	RogueKnightSimpleSlash.create(rogue_knight).go()
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(0.5).timeout
 	
 	# Second Slash
 	if rogue_knight.is_facing_right:
@@ -61,5 +61,19 @@ func attack_full():
 	# Third slash
 	await get_tree().create_timer(0.5).timeout
 	var char_size = Util.try_get_rectangle_size(rogue_knight.damage_collision)
-	var pillar_loc = Vector2(rogue_knight.global_position.x + 70, rogue_knight.global_position.y + 18) if rogue_knight.is_facing_right else Vector2(rogue_knight.global_position.x - 75, rogue_knight.global_position.y + 18) 
-	RogueKnightMeleePillar.create(rogue_knight, pillar_loc).go()
+	var pillar_locs = [
+		Vector2(rogue_knight.global_position.x + 70, rogue_knight.global_position.y + 18) if rogue_knight.is_facing_right else Vector2(rogue_knight.global_position.x - 75, rogue_knight.global_position.y + 18),
+		Vector2(rogue_knight.global_position.x + 90, rogue_knight.global_position.y + 18) if rogue_knight.is_facing_right else Vector2(rogue_knight.global_position.x - 95, rogue_knight.global_position.y + 18),
+		Vector2(rogue_knight.global_position.x + 110, rogue_knight.global_position.y + 18) if rogue_knight.is_facing_right else Vector2(rogue_knight.global_position.x - 115, rogue_knight.global_position.y + 18),
+		Vector2(rogue_knight.global_position.x + 130, rogue_knight.global_position.y + 18) if rogue_knight.is_facing_right else Vector2(rogue_knight.global_position.x - 135, rogue_knight.global_position.y + 18),
+		Vector2(rogue_knight.global_position.x + 150, rogue_knight.global_position.y + 18) if rogue_knight.is_facing_right else Vector2(rogue_knight.global_position.x - 155, rogue_knight.global_position.y + 18)
+	]
+	RogueKnightMeleePillar.create(rogue_knight, pillar_locs[0]).go()
+	await get_tree().create_timer(0.025).timeout
+	RogueKnightMeleePillar.create(rogue_knight, pillar_locs[1]).go()
+	await get_tree().create_timer(0.025).timeout
+	RogueKnightMeleePillar.create(rogue_knight, pillar_locs[2]).go()
+	await get_tree().create_timer(0.025).timeout
+	RogueKnightMeleePillar.create(rogue_knight, pillar_locs[3]).go()
+	await get_tree().create_timer(0.025).timeout
+	RogueKnightMeleePillar.create(rogue_knight, pillar_locs[4]).go()

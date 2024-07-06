@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://quvrap3rt3cr"]
+[gd_scene load_steps=10 format=3 uid="uid://quvrap3rt3cr"]
 
 [ext_resource type="Script" path="res://scripts/Monster/rogue_knight/rogue_knight_dash_trail.gd" id="1_22uun"]
 [ext_resource type="Texture2D" uid="uid://b2dt3iq0lydxl" path="res://assets/sprites/rogue knight/effects.png" id="1_dyl3c"]
@@ -20,14 +20,6 @@ region = Rect2(128, 256, 64, 64)
 atlas = ExtResource("1_dyl3c")
 region = Rect2(192, 256, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dich5"]
-atlas = ExtResource("1_dyl3c")
-region = Rect2(256, 256, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4a7pu"]
-atlas = ExtResource("1_dyl3c")
-region = Rect2(320, 256, 64, 64)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_x1uwg"]
 animations = [{
 "frames": [{
@@ -42,12 +34,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_x7ttf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dich5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4a7pu")
 }],
 "loop": false,
 "name": &"Trail",
@@ -64,8 +50,6 @@ show_indicator_duration = 0.25
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_x1uwg")
 animation = &"Trail"
-frame = 5
-frame_progress = 1.0
 
 [node name="DamageZone" parent="." instance=ExtResource("2_3atwe")]
 position = Vector2(0, 32)
