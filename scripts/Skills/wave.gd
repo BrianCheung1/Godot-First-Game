@@ -20,6 +20,9 @@ func _init(skill_owner, damage):
 
 func spawn_attack():
 	var body_pos = body.global_position
+	if(body is Monster2D or body is SlimeBoss):
+		body_pos = get_tree().get_first_node_in_group("player").global_position
+	
 	var attack_stats = AttackStats.new(damage, DISTANCE, body_pos, total_duration, 5, Util.direction(body), ATTACK_SIZE)
 	var attack_sprite = Sprite.create_sprite(attackTexture, ATTACK_SIZE, body_pos)
 	if(Util.direction(body) == "Left"):

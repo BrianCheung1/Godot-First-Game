@@ -70,3 +70,12 @@ static func find_collision_shape(node: Node) -> CollisionShape2D:
 		if child is CollisionShape2D:
 			return child
 	return null
+
+static func find_target(body):
+	var target = null
+	if(body is Monster2D or body is SlimeBoss):
+		target = body.get_tree().get_first_node_in_group("player")
+	if(body is Player):
+		target = body.get_tree().get_first_node_in_group("boss")
+		
+	return target

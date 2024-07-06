@@ -13,8 +13,10 @@ var rng = RandomNumberGenerator.new()
 @onready var on_death_audio: AudioStreamPlayer2D = $OnDeathAudio
 @onready var on_damage_audio = $DamageAudio
 @onready var mini_hpbar: ProgressBar = $MiniHealthbar
+@onready var ray_cast_down = $RayCastDown
 @export var hp: int = 100
 @export var speed: int = 60
+signal damage_taken(new_health)
 
 
 var is_flashing = false
@@ -22,7 +24,7 @@ var dead = false
 var direction = 1
 var enemy_hit_sound_node: AudioStreamPlayer
 var is_facing_right = false
-		
+
 func _init():
 	pass
 	
@@ -64,7 +66,8 @@ func _physics_process(delta):
 		is_facing_right = true if velocity.x > 0 else false
 	animated_sprite.flip_h = false if is_facing_right else true
 	velocity.y += gravity * delta
-	move_and_slide()
+	#move_and_slide()
+	pass
 	
 func flash():
 	if is_flashing:
@@ -98,6 +101,7 @@ func hit(damage: int):
 		die()
 		return
 	on_damage_audio.play()
+	emit_signal("damage_taken", hp)
 	
 
 func generate_item_node(item_name:String):

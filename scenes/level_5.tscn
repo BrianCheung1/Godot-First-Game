@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b5a5mxprhv5j"]
+[gd_scene load_steps=20 format=3 uid="uid://b5a5mxprhv5j"]
 
 [ext_resource type="Script" path="res://scripts/level_5.gd" id="1_mcsl3"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="2_bvup4"]
@@ -12,8 +12,10 @@
 [ext_resource type="Script" path="res://scripts/TileSpawner.gd" id="10_1mrxe"]
 [ext_resource type="Script" path="res://scripts/AttackDrop.gd" id="10_ivkpo"]
 [ext_resource type="Texture2D" uid="uid://dca1nhlrr6a75" path="res://assets/sprites/circle.png" id="10_jyomu"]
-[ext_resource type="Script" path="res://scripts/boss.gd" id="11_fxsj3"]
+[ext_resource type="Script" path="res://scripts/Monster/boss.gd" id="11_fxsj3"]
 [ext_resource type="PackedScene" uid="uid://bnjomdcxx0mkj" path="res://scenes/monsters/boss.tscn" id="12_y3a4m"]
+[ext_resource type="PackedScene" uid="uid://bmr1mrew8wqk1" path="res://scenes/monsters/toaster_boss.tscn" id="15_460jp"]
+[ext_resource type="Script" path="res://scripts/Monster/toaster.gd" id="15_l6aid"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mvodq"]
 texture = ExtResource("9_6p2vd")
@@ -1341,7 +1343,8 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(-168, -1072)
 
 [node name="Player" parent="." instance=ExtResource("7_2tgvn")]
-position = Vector2(2338, -14)
+position = Vector2(2339, 0)
+invincibility_time_left = 0
 
 [node name="UI" parent="." instance=ExtResource("8_eiep3")]
 visible = false
@@ -1364,8 +1367,8 @@ script = ExtResource("10_1mrxe")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
-[node name="Boss" parent="." groups=["slime"] instance=ExtResource("12_y3a4m")]
-position = Vector2(2985, -3)
+[node name="Boss" parent="." groups=["boss", "slime"] instance=ExtResource("12_y3a4m")]
+position = Vector2(2178, -6)
 collision_layer = 7
 script = ExtResource("11_fxsj3")
 
@@ -1546,3 +1549,7 @@ script = ExtResource("10_ivkpo")
 position = Vector2(12.875, 12.6875)
 scale = Vector2(0.0473636, 0.0456543)
 texture = ExtResource("10_jyomu")
+
+[node name="ToasterBoss" parent="." instance=ExtResource("15_460jp")]
+position = Vector2(2765, -17)
+script = ExtResource("15_l6aid")
