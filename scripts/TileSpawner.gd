@@ -1,12 +1,12 @@
 extends TileMap
 
 @export var monster_scene = preload("res://scenes/monsters/slime.tscn")
-@export var number_of_monsters : int = 5 
+@export var number_of_monsters : int = 20
 @export var spawner_layer : int = 3
 var logger = Logger.new("[Spawner]")     
 var SPAWN_TIME = 10
 var spawn_time = 0
-const MAX_SPAWN = 20
+const MAX_SPAWN = 50
 
 func _ready():
 	for i in self.get_layers_count():
@@ -29,7 +29,7 @@ func get_spawn_positions() -> Array:
 		for y in range(used_rect.size.y):
 			var cell_pos = Vector2(used_rect.position.x + x, used_rect.position.y + y)
 			if not get_cell_tile_data(spawner_layer, cell_pos) == null:
-				spawn_positions.append(cell_pos)
+				spawn_positions.append(cell_pos + Vector2(0,0))
 	
 	return spawn_positions
 

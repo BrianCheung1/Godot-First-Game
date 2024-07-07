@@ -61,12 +61,15 @@ func _process(delta):
 		animated_sprite.flip_h = false
 	position.x += direction * speed * delta
 
-func _physics_process(delta):
+func physics_process_default(delta):
 	if velocity.x != 0:
 		is_facing_right = true if velocity.x > 0 else false
 	animated_sprite.flip_h = false if is_facing_right else true
 	velocity.y += gravity * delta
-	#move_and_slide()
+
+func _physics_process(delta):
+	physics_process_default(delta)
+	move_and_slide()
 	pass
 	
 func flash():
