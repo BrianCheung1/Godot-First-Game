@@ -1,7 +1,7 @@
 extends Item
 class_name InvincibilityBuff
 
-const buff_duration = 5
+const buff_duration = 1
 const ITEM_NAME = "InvincibilityBuff"
 var duration = 0
 const sprite_source = "res://assets/sprites/6_item.png"

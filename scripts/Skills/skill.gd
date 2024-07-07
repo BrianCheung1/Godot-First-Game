@@ -41,16 +41,15 @@ func _ready():
 	pass
 
 func default_process(delta):
-	if self.attack_duration > 0 and not activated:
-		self.attack_duration -= delta
-		AttackIndicator.create_from_collisionshape2d(body, ATTACK_WARNING, attack_collision_indicator, AttackIndicator.Type.Fade).go()
-		return
-	
 	if self.attack_duration <= 0 and not activated:
 		spawn_attack()
 		activated = true
 
 func _process(delta):
+	if self.attack_duration > 0 and not activated:
+		self.attack_duration -= delta
+		AttackIndicator.create_from_collisionshape2d(body, ATTACK_WARNING, attack_collision_indicator, AttackIndicator.Type.Fade).go()
+		return
 	default_process(delta)
 
 func activate():

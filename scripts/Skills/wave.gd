@@ -23,7 +23,7 @@ func spawn_attack():
 	if(body is Monster2D or body is SlimeBoss):
 		body_pos = get_tree().get_first_node_in_group("player").global_position
 	
-	var attack_stats = AttackStats.new(damage, DISTANCE, body_pos, total_duration, 5, Util.direction(body), ATTACK_SIZE)
+	var attack_stats = AttackStats.new(damage, DISTANCE, body_pos, total_duration, 5, Util.direction(body), ATTACK_SIZE, true)
 	var attack_sprite = Sprite.create_sprite(attackTexture, ATTACK_SIZE, body_pos)
 	if(Util.direction(body) == "Left"):
 		attack_sprite.flip_h = true

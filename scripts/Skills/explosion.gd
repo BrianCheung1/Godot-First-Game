@@ -17,7 +17,7 @@ func spawn_attack():
 	var body_pos = body.global_position + Vector2(0, ATTACK_SIZE.y/4)
 	var skill_duration = .25
 	var speed_mulitplier = 0
-	var attack_stats = AttackStats.new(damage, DISTANCE, body_pos, skill_duration, speed_mulitplier, Util.direction(body), ATTACK_SIZE)
+	var attack_stats = AttackStats.new(damage, DISTANCE, body_pos, skill_duration, speed_mulitplier, Util.direction(body), ATTACK_SIZE, false)
 	var attack_sprite = Sprite.resize_packed_scene(ANIMATED_EXPLOSION, ATTACK_SIZE, body_pos)
 	if(Util.direction(body) == "Left"):
 		attack_sprite.flip_h = true

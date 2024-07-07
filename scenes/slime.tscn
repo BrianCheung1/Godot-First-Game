@@ -106,6 +106,6 @@ collision_mask = 2
 damage = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
-position = Vector2(0, -6)
+position = Vector2(0, -7)
 shape = SubResource("RectangleShape2D_shmp5")
 debug_color = Color(0.204394, 0.624724, 0.412031, 0.42)
