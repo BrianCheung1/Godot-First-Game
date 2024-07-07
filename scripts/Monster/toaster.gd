@@ -9,8 +9,8 @@ const JUMP_VELOCITY = -400.0
 
 var bossSkills = {
 	"Explosion": {"CoolDown":10, "SinceActive":0, "Skill":Explosion.new(self, 25)},
-	"Avenger": {"CoolDown":3, "SinceActive":0, "Skill":Avenger.new(self, 10)},
-	"Balls": {"CoolDown":15, "SinceActive":0, "Skill":Balls.new(self, 10)}
+	"Laser": {"CoolDown":15, "SinceActive":0, "Skill":Laser.new(self, 15)},
+	"Avenger": {"CoolDown":5, "SinceActive":0, "Skill":Avenger.new(self, 10)},
 }
 
 const possilbe_actions = ["idle", "attack", "walk"]
@@ -21,7 +21,7 @@ var current_action:String
 
 func _ready():
 	super._ready()
-	hp = 50000
+	hp = 20000
 	for i in bossSkills.keys():
 		self.add_child(bossSkills[i]["Skill"])
 	animated_sprite_2d.animation_finished.connect(_on_animation_finished)

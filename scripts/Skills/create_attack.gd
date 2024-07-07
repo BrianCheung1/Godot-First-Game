@@ -42,7 +42,7 @@ func _process(delta):
 			move_attack(delta)
 		return
 
-	if(!self.playing):
+	if(!self.playing || attack_stats.ATTACK_DURATION <= 0):
 		queue_free()
 
 func move_attack(delta):
@@ -72,7 +72,8 @@ func _on_body_entered(body):
 			handle_on_hit(body)
 			return
 		
-		queue_free()
+		if(!self.attack_stats.Piercing):
+			queue_free()
 		logger.print("Attacked Body Player")
 		return
 		
@@ -82,7 +83,8 @@ func _on_body_entered(body):
 			handle_on_hit(body)
 			return
 		body.hit(attack_stats.DAMAGE)
-		queue_free()
+		if(!self.attack_stats.Piercing):
+			queue_free()
 		logger.print("Attacked Body Monster")
 		
 		return
@@ -94,11 +96,14 @@ func _on_body_entered(body):
 			handle_on_hit(body)
 			return
 		body.hit(attack_stats.DAMAGE)
-		queue_free()
+		if(!self.attack_stats.Piercing):
+			queue_free()
 		return
 	
 func handle_on_hit(body):
 	self.playing = sprite.is_playing()
+	if(self.attack_stats.Piercing):
+		return
 	sprite.play("on_hit")
 	sprite.animation_finished.connect(_on_animation_finished)
 	

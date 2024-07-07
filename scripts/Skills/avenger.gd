@@ -21,7 +21,7 @@ func spawn_attack():
 		if(body_pos < floor_position):
 			body_pos.y = floor_position.y
 			
-	var attack_stats = AttackStats.new(damage, DISTANCE, body_pos, 2, 5, Util.direction(body), ATTACK_SIZE)
+	var attack_stats = AttackStats.new(damage, DISTANCE, body_pos, 2, 5, Util.direction(body), ATTACK_SIZE, false)
 	var scene_instance = Sprite.resize_packed_scene(ANIMATED_STAR,ATTACK_SIZE, body_pos)
 	var attack = CreateAttack.new(scene_instance, attack_stats, body)
 	get_tree().root.add_child(attack)

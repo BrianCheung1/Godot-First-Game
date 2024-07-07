@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://cy55xjrsilwac"]
+
+[ext_resource type="Texture2D" uid="uid://ekkml1i7c41e" path="res://assets/sprites/animation_sprite_sheets/animated_laser.png" id="1_q8gym"]
+[ext_resource type="Texture2D" uid="uid://oyruw3h4i8jl" path="res://assets/sprites/animation_sprite_sheets/animated_balls.png" id="2_yl3qr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7h5o"]
+atlas = ExtResource("1_q8gym")
+region = Rect2(0, 0, 83, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uunub"]
+atlas = ExtResource("1_q8gym")
+region = Rect2(83, 0, 83, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sf1ky"]
+atlas = ExtResource("1_q8gym")
+region = Rect2(166, 0, 83, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n2k8t"]
+atlas = ExtResource("1_q8gym")
+region = Rect2(249, 0, 83, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kuxaj"]
+atlas = ExtResource("1_q8gym")
+region = Rect2(332, 0, 83, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4yoa"]
+atlas = ExtResource("2_yl3qr")
+region = Rect2(384, 0, 64, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_isph6"]
+atlas = ExtResource("2_yl3qr")
+region = Rect2(384, 0, 64, 72)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tqyfw"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_o7h5o")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_uunub")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_sf1ky")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n2k8t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kuxaj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4yoa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_isph6")
+}],
+"loop": false,
+"name": &"on_hit",
+"speed": 10.0
+}]
+
+[node name="AnimatedLaser" type="AnimatedSprite2D"]
+position = Vector2(-1, -0.999994)
+scale = Vector2(0.265625, 0.194444)
+sprite_frames = SubResource("SpriteFrames_tqyfw")

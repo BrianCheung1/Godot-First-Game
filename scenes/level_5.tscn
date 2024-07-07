@@ -1344,7 +1344,6 @@ position = Vector2(-168, -1072)
 
 [node name="Player" parent="." instance=ExtResource("7_2tgvn")]
 position = Vector2(2339, 0)
-invincibility_time_left = 0
 
 [node name="UI" parent="." instance=ExtResource("8_eiep3")]
 visible = false
@@ -1552,4 +1551,5 @@ texture = ExtResource("10_jyomu")
 
 [node name="ToasterBoss" parent="." instance=ExtResource("15_460jp")]
 position = Vector2(2765, -17)
+collision_layer = 7
 script = ExtResource("15_l6aid")

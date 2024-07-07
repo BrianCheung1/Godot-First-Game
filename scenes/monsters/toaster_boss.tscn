@@ -190,11 +190,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3kq03"]
-size = Vector2(30, 27.25)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wmqed"]
 size = Vector2(30, 25.9375)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3kq03"]
+size = Vector2(30, 27.25)
 
 [node name="ToasterBoss" type="CharacterBody2D"]
 
@@ -211,17 +211,6 @@ target_position = Vector2(9, 0)
 [node name="RayCastLeft" type="RayCast2D" parent="."]
 position = Vector2(-5, 5)
 target_position = Vector2(-9, 0)
-
-[node name="DamageZone" parent="." instance=ExtResource("2_ko6jv")]
-position = Vector2(0, 3)
-collision_layer = 4
-collision_mask = 2
-damage = 10
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
-position = Vector2(5, 0)
-shape = SubResource("RectangleShape2D_3kq03")
-debug_color = Color(0.204394, 0.624724, 0.412031, 0.42)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(5, 3)
@@ -254,3 +243,14 @@ metadata/_edit_use_anchors_ = true
 [node name="RayCastDown" type="RayCast2D" parent="."]
 position = Vector2(3, 14)
 target_position = Vector2(0, 3)
+
+[node name="DamageZone" parent="." instance=ExtResource("2_ko6jv")]
+position = Vector2(0, 3)
+collision_layer = 4
+collision_mask = 2
+damage = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
+position = Vector2(5, 0)
+shape = SubResource("RectangleShape2D_3kq03")
+debug_color = Color(0.204394, 0.624724, 0.412031, 0.42)
