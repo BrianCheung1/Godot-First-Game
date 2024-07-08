@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dglt5i5higp2m"]
+[gd_scene load_steps=36 format=3 uid="uid://dglt5i5higp2m"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_wiprl"]
 [ext_resource type="Script" path="res://scripts/level_1.gd" id="1_x5txr"]
@@ -20,7 +20,6 @@
 [ext_resource type="PackedScene" uid="uid://d1f5a8u5sawcy" path="res://scenes/finish_line.tscn" id="16_1gya6"]
 [ext_resource type="PackedScene" uid="uid://bc3hsi3jdap3k" path="res://scenes/monsters/breakable_tile.tscn" id="17_88twl"]
 [ext_resource type="PackedScene" uid="uid://dqamoh2wkughe" path="res://scenes/victory_screen.tscn" id="17_pxl4i"]
-[ext_resource type="Texture2D" uid="uid://c2l1qerdj5er" path="res://assets/sprites/world/1 - Grassland/Background parts/_Complete_static_BG_(288 x 208).png" id="19_8jmoa"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mq7ub"]
 texture = ExtResource("5_8gwyd")
@@ -816,19 +815,6 @@ script = ExtResource("1_wiprl")
 leaderboardScene = ExtResource("13_cuo1i")
 leaderboardID = "butter-knights-butter-knights-2wUo"
 
-[node name="ScoreLabel" type="Label" parent="GameManager"]
-offset_left = -96.0
-offset_top = -1144.0
-offset_right = -40.0
-offset_bottom = -1086.0
-theme_override_colors/font_color = Color(0.583203, 0.340325, 0.838577, 1)
-theme_override_fonts/font = ExtResource("2_m6th5")
-theme_override_font_sizes/font_size = 8
-text = "You've collected 0/27 coins!"
-horizontal_alignment = 1
-autowrap_mode = 2
-metadata/_edit_use_anchors_ = true
-
 [node name="HUD" parent="GameManager" instance=ExtResource("3_x7wmx")]
 
 [node name="Endzone" parent="GameManager" instance=ExtResource("4_sqlm8")]
@@ -1113,19 +1099,9 @@ position = Vector2(-24, -30)
 [node name="BreakableTile7" parent="BreakableTiles" instance=ExtResource("17_88twl")]
 position = Vector2(7, -30)
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-layer = 0
-follow_viewport_enabled = true
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-
-[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
-offset_right = 576.0
-offset_bottom = 1664.0
-texture = ExtResource("19_8jmoa")
-expand_mode = 3
-
 [connection signal="close_button" from="GameManager" to="." method="_on_game_manager_close_button"]
 [connection signal="host_game" from="MultiplayerHUD" to="GameManager" method="become_host"]
 [connection signal="join_as_player_2" from="MultiplayerHUD" to="GameManager" method="join_as_player_2"]
 [connection signal="single_player" from="MultiplayerHUD" to="GameManager" method="_on_multiplayer_hud_single_player"]
+
+[editable path="GameManager/HUD"]

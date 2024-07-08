@@ -8,5 +8,5 @@ func _on_body_entered(_body):
 	pick_up()
 	
 func pick_up():
-	game_manager.add_point()
+	game_manager.add_coins()
 	animation_player.play("pickup")
