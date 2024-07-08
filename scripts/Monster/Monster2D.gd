@@ -29,6 +29,11 @@ var direction = 1
 var enemy_hit_sound_node: AudioStreamPlayer
 var is_facing_right = false
 
+const possilbe_actions = ["idle", "attack", "walk"]
+var ACTION_CD = 2
+var current_action_time = 0
+var current_action:String
+
 func _init():
 	pass
 	
@@ -46,7 +51,28 @@ func _ready():
 	# Hide shader flash
 	if animated_sprite.material:
 		animated_sprite.material.set_shader_parameter("flash_modifier", 0);
+		
+	animated_sprite.animation_finished.connect(_on_animation_finished)
 	
+	self.damage_taken.connect(_on_health_changed)
+
+func _on_health_changed(hp):
+	if(self.current_action != "attack"):
+		self.current_action_time = 0
+
+func _on_animation_finished():
+	animated_sprite.play("idle")
+	self.current_action_time = 0
+
+func find_player():
+	var current_player_pos = Util.find_target(self).position
+	if(self.global_position.x > current_player_pos.x):
+		animated_sprite.flip_h = true
+		direction = -1
+	else:
+		animated_sprite.flip_h = false
+		direction = 1
+		
 func _tick(delta, tick):
 	if ray_cast_right != null and ray_cast_right.is_colliding():
 		direction = -1
