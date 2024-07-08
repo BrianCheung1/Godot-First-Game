@@ -13,9 +13,10 @@ func enter():
 	rogue_knight = character
 	animated_sprite.play("Teleport")
 	animated_sprite.speed_scale = 2.5
-	teleport(Vector2(-78, -103))
+	var should_test = rng.randf() > 0.5
+	teleport(Vector2(88, -151) if should_test else Vector2(rng.randi_range(-88, 0), -2))
 	await animated_sprite.animation_finished
-	on_transition.emit(self, "Idle")
+	on_transition.emit(self, "BossTest" if should_test else "Idle")
 	
 func exit():
 	animated_sprite.speed_scale = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://g0cxgv0kwa05"]
+[gd_scene load_steps=79 format=3 uid="uid://g0cxgv0kwa05"]
 
 [ext_resource type="Texture2D" uid="uid://fk1v2534qiow" path="res://assets/sprites/rogue knight/knight.png" id="1_a4q3b"]
 [ext_resource type="Script" path="res://scripts/Monster/rogue_knight/rogue_knight.gd" id="1_xdlt3"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://scripts/Monster/rogue_knight/states/rogue_knight_state_dash.gd" id="12_73ktc"]
 [ext_resource type="Script" path="res://scripts/Monster/rogue_knight/states/rogue_knight_state_idle.gd" id="13_ndq41"]
 [ext_resource type="Script" path="res://scripts/Monster/rogue_knight/states/rogue_knight_state_simple_attack.gd" id="13_yhhpn"]
+[ext_resource type="Script" path="res://scripts/Monster/rogue_knight/states/rogue_knight_state_boss_test.gd" id="15_fphcg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n6n5s"]
 atlas = ExtResource("1_a4q3b")
@@ -236,6 +237,22 @@ atlas = ExtResource("1_a4q3b")
 region = Rect2(250, 222, 50, 37)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ga0i4"]
+atlas = ExtResource("1_a4q3b")
+region = Rect2(300, 222, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycv8p"]
+atlas = ExtResource("1_a4q3b")
+region = Rect2(150, 222, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5qlj"]
+atlas = ExtResource("1_a4q3b")
+region = Rect2(200, 222, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ysi13"]
+atlas = ExtResource("1_a4q3b")
+region = Rect2(250, 222, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgk4k"]
 atlas = ExtResource("1_a4q3b")
 region = Rect2(300, 222, 50, 37)
 
@@ -466,6 +483,23 @@ animations = [{
 "loop": false,
 "name": &"Teleport",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ycv8p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5qlj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ysi13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kgk4k")
+}],
+"loop": true,
+"name": &"Test",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qvo0y"]
@@ -482,9 +516,8 @@ speed = 90
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pgp1v")
-animation = &"AttackFull"
-frame = 12
-frame_progress = 1.0
+animation = &"Test"
+frame_progress = 0.064683
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
@@ -554,4 +587,8 @@ character = NodePath("../..")
 
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("character")]
 script = ExtResource("13_ndq41")
+character = NodePath("../..")
+
+[node name="BossTest" type="Node" parent="StateMachine" node_paths=PackedStringArray("character")]
+script = ExtResource("15_fphcg")
 character = NodePath("../..")
