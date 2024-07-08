@@ -833,7 +833,6 @@ layer_1/tile_data = PackedInt32Array(65532, 393217, 3, 65533, 393217, 3, 65534, 
 
 [node name="Player" parent="." instance=ExtResource("6_pa67r")]
 position = Vector2(-8, 0)
-is_dev_mode = true
 
 [node name="Killzone" parent="." instance=ExtResource("7_y7oks")]
 position = Vector2(32, 65)

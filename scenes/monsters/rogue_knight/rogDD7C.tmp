@@ -517,7 +517,7 @@ speed = 90
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pgp1v")
 animation = &"Test"
-frame_progress = 0.064683
+frame_progress = 0.0680017
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)

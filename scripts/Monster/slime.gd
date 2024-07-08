@@ -1,7 +1,7 @@
 extends Monster2D
 class_name Slime
 
-var drop_chance_percent = 20
+var drop_chance_percent = 100
 
 var possible_items = ["BlinkPotion", "AuraItem", "InvincibilityBuff", "HealthPotion", "JumpPotion"]
 
