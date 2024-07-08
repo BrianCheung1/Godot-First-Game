@@ -81,16 +81,15 @@ func _on_multiplayer_hud_single_player():
 
 
 func _on_upgrades_per_level_buff_1():
-	player.hp += 50
+	PlayerVariables.player_MAX_HP += 50
 	change_level()
-	
 
 func _on_upgrades_per_level_buff_2():
-	player.attack_damage += 50
+	PlayerVariables.player_attack_damage += 50
 	change_level()
 
 func _on_upgrades_per_level_buff_3():
-	player.SPEED += 50
+	PlayerVariables.player_speed += 50
 	change_level()
 
 func change_level():

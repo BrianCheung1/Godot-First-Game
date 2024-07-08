@@ -7,6 +7,12 @@ var player_deaths:int = 0
 var player_resets:int = 0
 var player_ip = "127.0.0.1"
 var player_coins:int = 0
+var player_MAX_HP = 100
+var player_jump_velocity = -300.0
+var player_jump_count = 0
+var player_attack_damage = 50
+var player_speed = 130
+
 
 func _ready():
 	load_file()
