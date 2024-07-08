@@ -1,25 +1,25 @@
 [gd_scene load_steps=26 format=3 uid="uid://cj4o5wtpg120v"]
 
-[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_efgyb"]
-[ext_resource type="Script" path="res://scripts/level_3.gd" id="1_xy1oi"]
-[ext_resource type="PackedScene" uid="uid://dgygkbtm0burn" path="res://addons/quiver_leaderboards/leaderboard_ui.tscn" id="2_t8cd5"]
-[ext_resource type="FontFile" uid="uid://dc004b45phav2" path="res://assets/fonts/PixelOperator8.ttf" id="3_xg8oo"]
-[ext_resource type="PackedScene" uid="uid://d3bvgw3dg0e2l" path="res://scenes/hud.tscn" id="4_adwff"]
-[ext_resource type="PackedScene" uid="uid://pen1qei18gy7" path="res://scenes/endzone.tscn" id="5_40w2b"]
-[ext_resource type="PackedScene" uid="uid://m44vus15jmky" path="res://scenes/player.tscn" id="6_0b2xc"]
-[ext_resource type="Texture2D" uid="uid://dbqxeo5a3ott4" path="res://assets/sprites/world_tileset.png" id="7_gyk8c"]
-[ext_resource type="PackedScene" uid="uid://vb4lvdta2d5o" path="res://scenes/killzone.tscn" id="7_teh8t"]
-[ext_resource type="Script" path="res://scripts/ice_tilemap.gd" id="8_fpt3h"]
-[ext_resource type="Texture2D" uid="uid://mvlta07ksqdf" path="res://assets/sprites/world/4 - Winter World/Terrain (16 x 16).png" id="8_i4ohh"]
-[ext_resource type="PackedScene" uid="uid://jpp0tyw8uubs" path="res://scenes/ui.tscn" id="8_ksyso"]
-[ext_resource type="Texture2D" uid="uid://bsd84iu65kggo" path="res://assets/sprites/world/1 - Grassland/Terrain (16 x 16).png" id="10_ugark"]
-[ext_resource type="PackedScene" uid="uid://cybewihjfuvew" path="res://scenes/spike.tscn" id="11_qxn3a"]
-[ext_resource type="PackedScene" uid="uid://c12jdn8pbqxvy" path="res://scenes/coin.tscn" id="12_mijim"]
-[ext_resource type="PackedScene" uid="uid://bmifpw60wh73o" path="res://scenes/jump_power.tscn" id="13_26vo8"]
-[ext_resource type="PackedScene" uid="uid://mn1rmqtsc0vc" path="res://scenes/monsters/slime.tscn" id="14_thlij"]
+[ext_resource type="Script" path="res://scripts/level_3.gd" id="1_75bh0"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="2_buwol"]
+[ext_resource type="PackedScene" uid="uid://dgygkbtm0burn" path="res://addons/quiver_leaderboards/leaderboard_ui.tscn" id="3_aavs3"]
+[ext_resource type="FontFile" uid="uid://dc004b45phav2" path="res://assets/fonts/PixelOperator8.ttf" id="4_a8gyn"]
+[ext_resource type="PackedScene" uid="uid://d3bvgw3dg0e2l" path="res://scenes/hud.tscn" id="5_cd020"]
+[ext_resource type="PackedScene" uid="uid://pen1qei18gy7" path="res://scenes/endzone.tscn" id="6_qyesf"]
+[ext_resource type="Texture2D" uid="uid://dbqxeo5a3ott4" path="res://assets/sprites/world_tileset.png" id="7_ap2bo"]
+[ext_resource type="Texture2D" uid="uid://mvlta07ksqdf" path="res://assets/sprites/world/4 - Winter World/Terrain (16 x 16).png" id="8_7t1yn"]
+[ext_resource type="Script" path="res://scripts/ice_tilemap.gd" id="9_3onql"]
+[ext_resource type="Texture2D" uid="uid://bsd84iu65kggo" path="res://assets/sprites/world/1 - Grassland/Terrain (16 x 16).png" id="10_fdqp4"]
+[ext_resource type="PackedScene" uid="uid://m44vus15jmky" path="res://scenes/player.tscn" id="11_exie7"]
+[ext_resource type="PackedScene" uid="uid://vb4lvdta2d5o" path="res://scenes/killzone.tscn" id="12_bnp6u"]
+[ext_resource type="PackedScene" uid="uid://jpp0tyw8uubs" path="res://scenes/ui.tscn" id="13_dmdj7"]
+[ext_resource type="PackedScene" uid="uid://cybewihjfuvew" path="res://scenes/spike.tscn" id="14_s37bd"]
+[ext_resource type="PackedScene" uid="uid://c12jdn8pbqxvy" path="res://scenes/coin.tscn" id="15_1r8be"]
+[ext_resource type="PackedScene" uid="uid://bmifpw60wh73o" path="res://scenes/jump_power.tscn" id="16_8sg3l"]
+[ext_resource type="PackedScene" uid="uid://mn1rmqtsc0vc" path="res://scenes/slime.tscn" id="17_ymp17"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_83wod"]
-texture = ExtResource("7_gyk8c")
+texture = ExtResource("7_ap2bo")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -417,7 +417,7 @@ texture = ExtResource("7_gyk8c")
 2:4/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w2doh"]
-texture = ExtResource("8_i4ohh")
+texture = ExtResource("8_7t1yn")
 3:1/0 = 0
 3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:1/0/physics_layer_0/angular_velocity = 0.0
@@ -573,7 +573,7 @@ sources/0 = SubResource("TileSetAtlasSource_83wod")
 sources/1 = SubResource("TileSetAtlasSource_w2doh")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vlm3l"]
-texture = ExtResource("7_gyk8c")
+texture = ExtResource("7_ap2bo")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -985,7 +985,7 @@ texture = ExtResource("7_gyk8c")
 3:15/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_30ctn"]
-texture = ExtResource("8_i4ohh")
+texture = ExtResource("8_7t1yn")
 3:1/0 = 0
 3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:1/0/physics_layer_0/angular_velocity = 0.0
@@ -1136,7 +1136,7 @@ texture = ExtResource("8_i4ohh")
 4:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_70ygv"]
-texture = ExtResource("10_ugark")
+texture = ExtResource("10_fdqp4")
 3:1/0 = 0
 3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:1/0/physics_layer_0/angular_velocity = 0.0
@@ -1295,12 +1295,12 @@ sources/2 = SubResource("TileSetAtlasSource_70ygv")
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_luu80"]
 
 [node name="level3" type="Node2D"]
-script = ExtResource("1_xy1oi")
+script = ExtResource("1_75bh0")
 
 [node name="GameManager" type="Node" parent="."]
 unique_name_in_owner = true
-script = ExtResource("1_efgyb")
-leaderboardScene = ExtResource("2_t8cd5")
+script = ExtResource("2_buwol")
+leaderboardScene = ExtResource("3_aavs3")
 leaderboardID = "butter-knights-level-3-s9FD"
 
 [node name="ScoreLabel" type="Label" parent="GameManager"]
@@ -1310,16 +1310,16 @@ offset_top = -1144.0
 offset_right = -32.0
 offset_bottom = -1086.0
 theme_override_colors/font_color = Color(0.583203, 0.340325, 0.838577, 1)
-theme_override_fonts/font = ExtResource("3_xg8oo")
+theme_override_fonts/font = ExtResource("4_a8gyn")
 theme_override_font_sizes/font_size = 8
 text = "You've collected 0/27 coins!"
 horizontal_alignment = 1
 autowrap_mode = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="HUD" parent="GameManager" instance=ExtResource("4_adwff")]
+[node name="HUD" parent="GameManager" instance=ExtResource("5_cd020")]
 
-[node name="Endzone" parent="GameManager" instance=ExtResource("5_40w2b")]
+[node name="Endzone" parent="GameManager" instance=ExtResource("6_qyesf")]
 position = Vector2(1000, -784)
 
 [node name="IceTileMapNode" type="TileMap" parent="."]
@@ -1331,7 +1331,7 @@ layer_0/tile_data = PackedInt32Array(-720864, 196609, 1, -720863, 327681, 1, -32
 layer_1/name = "Mid"
 layer_1/z_index = -500
 layer_1/tile_data = PackedInt32Array(-393219, 262145, 1, -393218, 262145, 1, -393217, 262145, 1, -458752, 262145, 1, -458751, 262145, 1, -458750, 262145, 1, -393221, 196609, 1, -393220, 262145, 1, -458749, 262145, 1, -458748, 262145, 1, -458747, 262145, 1, -458746, 327681, 1, -458735, 196609, 1, -458734, 262145, 1, -458733, 262145, 1, -458732, 262145, 1, -458731, 262145, 1, -458730, 262145, 1, -458729, 262145, 1, -458728, 262145, 1, -458727, 262145, 1, -458726, 262145, 1, -458725, 327681, 1)
-script = ExtResource("8_fpt3h")
+script = ExtResource("9_3onql")
 
 [node name="TileMapNode" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_ivfi5")
@@ -1343,120 +1343,120 @@ layer_1/name = "Mid"
 layer_1/z_index = -500
 layer_1/tile_data = PackedInt32Array(-524277, 196610, 1, -524276, 327682, 1, -327685, 196609, 5, -262149, 196609, 5, -196613, 65537, 4, -196612, 262145, 6, -262148, 262145, 3, -262147, 262145, 3, -196611, 262145, 6, -262146, 262145, 3, -196610, 262145, 6, -327681, 262145, 5, -262145, 262145, 3, -196609, 262145, 6, -393216, 262145, 5, -327680, 262145, 3, -262144, 262145, 6, -393215, 262145, 5, -327679, 262145, 3, -262143, 262145, 6, -393214, 262145, 5, -327678, 262145, 3, -262142, 262145, 6, -393213, 262145, 5, -327677, 262145, 3, -262141, 262145, 6, -393212, 262145, 5, -327676, 262145, 3, -262140, 262145, 6, -393211, 262145, 5, -327675, 262145, 3, -262139, 262145, 6, -393210, 327681, 5, -327674, 327681, 5, -262138, 458753, 4, -393199, 196609, 5, -327663, 196609, 5, -262127, 196609, 6, -393198, 262145, 5, -327662, 262145, 5, -262126, 262145, 6, -393197, 262145, 5, -327661, 262145, 5, -262125, 262145, 6, -393196, 262145, 5, -327660, 262145, 5, -262124, 262145, 6, -393195, 262145, 5, -327659, 262145, 5, -262123, 262145, 6, -393194, 262145, 5, -327658, 262145, 5, -262122, 262145, 6, -393193, 262145, 5, -327657, 262145, 5, -262121, 262145, 6, -393192, 262145, 5, -327656, 262145, 5, -262120, 262145, 6, -393191, 262145, 5, -327655, 262145, 5, -262119, 262145, 6, -393190, 262145, 5, -327654, 262145, 5, -262118, 262145, 6, -393189, 327681, 5, -327653, 327681, 5, -262117, 327681, 6, -458741, 196610, 2, -393205, 196610, 2, -327669, 196610, 2, -262133, 196610, 6, -458740, 327682, 2, -393204, 327682, 2, -327668, 327682, 2, -262132, 327682, 6, -524259, 196610, 5, -458723, 196610, 5, -393187, 196610, 5, -327651, 196610, 5, -262115, 196610, 6, -524258, 327682, 5, -458722, 327682, 5, -393186, 327682, 5, -327650, 327682, 5, -262114, 327682, 6, -589792, 196609, 5, -524256, 196609, 5, -458720, 196609, 5, -393184, 196609, 5, -327648, 196609, 5, -262112, 196609, 6, -589791, 327681, 5, -524255, 327681, 5, -458719, 327681, 5, -393183, 327681, 5, -327647, 327681, 5, -262111, 327681, 6, -589795, 196610, 1, -589794, 327682, 1, -655328, 196609, 5, -655327, 327681, 5, -262106, 196609, 6, -262105, 262145, 6, -262104, 262145, 6, -262103, 262145, 6, -262102, 262145, 6, -262101, 262145, 6, -262100, 262145, 6, -262099, 327681, 6, -851908, 589826, 3, -851907, 851970, 3, -1703863, 851970, 3, -1703864, 655362, 3, -1703865, 655362, 3, -1703866, 589826, 3, -1703890, 851970, 3, -1703891, 655362, 3, -1703892, 589826, 3, -1834968, 851970, 3, -1834969, 655362, 3, -1834970, 589826, 3, -2228186, 851970, 3, -2228187, 589826, 3, -2555870, 851970, 3, -2555871, 589826, 3, -2883542, 983042, 3, -3145674, 720898, 1, -3080138, 196610, 6, -3080137, 655362, 3, -3080136, 655362, 3, -3080135, 655362, 3, -3080134, 655362, 3, -3080133, 655362, 3, -3080132, 655362, 3, -3080131, 655362, 3, -3080130, 327682, 6, -3145666, 720898, 1, -3211207, 589826, 3, -3211206, 655362, 3, -3211205, 851970, 3, -327684, 262145, 5, -327683, 262145, 5, -327682, 262145, 5)
 
-[node name="Player" parent="." instance=ExtResource("6_0b2xc")]
+[node name="Player" parent="." instance=ExtResource("11_exie7")]
 position = Vector2(-72, -114)
 
-[node name="Killzone" parent="." instance=ExtResource("7_teh8t")]
+[node name="Killzone" parent="." instance=ExtResource("12_bnp6u")]
 position = Vector2(1, -24)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
 shape = SubResource("WorldBoundaryShape2D_luu80")
 
-[node name="UI" parent="." instance=ExtResource("8_ksyso")]
+[node name="UI" parent="." instance=ExtResource("13_dmdj7")]
 
 [node name="Spikes" type="Node2D" parent="."]
 
-[node name="Spike" parent="Spikes" instance=ExtResource("11_qxn3a")]
+[node name="Spike" parent="Spikes" instance=ExtResource("14_s37bd")]
 position = Vector2(376, -121)
 
-[node name="Spike2" parent="Spikes" instance=ExtResource("11_qxn3a")]
+[node name="Spike2" parent="Spikes" instance=ExtResource("14_s37bd")]
 position = Vector2(312, -121)
 
-[node name="Spike3" parent="Spikes" instance=ExtResource("11_qxn3a")]
+[node name="Spike3" parent="Spikes" instance=ExtResource("14_s37bd")]
 position = Vector2(936, -760)
 
-[node name="Spike4" parent="Spikes" instance=ExtResource("11_qxn3a")]
+[node name="Spike4" parent="Spikes" instance=ExtResource("14_s37bd")]
 position = Vector2(536, -632)
 
-[node name="Spike5" parent="Spikes" instance=ExtResource("11_qxn3a")]
+[node name="Spike5" parent="Spikes" instance=ExtResource("14_s37bd")]
 position = Vector2(616, -552)
 
-[node name="Spike6" parent="Spikes" instance=ExtResource("11_qxn3a")]
+[node name="Spike6" parent="Spikes" instance=ExtResource("14_s37bd")]
 position = Vector2(744, -424)
 
-[node name="Spike7" parent="Spikes" instance=ExtResource("11_qxn3a")]
+[node name="Spike7" parent="Spikes" instance=ExtResource("14_s37bd")]
 position = Vector2(1144, -424)
 
-[node name="Spike8" parent="Spikes" instance=ExtResource("11_qxn3a")]
+[node name="Spike8" parent="Spikes" instance=ExtResource("14_s37bd")]
 position = Vector2(1080, -120)
 
 [node name="Coins" type="Node2D" parent="."]
 
-[node name="Coin" parent="Coins" instance=ExtResource("12_mijim")]
+[node name="Coin" parent="Coins" instance=ExtResource("15_1r8be")]
 position = Vector2(-56, -118)
 
-[node name="Coin2" parent="Coins" instance=ExtResource("12_mijim")]
+[node name="Coin2" parent="Coins" instance=ExtResource("15_1r8be")]
 position = Vector2(-40, -118)
 
-[node name="Coin3" parent="Coins" instance=ExtResource("12_mijim")]
+[node name="Coin3" parent="Coins" instance=ExtResource("15_1r8be")]
 position = Vector2(-24, -118)
 
-[node name="Coin4" parent="Coins" instance=ExtResource("12_mijim")]
+[node name="Coin4" parent="Coins" instance=ExtResource("15_1r8be")]
 position = Vector2(-8, -118)
 
-[node name="Coin5" parent="Coins" instance=ExtResource("12_mijim")]
+[node name="Coin5" parent="Coins" instance=ExtResource("15_1r8be")]
 position = Vector2(8, -118)
 
-[node name="Coin6" parent="Coins" instance=ExtResource("12_mijim")]
+[node name="Coin6" parent="Coins" instance=ExtResource("15_1r8be")]
 position = Vector2(24, -118)
 
-[node name="Coin7" parent="Coins" instance=ExtResource("12_mijim")]
+[node name="Coin7" parent="Coins" instance=ExtResource("15_1r8be")]
 position = Vector2(40, -118)
 
-[node name="Coin8" parent="Coins" instance=ExtResource("12_mijim")]
+[node name="Coin8" parent="Coins" instance=ExtResource("15_1r8be")]
 position = Vector2(56, -118)
 
-[node name="Coin9" parent="Coins" instance=ExtResource("12_mijim")]
+[node name="Coin9" parent="Coins" instance=ExtResource("15_1r8be")]
 position = Vector2(72, -118)
 
-[node name="Coin10" parent="Coins" instance=ExtResource("12_mijim")]
+[node name="Coin10" parent="Coins" instance=ExtResource("15_1r8be")]
 position = Vector2(88, -118)
 
-[node name="Coin11" parent="Coins" instance=ExtResource("12_mijim")]
+[node name="Coin11" parent="Coins" instance=ExtResource("15_1r8be")]
 position = Vector2(576, -96)
 
-[node name="Coin12" parent="Coins" instance=ExtResource("12_mijim")]
+[node name="Coin12" parent="Coins" instance=ExtResource("15_1r8be")]
 position = Vector2(592, -96)
 
-[node name="Coin13" parent="Coins" instance=ExtResource("12_mijim")]
+[node name="Coin13" parent="Coins" instance=ExtResource("15_1r8be")]
 position = Vector2(576, -114)
 
-[node name="Coin14" parent="Coins" instance=ExtResource("12_mijim")]
+[node name="Coin14" parent="Coins" instance=ExtResource("15_1r8be")]
 position = Vector2(920, -760)
 
-[node name="Coin15" parent="Coins" instance=ExtResource("12_mijim")]
+[node name="Coin15" parent="Coins" instance=ExtResource("15_1r8be")]
 position = Vector2(952, -759)
 
-[node name="Coin16" parent="Coins" instance=ExtResource("12_mijim")]
+[node name="Coin16" parent="Coins" instance=ExtResource("15_1r8be")]
 position = Vector2(712, -424)
 
-[node name="Coin17" parent="Coins" instance=ExtResource("12_mijim")]
+[node name="Coin17" parent="Coins" instance=ExtResource("15_1r8be")]
 position = Vector2(984, -568)
 
-[node name="Coin18" parent="Coins" instance=ExtResource("12_mijim")]
+[node name="Coin18" parent="Coins" instance=ExtResource("15_1r8be")]
 position = Vector2(856, -564)
 
-[node name="Coin19" parent="Coins" instance=ExtResource("12_mijim")]
+[node name="Coin19" parent="Coins" instance=ExtResource("15_1r8be")]
 position = Vector2(1176, -200)
 
-[node name="Coin20" parent="Coins" instance=ExtResource("12_mijim")]
+[node name="Coin20" parent="Coins" instance=ExtResource("15_1r8be")]
 position = Vector2(1208, -280)
 
-[node name="Coin21" parent="Coins" instance=ExtResource("12_mijim")]
+[node name="Coin21" parent="Coins" instance=ExtResource("15_1r8be")]
 position = Vector2(1240, -360)
 
-[node name="Coin22" parent="Coins" instance=ExtResource("12_mijim")]
+[node name="Coin22" parent="Coins" instance=ExtResource("15_1r8be")]
 position = Vector2(1176, -424)
 
-[node name="Coin23" parent="Coins" instance=ExtResource("12_mijim")]
+[node name="Coin23" parent="Coins" instance=ExtResource("15_1r8be")]
 position = Vector2(680, -712)
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(1120, -121)
 
-[node name="JumpPower" parent="Node2D" instance=ExtResource("13_26vo8")]
+[node name="JumpPower" parent="Node2D" instance=ExtResource("16_8sg3l")]
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="slime" parent="Enemies" instance=ExtResource("14_thlij")]
+[node name="slime" parent="Enemies" instance=ExtResource("17_ymp17")]
 position = Vector2(888, -752)

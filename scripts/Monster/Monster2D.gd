@@ -14,8 +14,12 @@ var rng = RandomNumberGenerator.new()
 @onready var on_damage_audio = $DamageAudio
 @onready var mini_hpbar: ProgressBar = $MiniHealthbar
 @onready var ray_cast_down = $RayCastDown
+@onready var game_manager = %GameManager
+
+
 @export var hp: int = 100
 @export var speed: int = 60
+@export var coins_on_death:int = 10
 signal damage_taken(new_health)
 
 
@@ -121,6 +125,7 @@ func die():
 	mini_hpbar.hide()
 	animated_sprite.hide()
 	damage_collision.disabled = true
+	game_manager.add_coins_on_monster_kill(coins_on_death)
 	
 	spawn_death_effect()
 	# On death audio (should free up resources after the audio is finished playing)

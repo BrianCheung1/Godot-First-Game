@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_ar8xy"]
 [ext_resource type="PackedScene" uid="uid://bukps2fe7uctp" path="res://scenes/main_menu.tscn" id="2_tlmht"]
 [ext_resource type="PackedScene" uid="uid://b3n43jnvhbth3" path="res://scenes/game_menu.tscn" id="3_8dy5v"]
-[ext_resource type="PackedScene" uid="uid://jhglmeyaolit" path="res://scenes/level_menu.tscn" id="4_vhc33"]
+[ext_resource type="PackedScene" uid="uid://jhglmeyaolit" path="res://scenes/levels/level_menu.tscn" id="4_vhc33"]
 [ext_resource type="PackedScene" uid="uid://qxm517yahky2" path="res://scenes/highscore_menu.tscn" id="5_7m6x0"]
 [ext_resource type="PackedScene" uid="uid://dgygkbtm0burn" path="res://addons/quiver_leaderboards/leaderboard_ui.tscn" id="6_ufvbq"]
 

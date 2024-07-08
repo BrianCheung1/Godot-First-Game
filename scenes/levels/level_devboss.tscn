@@ -719,7 +719,7 @@ position = Vector2(-32, 32)
 shape = SubResource("WorldBoundaryShape2D_ixkgr")
 
 [node name="RogueKnight" parent="." instance=ExtResource("9_64ql3")]
-position = Vector2(20, -65)
+position = Vector2(0.675385, -0.188217)
 
 [node name="ShopCanvasLayer" parent="." instance=ExtResource("11_elwo5")]
 visible = false

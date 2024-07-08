@@ -26,11 +26,9 @@ class_name Player
 var flash_jump_effect = preload("res://scenes/effect_scenes/flash_jump.tscn")
 
 # Constants
-const MAX_HP = 100
 const MAX_JUMP_COUNT = 1
-const SPEED = 130.0
 const FLASH_JUMP_Y_VELOCITY_BOOST = -150
-const FLASH_JUMP_X_VELOCITY_BOOST = SPEED * 1.8
+const FLASH_JUMP_X_VELOCITY_BOOST = 130 * 1.8
 const INVINCIBILITY_TIME = 1
 const JUMP_VELOCITY_BASE = -300.0
 
@@ -55,7 +53,15 @@ var is_rolling_cooldown = false
 var is_sliding_to = 0
 var is_sliding = false
 var is_attacking = false
-var attack_damage = 50
+var SPEED: int:
+	get:
+		return PlayerVariables.player_speed
+var attack_damage: int:
+	get:
+		return PlayerVariables.player_attack_damage
+var MAX_HP: int:
+	get:
+		return PlayerVariables.player_MAX_HP 
 @export var invincibility_time_left = 0
 
 # Computed Getters
