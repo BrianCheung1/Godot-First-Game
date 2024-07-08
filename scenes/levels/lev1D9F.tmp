@@ -1109,8 +1109,6 @@ position = Vector2(7, -30)
 
 [connection signal="close_button" from="GameManager" to="." method="_on_game_manager_close_button"]
 [connection signal="buff_1" from="GameManager/UpgradesPerLevel" to="GameManager" method="_on_upgrades_per_level_buff_1"]
-[connection signal="buff_2" from="GameManager/UpgradesPerLevel" to="GameManager" method="_on_upgrades_per_level_buff_2"]
-[connection signal="buff_3" from="GameManager/UpgradesPerLevel" to="GameManager" method="_on_upgrades_per_level_buff_3"]
 [connection signal="host_game" from="MultiplayerHUD" to="GameManager" method="become_host"]
 [connection signal="join_as_player_2" from="MultiplayerHUD" to="GameManager" method="join_as_player_2"]
 [connection signal="single_player" from="MultiplayerHUD" to="GameManager" method="_on_multiplayer_hud_single_player"]

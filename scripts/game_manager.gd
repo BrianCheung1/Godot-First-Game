@@ -8,6 +8,7 @@ var timer_started = false
 @onready var ui = $"../UI"
 @onready var player = $"../Player"
 @onready var coin_label = $HUD/CoinLabel
+@onready var upgrades_per_level = $UpgradesPerLevel
 
 @export var leaderboardScene:PackedScene
 @export var leaderboardID: String
@@ -31,10 +32,7 @@ func add_coins_on_monster_kill(coins):
 	coin_label.text = "Coins: " + str(PlayerVariables.player_coins)
 
 func end_game():
-	var level = str(get_tree().current_scene.name)
-	var res = int(level[-1]) + 1
-	var change_to_level = "level_" + str(res) + ".tscn"
-	get_tree().change_scene_to_file("res://scenes/levels/%s" % change_to_level)
+	upgrades_per_level.visible = true
 	
 
 func _process(delta):
@@ -80,3 +78,24 @@ func join_as_player_2():
 func _on_multiplayer_hud_single_player():
 	print("Single Player Mode")
 	%MultiplayerHUD.hide()
+
+
+func _on_upgrades_per_level_buff_1():
+	player.hp += 50
+	change_level()
+	
+
+func _on_upgrades_per_level_buff_2():
+	player.attack_damage += 50
+	change_level()
+
+func _on_upgrades_per_level_buff_3():
+	player.SPEED += 50
+	change_level()
+
+func change_level():
+	var level = str(get_tree().current_scene.name)
+	var res = int(level[-1]) + 1
+	var change_to_level = "level_" + str(res) + ".tscn"
+	get_tree().change_scene_to_file("res://scenes/levels/%s" % change_to_level)
+	upgrades_per_level.visible = true
