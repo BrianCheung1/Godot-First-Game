@@ -225,18 +225,19 @@ animations = [{
 
 [node name="MudGuard" type="CharacterBody2D"]
 position = Vector2(2, 0)
+collision_layer = 7
 script = ExtResource("1_6leu7")
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
-position = Vector2(35, -7)
+position = Vector2(5, -3)
 target_position = Vector2(9, 0)
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
-position = Vector2(22, -7)
+position = Vector2(-6, -6)
 target_position = Vector2(-9, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(29.375, -9.25)
+position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_lukeg")
 
 [node name="StateSynchronizer" type="Node" parent="." node_paths=PackedStringArray("root")]
@@ -249,7 +250,7 @@ script = ExtResource("4_ex3cx")
 root = NodePath("..")
 
 [node name="OnDeathAudio" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(26, -12)
+position = Vector2(11, -14)
 stream = ExtResource("5_ejvhq")
 volume_db = 24.0
 bus = &"SFX"
@@ -257,28 +258,28 @@ bus = &"SFX"
 [node name="DamageAudio" parent="." instance=ExtResource("6_2knbu")]
 
 [node name="MiniHealthbar" parent="." instance=ExtResource("7_opvyo")]
-offset_left = 24.0
-offset_top = 3.8147e-06
-offset_right = 54.0
-offset_bottom = 5.0
+offset_left = -5.0
+offset_top = -1.0
+offset_right = 25.0
+offset_bottom = 4.0
 metadata/_edit_use_anchors_ = true
 
 [node name="RayCastDown" type="RayCast2D" parent="."]
-position = Vector2(28, -3)
+position = Vector2(-1, -4)
 target_position = Vector2(0, 3)
 
 [node name="DamageZone" parent="." instance=ExtResource("8_tg51d")]
-position = Vector2(19, -8)
+position = Vector2(-2, -1)
 collision_layer = 4
 collision_mask = 2
 damage = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
-position = Vector2(10, -1)
+position = Vector2(2, -9)
 shape = SubResource("RectangleShape2D_dxamw")
 debug_color = Color(0.204394, 0.624724, 0.412031, 0.42)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(29, -10)
+position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_hjdv5")
 animation = &"run"

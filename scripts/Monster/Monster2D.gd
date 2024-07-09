@@ -34,15 +34,22 @@ var ACTION_CD = 2
 var current_action_time = 0
 var current_action:String
 var need_offset = false
+var collision_node:CollisionShape2D
+var attack_collision:CollisionShape2D
+var base_size:Vector2
+var attack_direction:String
+var attack_padding:Vector2
 
 func _init():
 	pass
 	
 func _ready():
-	#var animated = self.get_node("AnimatedSprite2D")
 	var animated = self.get_node("AnimatedSprite2D")
 	print(animated.global_position)
 	self.animated_sprite = animated
+
+	self.collision_node = self.get_node("CollisionShape2D")
+	self.base_size = Collision.get_collision_shape_size(self.collision_node)
 
 	if MultiplayerManager.multiplayer_mode_enabled:
 		set_process(false)
@@ -66,7 +73,17 @@ func _on_health_changed(hp):
 	if(self.current_action != "attack"):
 		self.current_action_time = 0
 
+func update_attack_collision():
+	if(self.attack_direction == "Front"):
+		if(self.animated_sprite.flip_h == true):
+			self.attack_collision.position.x = self.collision_node.position.x - self.attack_padding.x
+			return
+		self.attack_collision.position.x = self.collision_node.position.x + self.attack_padding.x
+		return
+
 func _on_animation_finished():
+	if(attack_collision != null):
+		attack_collision.disabled = true
 	animated_sprite.offset = Vector2(0,0)
 	animated_sprite.play("idle")
 	self.current_action_time = 0
@@ -75,10 +92,12 @@ func find_player():
 	var current_player_pos = Util.find_target(self).position
 	if(self.global_position.x > current_player_pos.x):
 		animated_sprite.flip_h = true
+		update_attack_collision()
 		direction = -1
 		return true
 
 	animated_sprite.flip_h = false
+	update_attack_collision()
 	direction = 1
 	return false
 
@@ -88,24 +107,29 @@ func _tick(delta, tick):
 	if ray_cast_right != null and ray_cast_right.is_colliding():
 		direction = -1
 		animated_sprite.flip_h = true
+		update_attack_collision()
 	if ray_cast_right != null and ray_cast_left.is_colliding():
 		direction = 1
 		animated_sprite.flip_h = false
+		update_attack_collision()
 	position.x += direction * speed * delta
 
 func _process(delta):
 	if ray_cast_right != null and ray_cast_right.is_colliding():
 		direction = -1
 		animated_sprite.flip_h = true
+		update_attack_collision()
 	if ray_cast_right != null and ray_cast_left.is_colliding():
 		direction = 1
 		animated_sprite.flip_h = false
+		update_attack_collision()
 	position.x += direction * speed * delta
 
 func physics_process_default(delta):
 	if velocity.x != 0:
 		is_facing_right = true if velocity.x > 0 else false
 	animated_sprite.flip_h = false if is_facing_right else true
+	update_attack_collision()
 	velocity.y += gravity * delta
 
 func _physics_process(delta):
@@ -162,7 +186,7 @@ func generate_item_node(item_name:String):
 	
 func die():
 	if dead: return
-	var offset = offset()
+	var offset = offset("idle","die")
 	self.animated_sprite.offset = offset
 	self.animated_sprite.play("die")
 	
@@ -188,14 +212,14 @@ func spawn_death_effect():
 func _to_string():
 	return "Monster [HP={HP}]".format({ "HP": hp })
 
-func offset()->Vector2:
+func offset(idle, off_set_frame)->Vector2:
 	var direction = self.find_player()
 	
 	if(!self.need_offset):
 		return Vector2(0,0)
 	
-	var attack_size = Sprite.get_current_sprite_size(self.animated_sprite, "attack")
-	var idle_size = Sprite.get_current_sprite_size(self.animated_sprite, "idle")
+	var attack_size = Sprite.get_current_sprite_size(self.animated_sprite, off_set_frame)
+	var idle_size = Sprite.get_current_sprite_size(self.animated_sprite, idle)
 	
 	if(attack_size == idle_size):
 		return Vector2(0,0)
@@ -215,10 +239,12 @@ func determine_action():
 			self.animated_sprite.play("idle")
 			self.current_action = "idle"
 		"attack":
-			var offset = offset()
+			var offset = offset("idle","attack")
 			self.animated_sprite.offset = offset
 			self.current_action = "attack"
 			self.speed = 0
+			if(attack_collision != null):
+				attack_collision.disabled = false
 			self.animated_sprite.play("attack")
 		"walk":
 			self.speed = 60

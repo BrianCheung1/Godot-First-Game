@@ -1349,7 +1349,8 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(-168, -1072)
 
 [node name="Player" parent="." instance=ExtResource("7_2tgvn")]
-position = Vector2(2015, -20)
+position = Vector2(742, -14)
+invincibility_time_left = 0
 
 [node name="UI" parent="." instance=ExtResource("8_eiep3")]
 visible = false
@@ -1579,4 +1580,4 @@ position = Vector2(977, -81)
 position = Vector2(612, -82)
 
 [node name="SpiritBoxer" parent="." instance=ExtResource("22_yys1r")]
-position = Vector2(442, -81)
+position = Vector2(439, -81)

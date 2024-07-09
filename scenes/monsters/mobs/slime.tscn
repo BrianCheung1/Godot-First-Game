@@ -130,7 +130,7 @@ animations = [{
 size = Vector2(16, 12)
 
 [node name="Slime" type="CharacterBody2D" groups=["slime"]]
-collision_layer = 4
+collision_layer = 7
 script = ExtResource("1_gqabk")
 hp = 150
 
