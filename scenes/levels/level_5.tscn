@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://b5a5mxprhv5j"]
+[gd_scene load_steps=27 format=3 uid="uid://b5a5mxprhv5j"]
 
 [ext_resource type="Script" path="res://scripts/level_5.gd" id="1_mcsl3"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="2_bvup4"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://gt2xrghvb2xv" path="res://scenes/monsters/mobs/guardian.tscn" id="20_axcm1"]
 [ext_resource type="PackedScene" uid="uid://bvw5sqim4q6rd" path="res://scenes/monsters/mobs/ball_and_chain_bot.tscn" id="21_7l0fo"]
 [ext_resource type="PackedScene" uid="uid://co5e4sive5dcd" path="res://scenes/monsters/mobs/spirit_boxer.tscn" id="22_yys1r"]
+[ext_resource type="PackedScene" uid="uid://mn1rmqtsc0vc" path="res://scenes/monsters/mobs/slime.tscn" id="23_87oir"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mvodq"]
 texture = ExtResource("9_6p2vd")
@@ -1581,3 +1582,6 @@ position = Vector2(612, -82)
 
 [node name="SpiritBoxer" parent="." instance=ExtResource("22_yys1r")]
 position = Vector2(439, -81)
+
+[node name="Slime" parent="." instance=ExtResource("23_87oir")]
+position = Vector2(659, -2)
