@@ -22,8 +22,8 @@ func generate_random_item():
 func _ready():
 	super._ready() 
 	self.need_offset = false
-	self.attack_collision = Collision.create_new_shape_with_modified_extents(self.collision_node, self.base_size.x, 0)
 	self.attack_padding = Vector2(base_size.x,0)
+	self.attack_collision = Collision.create_new_shape_with_modified_extents(self.collision_node, self.attack_padding.x, 0)
 	if(self.animated_sprite.flip_h == true):
 		self.attack_collision.position.x += self.attack_padding.x
 	else:
