@@ -273,18 +273,19 @@ animations = [{
 }]
 
 [node name="SmallMonster" type="CharacterBody2D"]
+collision_layer = 7
 script = ExtResource("1_og44c")
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
-position = Vector2(26, -11)
+position = Vector2(-1, -6)
 target_position = Vector2(9, 0)
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
-position = Vector2(15, -11)
+position = Vector2(0, -6)
 target_position = Vector2(-9, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(22, -16)
+position = Vector2(0, -17)
 shape = SubResource("RectangleShape2D_dhsok")
 
 [node name="StateSynchronizer" type="Node" parent="." node_paths=PackedStringArray("root")]
@@ -297,7 +298,7 @@ script = ExtResource("7_5iy3d")
 root = NodePath("..")
 
 [node name="OnDeathAudio" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(28, -24)
+position = Vector2(6, -15)
 stream = ExtResource("8_hmjow")
 volume_db = 24.0
 bus = &"SFX"
@@ -305,28 +306,28 @@ bus = &"SFX"
 [node name="DamageAudio" parent="." instance=ExtResource("9_fx124")]
 
 [node name="MiniHealthbar" parent="." instance=ExtResource("10_g8lf3")]
-offset_left = 15.0
+offset_left = -5.0
 offset_top = 1.90735e-06
-offset_right = 45.0
+offset_right = 25.0
 offset_bottom = 5.0
 metadata/_edit_use_anchors_ = true
 
 [node name="RayCastDown" type="RayCast2D" parent="."]
-position = Vector2(20, -4)
-target_position = Vector2(0, 3)
+position = Vector2(0, -7)
+target_position = Vector2(0, 7)
 
 [node name="DamageZone" parent="." instance=ExtResource("11_7c3h1")]
-position = Vector2(3, -36)
+position = Vector2(0, -2)
 collision_layer = 4
 collision_mask = 2
 damage = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
-position = Vector2(19, 20)
+position = Vector2(0, -15)
 shape = SubResource("RectangleShape2D_pykbn")
 debug_color = Color(0.204394, 0.624724, 0.412031, 0.42)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(27, -20)
+position = Vector2(8, -19)
 sprite_frames = SubResource("SpriteFrames_oy21u")
-animation = &"attack"
+animation = &"idle"

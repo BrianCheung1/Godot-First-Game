@@ -13,10 +13,10 @@
 [ext_resource type="PackedScene" uid="uid://c0rba683rq8u2" path="res://scenes/damage_zone.tscn" id="11_tgbgh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sm6ib"]
-size = Vector2(26.5, 28)
+size = Vector2(20.25, 28)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d4mlx"]
-size = Vector2(26.75, 28.457)
+size = Vector2(20, 28.457)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3svpy"]
 atlas = ExtResource("2_ph0ok")
@@ -252,19 +252,20 @@ animations = [{
 }]
 
 [node name="Droid" type="CharacterBody2D"]
+position = Vector2(0, -1)
 collision_layer = 7
 script = ExtResource("1_17msj")
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
-position = Vector2(18, -6)
+position = Vector2(3, -4)
 target_position = Vector2(9, 0)
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
-position = Vector2(9, -5)
+position = Vector2(1, -4)
 target_position = Vector2(-9, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(14, -13)
+position = Vector2(1.875, -13)
 shape = SubResource("RectangleShape2D_sm6ib")
 
 [node name="StateSynchronizer" type="Node" parent="." node_paths=PackedStringArray("root")]
@@ -277,7 +278,7 @@ script = ExtResource("7_1ac41")
 root = NodePath("..")
 
 [node name="OnDeathAudio" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(0, -1)
+position = Vector2(1, -7)
 stream = ExtResource("8_rxsf7")
 volume_db = 24.0
 bus = &"SFX"
@@ -285,28 +286,28 @@ bus = &"SFX"
 [node name="DamageAudio" parent="." instance=ExtResource("9_2sgg4")]
 
 [node name="MiniHealthbar" parent="." instance=ExtResource("10_208kd")]
-offset_left = 8.0
+offset_left = -5.0
 offset_top = 1.0
-offset_right = 38.0
+offset_right = 25.0
 offset_bottom = 6.0
 metadata/_edit_use_anchors_ = true
 
 [node name="RayCastDown" type="RayCast2D" parent="."]
-position = Vector2(14, -2)
-target_position = Vector2(0, 3)
+position = Vector2(2, -9)
+target_position = Vector2(0, 9)
 
 [node name="DamageZone" parent="." instance=ExtResource("11_tgbgh")]
-position = Vector2(-57, 18)
+position = Vector2(1, 0)
 collision_layer = 4
 collision_mask = 2
 damage = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
-position = Vector2(70.625, -31)
+position = Vector2(1, -14)
 shape = SubResource("RectangleShape2D_d4mlx")
 debug_color = Color(0.204394, 0.624724, 0.412031, 0.42)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(14, -20)
+position = Vector2(1, -20)
 sprite_frames = SubResource("SpriteFrames_24t0x")
-animation = &"attack"
+animation = &"idle"

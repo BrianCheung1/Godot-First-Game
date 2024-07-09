@@ -224,19 +224,20 @@ animations = [{
 }]
 
 [node name="HotWheel" type="CharacterBody2D"]
-position = Vector2(-2, 5)
+position = Vector2(1, 0)
+collision_layer = 7
 script = ExtResource("1_trptj")
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
-position = Vector2(27, -17)
+position = Vector2(3, -5)
 target_position = Vector2(9, 0)
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
-position = Vector2(18, -17)
+position = Vector2(-5, -5)
 target_position = Vector2(-9, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(22, -17)
+position = Vector2(0, -11)
 shape = SubResource("RectangleShape2D_n77xu")
 
 [node name="StateSynchronizer" type="Node" parent="." node_paths=PackedStringArray("root")]
@@ -249,7 +250,7 @@ script = ExtResource("7_feqea")
 root = NodePath("..")
 
 [node name="OnDeathAudio" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(15, -18)
+position = Vector2(1, -11)
 stream = ExtResource("8_8elfm")
 volume_db = 24.0
 bus = &"SFX"
@@ -257,28 +258,26 @@ bus = &"SFX"
 [node name="DamageAudio" parent="." instance=ExtResource("9_mc2mo")]
 
 [node name="MiniHealthbar" parent="." instance=ExtResource("10_kx8pg")]
-offset_left = 16.0
-offset_top = -5.0
-offset_right = 46.0
-offset_bottom = 9.53674e-07
+offset_top = -4.76837e-07
+offset_bottom = 5.0
 metadata/_edit_use_anchors_ = true
 
 [node name="RayCastDown" type="RayCast2D" parent="."]
-position = Vector2(15, -7)
-target_position = Vector2(0, 3)
+position = Vector2(0, -8)
+target_position = Vector2(0, 9)
 
 [node name="DamageZone" parent="." instance=ExtResource("11_74vle")]
-position = Vector2(3, -36)
+position = Vector2(-1, -2)
 collision_layer = 4
 collision_mask = 2
 damage = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
-position = Vector2(19, 19.6143)
+position = Vector2(1, -9)
 shape = SubResource("RectangleShape2D_mpx6f")
 debug_color = Color(0.204394, 0.624724, 0.412031, 0.42)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(22, -19)
+position = Vector2(0, -14)
 sprite_frames = SubResource("SpriteFrames_u786g")
-animation = &"die"
+animation = &"attack"

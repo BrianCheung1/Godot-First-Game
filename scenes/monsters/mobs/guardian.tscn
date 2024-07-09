@@ -312,18 +312,19 @@ animations = [{
 }]
 
 [node name="Guardian" type="CharacterBody2D"]
+collision_layer = 7
 script = ExtResource("1_nt25k")
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
-position = Vector2(19, -9)
+position = Vector2(-1, -12)
 target_position = Vector2(9, 0)
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
-position = Vector2(18, -9)
+position = Vector2(1, -12)
 target_position = Vector2(-9, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(19, -18)
+position = Vector2(0, -15)
 shape = SubResource("RectangleShape2D_n4rjm")
 
 [node name="StateSynchronizer" type="Node" parent="." node_paths=PackedStringArray("root")]
@@ -336,7 +337,7 @@ script = ExtResource("4_82wvs")
 root = NodePath("..")
 
 [node name="OnDeathAudio" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(19, -17)
+position = Vector2(4, -13)
 stream = ExtResource("5_grre2")
 volume_db = 24.0
 bus = &"SFX"
@@ -344,28 +345,28 @@ bus = &"SFX"
 [node name="DamageAudio" parent="." instance=ExtResource("6_cpa0f")]
 
 [node name="MiniHealthbar" parent="." instance=ExtResource("7_hwont")]
-offset_left = 14.0
-offset_top = -3.0
-offset_right = 44.0
-offset_bottom = 2.0
+offset_left = -5.0
+offset_top = -2.38419e-07
+offset_right = 25.0
+offset_bottom = 5.0
 metadata/_edit_use_anchors_ = true
 
 [node name="RayCastDown" type="RayCast2D" parent="."]
-position = Vector2(19, -7)
-target_position = Vector2(0, 3)
+position = Vector2(0, -6)
+target_position = Vector2(0, 6)
 
 [node name="DamageZone" parent="." instance=ExtResource("8_mru7k")]
-position = Vector2(19, -8)
+position = Vector2(0, -1)
 collision_layer = 4
 collision_mask = 2
 damage = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
-position = Vector2(0, -10)
+position = Vector2(0, -14)
 shape = SubResource("RectangleShape2D_ro0fv")
 debug_color = Color(0.204394, 0.624724, 0.412031, 0.42)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(14, -15)
+position = Vector2(-6, -7)
 sprite_frames = SubResource("SpriteFrames_b52xy")
 animation = &"run"

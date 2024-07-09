@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bnpvh1xu8jmwk" path="res://assets/sprites/mobs/spirit_boxer/Run.png" id="10_kr8yn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dtffe"]
-size = Vector2(19.125, 24.5625)
+size = Vector2(19.125, 22.2813)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iwfvb"]
 size = Vector2(19, 22.4518)
@@ -287,18 +287,19 @@ animations = [{
 }]
 
 [node name="SpiritBoxer" type="CharacterBody2D"]
+collision_layer = 7
 script = ExtResource("1_62prr")
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
-position = Vector2(49, -11)
+position = Vector2(0, -8)
 target_position = Vector2(9, 0)
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
-position = Vector2(47, -10)
+position = Vector2(0, -9)
 target_position = Vector2(-9, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(47.4375, -11.2813)
+position = Vector2(0, -11.8594)
 shape = SubResource("RectangleShape2D_dtffe")
 
 [node name="StateSynchronizer" type="Node" parent="." node_paths=PackedStringArray("root")]
@@ -311,7 +312,7 @@ script = ExtResource("2_1ppa4")
 root = NodePath("..")
 
 [node name="OnDeathAudio" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(50, -9)
+position = Vector2(-1, -19)
 stream = ExtResource("3_pnd7i")
 volume_db = 24.0
 bus = &"SFX"
@@ -319,28 +320,25 @@ bus = &"SFX"
 [node name="DamageAudio" parent="." instance=ExtResource("4_lbj3n")]
 
 [node name="MiniHealthbar" parent="." instance=ExtResource("5_4fx22")]
-offset_left = 45.0
-offset_top = -1.0
-offset_right = 75.0
-offset_bottom = 4.0
+offset_top = -5.96046e-08
+offset_bottom = 5.0
 metadata/_edit_use_anchors_ = true
 
 [node name="RayCastDown" type="RayCast2D" parent="."]
-position = Vector2(48, -11)
+position = Vector2(0, -10)
 target_position = Vector2(0, 9)
 
 [node name="DamageZone" parent="." instance=ExtResource("6_5mwnx")]
-position = Vector2(50, -9)
 collision_layer = 4
 collision_mask = 2
 damage = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
-position = Vector2(-2.5, -2.7741)
+position = Vector2(0, -12)
 shape = SubResource("RectangleShape2D_iwfvb")
 debug_color = Color(0.204394, 0.624724, 0.412031, 0.42)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(49, -16)
+position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_phbnh")
 animation = &"die"
