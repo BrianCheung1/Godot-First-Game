@@ -202,7 +202,7 @@ size = Vector2(30, 27.25)
 position = Vector2(2, 4)
 scale = Vector2(1.3601, 1.75)
 sprite_frames = SubResource("SpriteFrames_tns8d")
-animation = &"idle"
+animation = &"run"
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
 position = Vector2(10, 4)

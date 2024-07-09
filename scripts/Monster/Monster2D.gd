@@ -9,13 +9,13 @@ var rng = RandomNumberGenerator.new()
 @onready var ray_cast_right = $RayCastRight
 @onready var damage_collision: CollisionShape2D = $DamageZone/CollisionShape2D
 @onready var ray_cast_left = $RayCastLeft
-@onready var animated_sprite = $AnimatedSprite2D
+#@onready var animated_sprite = $AnimatedSprite2D
+var animated_sprite
 @onready var on_death_audio: AudioStreamPlayer2D = $OnDeathAudio
 @onready var on_damage_audio = $DamageAudio
 @onready var mini_hpbar: ProgressBar = $MiniHealthbar
 @onready var ray_cast_down = $RayCastDown
 @onready var game_manager = %GameManager
-
 
 @export var hp: int = 100
 @export var speed: int = 60
@@ -29,10 +29,21 @@ var direction = 1
 var enemy_hit_sound_node: AudioStreamPlayer
 var is_facing_right = false
 
+const possilbe_actions = ["idle", "attack", "walk"]
+var ACTION_CD = 2
+var current_action_time = 0
+var current_action:String
+var need_offset = false
+
 func _init():
 	pass
 	
 func _ready():
+	#var animated = self.get_node("AnimatedSprite2D")
+	var animated = self.get_node("AnimatedSprite2D")
+	print(animated.global_position)
+	self.animated_sprite = animated
+
 	if MultiplayerManager.multiplayer_mode_enabled:
 		set_process(false)
 		NetworkTime.on_tick.connect(_tick)
@@ -46,6 +57,32 @@ func _ready():
 	# Hide shader flash
 	if animated_sprite.material:
 		animated_sprite.material.set_shader_parameter("flash_modifier", 0);
+		
+	animated_sprite.animation_finished.connect(_on_animation_finished)
+	
+	self.damage_taken.connect(_on_health_changed)
+
+func _on_health_changed(hp):
+	if(self.current_action != "attack"):
+		self.current_action_time = 0
+
+func _on_animation_finished():
+	animated_sprite.offset = Vector2(0,0)
+	animated_sprite.play("idle")
+	self.current_action_time = 0
+
+func find_player():
+	var current_player_pos = Util.find_target(self).position
+	if(self.global_position.x > current_player_pos.x):
+		animated_sprite.flip_h = true
+		direction = -1
+		return true
+
+	animated_sprite.flip_h = false
+	direction = 1
+	return false
+
+	
 	
 func _tick(delta, tick):
 	if ray_cast_right != null and ray_cast_right.is_colliding():
@@ -72,8 +109,13 @@ func physics_process_default(delta):
 	velocity.y += gravity * delta
 
 func _physics_process(delta):
-	physics_process_default(delta)
-	move_and_slide()
+	#physics_process_default(delta)
+	#move_and_slide()
+	if(self.current_action_time > 0):
+		self.current_action_time -= delta
+	else:
+		self.current_action_time = ACTION_CD
+		determine_action()
 	pass
 	
 func flash():
@@ -120,19 +162,22 @@ func generate_item_node(item_name:String):
 	
 func die():
 	if dead: return
+	var offset = offset()
+	self.animated_sprite.offset = offset
+	self.animated_sprite.play("die")
+	
 	print(str(self) + ": die()")
 	dead = true
 	mini_hpbar.hide()
-	animated_sprite.hide()
 	damage_collision.disabled = true
 	game_manager.add_coins_on_monster_kill(coins_on_death)
+	
+	animated_sprite.animation_finished.connect(cleanup)
 	
 	spawn_death_effect()
 	# On death audio (should free up resources after the audio is finished playing)
 	if on_death_audio.has_stream_playback():
 		on_death_audio.play()
-	else:
-		cleanup()
 
 func spawn_death_effect():
 	if not enemy_death_effect: return
@@ -142,3 +187,41 @@ func spawn_death_effect():
 	
 func _to_string():
 	return "Monster [HP={HP}]".format({ "HP": hp })
+
+func offset()->Vector2:
+	var direction = self.find_player()
+	
+	if(!self.need_offset):
+		return Vector2(0,0)
+	
+	var attack_size = Sprite.get_current_sprite_size(self.animated_sprite, "attack")
+	var idle_size = Sprite.get_current_sprite_size(self.animated_sprite, "idle")
+	
+	if(attack_size == idle_size):
+		return Vector2(0,0)
+	
+	if(direction):
+		return -((attack_size - idle_size)/2)
+	
+		
+	return (attack_size - idle_size)/2
+
+func determine_action():
+	var random_action = self.possilbe_actions[randi_range(0, possilbe_actions.size()-1)]
+
+	match random_action:
+		"idle":
+			self.speed = 0
+			self.animated_sprite.play("idle")
+			self.current_action = "idle"
+		"attack":
+			var offset = offset()
+			self.animated_sprite.offset = offset
+			self.current_action = "attack"
+			self.speed = 0
+			self.animated_sprite.play("attack")
+		"walk":
+			self.speed = 60
+			self.current_action = "walk"
+			self.animated_sprite.play("run")
+			self.find_player()

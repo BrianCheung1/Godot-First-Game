@@ -47,4 +47,5 @@ func start_blinking() -> void:
 
 func end_blink():
 	queue_free()
+	tween.stop()
 	tween.tween_callback(queue_free)

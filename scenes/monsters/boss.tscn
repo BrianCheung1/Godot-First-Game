@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bnjomdcxx0mkj"]
+[gd_scene load_steps=27 format=3 uid="uid://bnjomdcxx0mkj"]
 
 [ext_resource type="Script" path="res://addons/netfox/state-synchronizer.gd" id="1_w5awp"]
 [ext_resource type="Script" path="res://addons/netfox/tick-interpolator.gd" id="2_53anp"]
@@ -7,6 +7,22 @@
 [ext_resource type="PackedScene" uid="uid://b7epa3re458xd" path="res://scenes/damage_audio.tscn" id="5_3y1yb"]
 [ext_resource type="PackedScene" uid="uid://c3bkpyr2sp0o5" path="res://scenes/mini_healthbar.tscn" id="6_l4pd7"]
 [ext_resource type="PackedScene" uid="uid://c0rba683rq8u2" path="res://scenes/damage_zone.tscn" id="7_qhrir"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewv80"]
+atlas = ExtResource("3_t4b5v")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04kry"]
+atlas = ExtResource("3_t4b5v")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2d133"]
+atlas = ExtResource("3_t4b5v")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mecrk"]
+atlas = ExtResource("3_t4b5v")
+region = Rect2(72, 24, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vljsb"]
 atlas = ExtResource("3_t4b5v")
@@ -24,8 +40,57 @@ region = Rect2(48, 24, 24, 24)
 atlas = ExtResource("3_t4b5v")
 region = Rect2(72, 24, 24, 24)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_xgtsd"]
+atlas = ExtResource("3_t4b5v")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvvc0"]
+atlas = ExtResource("3_t4b5v")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oihkh"]
+atlas = ExtResource("3_t4b5v")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4fdd"]
+atlas = ExtResource("3_t4b5v")
+region = Rect2(72, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kuyfg"]
+atlas = ExtResource("3_t4b5v")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3qslk"]
+atlas = ExtResource("3_t4b5v")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4soeg"]
+atlas = ExtResource("3_t4b5v")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdb6s"]
+atlas = ExtResource("3_t4b5v")
+region = Rect2(24, 24, 24, 24)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_tkb8t"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ewv80")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04kry")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2d133")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mecrk")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vljsb")
@@ -42,6 +107,45 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xgtsd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvvc0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oihkh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p4fdd")
+}],
+"loop": false,
+"name": &"die",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kuyfg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3qslk")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4soeg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdb6s")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uq3lv"]
@@ -56,7 +160,7 @@ size = Vector2(16, 7.98438)
 position = Vector2(0, -9)
 scale = Vector2(1, 0.708333)
 sprite_frames = SubResource("SpriteFrames_tkb8t")
-autoplay = "default"
+animation = &"walk"
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
 position = Vector2(0, -6)

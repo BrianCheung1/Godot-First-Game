@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://mn1rmqtsc0vc"]
+[gd_scene load_steps=27 format=3 uid="uid://mn1rmqtsc0vc"]
 
 [ext_resource type="Texture2D" uid="uid://cpmv313wbl58n" path="res://assets/sprites/slime_green.png" id="1_5y7dy"]
 [ext_resource type="Script" path="res://scripts/Monster/slime.gd" id="1_e8klr"]
@@ -18,6 +18,42 @@ resource_local_to_scene = true
 shader = ExtResource("4_pe00b")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6thjh"]
+atlas = ExtResource("1_5y7dy")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tlcs7"]
+atlas = ExtResource("1_5y7dy")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0cmyb"]
+atlas = ExtResource("1_5y7dy")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p22jt"]
+atlas = ExtResource("1_5y7dy")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khghb"]
+atlas = ExtResource("1_5y7dy")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i85x7"]
+atlas = ExtResource("1_5y7dy")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_amebe"]
+atlas = ExtResource("1_5y7dy")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1ehw"]
+atlas = ExtResource("1_5y7dy")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4f4ya"]
+atlas = ExtResource("1_5y7dy")
+region = Rect2(48, 24, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lxa4k"]
 atlas = ExtResource("1_5y7dy")
@@ -39,6 +75,48 @@ region = Rect2(72, 24, 24, 24)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_6thjh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tlcs7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0cmyb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p22jt")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khghb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i85x7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_amebe")
+}],
+"loop": true,
+"name": &"die",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g1ehw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4f4ya")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_lxa4k")
 }, {
 "duration": 1.0,
@@ -51,7 +129,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_x3vtk")
 }],
 "loop": true,
-"name": &"default",
+"name": &"run",
 "speed": 10.0
 }]
 
@@ -80,8 +158,7 @@ root = NodePath("..")
 material = SubResource("ShaderMaterial_f1de2")
 position = Vector2(0, -11)
 sprite_frames = SubResource("SpriteFrames_0cisc")
-autoplay = "default"
-frame_progress = 0.82061
+animation = &"run"
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
 position = Vector2(0, -6)
