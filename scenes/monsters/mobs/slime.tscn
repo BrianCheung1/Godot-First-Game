@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://mn1rmqtsc0vc"]
 
-[ext_resource type="Script" path="res://scripts/Monster/mobs/slime.gd" id="1_gqabk"]
+[ext_resource type="Script" path="res://scripts/Monster/slime.gd" id="1_gqabk"]
 [ext_resource type="Script" path="res://addons/netfox/state-synchronizer.gd" id="2_lmw0s"]
 [ext_resource type="Script" path="res://addons/netfox/tick-interpolator.gd" id="3_l12la"]
 [ext_resource type="Texture2D" uid="uid://cpmv313wbl58n" path="res://assets/sprites/slime_green.png" id="4_kex7v"]

@@ -3,7 +3,7 @@ class_name KillAllPotion
 
 const ITEM_NAME = "KillAllPotion"
 const sprite_source = "res://assets/sprites/3_item.png"
-const Slime = preload("res://scripts/Monster/mobs/slime.gd")
+const Slime = preload("res://scripts/Monster/slime.gd")
 
 func _init(player: Player, count):
 	super(player, ITEM_NAME, count)
