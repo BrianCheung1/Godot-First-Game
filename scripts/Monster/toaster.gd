@@ -50,13 +50,11 @@ func determine_action():
 	
 	match random_action:
 		"idle":
-			print("idle")
 			self.speed = 0
 			animated_sprite_2d.play("idle")
 			self.current_action = "idle"
 		"attack":
 			self.find_player()
-			print("attack")
 			self.current_action = "attack"
 			self.speed = 0
 			for i in bossSkills.keys():
@@ -70,7 +68,6 @@ func determine_action():
 			
 		"walk":
 			self.speed = 60
-			print("walk")
 			self.current_action = "walk"
 			animated_sprite_2d.play("run")
 			self.find_player()

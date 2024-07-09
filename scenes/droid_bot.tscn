@@ -1,138 +1,131 @@
-[gd_scene load_steps=45 format=3 uid="uid://cbk5jk7uxo2tt"]
+[gd_scene load_steps=36 format=3 uid="uid://dkw8j3568mbn4"]
 
-[ext_resource type="PackedScene" uid="uid://daqresawiijbt" path="res://scenes/monsters/droid_bot.tscn" id="1_vvx8e"]
-[ext_resource type="Texture2D" uid="uid://dk2n8me6pornm" path="res://assets/sprites/droid_bot/attack.png" id="2_ph0ok"]
-[ext_resource type="Texture2D" uid="uid://drs5pd5asb1xy" path="res://assets/sprites/droid_bot/damaged and death.png" id="3_ytohi"]
-[ext_resource type="Texture2D" uid="uid://dnf503ujgudgc" path="res://assets/sprites/droid_bot/wake.png" id="4_op0g8"]
-[ext_resource type="Texture2D" uid="uid://cj24bsg1qw4oy" path="res://assets/sprites/droid_bot/run.png" id="5_1ykvb"]
-[ext_resource type="Script" path="res://addons/netfox/state-synchronizer.gd" id="6_vcxdk"]
-[ext_resource type="Script" path="res://addons/netfox/tick-interpolator.gd" id="7_1ac41"]
-[ext_resource type="AudioStream" uid="uid://csvaie0c53ech" path="res://assets/sounds/slime_death.wav" id="8_rxsf7"]
-[ext_resource type="PackedScene" uid="uid://b7epa3re458xd" path="res://scenes/damage_audio.tscn" id="9_2sgg4"]
-[ext_resource type="PackedScene" uid="uid://c3bkpyr2sp0o5" path="res://scenes/mini_healthbar.tscn" id="10_208kd"]
-[ext_resource type="PackedScene" uid="uid://c0rba683rq8u2" path="res://scenes/damage_zone.tscn" id="11_tgbgh"]
+[ext_resource type="Texture2D" uid="uid://dk2n8me6pornm" path="res://assets/sprites/mobs/droid_bot/attack.png" id="1_kph8f"]
+[ext_resource type="Texture2D" uid="uid://drs5pd5asb1xy" path="res://assets/sprites/mobs/droid_bot/damaged and death.png" id="2_h8oe1"]
+[ext_resource type="Texture2D" uid="uid://dnf503ujgudgc" path="res://assets/sprites/mobs/droid_bot/wake.png" id="3_nvakc"]
+[ext_resource type="Texture2D" uid="uid://cj24bsg1qw4oy" path="res://assets/sprites/mobs/droid_bot/run.png" id="4_lknb7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7ellx"]
-atlas = ExtResource("2_ph0ok")
+atlas = ExtResource("1_kph8f")
 region = Rect2(0, 0, 58, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d5bc4"]
-atlas = ExtResource("2_ph0ok")
+atlas = ExtResource("1_kph8f")
 region = Rect2(0, 41, 58, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_okdlu"]
-atlas = ExtResource("2_ph0ok")
+atlas = ExtResource("1_kph8f")
 region = Rect2(0, 82, 58, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bh31o"]
-atlas = ExtResource("2_ph0ok")
+atlas = ExtResource("1_kph8f")
 region = Rect2(0, 123, 58, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_385x4"]
-atlas = ExtResource("2_ph0ok")
+atlas = ExtResource("1_kph8f")
 region = Rect2(0, 164, 58, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qreip"]
-atlas = ExtResource("2_ph0ok")
+atlas = ExtResource("1_kph8f")
 region = Rect2(0, 205, 58, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5wu7f"]
-atlas = ExtResource("2_ph0ok")
+atlas = ExtResource("1_kph8f")
 region = Rect2(0, 246, 58, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nvlf7"]
-atlas = ExtResource("2_ph0ok")
+atlas = ExtResource("1_kph8f")
 region = Rect2(0, 287, 58, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ve0ag"]
-atlas = ExtResource("2_ph0ok")
+atlas = ExtResource("1_kph8f")
 region = Rect2(0, 328, 58, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s225a"]
-atlas = ExtResource("2_ph0ok")
+atlas = ExtResource("1_kph8f")
 region = Rect2(0, 369, 58, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mlvw1"]
-atlas = ExtResource("3_ytohi")
+atlas = ExtResource("2_h8oe1")
 region = Rect2(0, 0, 58, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_brfcw"]
-atlas = ExtResource("3_ytohi")
+atlas = ExtResource("2_h8oe1")
 region = Rect2(0, 41, 58, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ldmom"]
-atlas = ExtResource("3_ytohi")
+atlas = ExtResource("2_h8oe1")
 region = Rect2(0, 82, 58, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ldalc"]
-atlas = ExtResource("3_ytohi")
+atlas = ExtResource("2_h8oe1")
 region = Rect2(0, 123, 58, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fle4y"]
-atlas = ExtResource("3_ytohi")
+atlas = ExtResource("2_h8oe1")
 region = Rect2(0, 164, 58, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8ix4a"]
-atlas = ExtResource("3_ytohi")
+atlas = ExtResource("2_h8oe1")
 region = Rect2(0, 205, 58, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s2luu"]
-atlas = ExtResource("3_ytohi")
+atlas = ExtResource("2_h8oe1")
 region = Rect2(0, 246, 58, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_icchk"]
-atlas = ExtResource("3_ytohi")
+atlas = ExtResource("2_h8oe1")
 region = Rect2(0, 287, 58, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fg2v7"]
-atlas = ExtResource("4_op0g8")
+atlas = ExtResource("3_nvakc")
 region = Rect2(0, 0, 58, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c150s"]
-atlas = ExtResource("4_op0g8")
+atlas = ExtResource("3_nvakc")
 region = Rect2(0, 41, 58, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oi7b1"]
-atlas = ExtResource("4_op0g8")
+atlas = ExtResource("3_nvakc")
 region = Rect2(0, 82, 58, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xlvfr"]
-atlas = ExtResource("4_op0g8")
+atlas = ExtResource("3_nvakc")
 region = Rect2(0, 123, 58, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ej7n"]
-atlas = ExtResource("4_op0g8")
+atlas = ExtResource("3_nvakc")
 region = Rect2(0, 164, 58, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1wjdh"]
-atlas = ExtResource("4_op0g8")
+atlas = ExtResource("3_nvakc")
 region = Rect2(0, 205, 58, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wtro8"]
-atlas = ExtResource("5_1ykvb")
+atlas = ExtResource("4_lknb7")
 region = Rect2(0, 0, 58, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ao00b"]
-atlas = ExtResource("5_1ykvb")
+atlas = ExtResource("4_lknb7")
 region = Rect2(0, 41, 58, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_btva3"]
-atlas = ExtResource("5_1ykvb")
+atlas = ExtResource("4_lknb7")
 region = Rect2(0, 82, 58, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hf4sx"]
-atlas = ExtResource("5_1ykvb")
+atlas = ExtResource("4_lknb7")
 region = Rect2(0, 123, 58, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m4uf4"]
-atlas = ExtResource("5_1ykvb")
+atlas = ExtResource("4_lknb7")
 region = Rect2(0, 164, 58, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e2grn"]
-atlas = ExtResource("5_1ykvb")
+atlas = ExtResource("4_lknb7")
 region = Rect2(0, 205, 58, 41)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_2mww0"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_fl6vf"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -245,65 +238,8 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sm6ib"]
-size = Vector2(22, 27)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d4mlx"]
-size = Vector2(22, 27.25)
-
-[node name="Droid" type="CharacterBody2D"]
-
-[node name="DroidBotSprite" parent="." instance=ExtResource("1_vvx8e")]
-sprite_frames = SubResource("SpriteFrames_2mww0")
-frame_progress = 0.0
-
-[node name="RayCastRight" type="RayCast2D" parent="."]
-position = Vector2(2, -9)
-target_position = Vector2(9, 0)
-
-[node name="RayCastLeft" type="RayCast2D" parent="."]
-position = Vector2(-4, -9)
-target_position = Vector2(-9, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -9.5)
-shape = SubResource("RectangleShape2D_sm6ib")
-
-[node name="StateSynchronizer" type="Node" parent="." node_paths=PackedStringArray("root")]
-script = ExtResource("6_vcxdk")
-root = NodePath("..")
-properties = Array[String]([":position"])
-
-[node name="TickInterpolator" type="Node" parent="." node_paths=PackedStringArray("root")]
-script = ExtResource("7_1ac41")
-root = NodePath("..")
-
-[node name="OnDeathAudio" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(0, -1)
-stream = ExtResource("8_rxsf7")
-volume_db = 24.0
-bus = &"SFX"
-
-[node name="DamageAudio" parent="." instance=ExtResource("9_2sgg4")]
-
-[node name="MiniHealthbar" parent="." instance=ExtResource("10_208kd")]
-offset_left = -5.0
-offset_top = 4.0
-offset_right = 25.0
-offset_bottom = 9.0
-metadata/_edit_use_anchors_ = true
-
-[node name="RayCastDown" type="RayCast2D" parent="."]
-position = Vector2(0, 2)
-target_position = Vector2(0, 3)
-
-[node name="DamageZone" parent="." instance=ExtResource("11_tgbgh")]
-position = Vector2(0, 3)
-collision_layer = 4
-collision_mask = 2
-damage = 5
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
-position = Vector2(0, -13)
-shape = SubResource("RectangleShape2D_d4mlx")
-debug_color = Color(0.204394, 0.624724, 0.412031, 0.42)
+[node name="DroidBotSprite" type="AnimatedSprite2D"]
+position = Vector2(12, -19)
+sprite_frames = SubResource("SpriteFrames_fl6vf")
+animation = &"attack"
+frame_progress = 0.959501

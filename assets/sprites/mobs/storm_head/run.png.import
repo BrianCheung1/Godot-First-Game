@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cj24bsg1qw4oy"
-path="res://.godot/imported/run.png-8ee53ae2f3ead5440a7745af27b979c0.ctex"
+uid="uid://da1wp5050dvao"
+path="res://.godot/imported/run.png-b6fc6b60e32371949f0462c454bba283.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/droid_bot/run.png"
-dest_files=["res://.godot/imported/run.png-8ee53ae2f3ead5440a7745af27b979c0.ctex"]
+source_file="res://assets/sprites/mobs/storm_head/run.png"
+dest_files=["res://.godot/imported/run.png-b6fc6b60e32371949f0462c454bba283.ctex"]
 
 [params]
 

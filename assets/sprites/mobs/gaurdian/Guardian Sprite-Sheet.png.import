@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dk2n8me6pornm"
-path="res://.godot/imported/attack.png-ce73dd9e788ab07ecfb76bb79b9115f9.ctex"
+uid="uid://c46njgckobh24"
+path="res://.godot/imported/Guardian Sprite-Sheet.png-9ec66db8e7f08a2e393704f2658e799c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/droid_bot/attack.png"
-dest_files=["res://.godot/imported/attack.png-ce73dd9e788ab07ecfb76bb79b9115f9.ctex"]
+source_file="res://assets/sprites/mobs/gaurdian/Guardian Sprite-Sheet.png"
+dest_files=["res://.godot/imported/Guardian Sprite-Sheet.png-9ec66db8e7f08a2e393704f2658e799c.ctex"]
 
 [params]
 

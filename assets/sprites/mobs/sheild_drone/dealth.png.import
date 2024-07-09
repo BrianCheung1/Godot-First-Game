@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnf503ujgudgc"
-path="res://.godot/imported/wake.png-c17e24be9570e57c567d58e906677243.ctex"
+uid="uid://cbdx7ilokd62e"
+path="res://.godot/imported/dealth.png-3ee558eb84748bcd6dc6e84ad380e0b7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/droid_bot/wake.png"
-dest_files=["res://.godot/imported/wake.png-c17e24be9570e57c567d58e906677243.ctex"]
+source_file="res://assets/sprites/mobs/sheild_drone/dealth.png"
+dest_files=["res://.godot/imported/dealth.png-3ee558eb84748bcd6dc6e84ad380e0b7.ctex"]
 
 [params]
 

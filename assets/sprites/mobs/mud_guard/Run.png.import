@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drs5pd5asb1xy"
-path="res://.godot/imported/damaged and death.png-cd706df3cbd07a32a74f95d85809c06c.ctex"
+uid="uid://c0awhu5xdf60c"
+path="res://.godot/imported/Run.png-b83441737af55229d791d379e7824a86.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/droid_bot/damaged and death.png"
-dest_files=["res://.godot/imported/damaged and death.png-cd706df3cbd07a32a74f95d85809c06c.ctex"]
+source_file="res://assets/sprites/mobs/mud_guard/Run.png"
+dest_files=["res://.godot/imported/Run.png-b83441737af55229d791d379e7824a86.ctex"]
 
 [params]
 
