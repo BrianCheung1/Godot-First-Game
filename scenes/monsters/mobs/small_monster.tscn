@@ -277,15 +277,15 @@ collision_layer = 7
 script = ExtResource("1_og44c")
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
-position = Vector2(-1, -6)
+position = Vector2(14, -7)
 target_position = Vector2(9, 0)
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
-position = Vector2(0, -6)
+position = Vector2(-7, -6)
 target_position = Vector2(-9, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -17)
+position = Vector2(-1, -16)
 shape = SubResource("RectangleShape2D_dhsok")
 
 [node name="StateSynchronizer" type="Node" parent="." node_paths=PackedStringArray("root")]
@@ -313,7 +313,7 @@ offset_bottom = 5.0
 metadata/_edit_use_anchors_ = true
 
 [node name="RayCastDown" type="RayCast2D" parent="."]
-position = Vector2(0, -7)
+position = Vector2(-2, -7)
 target_position = Vector2(0, 7)
 
 [node name="DamageZone" parent="." instance=ExtResource("11_7c3h1")]
@@ -323,11 +323,12 @@ collision_mask = 2
 damage = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
-position = Vector2(0, -15)
+position = Vector2(-1, -14)
 shape = SubResource("RectangleShape2D_pykbn")
 debug_color = Color(0.204394, 0.624724, 0.412031, 0.42)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(8, -19)
+position = Vector2(2.75, -18.25)
+scale = Vector2(0.841463, 0.987179)
 sprite_frames = SubResource("SpriteFrames_oy21u")
 animation = &"idle"
