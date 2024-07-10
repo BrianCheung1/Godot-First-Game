@@ -81,15 +81,12 @@ func _on_multiplayer_hud_single_player():
 
 
 func _on_upgrades_per_level_buff_1():
-	PlayerVariables.player_MAX_HP += 50
 	change_level()
 
 func _on_upgrades_per_level_buff_2():
-	PlayerVariables.player_attack_damage += 50
 	change_level()
 
 func _on_upgrades_per_level_buff_3():
-	PlayerVariables.player_speed += 50
 	change_level()
 
 func change_level():
@@ -97,4 +94,4 @@ func change_level():
 	var res = int(level[-1]) + 1
 	var change_to_level = "level_" + str(res) + ".tscn"
 	get_tree().change_scene_to_file("res://scenes/levels/%s" % change_to_level)
-	upgrades_per_level.visible = true
+	

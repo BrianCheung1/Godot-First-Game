@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://b04w8ehnpedc5"]
+[gd_scene load_steps=26 format=3 uid="uid://b04w8ehnpedc5"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_ngp8d"]
 [ext_resource type="Script" path="res://scripts/levels/level_4.gd" id="1_p0e4a"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://d3bvgw3dg0e2l" path="res://scenes/hud.tscn" id="4_486fn"]
 [ext_resource type="PackedScene" uid="uid://pen1qei18gy7" path="res://scenes/endzone.tscn" id="5_fs6rl"]
 [ext_resource type="Texture2D" uid="uid://buimwc43xp75s" path="res://scenes/world_tileset.png" id="6_8lhnu"]
+[ext_resource type="PackedScene" uid="uid://dkds5bh1ot84h" path="res://scenes/levels/upgrades_per_level.tscn" id="7_4j0r8"]
 [ext_resource type="PackedScene" uid="uid://m44vus15jmky" path="res://scenes/player.tscn" id="7_dm7l7"]
 [ext_resource type="Texture2D" uid="uid://dbqxeo5a3ott4" path="res://assets/sprites/world_tileset.png" id="8_aap17"]
 [ext_resource type="PackedScene" uid="uid://jpp0tyw8uubs" path="res://scenes/ui.tscn" id="8_o64i7"]
@@ -858,6 +859,8 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Endzone" parent="GameManager" instance=ExtResource("5_fs6rl")]
 position = Vector2(0, -424)
+
+[node name="UpgradesPerLevel" parent="GameManager" instance=ExtResource("7_4j0r8")]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_tt785")

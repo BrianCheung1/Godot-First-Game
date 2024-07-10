@@ -1,21 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://dkds5bh1ot84h"]
+[gd_scene load_steps=6 format=3 uid="uid://dkds5bh1ot84h"]
 
 [ext_resource type="Texture2D" uid="uid://c86ms0vydy874" path="res://assets/sprites/6_item.png" id="1_dcrwd"]
 [ext_resource type="Script" path="res://scripts/levels/upgrades_per_level.gd" id="1_px18p"]
 [ext_resource type="Texture2D" uid="uid://bfq7qvgimecxj" path="res://assets/sprites/5_item.png" id="2_yc5p6"]
+[ext_resource type="FontFile" uid="uid://bo1xqkmaq87nb" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="3_egrll"]
 [ext_resource type="Texture2D" uid="uid://e4yomhdkviym" path="res://assets/sprites/8_item.png" id="3_ovqux"]
 
 [node name="UpgradesPerLevel" type="CanvasLayer"]
 script = ExtResource("1_px18p")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Background" type="Panel" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BoxContainer" type="BoxContainer" parent="Panel"]
+[node name="BoxContainer" type="BoxContainer" parent="Background"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,61 +24,67 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/BoxContainer"]
+[node name="LeftContainer" type="HBoxContainer" parent="Background/BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/BoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/BoxContainer/LeftContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Panel/BoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Buff1Texture" type="TextureRect" parent="Background/BoxContainer/LeftContainer/VBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
 texture = ExtResource("1_dcrwd")
 stretch_mode = 4
 
-[node name="Buff1Button" type="Button" parent="Panel/BoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Buff1Button" type="Button" parent="Background/BoxContainer/LeftContainer/VBoxContainer"]
 layout_mode = 2
-text = "BUFF 1"
+theme_override_fonts/font = ExtResource("3_egrll")
+text = "Defense +50"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/BoxContainer"]
+[node name="MiddleContainer" type="HBoxContainer" parent="Background/BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/BoxContainer/HBoxContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/BoxContainer/MiddleContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Panel/BoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="Buff2Texture" type="TextureRect" parent="Background/BoxContainer/MiddleContainer/VBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
 texture = ExtResource("2_yc5p6")
 
-[node name="Buff2Button" type="Button" parent="Panel/BoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="Buff2Button" type="Button" parent="Background/BoxContainer/MiddleContainer/VBoxContainer"]
 layout_mode = 2
-text = "BUFF 2"
+theme_override_fonts/font = ExtResource("3_egrll")
+text = "Attack +50"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="Panel/BoxContainer"]
+[node name="RightContainer" type="HBoxContainer" parent="Background/BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/BoxContainer/HBoxContainer3"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/BoxContainer/RightContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Panel/BoxContainer/HBoxContainer3/VBoxContainer"]
+[node name="Buff3Texture" type="TextureRect" parent="Background/BoxContainer/RightContainer/VBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
 texture = ExtResource("3_ovqux")
 
-[node name="Buff3Button" type="Button" parent="Panel/BoxContainer/HBoxContainer3/VBoxContainer"]
+[node name="Buff3Button" type="Button" parent="Background/BoxContainer/RightContainer/VBoxContainer"]
 layout_mode = 2
-text = "BUFF 3"
+theme_override_fonts/font = ExtResource("3_egrll")
+text = "Speed +50"
 
-[connection signal="pressed" from="Panel/BoxContainer/HBoxContainer/VBoxContainer/Buff1Button" to="." method="_on_buff_1_button_pressed"]
-[connection signal="pressed" from="Panel/BoxContainer/HBoxContainer2/VBoxContainer/Buff2Button" to="." method="_on_buff_2_button_pressed"]
-[connection signal="pressed" from="Panel/BoxContainer/HBoxContainer3/VBoxContainer/Buff3Button" to="." method="_on_buff_3_button_pressed"]
+[connection signal="pressed" from="Background/BoxContainer/LeftContainer/VBoxContainer/Buff1Button" to="." method="_on_buff_1_button_pressed"]
+[connection signal="pressed" from="Background/BoxContainer/MiddleContainer/VBoxContainer/Buff2Button" to="." method="_on_buff_2_button_pressed"]
+[connection signal="pressed" from="Background/BoxContainer/RightContainer/VBoxContainer/Buff3Button" to="." method="_on_buff_3_button_pressed"]

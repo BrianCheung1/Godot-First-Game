@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cj4o5wtpg120v"]
+[gd_scene load_steps=27 format=3 uid="uid://cj4o5wtpg120v"]
 
 [ext_resource type="Script" path="res://scripts/level_3.gd" id="1_75bh0"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="2_buwol"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://d3bvgw3dg0e2l" path="res://scenes/hud.tscn" id="5_cd020"]
 [ext_resource type="PackedScene" uid="uid://pen1qei18gy7" path="res://scenes/endzone.tscn" id="6_qyesf"]
 [ext_resource type="Texture2D" uid="uid://dbqxeo5a3ott4" path="res://assets/sprites/world_tileset.png" id="7_ap2bo"]
+[ext_resource type="PackedScene" uid="uid://dkds5bh1ot84h" path="res://scenes/levels/upgrades_per_level.tscn" id="7_rb5x6"]
 [ext_resource type="Texture2D" uid="uid://mvlta07ksqdf" path="res://assets/sprites/world/4 - Winter World/Terrain (16 x 16).png" id="8_7t1yn"]
 [ext_resource type="Script" path="res://scripts/ice_tilemap.gd" id="9_3onql"]
 [ext_resource type="Texture2D" uid="uid://bsd84iu65kggo" path="res://assets/sprites/world/1 - Grassland/Terrain (16 x 16).png" id="10_fdqp4"]
@@ -1321,6 +1322,8 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Endzone" parent="GameManager" instance=ExtResource("6_qyesf")]
 position = Vector2(1000, -784)
+
+[node name="UpgradesPerLevel" parent="GameManager" instance=ExtResource("7_rb5x6")]
 
 [node name="IceTileMapNode" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_41s23")
