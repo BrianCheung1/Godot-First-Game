@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dglt5i5higp2m"]
+[gd_scene load_steps=37 format=3 uid="uid://dyxktvcb3ll8f"]
 
 [ext_resource type="Script" path="res://scripts/level_1.gd" id="1_0m3f3"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="2_uh5yi"]
@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d3bvgw3dg0e2l" path="res://scenes/hud.tscn" id="4_27ew2"]
 [ext_resource type="PackedScene" uid="uid://pen1qei18gy7" path="res://scenes/endzone.tscn" id="5_24fcu"]
 [ext_resource type="Texture2D" uid="uid://dbqxeo5a3ott4" path="res://assets/sprites/world_tileset.png" id="6_7hkls"]
-[ext_resource type="PackedScene" uid="uid://dkds5bh1ot84h" path="res://scenes/levels/upgrades_per_level.tscn" id="6_8wulw"]
+[ext_resource type="PackedScene" path="res://scenes/levels/upgrades_per_level.tscn" id="6_8wulw"]
 [ext_resource type="Texture2D" uid="uid://bsd84iu65kggo" path="res://assets/sprites/world/1 - Grassland/Terrain (16 x 16).png" id="7_w2rkb"]
 [ext_resource type="Texture2D" uid="uid://b6ifipldeneu6" path="res://assets/sprites/world/1 - Grassland/Grassland_entities (16 x 16).png" id="8_rhij2"]
 [ext_resource type="Texture2D" uid="uid://dhfladcuyvcup" path="res://assets/sprites/world/1 - Grassland/Extra_plants (16 x 16).png" id="9_dh06v"]

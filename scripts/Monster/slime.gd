@@ -1,7 +1,7 @@
 extends Monster2D
 class_name Slime
 
-var drop_chance_percent = 20
+var drop_chance_percent = 100
 
 var possible_items = ["BlinkPotion", "AuraItem", "InvincibilityBuff", "HealthPotion", "JumpPotion"]
 
@@ -22,5 +22,17 @@ func generate_random_item():
 func _ready():
 	super._ready() 
 	
+	self.attack_padding = Vector2(base_size.x/4,0)
+	self.attack_collision = Collision.create_new_shape_with_modified_extents(self.collision_node, self.attack_padding.x, 0)
+	
+	if(self.animated_sprite.flip_h == true):
+		self.attack_collision.position.x += self.attack_padding.x
+	else:
+		self.attack_collision.position.x -= self.attack_padding.x
+		
+	self.attack_collision.disabled = true
+	self.attack_direction = "Front"
+	var damageZone = self.get_node("DamageZone")
+	damageZone.add_child(self.attack_collision)
 
 
