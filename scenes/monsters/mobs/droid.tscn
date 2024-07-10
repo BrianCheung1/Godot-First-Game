@@ -265,7 +265,7 @@ position = Vector2(1, -4)
 target_position = Vector2(-9, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.875, -13)
+position = Vector2(2, -13)
 shape = SubResource("RectangleShape2D_sm6ib")
 
 [node name="StateSynchronizer" type="Node" parent="." node_paths=PackedStringArray("root")]
@@ -293,7 +293,7 @@ offset_bottom = 6.0
 metadata/_edit_use_anchors_ = true
 
 [node name="RayCastDown" type="RayCast2D" parent="."]
-position = Vector2(2, -9)
+position = Vector2(2, -7)
 target_position = Vector2(0, 9)
 
 [node name="DamageZone" parent="." instance=ExtResource("11_tgbgh")]
@@ -303,7 +303,7 @@ collision_mask = 2
 damage = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
-position = Vector2(1, -14)
+position = Vector2(1, -13)
 shape = SubResource("RectangleShape2D_d4mlx")
 debug_color = Color(0.204394, 0.624724, 0.412031, 0.42)
 

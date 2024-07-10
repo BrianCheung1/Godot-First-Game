@@ -41,7 +41,7 @@ script = ExtResource("1_dign5")
 hp = 500
 speed = 0
 
-[node name="Collision" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ip3qp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

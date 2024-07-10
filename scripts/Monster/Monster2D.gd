@@ -43,12 +43,15 @@ var attack_padding:Vector2
 func _init():
 	pass
 	
+func create_attack_zone():
+	self.attack_collision = Collision.create_new_shape_with_modified_extents(self.collision_node, self.attack_padding.x, 0)
+	update_attack_collision()
+	self.attack_collision.disabled = true
+	get_node("DamageZone").add_child(self.attack_collision)
+	
 func _ready():
-	var animated = self.get_node("AnimatedSprite2D")
-	print(animated.global_position)
-	self.animated_sprite = animated
-
-	self.collision_node = self.get_node("CollisionShape2D")
+	self.animated_sprite = get_node("AnimatedSprite2D")
+	self.collision_node = get_node("CollisionShape2D")
 	self.base_size = Collision.get_collision_shape_size(self.collision_node)
 
 	if MultiplayerManager.multiplayer_mode_enabled:
@@ -90,14 +93,13 @@ func _on_animation_finished():
 
 func find_player():
 	var current_player_pos = Util.find_target(self).position
+	update_attack_collision()
 	if(self.global_position.x > current_player_pos.x):
 		animated_sprite.flip_h = true
-		update_attack_collision()
 		direction = -1
 		return true
 
 	animated_sprite.flip_h = false
-	update_attack_collision()
 	direction = 1
 	return false
 
@@ -107,23 +109,23 @@ func _tick(delta, tick):
 	if ray_cast_right != null and ray_cast_right.is_colliding():
 		direction = -1
 		animated_sprite.flip_h = true
-		update_attack_collision()
 	if ray_cast_right != null and ray_cast_left.is_colliding():
 		direction = 1
 		animated_sprite.flip_h = false
-		update_attack_collision()
 	position.x += direction * speed * delta
+	update_attack_collision()
 
 func _process(delta):
 	if ray_cast_right != null and ray_cast_right.is_colliding():
 		direction = -1
 		animated_sprite.flip_h = true
-		update_attack_collision()
 	if ray_cast_right != null and ray_cast_left.is_colliding():
 		direction = 1
 		animated_sprite.flip_h = false
-		update_attack_collision()
+	if(!ray_cast_down.is_colliding()):
+		self.position.y += 1
 	position.x += direction * speed * delta
+	update_attack_collision()
 
 func physics_process_default(delta):
 	if velocity.x != 0:
@@ -133,8 +135,6 @@ func physics_process_default(delta):
 	velocity.y += gravity * delta
 
 func _physics_process(delta):
-	#physics_process_default(delta)
-	#move_and_slide()
 	if(self.current_action_time > 0):
 		self.current_action_time -= delta
 	else:
