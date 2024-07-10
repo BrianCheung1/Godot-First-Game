@@ -1,5 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://cdifh4rxvqbms"]
 
+
 [ext_resource type="Script" path="res://scripts/level_2.gd" id="1_48sf1"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="2_0h8by"]
 [ext_resource type="PackedScene" uid="uid://dgygkbtm0burn" path="res://addons/quiver_leaderboards/leaderboard_ui.tscn" id="3_s08rk"]
@@ -7,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d3bvgw3dg0e2l" path="res://scenes/hud.tscn" id="5_pb8h2"]
 [ext_resource type="PackedScene" uid="uid://pen1qei18gy7" path="res://scenes/endzone.tscn" id="6_4xjdt"]
 [ext_resource type="Texture2D" uid="uid://dbqxeo5a3ott4" path="res://assets/sprites/world_tileset.png" id="7_t77fl"]
+[ext_resource type="PackedScene" uid="uid://dkds5bh1ot84h" path="res://scenes/levels/upgrades_per_level.tscn" id="7_v4vvv"]
 [ext_resource type="Texture2D" uid="uid://bsd84iu65kggo" path="res://assets/sprites/world/1 - Grassland/Terrain (16 x 16).png" id="8_xhhta"]
 [ext_resource type="PackedScene" uid="uid://m44vus15jmky" path="res://scenes/player.tscn" id="9_dnk34"]
 [ext_resource type="PackedScene" uid="uid://vb4lvdta2d5o" path="res://scenes/killzone.tscn" id="10_kpfla"]
@@ -668,6 +670,8 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Endzone" parent="GameManager" instance=ExtResource("6_4xjdt")]
 position = Vector2(184, -1312)
+
+[node name="UpgradesPerLevel" parent="GameManager" instance=ExtResource("7_v4vvv")]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_mr1s5")

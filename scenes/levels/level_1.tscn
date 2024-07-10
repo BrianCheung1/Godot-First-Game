@@ -822,7 +822,6 @@ leaderboardID = "butter-knights-butter-knights-2wUo"
 position = Vector2(-168, -1072)
 
 [node name="UpgradesPerLevel" parent="GameManager" instance=ExtResource("6_8wulw")]
-visible = false
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(0, 9)
@@ -838,7 +837,6 @@ layer_1/tile_data = PackedInt32Array(65532, 393217, 3, 65533, 393217, 3, 65534, 
 [node name="Player" parent="." instance=ExtResource("10_86g5s")]
 position = Vector2(-8, 0)
 is_dev_mode = true
-invincibility_time_left = 0
 
 [node name="Killzone" parent="." instance=ExtResource("11_sl256")]
 position = Vector2(32, 65)

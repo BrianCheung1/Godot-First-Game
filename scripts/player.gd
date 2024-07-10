@@ -113,9 +113,9 @@ func _physics_process(delta):
 		velocity.x = direction_input * SPEED * 2
 		velocity.y = direction_input_y * SPEED * 2
 	else:
-		if Input.is_action_just_pressed("reload"):
-			get_tree().reload_current_scene()
-			PlayerVariables.player_resets +=1
+		#if Input.is_action_just_pressed("reload"):
+			#get_tree().reload_current_scene()
+			#PlayerVariables.player_resets +=1
 		
 		# Return early if deadge
 		if not is_alive:
@@ -239,7 +239,12 @@ func _on_roll_cooldown_timer_timeout():
 	is_rolling_cooldown = false
 	
 func _on_death_timer_timeout():
-	get_tree().reload_current_scene()
+	get_tree().change_scene_to_file("res://scenes/levels/level_menu.tscn")
+	PlayerVariables.player_MAX_HP = 100
+	PlayerVariables.player_jump_velocity = -300.0
+	PlayerVariables.player_jump_count = 0
+	PlayerVariables.player_attack_damage = 50
+	PlayerVariables.player_speed = 130
 
 
 func _on_animation_player_animation_finished(anim_name):
