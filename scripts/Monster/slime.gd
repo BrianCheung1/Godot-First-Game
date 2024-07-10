@@ -19,20 +19,11 @@ func generate_random_item():
 	
 	return possible_items[rng.randi_range(0, possible_items.size() - 1)]
 
-func _ready():
-	super._ready() 
-	
-	self.attack_padding = Vector2(base_size.x/4,0)
-	self.attack_collision = Collision.create_new_shape_with_modified_extents(self.collision_node, self.attack_padding.x, 0)
-	
-	if(self.animated_sprite.flip_h == true):
-		self.attack_collision.position.x += self.attack_padding.x
-	else:
-		self.attack_collision.position.x -= self.attack_padding.x
-		
-	self.attack_collision.disabled = true
+func _ready(): 
+	super._ready()
+	self.need_offset = false
+	self.attack_padding = Vector2(self.base_size.x/4,0)
 	self.attack_direction = "Front"
-	var damageZone = self.get_node("DamageZone")
-	damageZone.add_child(self.attack_collision)
+	super.create_attack_zone()
 
 

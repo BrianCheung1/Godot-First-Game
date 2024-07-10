@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://vb4lvdta2d5o" path="res://scenes/killzone.tscn" id="10_kpfla"]
 [ext_resource type="PackedScene" uid="uid://c12jdn8pbqxvy" path="res://scenes/coin.tscn" id="11_w1786"]
 [ext_resource type="PackedScene" uid="uid://c8a4cgk7bnnc4" path="res://scenes/Platforms/platform.tscn" id="12_mu0a3"]
-[ext_resource type="PackedScene" uid="uid://mn1rmqtsc0vc" path="res://scenes/slime.tscn" id="13_dfvie"]
+[ext_resource type="PackedScene" uid="uid://mn1rmqtsc0vc" path="res://scenes/monsters/mobs/slime.tscn" id="13_dfvie"]
 [ext_resource type="PackedScene" uid="uid://jpp0tyw8uubs" path="res://scenes/ui.tscn" id="14_mdc5n"]
 [ext_resource type="PackedScene" uid="uid://bmifpw60wh73o" path="res://scenes/jump_power.tscn" id="15_0446u"]
 [ext_resource type="PackedScene" uid="uid://cybewihjfuvew" path="res://scenes/spike.tscn" id="16_po7ih"]

@@ -22,12 +22,7 @@ func generate_random_item():
 func _ready():
 	super._ready() 
 	self.need_offset = false
-
 	self.attack_padding = Vector2(base_size.x * 2,self.base_size.y/5)	
-	self.attack_collision = Collision.create_new_shape_with_modified_extents(self.collision_node, self.attack_padding.x, self.attack_padding.y)
-
-	self.attack_collision.disabled = true
 	self.attack_direction = "AOE"
-	var damageZone = self.get_node("DamageZone")
-	damageZone.add_child(self.attack_collision)
+	super.create_attack_zone()
 	

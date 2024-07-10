@@ -184,5 +184,5 @@ shape = SubResource("RectangleShape2D_shmp5")
 debug_color = Color(0.204394, 0.624724, 0.412031, 0.42)
 
 [node name="RayCastDown" type="RayCast2D" parent="."]
-position = Vector2(0, -3)
+position = Vector2(0, -2)
 target_position = Vector2(0, 3)

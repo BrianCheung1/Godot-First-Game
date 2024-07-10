@@ -299,7 +299,7 @@ position = Vector2(0, -9)
 target_position = Vector2(-9, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -11.8594)
+position = Vector2(0, -11)
 shape = SubResource("RectangleShape2D_dtffe")
 
 [node name="StateSynchronizer" type="Node" parent="." node_paths=PackedStringArray("root")]
@@ -325,7 +325,7 @@ offset_bottom = 5.0
 metadata/_edit_use_anchors_ = true
 
 [node name="RayCastDown" type="RayCast2D" parent="."]
-position = Vector2(0, -10)
+position = Vector2(0, -8)
 target_position = Vector2(0, 9)
 
 [node name="DamageZone" parent="." instance=ExtResource("6_5mwnx")]
@@ -334,11 +334,11 @@ collision_mask = 2
 damage = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
-position = Vector2(0, -12)
+position = Vector2(0, -11)
 shape = SubResource("RectangleShape2D_iwfvb")
 debug_color = Color(0.204394, 0.624724, 0.412031, 0.42)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -16)
+position = Vector2(1, -15)
 sprite_frames = SubResource("SpriteFrames_phbnh")
 animation = &"die"

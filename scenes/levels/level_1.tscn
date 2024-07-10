@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://vb4lvdta2d5o" path="res://scenes/killzone.tscn" id="11_sl256"]
 [ext_resource type="PackedScene" uid="uid://c12jdn8pbqxvy" path="res://scenes/coin.tscn" id="12_iw2r7"]
 [ext_resource type="PackedScene" uid="uid://c8a4cgk7bnnc4" path="res://scenes/Platforms/platform.tscn" id="13_kgjuk"]
-[ext_resource type="PackedScene" uid="uid://mn1rmqtsc0vc" path="res://scenes/slime.tscn" id="14_rrsq8"]
+[ext_resource type="PackedScene" uid="uid://mn1rmqtsc0vc" path="res://scenes/monsters/mobs/slime.tscn" id="14_rrsq8"]
 [ext_resource type="FontFile" uid="uid://dc004b45phav2" path="res://assets/fonts/PixelOperator8.ttf" id="15_mqy1y"]
 [ext_resource type="PackedScene" uid="uid://d1f5a8u5sawcy" path="res://scenes/finish_line.tscn" id="16_2xq40"]
 [ext_resource type="PackedScene" uid="uid://jpp0tyw8uubs" path="res://scenes/ui.tscn" id="17_061t8"]
