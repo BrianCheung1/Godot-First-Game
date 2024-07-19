@@ -4,7 +4,6 @@ extends CanvasLayer
 @onready var game_menu = $Control/GameMenu
 @onready var level_menu = $Control/LevelMenu
 @onready var highscore_menu = $Control/HighscoreMenu
-@onready var multiplayer_hud = %MultiplayerHUD
 
 signal start_game()
 signal game_menu_opened()
@@ -19,8 +18,6 @@ func _input(event):
 	if !main_menu.visible and event.is_action_pressed("ui_cancel"):
 		if game_menu:
 			game_menu.visible = !game_menu.visible
-		if multiplayer_hud:
-			multiplayer_hud.visible = !multiplayer_hud.visible
 		if game_menu.visible:
 			game_menu_opened.emit()
 		else:

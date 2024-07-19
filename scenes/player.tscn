@@ -551,7 +551,6 @@ script = ExtResource("1_wkd0y")
 enable_flash_jump = true
 enable_roll = true
 enable_attack = true
-invincibility_time_left = 9999
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)
@@ -607,6 +606,7 @@ texture = ExtResource("6_jkjfo")
 one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
 
 [node name="InventoryGui" parent="CanvasLayer" instance=ExtResource("2_ovruc")]
 
@@ -658,3 +658,5 @@ target_position = Vector2(-1, 13)
 [connection signal="body_entered" from="AttackHitBox" to="." method="_on_attack_hit_box_body_entered"]
 [connection signal="body_entered" from="FeetCollisionArea2D" to="." method="_on_hitbox_area_2d_body_entered"]
 [connection signal="body_exited" from="FeetCollisionArea2D" to="." method="_on_hitbox_area_2d_body_exited"]
+
+[editable path="CanvasLayer/InventoryGui"]
