@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://m44vus15jmky" path="res://scenes/player.tscn" id="10_2haet"]
 [ext_resource type="PackedScene" uid="uid://jpp0tyw8uubs" path="res://scenes/ui.tscn" id="11_3g5eh"]
 [ext_resource type="PackedScene" uid="uid://ck2ddqlvmipjn" path="res://scenes/monsters/wizard.tscn" id="12_idi40"]
-[ext_resource type="PackedScene" uid="uid://mn1rmqtsc0vc" path="res://scenes/slime.tscn" id="13_0sfqw"]
+[ext_resource type="PackedScene" uid="uid://mn1rmqtsc0vc" path="res://scenes/monsters/mobs/slime.tscn" id="13_0sfqw"]
 [ext_resource type="PackedScene" uid="uid://c12jdn8pbqxvy" path="res://scenes/coin.tscn" id="14_7svr6"]
 [ext_resource type="PackedScene" uid="uid://cgvqs2ec8qsi2" path="res://scenes/Platforms/ice_platform.tscn" id="15_31wng"]
 [ext_resource type="PackedScene" uid="uid://c8a4cgk7bnnc4" path="res://scenes/Platforms/platform.tscn" id="16_6s5c0"]

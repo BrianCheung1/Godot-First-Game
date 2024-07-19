@@ -64,34 +64,19 @@ func format_time(time):
 func _on_button_press():
 	leaderboard.queue_free()
 
-func become_host():
-	print("Become Host Pressed")
-	%MultiplayerHUD.hide()
-	MultiplayerManager.become_host()
-	hud.get_node("PlayerLabel").text = "Name/ID: " + PlayerVariables.player_name + "/" + str(multiplayer.get_unique_id())
-	
-func join_as_player_2():
-	MultiplayerManager.join_as_player_2()
-	%MultiplayerHUD.hide()
-	hud.get_node("PlayerLabel").text = "Name/ID: " + PlayerVariables.player_name + "/" + str(multiplayer.get_unique_id())
+#func become_host():
+	#print("Become Host Pressed")
+	#%MultiplayerHUD.hide()
+	#MultiplayerManager.become_host()
+	#hud.get_node("PlayerLabel").text = "Name/ID: " + PlayerVariables.player_name + "/" + str(multiplayer.get_unique_id())
+	#
+#func join_as_player_2():
+	#MultiplayerManager.join_as_player_2()
+	#%MultiplayerHUD.hide()
+	#hud.get_node("PlayerLabel").text = "Name/ID: " + PlayerVariables.player_name + "/" + str(multiplayer.get_unique_id())
+#
+#func _on_multiplayer_hud_single_player():
+	#print("Single Player Mode")
+	#%MultiplayerHUD.hide()
 
-func _on_multiplayer_hud_single_player():
-	print("Single Player Mode")
-	%MultiplayerHUD.hide()
-
-
-func _on_upgrades_per_level_buff_1():
-	change_level()
-
-func _on_upgrades_per_level_buff_2():
-	change_level()
-
-func _on_upgrades_per_level_buff_3():
-	change_level()
-
-func change_level():
-	var level = str(get_tree().current_scene.name)
-	var res = int(level[-1]) + 1
-	var change_to_level = "level_" + str(res) + ".tscn"
-	get_tree().change_scene_to_file("res://scenes/levels/%s" % change_to_level)
 	

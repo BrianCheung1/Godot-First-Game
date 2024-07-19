@@ -22,7 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://gt2xrghvb2xv" path="res://scenes/monsters/mobs/guardian.tscn" id="20_axcm1"]
 [ext_resource type="PackedScene" uid="uid://bvw5sqim4q6rd" path="res://scenes/monsters/mobs/ball_and_chain_bot.tscn" id="21_7l0fo"]
 [ext_resource type="PackedScene" uid="uid://co5e4sive5dcd" path="res://scenes/monsters/mobs/spirit_boxer.tscn" id="22_yys1r"]
-[ext_resource type="PackedScene" uid="uid://mn1rmqtsc0vc" path="res://scenes/monsters/mobs/slime.tscn" id="23_87oir"]
+[ext_resource type="PackedScene" uid="uid://mn1rmqtsc0vc" path="res://scenes/slime.tscn" id="23_87oir"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mvodq"]
 texture = ExtResource("9_6p2vd")
@@ -1351,7 +1351,6 @@ position = Vector2(-168, -1072)
 
 [node name="Player" parent="." instance=ExtResource("7_2tgvn")]
 position = Vector2(2301, -124)
-invincibility_time_left = 0
 
 [node name="UI" parent="." instance=ExtResource("8_eiep3")]
 visible = false
